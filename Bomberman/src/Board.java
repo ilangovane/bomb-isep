@@ -10,8 +10,6 @@ public class Board {
 	
 	/*Constructeur : initialise le plateau de jeu lors de l'instanciation d'objet */
 	public Board(){
-		
-		/*Toute la matrice Ã  0*/
 		for(int line = 0 ; line <17 ; line ++){
 			for(int column = 0 ; column < 21 ; column++){
 				matrice[line][column] = 0;
@@ -45,7 +43,6 @@ public class Board {
 		}
 		
 		/*Zone accessible*/
-		//Player 1 
 		matrice[1][1] = 3;
 		matrice[1][2] = 3;
 		matrice[1][3] = 3;
@@ -54,7 +51,7 @@ public class Board {
 		matrice[3][2] = 3;
 		matrice[3][1] = 3;
 
-		//Player 2 
+		//player 2 
 		matrice[15][19] = 3;
 		matrice[15][18] = 3;
 		matrice[15][17] = 3;
@@ -68,7 +65,7 @@ public class Board {
 	
 public  void beginGame(){
 
-		//gÃ©nerer le plateau case par case
+		//génerer le plateau case par case
 		for(int line = 0 ; line < 17 ; line++ ){
 			for(int column = 0 ; column <21 ; column ++ ){
 
@@ -92,7 +89,7 @@ public  void beginGame(){
 		}
 	
 		
-		//placer les joeurs au dÃ©but du jeu pendant l'initialisation
+		//placer les joeurs au début du jeu pendant l'initialisation
 		//Joueur 1 en bleu
 		StdDraw.setPenColor(StdDraw.BLUE);
 		StdDraw.filledCircle(15 + 0.5 , 19 + 0.5 , 0.3 );
