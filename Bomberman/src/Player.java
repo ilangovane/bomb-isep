@@ -5,13 +5,22 @@ import edu.princeton.cs.introcs.StdDraw;
 public class Player {
 	int id;//identifiant 
 	int life = 3;//nombre de vie restant
-	int x ; // position X (varie de 0 ‡ 20)
- 	int y ; // position Y (varie de 0 ‡ 16)
+	int x ; // position X (varie de 0 √† 20)
+ 	int y ; // position Y (varie de 0 √† 16)
 	int bombs = 3;
 
 	Player(int id){
 		/* Si id vaut 1 il s'agit du joueur 1 , si 2 le joueur 2 si 3 une IA*/
 		this.id = id;
+		
+		/*Le joueur 1 et 2 sont positionn√©es respectivement en (X,Y) = (1,1) et (X,Y) =  (19,15)*/
+		if(this.id == 1){
+			this.x = 1;
+			this.y = 1;
+		}else{
+			this.x = 19;
+			this.y = 15;
+		}
 	}
 
 	/*Getters et Setters*/
@@ -56,7 +65,7 @@ public class Player {
 	}
 	
 	/*
-	 * DÈplacement
+	 * D√©placement
 	 * */
 	
 	public void move(){
@@ -76,7 +85,7 @@ public class Player {
         	}
 		}
 		
-		//commande clavier du joueur 2 avec les flËches
+		//commande clavier du joueur 2 avec les fl√®ches
 		if(this.id == 2 ){
 			
             if(StdDraw.isKeyPressed(KeyEvent.VK_DOWN )) {
