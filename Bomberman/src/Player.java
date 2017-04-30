@@ -5,15 +5,15 @@ import edu.princeton.cs.introcs.StdDraw;
 public class Player {
 	int id;//identifiant 
 	int life = 3;//nombre de vie restant
-	int x ; // position X (varie de 0 Ã  20)
- 	int y ; // position Y (varie de 0 Ã  16)
+	int x ; // position X (varie de 0 à 20)
+ 	int y ; // position Y (varie de 0 à 16)
 	int bombs = 3;
 
 	Player(int id){
 		/* Si id vaut 1 il s'agit du joueur 1 , si 2 le joueur 2 si 3 une IA*/
 		this.id = id;
 		
-		/*Le joueur 1 et 2 sont positionnÃ©es respectivement en (X,Y) = (1,1) et (X,Y) =  (19,15)*/
+		/*Le joueur 1 et 2 sont positionnées respectivement en (X,Y) = (1,1) et (X,Y) =  (19,15)*/
 		if(this.id == 1){
 			this.x = 1;
 			this.y = 1;
@@ -65,12 +65,12 @@ public class Player {
 	}
 	
 	/*
-	 * DÃ©placement
+	 * Déplacement
 	 * */
 	
 	public void move(){
 		
-		//commande clavier du joueur 1 => W A S et D ( Q poser des bombes)
+		//commande clavier du joueur 1 => W A S et D (Q pour poser une bombe)
 		if(this.id == 1){
             if(StdDraw.isKeyPressed(KeyEvent.VK_W)) {
           	   System.out.println("J1 descendre");
@@ -85,7 +85,7 @@ public class Player {
         	}
 		}
 		
-		//commande clavier du joueur 2 avec les flÃ¨ches (espace pour poser une bombe)
+		//commande clavier du joueur 2 avec les flèches (espace pour poser une bombe)
 		if(this.id == 2 ){
 			
             if(StdDraw.isKeyPressed(KeyEvent.VK_DOWN )) {
@@ -102,7 +102,7 @@ public class Player {
 		}
 		
 		if(this.id == 3){
-		
+			
 		}
 		
 	}

@@ -5,6 +5,8 @@ public class Board {
 	 * 1 : mur incassable
 	 * 2 : mur cassable
 	 * 3 : herbe
+	 * 
+	 * 17 lignes et 21 colonnes
 	 * */
 	int[][] matrice = new int[17][21]; 
 	
@@ -43,6 +45,7 @@ public class Board {
 		}
 		
 		/*Zone accessible*/
+		//player 1 
 		matrice[1][1] = 3;
 		matrice[1][2] = 3;
 		matrice[1][3] = 3;
@@ -89,7 +92,7 @@ public  void beginGame(){
 		}
 	
 		
-		//placer les joeurs au début du jeu pendant l'initialisation
+		//placer les juoeurs au début du jeu pendant l'initialisation
 		//Joueur 1 en bleu
 		StdDraw.setPenColor(StdDraw.BLUE);
 		StdDraw.filledCircle(15 + 0.5 , 19 + 0.5 , 0.3 );
