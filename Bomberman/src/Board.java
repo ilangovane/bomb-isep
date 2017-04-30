@@ -73,17 +73,11 @@ public  void beginGame(){
 			for(int column = 0 ; column <21 ; column ++ ){
 
 		        if(matrice[line][column] == 1){ // cas d'un mur incassable 
-					StdDraw.setPenColor(StdDraw.DARK_GRAY);
-					StdDraw.filledSquare(line + 0.5 , column + 0.5 , 0.5 );
-					System.out.println("color : dark_gray	" + "x:" + line +  " y:" + column);
+					setArea(line , column , "grey");
 		        }else if(matrice[line][column] == 2){// cas d'un mur cassable
-		        	StdDraw.setPenColor(StdDraw.ORANGE);
-					StdDraw.filledSquare(line + 0.5 , column + 0.5 , 0.5 );
-					System.out.println("color : orange	" + "x:" + line +  " y:" + column);
+		        	setArea(line , column , "orange");
 		        }else if(matrice[line][column] == 3){ // cas de l'herbe
-		        	StdDraw.setPenColor(StdDraw.GREEN);
-					StdDraw.filledSquare(line + 0.5 , column + 0.5 , 0.5 );
-					System.out.println("color : green	" + "x:" + line +  " y:" + column);
+		        	setArea(line , column , "green");
 		        }
 
 			}
@@ -102,6 +96,31 @@ public  void beginGame(){
 		StdDraw.filledCircle(1 + 0.5 , 1 + 0.5 , 0.3 );
 		
 		
+	}
+
+	/*La fonction permet de modifier la couleur d'une case en spécifiant la ligne, la colonne et la color "green" , "grey" ou "orange"*/
+	public void setArea(int line , int column , String color){
+		switch(color){
+		case "orange" : 
+	    	StdDraw.setPenColor(StdDraw.ORANGE);
+			StdDraw.filledSquare(line + 0.5 , column + 0.5 , 0.5 );
+			System.out.println("color : orange	" + "x:" + line +  " y:" + column);
+			break;
+		
+		case "green":
+        	StdDraw.setPenColor(StdDraw.GREEN);
+			StdDraw.filledSquare(line + 0.5 , column + 0.5 , 0.5 );
+			System.out.println("color : green	" + "x:" + line +  " y:" + column);
+			break;
+		case "grey":
+			StdDraw.setPenColor(StdDraw.DARK_GRAY);
+			StdDraw.filledSquare(line + 0.5 , column + 0.5 , 0.5 );
+			System.out.println("color : dark_gray	" + "x:" + line +  " y:" + column);
+			break;
+		default:
+			System.out.println("UNKNOWN COLOR");
+		}
+
 	}
 	
 	
