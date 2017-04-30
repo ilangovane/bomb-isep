@@ -88,15 +88,32 @@ public  void beginGame(){
 		
 		//placer les juoeurs au début du jeu pendant l'initialisation
 		//Joueur 1 en bleu
+		StdDraw.setPenColor(StdDraw.RED);
+		StdDraw.filledCircle(1 + 0.5 , 1 + 0.5 , 0.3 );
+
+		
+		//Joueur 2 en rouge 
 		StdDraw.setPenColor(StdDraw.BLUE);
 		StdDraw.filledCircle(15 + 0.5 , 19 + 0.5 , 0.3 );
 		
-		//Joueur 2 en rouge 
-		StdDraw.setPenColor(StdDraw.RED);
-		StdDraw.filledCircle(1 + 0.5 , 1 + 0.5 , 0.3 );
-		
 		
 	}
+
+	public void setPlayer(int id,int x, int y){
+	
+	if(id == 1){//Joueur 1 en rouge
+		StdDraw.setPenColor(StdDraw.RED);
+		StdDraw.filledCircle(x + 0.5 , y + 0.5 , 0.3 );	
+	}else{//Joueur 2 en bleu
+		StdDraw.setPenColor(StdDraw.BLUE);
+		StdDraw.filledCircle(x + 0.5 , y + 0.5 , 0.3 );
+
+	}
+
+	
+	
+
+}
 
 	/*La fonction permet de modifier la couleur d'une case en spécifiant la ligne, la colonne et la color "green" , "grey" ou "orange"*/
 	public void setArea(int line , int column , String color){
@@ -121,6 +138,22 @@ public  void beginGame(){
 			System.out.println("UNKNOWN COLOR");
 		}
 
+	}
+	
+	// si la case est verte la fonction renvoie true sinon false
+	public boolean isGrass(int line , int column){
+		/*La matrice contient des entiers : 
+		 * 1 : mur incassable
+		 * 2 : mur cassable
+		 * 3 : herbe
+		 * */
+		if(line <0 || column<0 || column>20 || line>16){//hors indexe matrice
+			return false;
+		}
+		if(matrice[line][column] == 0 || matrice[line][column] == 1 || matrice[line][column] == 2 ){
+			return false;
+		}
+		return true;
 	}
 	
 	

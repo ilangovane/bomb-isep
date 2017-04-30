@@ -5,8 +5,8 @@ import edu.princeton.cs.introcs.StdDraw;
 public class Player {
 	int id;//identifiant 
 	int life = 3;//nombre de vie restant
-	int x ; // position X (varie de 0 à 20)
- 	int y ; // position Y (varie de 0 à 16)
+	int column ; // position X (varie de 0 à 20)
+ 	int line ; // position Y (varie de 0 à 16)
 	int bombs = 3;
 
 	Player(int id){
@@ -15,11 +15,11 @@ public class Player {
 		
 		/*Le joueur 1 et 2 sont positionnées respectivement en (X,Y) = (1,1) et (X,Y) =  (19,15)*/
 		if(this.id == 1){
-			this.x = 1;
-			this.y = 1;
+			this.line = 1;
+			this.column = 1;
 		}else{
-			this.x = 19;
-			this.y = 15;
+			this.column = 19;
+			this.line = 15;
 		}
 	}
 
@@ -40,20 +40,22 @@ public class Player {
 		this.life = life;
 	}
 
-	public int getX() {
-		return x;
+
+
+	public int getLine() {
+		return line;
 	}
 
-	public void setX(int x) {
-		this.x = x;
+	public void setLine(int line) {
+		this.line = line;
 	}
 
-	public int getY() {
-		return y;
+	public int getColumn() {
+		return column;
 	}
 
-	public void setY(int y) {
-		this.y = y;
+	public void setColumn(int column) {
+		this.column = column;
 	}
 
 	public int getBombs() {
@@ -68,7 +70,7 @@ public class Player {
 	 * Déplacement
 	 * */
 	
-	public void move(){
+	public void move(Board b){
 		
 		//commande clavier du joueur 1 => W A S et D (Q pour poser une bombe)
 		if(this.id == 1){

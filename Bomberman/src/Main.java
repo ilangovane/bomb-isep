@@ -28,8 +28,8 @@ public class Main {
         
         
         while(true){
-        	J1.move();
-        	J2.move();
+        	J1.move(game_board);
+        	J2.move(game_board);
         }
 
 		
