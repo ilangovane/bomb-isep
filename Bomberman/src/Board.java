@@ -73,11 +73,11 @@ public  void beginGame(){
 			for(int column = 0 ; column <21 ; column ++ ){
 
 		        if(matrice[line][column] == 1){ // cas d'un mur incassable 
-					setArea(line , column , "grey");
+					this.setArea(line , column , "grey");
 		        }else if(matrice[line][column] == 2){// cas d'un mur cassable
-		        	setArea(line , column , "orange");
+		        	this.setArea(line , column , "orange");
 		        }else if(matrice[line][column] == 3){ // cas de l'herbe
-		        	setArea(line , column , "green");
+		        	this.setArea(line , column , "green");
 		        }
 
 			}
