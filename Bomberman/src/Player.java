@@ -70,7 +70,7 @@ public class Player {
 	
 	public void move(){
 		
-		//commande clavier du joueur 1 => W A S et D
+		//commande clavier du joueur 1 => W A S et D ( Q poser des bombes)
 		if(this.id == 1){
             if(StdDraw.isKeyPressed(KeyEvent.VK_W)) {
           	   System.out.println("J1 descendre");
@@ -85,7 +85,7 @@ public class Player {
         	}
 		}
 		
-		//commande clavier du joueur 2 avec les flèches
+		//commande clavier du joueur 2 avec les flèches (espace pour poser une bombe)
 		if(this.id == 2 ){
 			
             if(StdDraw.isKeyPressed(KeyEvent.VK_DOWN )) {
@@ -102,7 +102,7 @@ public class Player {
 		}
 		
 		if(this.id == 3){
-			
+		
 		}
 		
 	}
