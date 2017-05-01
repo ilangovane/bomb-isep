@@ -88,25 +88,23 @@ public  void beginGame(){
 		
 		//placer les juoeurs au début du jeu pendant l'initialisation
 		//Joueur 1 en bleu
-		StdDraw.setPenColor(StdDraw.RED);
-		StdDraw.filledCircle(1 + 0.5 , 1 + 0.5 , 0.3 );
 
+		this.setPlayer(1, 1, 1);
 		
 		//Joueur 2 en rouge 
-		StdDraw.setPenColor(StdDraw.BLUE);
-		StdDraw.filledCircle(15 + 0.5 , 19 + 0.5 , 0.3 );
-		
+
+		this.setPlayer(2, 15, 19);
 		
 	}
 
-	public void setPlayer(int id,int x, int y){
+	public void setPlayer(int id,double X, double Y){
 	
 	if(id == 1){//Joueur 1 en rouge
 		StdDraw.setPenColor(StdDraw.RED);
-		StdDraw.filledCircle(x + 0.5 , y + 0.5 , 0.3 );	
+		StdDraw.filledCircle(X + 0.5 , Y + 0.5 , 0.3 );	
 	}else{//Joueur 2 en bleu
 		StdDraw.setPenColor(StdDraw.BLUE);
-		StdDraw.filledCircle(x + 0.5 , y + 0.5 , 0.3 );
+		StdDraw.filledCircle(X + 0.5 , Y + 0.5 , 0.3 );
 
 	}
 
@@ -120,19 +118,19 @@ public  void beginGame(){
 		switch(color){
 		case "orange" : 
 	    	StdDraw.setPenColor(StdDraw.ORANGE);
-			StdDraw.filledSquare(line + 0.5 , column + 0.5 , 0.5 );
-			System.out.println("color : orange	" + "x:" + line +  " y:" + column);
+			StdDraw.filledSquare(column + 0.5 , line + 0.5 , 0.5 );
+			System.out.println("color : orange	" + "line : " + line +  " column : " + column);
 			break;
 		
 		case "green":
         	StdDraw.setPenColor(StdDraw.GREEN);
-			StdDraw.filledSquare(line + 0.5 , column + 0.5 , 0.5 );
-			System.out.println("color : green	" + "x:" + line +  " y:" + column);
+        	StdDraw.filledSquare(column + 0.5 , line + 0.5 , 0.5 );
+			System.out.println("color : green	" + "line : " + line +  " column : " + column);
 			break;
 		case "grey":
 			StdDraw.setPenColor(StdDraw.DARK_GRAY);
-			StdDraw.filledSquare(line + 0.5 , column + 0.5 , 0.5 );
-			System.out.println("color : dark_gray	" + "x:" + line +  " y:" + column);
+			StdDraw.filledSquare(column + 0.5 , line + 0.5 , 0.5 );
+			System.out.println("color : dark_grey	" + "line : " + line +  " column : " + column);
 			break;
 		default:
 			System.out.println("UNKNOWN COLOR");
@@ -148,7 +146,9 @@ public  void beginGame(){
 		 * 3 : herbe
 		 * */
 		if(line <0 || column<0 || column>20 || line>16){//hors indexe matrice
+			System.out.println("Hors indexe");
 			return false;
+			
 		}
 		if(matrice[line][column] == 0 || matrice[line][column] == 1 || matrice[line][column] == 2 ){
 			return false;
