@@ -86,38 +86,38 @@ public class Player {
 
 		//commande clavier du joueur 1 
 		if(this.id == 1){
-            if(StdDraw.isKeyPressed(KeyEvent.VK_S)) {
-	           	if(	b.isGrass((int)this.getY()-1 , (int)this.getX())){
-	           		System.out.println("J1 bas");
-	        		b.setArea((int)this.getY(), (int)this.getX(), "green");
-	        		this.setY(this.getY()- dY);
-	        		
-	        		System.out.println("ID : " + this.getId() + " coord X : " + this.getX() + "  Y :  " + this.getY() );
-	        	}
-          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Q)){
+            if(StdDraw.isKeyPressed(KeyEvent.VK_S)) {//touche S pressée
+		           	if(	b.isGrass((int)this.getY()-1 , (int)this.getX())){
+		           		System.out.println("J1 bas");
+		        		b.setArea((int)this.getY(), (int)this.getX(), "green");
+		        		this.setY(this.getY()- dY);
+		        		
+		        		System.out.println("ID : " + this.getId() + " coord X : " + this.getX() + "  Y :  " + this.getY() );
+		        	}
+          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Q)){//touche Q pressée
           		 
-             	if(b.isGrass((int) this.getY(), (int) this.getX() -1)){
-             		System.out.println("J1 gauche");
-            		b.setArea((int)this.getY(), (int)this.getX(), "green");
-            		this.setX(this.getX()-dX);	
-            		System.out.println("ID : " + this.getId() + " coord X : " + this.getX() + "  Y :  " + this.getY() );
-            	}
-          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_D)){
+	             	if(b.isGrass((int) this.getY(), (int) this.getX() -1)){
+	             		System.out.println("J1 gauche");
+	            		b.setArea((int)this.getY(), (int)this.getX(), "green");
+	            		this.setX(this.getX()-dX);	
+	            		System.out.println("ID : " + this.getId() + " coord X : " + this.getX() + "  Y :  " + this.getY() );
+	            	}
+          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_D)){//touche D pressée
           		
-         		if(b.isGrass((int) this.getY(), (int) this.getX()+1)){
-         			System.out.println("J1 droite");
-            		b.setArea((int) this.getY(), (int) this.getX(), "green");
-            		this.setX(this.getX()+dX);
-            		System.out.println("ID : " + this.getId() + " coord X : " + this.getX() + "  Y :  " + this.getY() );
-            	}
-         	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Z)){
-             	if(b.isGrass((int) this.getY()+1, (int) this.getX())){
-             		System.out.println("J2 haut");
-            		b.setArea((int) this.getY(), (int) this.getX(), "green");
-            		this.setY(this.getY()+dY);
-            		System.out.println("ID : " + this.getId() + " coord X : " + this.getX() + "  Y :  " + this.getY() );
-            	}
-         	}else if(StdDraw.isKeyPressed(KeyEvent.VK_W)){
+	         		if(b.isGrass((int) this.getY(), (int) this.getX()+1)){
+	         			System.out.println("J1 droite");
+	            		b.setArea((int) this.getY(), (int) this.getX(), "green");
+	            		this.setX(this.getX()+dX);
+	            		System.out.println("ID : " + this.getId() + " coord X : " + this.getX() + "  Y :  " + this.getY() );
+	            	}
+         	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Z)){//touche Z pressée
+	             	if(b.isGrass((int) this.getY()+1, (int) this.getX())){
+	             		System.out.println("J2 haut");
+	            		b.setArea((int) this.getY(), (int) this.getX(), "green");
+	            		this.setY(this.getY()+dY);
+	            		System.out.println("ID : " + this.getId() + " coord X : " + this.getX() + "  Y :  " + this.getY() );
+	            	}
+         	}else if(StdDraw.isKeyPressed(KeyEvent.VK_W)){//touche W pressée
         		 System.out.println("J1 pose une bombe");
         	}
 		}
@@ -125,43 +125,43 @@ public class Player {
 		//commande clavier du joueur 2 
 		if(this.id == 2 ){
 			
-            if(StdDraw.isKeyPressed(KeyEvent.VK_DOWN )) {
+            if(StdDraw.isKeyPressed(KeyEvent.VK_DOWN )) {//touche BAS pressée
             	
-            	if(	b.isGrass((int)this.getY()-1 , (int)this.getX())){
-            		System.out.println("J2 bas");
-            		b.setArea((int)this.getY(), (int)this.getX(), "green");
-            		this.setY(this.getY()-dY);
-            		
-            		System.out.println("ID : " + this.getId() + " coord X : " + this.getX() + "  Y :  " + this.getY() );
-            	}
+            		if(	b.isGrass((int)this.getY()-1 , (int)this.getX())){
+	            		System.out.println("J2 bas");
+	            		b.setArea((int)this.getY(), (int)this.getX(), "green");
+	            		this.setY(this.getY()-dY);
+	            		
+	            		System.out.println("ID : " + this.getId() + " coord X : " + this.getX() + "  Y :  " + this.getY() );
+	            	}
             	
-           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_LEFT )){
+           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_LEFT )){//touche GAUCHE pressée
            		
-            	if(b.isGrass((int) this.getY(), (int) this.getX() -1)){
-            		System.out.println("J2 gauche");
-            		b.setArea((int)this.getY(), (int)this.getX(), "green");
-            		this.setX(this.getX()-dX);	
-            		System.out.println("ID : " + this.getId() + " coord X : " + this.getX() + "  Y :  " + this.getY() );
-            	}
+	            	if(b.isGrass((int) this.getY(), (int) this.getX() -1)){
+	            		System.out.println("J2 gauche");
+	            		b.setArea((int)this.getY(), (int)this.getX(), "green");
+	            		this.setX(this.getX()-dX);	
+	            		System.out.println("ID : " + this.getId() + " coord X : " + this.getX() + "  Y :  " + this.getY() );
+	            	}
            		 
-           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_RIGHT)){
+           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_RIGHT)){//touche DROITE pressée
           		 
           		 
-             	if(b.isGrass((int) this.getY(), (int) this.getX()+1)){
-             		System.out.println("J2 droite");
-            		b.setArea((int) this.getY(), (int) this.getX(), "green");
-            		this.setX(this.getX()+dX);
-            		System.out.println("ID : " + this.getId() + " coord X : " + this.getX() + "  Y :  " + this.getY() );
-            	}
-          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_UP)){
+	             	if(b.isGrass((int) this.getY(), (int) this.getX()+1)){
+	             		System.out.println("J2 droite");
+	            		b.setArea((int) this.getY(), (int) this.getX(), "green");
+	            		this.setX(this.getX()+dX);
+	            		System.out.println("ID : " + this.getId() + " coord X : " + this.getX() + "  Y :  " + this.getY() );
+	            	}
+          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_UP)){//touche HAUT pressée
           		 
-             	if(b.isGrass((int) this.getY()+1, (int) this.getX())){
-             		System.out.println("J2 haut");
-            		b.setArea((int) this.getY(), (int) this.getX(), "green");
-            		this.setY(this.getY()+dY);
-            		System.out.println("ID : " + this.getId() + " coord X : " + this.getX() + "  Y :  " + this.getY() );
-            	}
-          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_SPACE)){
+	             	if(b.isGrass((int) this.getY()+1, (int) this.getX())){
+	             		System.out.println("J2 haut");
+	            		b.setArea((int) this.getY(), (int) this.getX(), "green");
+	            		this.setY(this.getY()+dY);
+	            		System.out.println("ID : " + this.getId() + " coord X : " + this.getX() + "  Y :  " + this.getY() );
+	            	}
+          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_SPACE)){//touche ESPACE pressée
         		 System.out.println("J2 pose une bombe");
         	}
 		}
@@ -170,6 +170,8 @@ public class Player {
 			//IA
 		}
 		
+		
+		// affiche le joueur sur la case 
 		b.setPlayer(this.getId(), (int) this.getX(), (int) this.getY());
 		
 		
