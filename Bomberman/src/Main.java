@@ -7,25 +7,27 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		StdDraw.setCanvasSize(1050,850);
+
 		Board game_board = new Board();
-	
-		/*
-		 * Modifier les echelles X et Y pour avoir un systÃ¨me de coordonnÃ©es (X,Y)
-		 *  CoordonnÃ©es (0,0) coin en bas Ã  gauche et (17,21) coin en haut Ã  droite
-		 *  */
-        StdDraw.setXscale(0 , 21);
-        StdDraw.setYscale(0 , 17);
-        
         //Dessiner le plateau et les joueurs
         game_board.beginGame();
         Player J1 = new Player(1); // le joueur 1 porte l'id 1 
         Player J2 = new Player(2); // le joueur 2 porte l'id 2 
-      
+        Bomb bomb_liste = new Bomb();
+        
        while(true){
+    	   /*Gère les déplacements des joueurs 1 et 2*/
         	J1.move(game_board);
         	J2.move(game_board);
 
+        	/*Chaque joueur peut poser des bombes en appuyant soit sur espace ou sur W*/
+        	bomb_liste.putBomb(game_board, J1.getId(), (int)J1.getX(), (int)J1.getY());
+        	bomb_liste.putBomb(game_board, J2.getId(), (int)J2.getX(), (int)J2.getY());
+        	/*Les bombes explosent 5 secondes après être déposée*/
+        	bomb_liste.explose(game_board);
+        	/*Les bombes sont affichées */
+        	game_board.show_all_bombs(bomb_liste.getBombs());
+        	
         }
 
 		
@@ -33,6 +35,8 @@ public class Main {
 		
 		
 	}
+	
+	
 	
 	
 }

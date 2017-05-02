@@ -1,5 +1,6 @@
 import java.awt.event.KeyEvent;
 
+
 import edu.princeton.cs.introcs.StdDraw;
 
 public class Player {
@@ -7,10 +8,10 @@ public class Player {
 	int life = 3;//nombre de vie restant
 	double X ; // position X (varie de 0 à 20)
  	double Y ; // position Y (varie de 0 à 16)
-	int bombs = 3;
-	
-	double dX = 0.1 ; // le plus petit déplacement horizontal (définit la vitesse)
-	double dY = 0.1 ; // le plus petit déplacement vertical (définit la vitesse)
+	int bombs = 0;//bombes déposées
+
+	double dX = 0.05 ; // le plus petit déplacement horizontal (définit la vitesse)
+	double dY = 0.05 ; // le plus petit déplacement vertical (définit la vitesse)
 
 	Player(int id){
 		/* Si id vaut 1 il s'agit du joueur 1 , si 2 le joueur 2 si 3 une IA*/
@@ -83,43 +84,42 @@ public class Player {
 	 * 
 	 * */
 	public void move(Board b){
-
 		//commande clavier du joueur 1 
 		if(this.id == 1){
             if(StdDraw.isKeyPressed(KeyEvent.VK_S)) {//touche S pressée
 		           	if(	b.isGrass((int)this.getY()-1 , (int)this.getX())){
-		           		System.out.println("J1 bas");
+		           		System.out.println("J1 DOWN");
 		        		b.setArea((int)this.getY(), (int)this.getX(), "green");
 		        		this.setY(this.getY()- dY);
 		        		
-		        		System.out.println("ID : " + this.getId() + " coord X : " + this.getX() + "  Y :  " + this.getY() );
+		        		System.out.println("ID : " + this.getId() + "	| X :  " + this.getX() + "|  Y :  " + this.getY() );
 		        	}
           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Q)){//touche Q pressée
           		 
 	             	if(b.isGrass((int) this.getY(), (int) this.getX() -1)){
-	             		System.out.println("J1 gauche");
+	             		System.out.println("J1 LEFT");
 	            		b.setArea((int)this.getY(), (int)this.getX(), "green");
 	            		this.setX(this.getX()-dX);	
-	            		System.out.println("ID : " + this.getId() + " coord X : " + this.getX() + "  Y :  " + this.getY() );
+	            		System.out.println("ID : " + this.getId() + "	| X :  " + this.getX() + "|  Y :  " + this.getY() );
 	            	}
           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_D)){//touche D pressée
           		
 	         		if(b.isGrass((int) this.getY(), (int) this.getX()+1)){
-	         			System.out.println("J1 droite");
+	         			System.out.println("J1 RIGHT");
 	            		b.setArea((int) this.getY(), (int) this.getX(), "green");
 	            		this.setX(this.getX()+dX);
-	            		System.out.println("ID : " + this.getId() + " coord X : " + this.getX() + "  Y :  " + this.getY() );
+	            		System.out.println("ID : " + this.getId() + "	| X :  " + this.getX() + "|  Y :  " + this.getY() );
 	            	}
          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Z)){//touche Z pressée
 	             	if(b.isGrass((int) this.getY()+1, (int) this.getX())){
-	             		System.out.println("J2 haut");
+	             		System.out.println("J1 UP");
 	            		b.setArea((int) this.getY(), (int) this.getX(), "green");
 	            		this.setY(this.getY()+dY);
-	            		System.out.println("ID : " + this.getId() + " coord X : " + this.getX() + "  Y :  " + this.getY() );
+	            		System.out.println("ID : " + this.getId() + "	| X :  " + this.getX() + "|  Y :  " + this.getY() );
 	            	}
-         	}else if(StdDraw.isKeyPressed(KeyEvent.VK_W)){//touche W pressée
+         	}/*else if(StdDraw.isKeyPressed(KeyEvent.VK_W)){//touche W pressée
         		 System.out.println("J1 pose une bombe");
-        	}
+        	}*/
 		}
 		
 		//commande clavier du joueur 2 
@@ -128,42 +128,42 @@ public class Player {
             if(StdDraw.isKeyPressed(KeyEvent.VK_DOWN )) {//touche BAS pressée
             	
             		if(	b.isGrass((int)this.getY()-1 , (int)this.getX())){
-	            		System.out.println("J2 bas");
+	            		System.out.println("J2 DOWN");
 	            		b.setArea((int)this.getY(), (int)this.getX(), "green");
 	            		this.setY(this.getY()-dY);
 	            		
-	            		System.out.println("ID : " + this.getId() + " coord X : " + this.getX() + "  Y :  " + this.getY() );
+	            		System.out.println("ID : " + this.getId() + "	| X :  " + this.getX() + "|  Y :  " + this.getY() );
 	            	}
             	
            	}else if(StdDraw.isKeyPressed(KeyEvent.VK_LEFT )){//touche GAUCHE pressée
            		
 	            	if(b.isGrass((int) this.getY(), (int) this.getX() -1)){
-	            		System.out.println("J2 gauche");
+	            		System.out.println("J2 LEFT");
 	            		b.setArea((int)this.getY(), (int)this.getX(), "green");
 	            		this.setX(this.getX()-dX);	
-	            		System.out.println("ID : " + this.getId() + " coord X : " + this.getX() + "  Y :  " + this.getY() );
+	            		System.out.println("ID : " + this.getId() + "	| X :  " + this.getX() + "|  Y :  " + this.getY() );
 	            	}
            		 
            	}else if(StdDraw.isKeyPressed(KeyEvent.VK_RIGHT)){//touche DROITE pressée
           		 
           		 
 	             	if(b.isGrass((int) this.getY(), (int) this.getX()+1)){
-	             		System.out.println("J2 droite");
+	             		System.out.println("J2 RIGHT");
 	            		b.setArea((int) this.getY(), (int) this.getX(), "green");
 	            		this.setX(this.getX()+dX);
-	            		System.out.println("ID : " + this.getId() + " coord X : " + this.getX() + "  Y :  " + this.getY() );
+	            		System.out.println("ID : " + this.getId() + "	| X :  " + this.getX() + "|  Y :  " + this.getY() );
 	            	}
           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_UP)){//touche HAUT pressée
           		 
 	             	if(b.isGrass((int) this.getY()+1, (int) this.getX())){
-	             		System.out.println("J2 haut");
+	             		System.out.println("J2 UP");
 	            		b.setArea((int) this.getY(), (int) this.getX(), "green");
 	            		this.setY(this.getY()+dY);
-	            		System.out.println("ID : " + this.getId() + " coord X : " + this.getX() + "  Y :  " + this.getY() );
+	            		System.out.println("ID : " + this.getId() + "	| X :  " + this.getX() + "|  Y :  " + this.getY() );
 	            	}
-          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_SPACE)){//touche ESPACE pressée
+          	}/*else if(StdDraw.isKeyPressed(KeyEvent.VK_SPACE)){//touche ESPACE pressée
         		 System.out.println("J2 pose une bombe");
-        	}
+        	}*/
 		}
 		
 		if(this.id == 3){
