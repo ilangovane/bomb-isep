@@ -1,3 +1,4 @@
+import java.awt.Font;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -7,7 +8,7 @@ public class Board {
 	/*La matrice contient des entiers : 
 	 * 1 : mur incassable
 	 * 2 : mur cassable
-	 * 3 : herbe
+	 * 3 : case verte
 	 * 
 	 * 17 lignes et 21 colonnes
 	 * */
@@ -27,12 +28,6 @@ public class Board {
 		 *  */
         StdDraw.setXscale(0 , 21);
         StdDraw.setYscale(0 , 17);
-		for(int line = 0 ; line <17 ; line ++){
-			for(int column = 0 ; column < 21 ; column++){
-				matrice[line][column] = 0;
-			}
-
-		}
 
 		/*Murs incassables*/
 		for(int line = 0 ; line <17 ; line ++){
@@ -107,7 +102,7 @@ public  void beginGame(){
 					this.setArea(line , column , "grey");
 		        }else if(matrice[line][column] == 2){// cas d'un mur cassable
 		        	this.setArea(line , column , "orange");
-		        }else if(matrice[line][column] == 3){ // cas de l'herbe
+		        }else if(matrice[line][column] == 3){ // cas de l'GREEN
 		        	this.setArea(line , column , "green");
 		        }
 
@@ -147,7 +142,7 @@ public  void beginGame(){
 
 }
 
-	/*La fonction permet de modifier la couleur d'une case en spécifiant la ligne, la colonne et la color "green" , "grey" ou "orange"*/
+	/*La fonction permet de modifier la couleur d'une case en spécifiant la ligne, la colonne et la color "GREEN" , "grey" ou "orange"*/
 	public void setArea(int line , int column , String color){
 		switch(color){
 		case "orange" : 
@@ -168,6 +163,8 @@ public  void beginGame(){
 			break;
 		default:
 			System.out.println("UNKNOWN COLOR");
+			StdDraw.setPenColor(StdDraw.WHITE);
+			StdDraw.filledSquare(column + 0.5 , line + 0.5 , 0.5 );
 		}
 
 	}
@@ -194,7 +191,7 @@ public  void beginGame(){
 		/*La matrice contient des entiers : 
 		 * 1 : mur incassable
 		 * 2 : mur cassable
-		 * 3 : herbe
+		 * 3 : case verte
 		 * */
 		if(line <0 || column<0 || column>20 || line>16){//hors indexe matrice
 			System.out.println("Out of index matrice[ligne][colonne]");
@@ -207,12 +204,12 @@ public  void beginGame(){
 		return true;
 	}
 	
-	//vérifie si la case est celle d'un mur cassable ou herbe
+	//vérifie si la case est celle d'un mur cassable ou GREEN
 	public boolean isDestructible(int line, int column){
 		/*La matrice contient des entiers : 
 		 * 1 : mur incassable
 		 * 2 : mur cassable
-		 * 3 : herbe
+		 * 3 : case verte
 		 * */
 		if(line <0 || column<0 || column>20 || line>16){//hors indexe matrice
 			System.out.println("Out of index matrice[ligne][colonne]");
@@ -230,7 +227,7 @@ public  void beginGame(){
 		/*La matrice contient des entiers : 
 		 * 1 : mur incassable
 		 * 2 : mur cassable
-		 * 3 : herbe
+		 * 3 : case verte 
 		 * */
 		if(line <0 || column<0 || column>20 || line>16){//hors indexe matrice
 			System.out.println("Out of index matrice[ligne][colonne]");
@@ -242,6 +239,17 @@ public  void beginGame(){
 		}
 		return true;
 	}
+	
+	public void game_over(int id){
+		
+		Font font = new Font("Arial" , Font.BOLD , 30);
+		StdDraw.setFont(font);
+		StdDraw.clear();
+		StdDraw.setPenColor(StdDraw.BLACK);
+		StdDraw.text(7, 10, "Le joueur " + id + " a gagné !");
+	}
+	
+
 	
 	
 }

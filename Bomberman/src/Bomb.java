@@ -148,7 +148,7 @@ public class Bomb {
 				b.setBomb(x,y);
 				
 			}else{
-				System.out.println("Max Bomb for J2 reached : " + this.getNb_J2());
+				System.out.println("Max Bombs for J2 reached : " + this.getNb_J2());
 			}
 		}
 		

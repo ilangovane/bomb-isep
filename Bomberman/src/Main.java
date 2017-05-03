@@ -27,12 +27,21 @@ public class Main {
         	bomb_liste.explose(game_board,J1,J2);
         	/*Les bombes sont affichées */
         	game_board.show_all_bombs(bomb_liste.getBombs());
-
+        	
+        	
         	game_over = (J1.getLife() == 0 ) || (J2.getLife() == 0); //la partie est fini si la condition vaut TRUE
         	
         }
        System.out.println("GAME OVER !!! Life of J1 : " + J1.getLife() + "\t Life of J2 : " + J2.getLife());
        
+       int winner = 0;// le perdant est celui qui a 0 vie
+       if(J1.getLife() == 0){
+    	   winner = 1;
+       }else{
+    	   winner = 2;
+       }
+       //l'identité du gagnant est révelée
+       game_board.game_over(winner);
 
 		
 		
