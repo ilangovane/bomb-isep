@@ -16,9 +16,9 @@ public class Board {
 	/*Constructeur : initialise le plateau de jeu lors de l'instanciation d'objet */
 	public Board(){
 		/*taille de la fenêtre 1050 x 850 
-		 * Une case doit faire 50 px => 50 x nb de ligne (17) = 850 et 50 x nb de colonne (21) = 1050
+		 * Une case doit faire 30 px => 30 x nb de ligne (17) et 30 x nb de colonne (21) 
 		 * */
-		StdDraw.setCanvasSize(1050,850);
+		StdDraw.setCanvasSize(21*30,17*30);
 
 	
 		/*
@@ -54,6 +54,7 @@ public class Board {
 			for(int column = 0 ; column < 21 ; column++){
 				if(matrice[line][column] != 1 ){
 					matrice[line][column] = 2;
+					//matrice[line][column] = 3; 
 				}
 			}
 
