@@ -121,7 +121,6 @@ public class Bomb {
 	/*Ajoute une bombe à la liste HashSet Bombs*/
 	public void addBomb(int id , int x , int y){
 		Bombs.add(new Bomb(id,y,x));
-		System.out.println("Add bomb for ID :  |" + id + " X :  |" + x + " Y : " + y);
 		this.setBombs(Bombs);
 	}
 	/*Lorsque la touche espace ou W est enfoncée les bombes s'ajoutent à la liste aucun doublons n'est toléré
@@ -129,12 +128,9 @@ public class Bomb {
 	public void putBomb(Board b ,int id , int x , int y){
 		if(StdDraw.isKeyPressed(KeyEvent.VK_W) && id == 1){//touche W pressée
 			if(!this.is_bomb_already_exists(x, y) && this.getNb_J1() <4){
-				System.out.println("J1 set a bomb at  X :  |" + x + " Y : " + y );
 				addBomb(id , x , y);
 				
 				b.setBomb(x,y);
-			}else{
-				System.out.println("Max Bomb for J1 reached : " + this.getNb_J1() );
 			}
 			
 		}
@@ -142,17 +138,13 @@ public class Bomb {
 		if(StdDraw.isKeyPressed(KeyEvent.VK_SPACE) && id == 2){//touche ESPACE pressée
    		 
 			if(!this.is_bomb_already_exists(x, y) && this.getNb_J2() <4){
-				System.out.println("J2 set a bomb at  X :  |" + x + " Y : " + y );
 				addBomb(id , x , y);
 				
 				b.setBomb(x,y);
 				
-			}else{
-				System.out.println("Max Bombs for J2 reached : " + this.getNb_J2());
 			}
 		}
 		
-		System.out.println("Size of the list Bombs : " + Bombs.size());
 	}
 	
 	//avant d'ajouter la liste à la bombe il faut vérifier qu'elle n'existe pas pour éviter les doublons 
@@ -196,6 +188,8 @@ public class Bomb {
 	public void explose(Board b,Player J1, Player J2){ 
 		Iterator<Bomb> it = Bombs.iterator();
 		int i;
+		boolean dead1 = false ;
+		boolean dead2 = false;
 		while (it.hasNext()){//parcours la liste de bombe
 			Bomb bo = it.next();
 		
@@ -209,22 +203,23 @@ public class Bomb {
 						b.setElementMatrice(bo.getY() +i, bo.getX(), 3); // matrice mis à jour 
 						break ;// on sort de la boucle 
 					}
-					if(J1.is_at_point(bo.getX(), bo.getY()+i)){
+					if(J1.is_at_point(bo.getX(), bo.getY()+i) && !dead1){
+						dead1 = true;
 						J1.kill();
-						System.out.println("J1 lose a life. LIFE :" + J1.getLife());
 						b.setPlayer(1,1,1);
 						J1.setX(1);
 						J1.setY(1);
 						b.setArea(bo.getY()+i, bo.getX(), "green");
 					}
-					if(J2.is_at_point(bo.getX(), bo.getY()+i)){
+					if(J2.is_at_point(bo.getX(), bo.getY()+i) && !dead2){
 						J2.kill();
-						System.out.println("J2 lose a life. LIFE :" + J2.getLife());
+						dead2=true;
 						b.setPlayer(2,19,15);
 						J2.setX(19);
 						J2.setY(15);
 						b.setArea(bo.getY()+i, bo.getX(), "green");
 					}
+					
 					this.explose_bomb_around(this.find_Bomb(bo.getX(),bo.getY()+ i));
 					i++;
 				}
@@ -236,17 +231,17 @@ public class Bomb {
 						b.setElementMatrice(bo.getY()-i, bo.getX(), 3);
 						i=10; ;// on sort de la boucle 
 					}
-					if(J1.is_at_point(bo.getX(), bo.getY()-i)){
+					if(J1.is_at_point(bo.getX(), bo.getY()-i) && !dead1){
+						dead1 = true;
 						J1.kill();
-						System.out.println("J1 lose a life. LIFE :" + J1.getLife());
 						b.setPlayer(1,1,1);
 						J1.setX(1);
 						J1.setY(1);
 						b.setArea(bo.getY()-i, bo.getX(), "green");
 					}
-					if(J2.is_at_point(bo.getX(), bo.getY()-i)){
+					if(J2.is_at_point(bo.getX(), bo.getY()-i) && !dead2){
 						J2.kill();
-						System.out.println("J2 lose a life. LIFE :" + J2.getLife());
+						dead2=true;
 						b.setPlayer(2,19,15);
 						J2.setX(19);
 						J2.setY(15);
@@ -263,17 +258,17 @@ public class Bomb {
 						b.setElementMatrice(bo.getY(), bo.getX()+i, 3);
 						i=10; ;// on sort de la boucle 
 					}
-					if(J1.is_at_point(bo.getX()+i, bo.getY())){
+					if(J1.is_at_point(bo.getX()+i, bo.getY()) && !dead1){
 						J1.kill();
-						System.out.println("J1 lose a life. LIFE :" + J1.getLife());
+						dead1=true;
 						b.setPlayer(1,1,1);
 						J1.setX(1);
 						J1.setY(1);
 						b.setArea(bo.getY(), bo.getX()+i, "green");
 					}
-					if(J2.is_at_point(bo.getX()+i, bo.getY())){
+					if(J2.is_at_point(bo.getX()+i, bo.getY()) && !dead2){
 						J2.kill();
-						System.out.println("J2 lose a life. LIFE :" + J2.getLife());
+						dead2=true;
 						b.setPlayer(2,19,15);
 						J2.setX(19);
 						J2.setY(15);
@@ -289,17 +284,17 @@ public class Bomb {
 						b.setElementMatrice(bo.getY(), bo.getX()-i, 3);
 						i=10 ;// on sort de la boucle 
 					}
-					if(J1.is_at_point(bo.getX()-i, bo.getY())){
+					if(J1.is_at_point(bo.getX()-i, bo.getY()) && !dead1){
 						J1.kill();
-						System.out.println("J1 lose a life. LIFE :" + J1.getLife());
+						dead1=true;
 						b.setPlayer(1,1,1);
 						J1.setX(1);
 						J1.setY(1);
 						b.setArea(bo.getY(), bo.getX()-i, "green");
 					}
-					if(J2.is_at_point(bo.getX()-i, bo.getY())){
+					if(J2.is_at_point(bo.getX()-i, bo.getY()) && !dead2){
 						J2.kill();
-						System.out.println("J2 lose a life. LIFE :" + J2.getLife());
+						dead2=true;
 						b.setPlayer(2,19,15);
 						J2.setX(19);
 						J2.setY(15);
@@ -312,6 +307,7 @@ public class Bomb {
 				b.setArea(bo.getY(), bo.getX(), "green");// il faut faire disparaitre la bombe de l'écran en recoloriant la case en verte
 			}
 
+			
 			
 
 		}

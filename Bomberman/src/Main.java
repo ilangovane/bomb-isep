@@ -28,11 +28,11 @@ public class Main {
         	/*Les bombes sont affichées */
         	game_board.show_all_bombs(bomb_liste.getBombs());
         	
-        	
-        	game_over = (J1.getLife() == 0 ) || (J2.getLife() == 0); //la partie est fini si la condition vaut TRUE
+        	info(J1,J2);
+        	game_over = (J1.getLife() <= 0 ) || (J2.getLife() <= 0); //la partie est fini si la condition vaut TRUE
         	
         }
-       System.out.println("GAME OVER !!! Life of J1 : " + J1.getLife() + "\t Life of J2 : " + J2.getLife());
+       System.out.println("FIN DE LA PARTIE !!!");
        
        int winner = 0;// le perdant est celui qui a 0 vie
        if(J1.getLife() == 0){
@@ -49,6 +49,10 @@ public class Main {
 		
 	}
 	
+	public static void info(Player J1 , Player J2){
+		System.out.println("Joueur 1  vie : " + J1.getLife() + " | X : "+ J1.getX() + " | Y : "+ J1.getY());
+		System.out.println("Joueur 2  vie : " + J2.getLife() + " | X : "+ J2.getX() + " | Y : "+ J2.getY());
+	}
 	
 	
 	

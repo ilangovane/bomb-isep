@@ -80,34 +80,34 @@ public class Player {
 		if(this.id == 1){
             if(StdDraw.isKeyPressed(KeyEvent.VK_S)) {//touche S pressée
 		           	if(	b.isGrass((int)this.getY()-1 , (int)this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()-1)){
-		           		System.out.println("J1 DOWN");
+		          
 		        		b.setArea((int)this.getY(), (int)this.getX(), "green");
 		        		this.setY(this.getY()- dY);
 		        		
-		        		System.out.println("ID : " + this.getId() + "	| X :  " + this.getX() + "|  Y :  " + this.getY() );
+		        	
 		        	}
           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Q)){//touche Q pressée
           		 
 	             	if(b.isGrass((int) this.getY(), (int) this.getX() -1) && !bo.is_bomb_already_exists( (int)this.getX()-1, (int)this.getY())){
-	             		System.out.println("J1 LEFT");
+	          
 	            		b.setArea((int)this.getY(), (int)this.getX(), "green");
 	            		this.setX(this.getX()-dX);	
-	            		System.out.println("ID : " + this.getId() + "	| X :  " + this.getX() + "|  Y :  " + this.getY() );
+	            		
 	            	}
           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_D)){//touche D pressée
           		
 	         		if(b.isGrass((int) this.getY(), (int) this.getX()+1) && !bo.is_bomb_already_exists( (int)this.getX()+1, (int)this.getY())){
-	         			System.out.println("J1 RIGHT");
+	         		
 	            		b.setArea((int) this.getY(), (int) this.getX(), "green");
 	            		this.setX(this.getX()+dX);
-	            		System.out.println("ID : " + this.getId() + "	| X :  " + this.getX() + "|  Y :  " + this.getY() );
+	            		
 	            	}
          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Z)){//touche Z pressée
 	             	if(b.isGrass((int) this.getY()+1, (int) this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()+1)){
-	             		System.out.println("J1 UP");
+	             		
 	            		b.setArea((int) this.getY(), (int) this.getX(), "green");
 	            		this.setY(this.getY()+dY);
-	            		System.out.println("ID : " + this.getId() + "	| X :  " + this.getX() + "|  Y :  " + this.getY() );
+	            		
 	            	}
          	}/*else if(StdDraw.isKeyPressed(KeyEvent.VK_W)){//touche W pressée
         		 System.out.println("J1 pose une bombe");
@@ -120,38 +120,38 @@ public class Player {
             if(StdDraw.isKeyPressed(KeyEvent.VK_DOWN )) {//touche BAS pressée
             	
             		if(	b.isGrass((int)this.getY()-1 , (int)this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()-1)){
-	            		System.out.println("J2 DOWN");
+	     
 	            		b.setArea((int)this.getY(), (int)this.getX(), "green");
 	            		this.setY(this.getY()-dY);
 	            		
-	            		System.out.println("ID : " + this.getId() + "	| X :  " + this.getX() + "|  Y :  " + this.getY() );
+	            	
 	            	}
             	
            	}else if(StdDraw.isKeyPressed(KeyEvent.VK_LEFT )){//touche GAUCHE pressée
            		
 	            	if(b.isGrass((int) this.getY(), (int) this.getX() -1) && !bo.is_bomb_already_exists( (int)this.getX()-1, (int)this.getY())){
-	            		System.out.println("J2 LEFT");
+	           
 	            		b.setArea((int)this.getY(), (int)this.getX(), "green");
 	            		this.setX(this.getX()-dX);	
-	            		System.out.println("ID : " + this.getId() + "	| X :  " + this.getX() + "|  Y :  " + this.getY() );
+	            		
 	            	}
            		 
            	}else if(StdDraw.isKeyPressed(KeyEvent.VK_RIGHT)){//touche DROITE pressée
           		 
           		 
 	             	if(b.isGrass((int) this.getY(), (int) this.getX()+1) && !bo.is_bomb_already_exists( (int)this.getX()+1, (int)this.getY())){
-	             		System.out.println("J2 RIGHT");
+	             	
 	            		b.setArea((int) this.getY(), (int) this.getX(), "green");
 	            		this.setX(this.getX()+dX);
-	            		System.out.println("ID : " + this.getId() + "	| X :  " + this.getX() + "|  Y :  " + this.getY() );
+	            		
 	            	}
           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_UP)){//touche HAUT pressée
           		 
 	             	if(b.isGrass((int) this.getY()+1, (int) this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()+1)){
-	             		System.out.println("J2 UP");
+	             	
 	            		b.setArea((int) this.getY(), (int) this.getX(), "green");
 	            		this.setY(this.getY()+dY);
-	            		System.out.println("ID : " + this.getId() + "	| X :  " + this.getX() + "|  Y :  " + this.getY() );
+	            		
 	            	}
           	}/*else if(StdDraw.isKeyPressed(KeyEvent.VK_SPACE)){//touche ESPACE pressée
         		 System.out.println("J2 pose une bombe");

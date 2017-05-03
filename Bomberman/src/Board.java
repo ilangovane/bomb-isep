@@ -148,21 +148,21 @@ public  void beginGame(){
 		case "orange" : 
 	    	StdDraw.setPenColor(StdDraw.ORANGE);
 			StdDraw.filledSquare(column + 0.5 , line + 0.5 , 0.5 );
-			System.out.println("color : orange	|" + "line : " + line +  "	| column : " + column);
+			
 			break;
 		
 		case "green":
         	StdDraw.setPenColor(StdDraw.GREEN);
         	StdDraw.filledSquare(column + 0.5 , line + 0.5 , 0.5 );
-			System.out.println("color : green	|" + "line : " + line +  "	| column : " + column);
+			
 			break;
 		case "grey":
 			StdDraw.setPenColor(StdDraw.DARK_GRAY);
 			StdDraw.filledSquare(column + 0.5 , line + 0.5 , 0.5 );
-			System.out.println("color : dark_grey	|" + "line : " + line +  "	| column : " + column);
+			
 			break;
 		default:
-			System.out.println("UNKNOWN COLOR");
+			
 			StdDraw.setPenColor(StdDraw.WHITE);
 			StdDraw.filledSquare(column + 0.5 , line + 0.5 , 0.5 );
 		}
@@ -173,7 +173,7 @@ public  void beginGame(){
 	public void setBomb(int column , int line ){
 			StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
 			StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3 );
-			System.out.println("color : orange	|" + "line : " + line +  "	| column : " + column);
+			
 	}
 	
 	//Affiche toutes les bombes du plateau
@@ -194,7 +194,7 @@ public  void beginGame(){
 		 * 3 : case verte
 		 * */
 		if(line <0 || column<0 || column>20 || line>16){//hors indexe matrice
-			System.out.println("Out of index matrice[ligne][colonne]");
+			
 			return false;
 			
 		}
@@ -212,7 +212,7 @@ public  void beginGame(){
 		 * 3 : case verte
 		 * */
 		if(line <0 || column<0 || column>20 || line>16){//hors indexe matrice
-			System.out.println("Out of index matrice[ligne][colonne]");
+			
 			return false;
 			
 		}
@@ -230,7 +230,7 @@ public  void beginGame(){
 		 * 3 : case verte 
 		 * */
 		if(line <0 || column<0 || column>20 || line>16){//hors indexe matrice
-			System.out.println("Out of index matrice[ligne][colonne]");
+			
 			return false;
 			
 		}
