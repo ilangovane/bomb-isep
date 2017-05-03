@@ -6,18 +6,17 @@ import edu.princeton.cs.introcs.StdDraw;
 public class Player {
 	int id;//identifiant 
 	int life = 3;//nombre de vie restant
-	double X ; // position X (varie de 0 à 20)
- 	double Y ; // position Y (varie de 0 à 16)
-	int bombs = 0;//bombes déposées
+	double X ; // position X (varie de 0 Ã  20)
+ 	double Y ; // position Y (varie de 0 Ã  16)
 
-	double dX = 0.05 ; // le plus petit déplacement horizontal (définit la vitesse)
-	double dY = 0.05 ; // le plus petit déplacement vertical (définit la vitesse)
+	double dX = 0.05 ; // le plus petit dÃ©placement horizontal (dÃ©finit la vitesse)
+	double dY = 0.05 ; // le plus petit dÃ©placement vertical (dÃ©finit la vitesse)
 
 	Player(int id){
 		/* Si id vaut 1 il s'agit du joueur 1 , si 2 le joueur 2 si 3 une IA*/
 		this.id = id;
 		
-		/*Le joueur 1 et 2 sont positionnées respectivement en (X,Y) = (1,1) et (X,Y) =  (19,15)*/
+		/*Le joueur 1 et 2 sont positionnÃ©es respectivement en (X,Y) = (1,1) et (X,Y) =  (19,15)*/
 		if(this.id == 1){
 			this.Y = 1;
 			this.X = 1;
@@ -67,26 +66,20 @@ public class Player {
 		Y = y;
 	}
 
-	public int getBombs() {
-		return bombs;
-	}
 
-	public void setBombs(int bombs) {
-		this.bombs = bombs;
-	}
 	
 
 	/*
-	 * Les déplacements des joueurs se font sur cette méthode
+	 * Les dÃ©placements des joueurs se font sur cette mÃ©thode
 	 * Joueur 1 : Q => Gauche / S => BAS / D => DROITE / Z => HAUT / W => BOMBE
-	 * Joueur 2 : fleches de déplacements et espace pour poser une bombe 
+	 * Joueur 2 : fleches de dÃ©placements et espace pour poser une bombe 
 	 * 
 	 * 
 	 * */
 	public void move(Board b,Bomb bo){
 		//commande clavier du joueur 1 
 		if(this.id == 1){
-            if(StdDraw.isKeyPressed(KeyEvent.VK_S)) {//touche S pressée
+            if(StdDraw.isKeyPressed(KeyEvent.VK_S)) {//touche S pressÃ©e
 		           	if(	b.isGrass((int)this.getY()-1 , (int)this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()-1)){
 		           		System.out.println("J1 DOWN");
 		        		b.setArea((int)this.getY(), (int)this.getX(), "green");
@@ -94,7 +87,7 @@ public class Player {
 		        		
 		        		System.out.println("ID : " + this.getId() + "	| X :  " + this.getX() + "|  Y :  " + this.getY() );
 		        	}
-          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Q)){//touche Q pressée
+          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Q)){//touche Q pressÃ©e
           		 
 	             	if(b.isGrass((int) this.getY(), (int) this.getX() -1) && !bo.is_bomb_already_exists( (int)this.getX()-1, (int)this.getY())){
 	             		System.out.println("J1 LEFT");
@@ -102,7 +95,7 @@ public class Player {
 	            		this.setX(this.getX()-dX);	
 	            		System.out.println("ID : " + this.getId() + "	| X :  " + this.getX() + "|  Y :  " + this.getY() );
 	            	}
-          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_D)){//touche D pressée
+          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_D)){//touche D pressÃ©e
           		
 	         		if(b.isGrass((int) this.getY(), (int) this.getX()+1) && !bo.is_bomb_already_exists( (int)this.getX()+1, (int)this.getY())){
 	         			System.out.println("J1 RIGHT");
@@ -110,14 +103,14 @@ public class Player {
 	            		this.setX(this.getX()+dX);
 	            		System.out.println("ID : " + this.getId() + "	| X :  " + this.getX() + "|  Y :  " + this.getY() );
 	            	}
-         	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Z)){//touche Z pressée
+         	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Z)){//touche Z pressÃ©e
 	             	if(b.isGrass((int) this.getY()+1, (int) this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()+1)){
 	             		System.out.println("J1 UP");
 	            		b.setArea((int) this.getY(), (int) this.getX(), "green");
 	            		this.setY(this.getY()+dY);
 	            		System.out.println("ID : " + this.getId() + "	| X :  " + this.getX() + "|  Y :  " + this.getY() );
 	            	}
-         	}/*else if(StdDraw.isKeyPressed(KeyEvent.VK_W)){//touche W pressée
+         	}/*else if(StdDraw.isKeyPressed(KeyEvent.VK_W)){//touche W pressÃ©e
         		 System.out.println("J1 pose une bombe");
         	}*/
 		}
@@ -125,7 +118,7 @@ public class Player {
 		//commande clavier du joueur 2 
 		if(this.id == 2 ){
 			
-            if(StdDraw.isKeyPressed(KeyEvent.VK_DOWN )) {//touche BAS pressée
+            if(StdDraw.isKeyPressed(KeyEvent.VK_DOWN )) {//touche BAS pressÃ©e
             	
             		if(	b.isGrass((int)this.getY()-1 , (int)this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()-1)){
 	            		System.out.println("J2 DOWN");
@@ -135,7 +128,7 @@ public class Player {
 	            		System.out.println("ID : " + this.getId() + "	| X :  " + this.getX() + "|  Y :  " + this.getY() );
 	            	}
             	
-           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_LEFT )){//touche GAUCHE pressée
+           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_LEFT )){//touche GAUCHE pressÃ©e
            		
 	            	if(b.isGrass((int) this.getY(), (int) this.getX() -1) && !bo.is_bomb_already_exists( (int)this.getX()-1, (int)this.getY())){
 	            		System.out.println("J2 LEFT");
@@ -144,7 +137,7 @@ public class Player {
 	            		System.out.println("ID : " + this.getId() + "	| X :  " + this.getX() + "|  Y :  " + this.getY() );
 	            	}
            		 
-           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_RIGHT)){//touche DROITE pressée
+           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_RIGHT)){//touche DROITE pressÃ©e
           		 
           		 
 	             	if(b.isGrass((int) this.getY(), (int) this.getX()+1) && !bo.is_bomb_already_exists( (int)this.getX()+1, (int)this.getY())){
@@ -153,7 +146,7 @@ public class Player {
 	            		this.setX(this.getX()+dX);
 	            		System.out.println("ID : " + this.getId() + "	| X :  " + this.getX() + "|  Y :  " + this.getY() );
 	            	}
-          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_UP)){//touche HAUT pressée
+          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_UP)){//touche HAUT pressÃ©e
           		 
 	             	if(b.isGrass((int) this.getY()+1, (int) this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()+1)){
 	             		System.out.println("J2 UP");
@@ -161,7 +154,7 @@ public class Player {
 	            		this.setY(this.getY()+dY);
 	            		System.out.println("ID : " + this.getId() + "	| X :  " + this.getX() + "|  Y :  " + this.getY() );
 	            	}
-          	}/*else if(StdDraw.isKeyPressed(KeyEvent.VK_SPACE)){//touche ESPACE pressée
+          	}/*else if(StdDraw.isKeyPressed(KeyEvent.VK_SPACE)){//touche ESPACE pressÃ©e
         		 System.out.println("J2 pose une bombe");
         	}*/
 		}
@@ -177,7 +170,7 @@ public class Player {
 		
 	}
 	
-	/*La méthode renvoie vrai si le joueur est sur la case (X,Y) : pratique pour les explosions de bombes*/
+	/*La mÃ©thode renvoie vrai si le joueur est sur la case (X,Y) : pratique pour les explosions de bombes*/
 	public boolean is_at_point(int x , int y){
 		if((int) this.getX() == x && (int) this.getY() == y){
 			return true;
