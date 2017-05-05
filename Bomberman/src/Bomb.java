@@ -7,21 +7,21 @@ import edu.princeton.cs.introcs.StdDraw;
 
 
 public class Bomb {
-	public int owner_id; // id de celui qui a dÈposÈ la bombe id:1<=>J1 | id:2<=>J2 | id:3 <=> IA
+	public int owner_id; // id de celui qui a d√©pos√© la bombe id:1<=>J1 | id:2<=>J2 | id:3 <=> IA
 	public long t_explosion ; // le timestamps de l'explosion
-	public int X; // coordonnÈe X de la bombe
-	public int Y; //coordonnÈe Y de la bombe
+	public int X; // coordonn√©e X de la bombe
+	public int Y; //coordonn√©e Y de la bombe
 	Set<Bomb> Bombs = new HashSet<Bomb>();
 	//choix de deux Constructeurs
-	//lors de la crÈation d'une bombe
+	//lors de la cr√©ation d'une bombe
 	public Bomb(int id,int line, int column){
 		this.owner_id = id;
-		this.t_explosion = System.currentTimeMillis() + 5000 ; // la bombe explose 5 secondes aprËs Ítre dÈposÈe
+		this.t_explosion = System.currentTimeMillis() + 5000 ; // la bombe explose 5 secondes apr√®s √™tre d√©pos√©e
 		this.X = column;
 		this.Y = line;
 	}
 	
-	//lors de la crÈation de la liste de bombs
+	//lors de la cr√©ation de la liste de bombs
 	public Bomb(){
 		
 	}
@@ -117,15 +117,15 @@ public class Bomb {
 	}*/
 
 	
-	/*Ajoute une bombe ‡ la liste HashSet Bombs*/
+	/*Ajoute une bombe √† la liste HashSet Bombs*/
 	public void addBomb(int id , int x , int y){
 		Bombs.add(new Bomb(id,y,x));
 		this.setBombs(Bombs);
 	}
-	/*Lorsque la touche espace ou W est enfoncÈe les bombes s'ajoutent ‡ la liste aucun doublons n'est tolÈrÈ
-	 * Un doublons => bombes au mÍme emplacement aux coordonnÈes (X,Y) d'ou la mÈthode this.is_bomb_already_exists(x, y)*/
+	/*Lorsque la touche espace ou W est enfonc√©e les bombes s'ajoutent √† la liste aucun doublons n'est tol√©r√©
+	 * Un doublons => bombes au m√™me emplacement aux coordonn√©es (X,Y) d'ou la m√©thode this.is_bomb_already_exists(x, y)*/
 	public void putBomb(Board b ,int id , int x , int y){
-		if(StdDraw.isKeyPressed(KeyEvent.VK_W) && id == 1){//touche W pressÈe
+		if(StdDraw.isKeyPressed(KeyEvent.VK_W) && id == 1){//touche W press√©e
 			if(!this.is_bomb_already_exists(x, y) && this.getNbBombs(1) <4){
 				addBomb(id , x , y);
 				
@@ -134,7 +134,7 @@ public class Bomb {
 			
 		}
 		
-		if(StdDraw.isKeyPressed(KeyEvent.VK_SPACE) && id == 2){//touche ESPACE pressÈe
+		if(StdDraw.isKeyPressed(KeyEvent.VK_SPACE) && id == 2){//touche ESPACE press√©e
    		 
 			if(!this.is_bomb_already_exists(x, y) && this.getNbBombs(2) <4){
 				addBomb(id , x , y);
@@ -146,7 +146,7 @@ public class Bomb {
 		
 	}
 	
-	//avant d'ajouter la liste ‡ la bombe il faut vÈrifier qu'elle n'existe pas pour Èviter les doublons 
+	//avant d'ajouter la liste √† la bombe il faut v√©rifier qu'elle n'existe pas pour √©viter les doublons 
 	public boolean is_bomb_already_exists(int x,int y){
 		Iterator<Bomb> it = Bombs.iterator();
 		boolean exist = false;
@@ -161,7 +161,7 @@ public class Bomb {
 		return exist;
 	}
 	
-	/*Renvoie la bombe ayant les coordonnÈes suivantes : (X,Y) = (x,y)*/
+	/*Renvoie la bombe ayant les coordonn√©es suivantes : (X,Y) = (x,y)*/
 	public Bomb find_Bomb(int x , int y){
 		Iterator<Bomb> it = Bombs.iterator();
 		Bomb find = new Bomb();//bombe null
@@ -177,7 +177,7 @@ public class Bomb {
 		
 	}
 
-	//modifie le timer de l'explosion d'une bombe ‡ "maintenant" 
+	//modifie le timer de l'explosion d'une bombe √† "maintenant" 
 	public void explose_bomb_around(Bomb bo , Board b , Player J1 , Player J2){
 		bo.setT_explosion(System.currentTimeMillis());
 		bo.Bombs.add(bo);
@@ -185,9 +185,9 @@ public class Bomb {
 	}
 	
 
-	/*Le joeurs qui vient de perdre la vie ne risque pas de perdre une vie dËs qu'il sera replacÈ sur une case de dÈpart
-	 * Le joueur est positionnÈ sur le recoin (X,Y) = (0,0) si des bombes sont a proximitÈs
-	 * Cela permettra d'Èviter de predre 2 ou 3 vie au lieu d'une*/
+	/*Le joeurs qui vient de perdre la vie ne risque pas de perdre une vie d√®s qu'il sera replac√© sur une case de d√©part
+	 * Le joueur est positionn√© sur le recoin (X,Y) = (-1,-1) si des bombes sont a proximit√©s
+	 * Cela permettra d'√©viter de predre 2 ou 3 vie au lieu d'une*/
 	public void avoid_kill_player_two_times(Board b,Player J){
 		int i = 0;
 		boolean safe = true;
@@ -222,7 +222,7 @@ public class Bomb {
 
 	}
 	/*Retire les bombes de la liste lors de l'explosion
-	 * DÈtruit les murs jusqu'au mur cassable */
+	 * D√©truit les murs jusqu'au mur cassable */
 	public void explose(Board b,Player J1, Player J2){ 
 		Iterator<Bomb> it = Bombs.iterator();
 		int i;
@@ -232,12 +232,12 @@ public class Bomb {
 		
 			if( bo.getT_explosion() <  System.currentTimeMillis() ){ // le minuteur prend fin
 				i=1;
-				// la bomb a une portÈe de 3 et s'arrete au mur incassable dans toute les directions
+				// la bomb a une port√©e de 3 et s'arrete au mur incassable dans toute les directions
 				
 				while(b.isDestructible(bo.getY()+i, bo.getX()) && i<=3){// soit case verte un mur cassable
 					if(b.isWallDestructible(bo.getY()+i, bo.getX()) ){
 						b.setArea(bo.getY() +i, bo.getX(), "green");// coloration case verte 
-						b.setElementMatrice(bo.getY() +i, bo.getX(), 3); // matrice mis ‡ jour 
+						b.setElementMatrice(bo.getY() +i, bo.getX(), 3); // matrice mis √† jour 
 						break ;// on sort de la boucle 
 					}
 					if(J1.is_at_point(bo.getX(), bo.getY()+i)){
@@ -348,10 +348,10 @@ public class Bomb {
 				
 				}
 
-				it.remove(); // bombe supprimÈe de la liste Bombs
+				it.remove(); // bombe supprim√©e de la liste Bombs
 	        	this.avoid_kill_player_two_times(b,J1);
 	        	this.avoid_kill_player_two_times(b,J2);
-				b.setArea(bo.getY(), bo.getX(), "green");// il faut faire disparaitre la bombe de l'Ècran en recoloriant la case en verte
+				b.setArea(bo.getY(), bo.getX(), "green");// il faut faire disparaitre la bombe de l'√©cran en recoloriant la case en verte
 			}
 
 			
