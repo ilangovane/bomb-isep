@@ -5,24 +5,23 @@ import java.util.Set;
 
 import edu.princeton.cs.introcs.StdDraw;
 
+
 public class Bomb {
-	public int owner_id; // id de celui qui a dÃ©posÃ© la bombe id:1<=>J1 | id:2<=>J2 | id:3 <=> IA
+	public int owner_id; // id de celui qui a déposé la bombe id:1<=>J1 | id:2<=>J2 | id:3 <=> IA
 	public long t_explosion ; // le timestamps de l'explosion
-	public int X; // coordonnÃ©e X de la bombe
-	public int Y; //coordonnÃ©e Y de la bombe
+	public int X; // coordonnée X de la bombe
+	public int Y; //coordonnée Y de la bombe
 	Set<Bomb> Bombs = new HashSet<Bomb>();
-	int nb_J1 = 0;//nb de bombe dÃ©posÃ©es
-	int nb_J2 = 0;
 	//choix de deux Constructeurs
-	//lors de la crÃ©ation d'une bombe
+	//lors de la création d'une bombe
 	public Bomb(int id,int line, int column){
 		this.owner_id = id;
-		this.t_explosion = System.currentTimeMillis() + 5000 ; // la bombe explose 5 secondes aprÃ¨s Ãªtre dÃ©posÃ©e
+		this.t_explosion = System.currentTimeMillis() + 5000 ; // la bombe explose 5 secondes après être déposée
 		this.X = column;
 		this.Y = line;
 	}
 	
-	//lors de la crÃ©ation de la liste de bombs
+	//lors de la création de la liste de bombs
 	public Bomb(){
 		
 	}
@@ -85,19 +84,19 @@ public class Bomb {
 		Bombs = bombs;
 	}
 
-	public int getNb_J1() {// compte le nombre de bombes dans la  liste Bombs contenant l'owner_id = 2
+	public int getNbBombs(int id) {// compte le nombre de bombes dans la  liste Bombs contenant l'owner_id = 2
 		Iterator<Bomb> it = this.Bombs.iterator();
 		int c = 0;//nb de bombe du joueur J1
 		while (it.hasNext()){//parcours la liste de bombe
 			Bomb bo = it.next();
-			if(bo.getOwner_id() == 1){
+			if(bo.getOwner_id() == id){
 				c++;
 			}
 		}
 		return c;
 	}
 
-	public void setNb_J1(int nb_J1) {
+	/*public void setNb_J1(int nb_J1) {
 		this.nb_J1 = nb_J1;
 	}
 
@@ -115,19 +114,19 @@ public class Bomb {
 
 	public void setNb_J2(int nb_J2) {
 		this.nb_J2 = nb_J2;
-	}
+	}*/
 
 	
-	/*Ajoute une bombe Ã  la liste HashSet Bombs*/
+	/*Ajoute une bombe à la liste HashSet Bombs*/
 	public void addBomb(int id , int x , int y){
 		Bombs.add(new Bomb(id,y,x));
 		this.setBombs(Bombs);
 	}
-	/*Lorsque la touche espace ou W est enfoncÃ©e les bombes s'ajoutent Ã  la liste aucun doublons n'est tolÃ©rÃ©
-	 * Un doublons => bombes au mÃªme emplacement aux coordonnÃ©es (X,Y) d'ou la mÃ©thode this.is_bomb_already_exists(x, y)*/
+	/*Lorsque la touche espace ou W est enfoncée les bombes s'ajoutent à la liste aucun doublons n'est toléré
+	 * Un doublons => bombes au même emplacement aux coordonnées (X,Y) d'ou la méthode this.is_bomb_already_exists(x, y)*/
 	public void putBomb(Board b ,int id , int x , int y){
-		if(StdDraw.isKeyPressed(KeyEvent.VK_W) && id == 1){//touche W pressÃ©e
-			if(!this.is_bomb_already_exists(x, y) && this.getNb_J1() <4){
+		if(StdDraw.isKeyPressed(KeyEvent.VK_W) && id == 1){//touche W pressée
+			if(!this.is_bomb_already_exists(x, y) && this.getNbBombs(1) <4){
 				addBomb(id , x , y);
 				
 				b.setBomb(x,y);
@@ -135,9 +134,9 @@ public class Bomb {
 			
 		}
 		
-		if(StdDraw.isKeyPressed(KeyEvent.VK_SPACE) && id == 2){//touche ESPACE pressÃ©e
+		if(StdDraw.isKeyPressed(KeyEvent.VK_SPACE) && id == 2){//touche ESPACE pressée
    		 
-			if(!this.is_bomb_already_exists(x, y) && this.getNb_J2() <4){
+			if(!this.is_bomb_already_exists(x, y) && this.getNbBombs(2) <4){
 				addBomb(id , x , y);
 				
 				b.setBomb(x,y);
@@ -147,7 +146,7 @@ public class Bomb {
 		
 	}
 	
-	//avant d'ajouter la liste Ã  la bombe il faut vÃ©rifier qu'elle n'existe pas pour Ã©viter les doublons 
+	//avant d'ajouter la liste à la bombe il faut vérifier qu'elle n'existe pas pour éviter les doublons 
 	public boolean is_bomb_already_exists(int x,int y){
 		Iterator<Bomb> it = Bombs.iterator();
 		boolean exist = false;
@@ -162,7 +161,7 @@ public class Bomb {
 		return exist;
 	}
 	
-	/*Renvoie la bombe ayant les coordonnÃ©es suivantes : (X,Y) = (x,y)*/
+	/*Renvoie la bombe ayant les coordonnées suivantes : (X,Y) = (x,y)*/
 	public Bomb find_Bomb(int x , int y){
 		Iterator<Bomb> it = Bombs.iterator();
 		Bomb find = new Bomb();//bombe null
@@ -178,48 +177,90 @@ public class Bomb {
 		
 	}
 
-	//modifie le timer de l'explosion d'une bombe Ã  "maintenant" 
-	public void explose_bomb_around(Bomb bo){
+	//modifie le timer de l'explosion d'une bombe à "maintenant" 
+	public void explose_bomb_around(Bomb bo , Board b , Player J1 , Player J2){
 		bo.setT_explosion(System.currentTimeMillis());
+		bo.Bombs.add(bo);
+		bo.explose(b, J1, J2);
+	}
+	
+
+	/*Le joeurs qui vient de perdre la vie ne risque pas de perdre une vie dès qu'il sera replacé sur une case de départ
+	 * Le joueur est positionné sur le recoin (X,Y) = (0,0) si des bombes sont a proximités
+	 * Cela permettra d'éviter de predre 2 ou 3 vie au lieu d'une*/
+	public void avoid_kill_player_two_times(Board b,Player J){
+		int i = 0;
+		boolean safe = true;
+		if(J.getId() == 1 ){
+			while(i<=3){
+				if(J.getX() == -1  && J.getY() == -1 && ( this.is_bomb_already_exists(1, 1+i) ||this.is_bomb_already_exists(i+1,1))  ){
+
+					safe = false;
+				}
+				i++;
+			}
+			if(safe == true && J.getX() == -1  && J.getY() == -1 && !this.is_bomb_already_exists(1, 1+i) && !this.is_bomb_already_exists(i+1,1)){
+				J.setX(1);  
+				J.setY(1);
+				b.setArea(0,0, "grey");
+			}
+		}else if(J.getId() ==2){
+
+			while(i<=3){
+				if(J.getX() == -1  && J.getY() == -1 && ( this.is_bomb_already_exists(19, 15-i) ||this.is_bomb_already_exists(19-i,15))  ){
+					safe = false;
+				}
+				i++;
+			}
+			if(safe == true && J.getX() == -1  && J.getY() == -1 &&  !this.is_bomb_already_exists(1, 1+i) && !this.is_bomb_already_exists(i+1,1)) {
+				J.setX(19);  
+				J.setY(15);
+				b.setArea(0,0, "grey");
+			}
+		}
 		
+
 	}
 	/*Retire les bombes de la liste lors de l'explosion
-	 * DÃ©truit les murs jusqu'au mur cassable */
+	 * Détruit les murs jusqu'au mur cassable */
 	public void explose(Board b,Player J1, Player J2){ 
 		Iterator<Bomb> it = Bombs.iterator();
 		int i;
 		while (it.hasNext()){//parcours la liste de bombe
+
 			Bomb bo = it.next();
 		
 			if( bo.getT_explosion() <  System.currentTimeMillis() ){ // le minuteur prend fin
 				i=1;
-				// la bomb a une portÃ©e de 3 et s'arrete au mur incassable dans toute les directions
+				// la bomb a une portée de 3 et s'arrete au mur incassable dans toute les directions
 				
 				while(b.isDestructible(bo.getY()+i, bo.getX()) && i<=3){// soit case verte un mur cassable
 					if(b.isWallDestructible(bo.getY()+i, bo.getX()) ){
 						b.setArea(bo.getY() +i, bo.getX(), "green");// coloration case verte 
-						b.setElementMatrice(bo.getY() +i, bo.getX(), 3); // matrice mis Ã  jour 
+						b.setElementMatrice(bo.getY() +i, bo.getX(), 3); // matrice mis à jour 
 						break ;// on sort de la boucle 
 					}
-					if(J1.is_at_point(bo.getX(), bo.getY()+i) ){
-						
+					if(J1.is_at_point(bo.getX(), bo.getY()+i)){
+			
 						J1.kill();
 						b.setPlayer(1,1,1);
-						J1.setX(1);
-						J1.setY(1);
+						J1.setX(-1);
+						J1.setY(-1);
 						b.setArea(bo.getY()+i, bo.getX(), "green");
 					}
 					if(J2.is_at_point(bo.getX(), bo.getY()+i) ){
 						J2.kill();
-						
+		
 						b.setPlayer(2,19,15);
-						J2.setX(19);
-						J2.setY(15);
+						J2.setX(-1);
+						J2.setY(-1);
 						b.setArea(bo.getY()+i, bo.getX(), "green");
 					}
 					
-					this.explose_bomb_around(this.find_Bomb(bo.getX(),bo.getY()+ i));
-					i++;
+					this.explose_bomb_around(this.find_Bomb(bo.getX(),bo.getY()+ i),b, J1, J2);
+					i ++;
+				
+
 				}
 				
 				i=1;
@@ -230,23 +271,25 @@ public class Bomb {
 						i=10; ;// on sort de la boucle 
 					}
 					if(J1.is_at_point(bo.getX(), bo.getY()-i) ){
-					
+		
 						J1.kill();
 						b.setPlayer(1,1,1);
-						J1.setX(1);
-						J1.setY(1);
+						J1.setX(-1);
+						J1.setY(-1);
 						b.setArea(bo.getY()-i, bo.getX(), "green");
 					}
 					if(J2.is_at_point(bo.getX(), bo.getY()-i) ){
 						J2.kill();
-						
+	
 						b.setPlayer(2,19,15);
-						J2.setX(19);
-						J2.setY(15);
+						J2.setX(-1);
+						J2.setY(-1);
 						b.setArea(bo.getY()-i, bo.getX(), "green");
 					}
-					this.explose_bomb_around(this.find_Bomb(bo.getX(),bo.getY()-i));
+					this.explose_bomb_around(this.find_Bomb(bo.getX(),bo.getY()-i),b, J1, J2);
 					i++;
+				
+					
 				}
 				
 				i=1;
@@ -258,22 +301,24 @@ public class Bomb {
 					}
 					if(J1.is_at_point(bo.getX()+i, bo.getY()) ){
 						J1.kill();
-					
+		
 						b.setPlayer(1,1,1);
-						J1.setX(1);
-						J1.setY(1);
+						J1.setX(-1);
+						J1.setY(-1);
 						b.setArea(bo.getY(), bo.getX()+i, "green");
 					}
 					if(J2.is_at_point(bo.getX()+i, bo.getY()) ){
 						J2.kill();
-					
+
 						b.setPlayer(2,19,15);
-						J2.setX(19);
-						J2.setY(15);
+						J2.setX(-1);
+						J2.setY(-1);
 						b.setArea(bo.getY(), bo.getX()+i, "green");
 					}
-					this.explose_bomb_around(this.find_Bomb(bo.getX()+i,bo.getY()));
+					this.explose_bomb_around(this.find_Bomb(bo.getX()+i,bo.getY()),b, J1, J2);
 					i++;
+					
+					
 				}
 				i=1;
 				while(b.isDestructible(bo.getY(), bo.getX()-i) && i<=3){
@@ -284,25 +329,29 @@ public class Bomb {
 					}
 					if(J1.is_at_point(bo.getX()-i, bo.getY()) ){
 						J1.kill();
-					
+
 						b.setPlayer(1,1,1);
-						J1.setX(1);
-						J1.setY(1);
+						J1.setX(-1);
+						J1.setY(-1);
 						b.setArea(bo.getY(), bo.getX()-i, "green");
 					}
-					if(J2.is_at_point(bo.getX()-i, bo.getY())){
+					if(J2.is_at_point(bo.getX()-i, bo.getY()) ){
 						J2.kill();
-						
+
 						b.setPlayer(2,19,15);
-						J2.setX(19);
-						J2.setY(15);
+						J2.setX(-1);
+						J2.setY(-1);
 						b.setArea(bo.getY(), bo.getX()-i, "green");
 					}
-					this.explose_bomb_around(this.find_Bomb(bo.getX()-i,bo.getY()));
+					this.explose_bomb_around(this.find_Bomb(bo.getX()-i,bo.getY()),b, J1, J2);
 					i++;
+				
 				}
-				it.remove(); // bombe supprimÃ©e de la liste Bombs
-				b.setArea(bo.getY(), bo.getX(), "green");// il faut faire disparaitre la bombe de l'Ã©cran en recoloriant la case en verte
+
+				it.remove(); // bombe supprimée de la liste Bombs
+	        	this.avoid_kill_player_two_times(b,J1);
+	        	this.avoid_kill_player_two_times(b,J2);
+				b.setArea(bo.getY(), bo.getX(), "green");// il faut faire disparaitre la bombe de l'écran en recoloriant la case en verte
 			}
 
 			

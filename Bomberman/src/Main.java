@@ -30,6 +30,7 @@ public class Main {
         	
         	info(J1,J2);
         	game_over = (J1.getLife() <= 0 ) || (J2.getLife() <= 0); //la partie est fini si la condition vaut TRUE
+
         	
         }
        System.out.println("FIN DE LA PARTIE !!!");

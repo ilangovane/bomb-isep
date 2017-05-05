@@ -8,8 +8,8 @@ public class Player {
 	int life = 3;//nombre de vie restant
 	double X ; // position X (varie de 0 à 20)
  	double Y ; // position Y (varie de 0 à 16)
-	double dX = 0.05 ; // le plus petit déplacement horizontal (définit la vitesse)
-	double dY = 0.05 ; // le plus petit déplacement vertical (définit la vitesse)
+	double dX = 0.03 ; // le plus petit déplacement horizontal (définit la vitesse)
+	double dY = 0.03 ; // le plus petit déplacement vertical (définit la vitesse)
 
 	Player(int id){
 		/* Si id vaut 1 il s'agit du joueur 1 , si 2 le joueur 2 si 3 une IA*/
