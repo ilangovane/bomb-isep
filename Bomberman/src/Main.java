@@ -11,9 +11,12 @@ public class Main {
 		Board game_board = new Board();
         //Dessiner le plateau et les joueurs
         game_board.beginGame();
+        
         Player J1 = new Player(1); // le joueur 1 porte l'id 1 
         Player J2 = new Player(2); // le joueur 2 porte l'id 2 
+        // l'objet contient une liste de Bombes vierge
         Bomb bomb_liste = new Bomb();
+        // Le jeu doit reboucler à l'infini tant que les joueurs ont plus de 0 vie 
         boolean game_over = false;
        while(!game_over){
     	   /*Gère les déplacements des joueurs 1 et 2*/
@@ -25,10 +28,13 @@ public class Main {
         	bomb_liste.putBomb(game_board, J2.getId(), (int)J2.getX(), (int)J2.getY());
         	/*Les bombes explosent 5 secondes après être déposée*/
         	bomb_liste.explose(game_board,J1,J2);
-        	/*Les bombes sont affichées */
+        	/*Les bombes sont affichées sur le plateau de jeu */
         	game_board.show_all_bombs(bomb_liste.getBombs());
         	
+        	/*Les données des joueurs sont affichés dans la console (nombre de vies et coordonnées X et Y)*/
         	info(J1,J2);
+        	
+        	/*Mise à jour du boolean game_over*/
         	game_over = (J1.getLife() <= 0 ) || (J2.getLife() <= 0); //la partie est fini si la condition vaut TRUE
 
         	

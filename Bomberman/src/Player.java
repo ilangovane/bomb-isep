@@ -1,5 +1,6 @@
 import java.awt.event.KeyEvent;
-
+import java.util.HashSet;
+import java.util.Set;
 
 import edu.princeton.cs.introcs.StdDraw;
 
@@ -184,6 +185,46 @@ public class Player {
 	}
 	
 	
+	/*Le joeurs qui vient de perdre la vie ne risque pas de perdre une vie dès qu'il sera replacé sur une case de départ
+	 * Le joueur est positionné sur le recoin (X,Y) = (-1,-1) pour des raisons de sécurités si des bombes sont a proximités
+	 * Cela permettra d'éviter de predre 2 ou 3 vie au lieu d'une*/
+
+	public void avoid_killing_player_two_times(Board b , Set<Bomb> list ){
+		int i = 0;
+		Bomb bo = new Bomb();
+		bo.setBombs(list); // l'objet contient la liste de bombe 
+		boolean safe = true;// le joueurs peut revenir à la position de resurrection
+		if(this.getId() == 1 ){
+			// pour le Joueur 1 
+			while(i<=3){
+				// le joueur après avoir perdu une vie et placé temporairement à la position (-1,-1)
+				if(this.getX() == -1  && this.getY() == -1 && ( bo.is_bomb_already_exists(1, 1+i) ||bo.is_bomb_already_exists(i+1,1))  ){
+					// si une bombe est placé à proximité, il mourra inexorablement
+					safe = false;
+				}
+				i++;
+			}
+			// le joueur ne risque rien , le joueur peut à nouveau controler son personnage
+			if(safe == true && this.getX() == -1  && this.getY() == -1 && !bo.is_bomb_already_exists(1, 1+i) && !bo.is_bomb_already_exists(i+1,1)){
+				this.setX(1);  
+				this.setY(1);
+				b.setArea(0,0, "grey");
+			}
+		}else if(this.getId() ==2){
+			//même commentaire que le joueur 1
+			while(i<=3){
+				if(this.getX() == -1  && this.getY() == -1 && ( bo.is_bomb_already_exists(19, 15-i) ||bo.is_bomb_already_exists(19-i,15))  ){
+					safe = false;
+				}
+				i++;
+			}
+			if(safe == true && this.getX() == -1  && this.getY() == -1 &&  !bo.is_bomb_already_exists(1, 1+i) && !bo.is_bomb_already_exists(i+1,1)) {
+				this.setX(19);  
+				this.setY(15);
+				b.setArea(0,0, "grey");
+			}
+		}
+	}
 	
 
 
