@@ -12,6 +12,8 @@ public class Bomb {
 	public int X; // coordonnée X de la bombe
 	public int Y; //coordonnée Y de la bombe
 	Set<Bomb> Bombs = new HashSet<Bomb>();
+	public int range = 3; //portée de la bombe
+	boolean is_red = false;//les bombes rouges peuvent détruire les murs et les joueurs placés derrière
 	//choix de deux Constructeurs
 	//lors de la création d'une bombe
 	public Bomb(int id,int line, int column){
@@ -19,6 +21,7 @@ public class Bomb {
 		this.t_explosion = System.currentTimeMillis() + 5000 ; // la bombe explose 5 secondes après être déposée
 		this.X = column;
 		this.Y = line;
+
 	}
 	
 	//lors de la création de la liste de bombs
@@ -99,6 +102,24 @@ public class Bomb {
 	
 
 	
+	public int getRange() {
+		return range;
+	}
+
+	public void setRange(int range) {
+		this.range = range;
+	}
+	
+	
+
+	public boolean isIs_red() {
+		return is_red;
+	}
+
+	public void setIs_red(boolean is_red) {
+		this.is_red = is_red;
+	}
+
 	/*Ajoute une bombe à la liste HashSet Bombs*/
 	public void addBomb(int id , int x , int y){
 		Bombs.add(new Bomb(id,y,x));
@@ -181,12 +202,16 @@ public class Bomb {
 			if( bo.getT_explosion() <  System.currentTimeMillis() ){ // le minuteur prend fin
 				i=1;
 				// la bomb a une portée de 3 et s'arrete au mur incassable dans toute les directions
-				
-				while(b.isDestructible(bo.getY()+i, bo.getX()) && i<=3){// soit case verte un mur cassable
+				boolean is_red_bomb = bo.isIs_red();
+				int bomb_range = bo.getRange(); //portée de la bombe de l'objet "bo" qui change à chaque boucle
+				while(b.isDestructible(bo.getY()+i, bo.getX()) && i<=bomb_range){// soit case verte un mur cassable
 					if(b.isWallDestructible(bo.getY()+i, bo.getX()) ){
 						b.setArea(bo.getY() +i, bo.getX(), "green");// coloration case verte 
 						b.setElementMatrice(bo.getY() +i, bo.getX(), 3); // matrice mis à jour 
-						break ;// on sort de la boucle 
+						if(!is_red_bomb){//les bombes rouges continue d'exploser en cassant les murs cassables
+							i = 1000;// on sort de la boucle 
+						}
+						
 					}
 					if(J1.is_at_point(bo.getX(), bo.getY()+i)){
 			// le joueur 1 se trouve dans la portée de la bombe
@@ -215,11 +240,13 @@ public class Bomb {
 				
 				//commentaire identique
 				i=1;
-				while(b.isDestructible(bo.getY()-i, bo.getX()) && i<=3){	
+				while(b.isDestructible(bo.getY()-i, bo.getX()) && i<=bomb_range){	
 					if(b.isWallDestructible(bo.getY()-i, bo.getX()) ){
 						b.setArea(bo.getY()-i, bo.getX(), "green");
 						b.setElementMatrice(bo.getY()-i, bo.getX(), 3);
-						i=10; ;// on sort de la boucle 
+						if(!is_red_bomb){//les bombes rouges continue d'exploser en cassant les murs cassables
+							i = 1000;// on sort de la boucle 
+						}
 					}
 					if(J1.is_at_point(bo.getX(), bo.getY()-i) ){
 		
@@ -244,11 +271,13 @@ public class Bomb {
 				}
 				//commentaire identique
 				i=1;
-				while(b.isDestructible(bo.getY(), bo.getX()+i) && i<=3){
+				while(b.isDestructible(bo.getY(), bo.getX()+i) && i<=bomb_range){
 					if(b.isWallDestructible(bo.getY(), bo.getX()+i) ){
 						b.setArea(bo.getY(), bo.getX()+i, "green");
 						b.setElementMatrice(bo.getY(), bo.getX()+i, 3);
-						i=10; ;// on sort de la boucle 
+						if(!is_red_bomb){//les bombes rouges continue d'exploser en cassant les murs cassables
+							i = 1000;// on sort de la boucle 
+						}
 					}
 					if(J1.is_at_point(bo.getX()+i, bo.getY()) ){
 						J1.kill();
@@ -273,11 +302,13 @@ public class Bomb {
 				}
 				//commentaire identique
 				i=1;
-				while(b.isDestructible(bo.getY(), bo.getX()-i) && i<=3){
+				while(b.isDestructible(bo.getY(), bo.getX()-i) && i<=bomb_range){
 					if(b.isWallDestructible(bo.getY(), bo.getX()-i) ){
 						b.setArea(bo.getY(), bo.getX()-i, "green");
 						b.setElementMatrice(bo.getY(), bo.getX()-i, 3);
-						i=10 ;// on sort de la boucle 
+						if(!is_red_bomb){//les bombes rouges continue d'exploser en cassant les murs cassables
+							i = 1000;// on sort de la boucle 
+						}
 					}
 					if(J1.is_at_point(bo.getX()-i, bo.getY()) ){
 						J1.kill();
