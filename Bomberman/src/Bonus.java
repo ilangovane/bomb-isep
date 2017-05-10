@@ -170,43 +170,45 @@ public class Bonus {
 	 * */
 	public void collect_bonus(Player J1, Player J2, Board b){
 		Iterator<Bonus> it = this.Bonus.iterator(); // on parcours l'element du premier jusqu'au dernier grace au curseur iterator
-		//System.out.println("TAILLE DE LA LISTE " + Bonus.size());
+
 
 		
 		while (it.hasNext()){//parcours la liste de bonus
 			Bonus bo = it.next();
-			System.out.println("POS BOMBE X : " + bo.getX() + " Y: "+ bo.getY());
-			if ((int)(J1.getX()) == bo.getX() && (int)(J1.getY()) == bo.getY()){ //si mon joueur 1 et le bonus sont à la meme position
+			
+			if ((int)(J1.getX()) == bo.getX() && (int)(J1.getY()) == bo.getY()){ //si mon joueur 1 et le bonus sont Ã  la meme position
 				System.out.println("BONUS COLLECTE " + bo.getType_bonus());
 				// je n'affiche plus le bonus : j'appelle la fonction setArea et je colorie la case en vert
 				b.setArea(bo.getY(), bo.getX() , "green");
 				
-				//je retire la bombe de la liste 
-				it.remove();
+
 				
-				//j'affecte au J1 les fonctionnalités du bonus en fonction du type de bonus
-				int range = bo.getJ1_bomb_range();
+				//j'affecte au J1 les fonctionnalitÃ©s du bonus en fonction du type de bonus
+				int range = this.getJ1_bomb_range();
+				System.out.println("RANGE BEFORE" + range);
 				switch (bo.getType_bonus()){
 				
 				case "flamme_bleu":
 					if (range>1){
-						bo.setJ1_bomb_range(range-1);
+						this.setJ1_bomb_range(range-1);
 					}
 					break;
 				case "flamme_jaune":
 					if (range>1){
-						bo.setJ1_bomb_range(range+1);
+						this.setJ1_bomb_range(range+1);
 					}
 					break;
 				case "flamme_rouge":
-					bo.setJ1_bomb_range(10);
+					this.setJ1_bomb_range(10);
 					break;
 				case "bombe_rouge":
-					bo.setJ1_red_bomb(true);
+					this.setJ1_red_bomb(true);
 					break;
 
 				}
-				
+				System.out.println("RANGE AFTER" +this.getJ1_bomb_range() );
+				//je retire la bombe de la liste 
+				it.remove();
 			}else if ((int)J2.getX() == bo.getX() && (int)J2.getY() == bo.getY()){
 				
 			}
