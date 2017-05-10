@@ -16,27 +16,37 @@ public class Main {
         Player J2 = new Player(2); // le joueur 2 porte l'id 2 
         // l'objet contient une liste de Bombes vierge
         Bomb bomb_liste = new Bomb();
-        // Le jeu doit reboucler à l'infini tant que les joueurs ont plus de 0 vie 
+        Bonus bonus_liste =  new Bonus();
+        // Le jeu doit reboucler ï¿½ l'infini tant que les joueurs ont plus de 0 vie 
         boolean game_over = false;
        while(!game_over){
-    	   /*Gère les déplacements des joueurs 1 et 2*/
+    	   /*Gï¿½re les dï¿½placements des joueurs 1 et 2*/
         	J1.move(game_board,bomb_liste);
         	J2.move(game_board,bomb_liste);
 
         	/*Chaque joueur peut poser des bombes en appuyant soit sur espace ou sur W*/
         	bomb_liste.putBomb(game_board, J1.getId(), (int)J1.getX(), (int)J1.getY());
         	bomb_liste.putBomb(game_board, J2.getId(), (int)J2.getX(), (int)J2.getY());
-        	/*Les bombes explosent 5 secondes après être déposée*/
-        	bomb_liste.explose(game_board,J1,J2);
-        	/*Les bombes sont affichées sur le plateau de jeu */
+        	/*Les bombes explosent 5 secondes aprï¿½s ï¿½tre dï¿½posï¿½e*/
+        	bomb_liste.explose(game_board,J1,J2,bonus_liste);
+        	
+        	/*Les bombes et les bonus sont affichï¿½es sur le plateau de jeu */
         	game_board.show_all_bombs(bomb_liste.getBombs());
+        	game_board.show_bonus(bonus_liste.getBonus());
         	
-        	/*Les données des joueurs sont affichés dans la console (nombre de vies et coordonnées X et Y)*/
-        	info(J1,J2);
+        	/*On collecte les bonus*/
+        	bonus_liste.collect_bonus(J1, J2, game_board);
         	
-        	/*Mise à jour du boolean game_over*/
+        	/*On synchronise les listes bombes et bonus*/
+        	bonus_liste.synchro(bomb_liste);
+        	
+        	
+        	/*Les donnï¿½es des joueurs sont affichï¿½s dans la console (nombre de vies et coordonnï¿½es X et Y)*/
+        	//info(J1,J2);
+        	
+        	/*Mise ï¿½ jour du boolean game_over*/
         	game_over = (J1.getLife() <= 0 ) || (J2.getLife() <= 0); //la partie est fini si la condition vaut TRUE
-
+        	//StdDraw.show(1000);
         	
         }
        System.out.println("FIN DE LA PARTIE !!!");
@@ -47,7 +57,7 @@ public class Main {
        }else{
     	   winner = 2;
        }
-       //l'identité du gagnant est révelée
+       //l'identitï¿½ du gagnant est rï¿½velï¿½e
        game_board.game_over(winner);
 
 		

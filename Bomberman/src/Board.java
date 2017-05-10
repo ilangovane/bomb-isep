@@ -16,15 +16,15 @@ public class Board {
 	
 	/*Constructeur : initialise le plateau de jeu lors de l'instanciation d'objet */
 	public Board(){
-		/*taille de la fenêtre 1050 x 850 
+		/*taille de la fenï¿½tre 1050 x 850 
 		 * Une case doit faire 30 px => 30 x nb de ligne (17) et 30 x nb de colonne (21) 
 		 * */
 		StdDraw.setCanvasSize(21*30,17*30);
 
 	
 		/*
-		 * Modifier les echelles X et Y pour avoir un système de coordonnées (X,Y)
-		 *  Coordonnées (0,0) coin en bas à gauche et (17,21) coin en haut à droite
+		 * Modifier les echelles X et Y pour avoir un systï¿½me de coordonnï¿½es (X,Y)
+		 *  Coordonnï¿½es (0,0) coin en bas ï¿½ gauche et (17,21) coin en haut ï¿½ droite
 		 *  */
         StdDraw.setXscale(0 , 21);
         StdDraw.setYscale(0 , 17);
@@ -91,10 +91,10 @@ public class Board {
 	}
 
 	
-	//démarrage du jeu en "convertissant" la matrice en plateau de jeu
+	//dï¿½marrage du jeu en "convertissant" la matrice en plateau de jeu
 public  void beginGame(){
 
-		//génerer le plateau case par case
+		//gï¿½nerer le plateau case par case
 		for(int line = 0 ; line < 17 ; line++ ){
 			for(int column = 0 ; column <21 ; column ++ ){
 
@@ -112,7 +112,7 @@ public  void beginGame(){
 		}
 	
 		
-		//placer les juoeurs au début du jeu pendant l'initialisation
+		//placer les joueurs au dï¿½but du jeu pendant l'initialisation
 		//Joueur 1 en bleu
 
 		this.setPlayer(1, 1, 1);
@@ -142,7 +142,7 @@ public  void beginGame(){
 
 }
 
-	/*La fonction permet de modifier la couleur d'une case en spécifiant la ligne, la colonne et la color "GREEN" , "grey" ou "orange"*/
+	/*La fonction permet de modifier la couleur d'une case en spï¿½cifiant la ligne, la colonne et la color "GREEN" , "grey" ou "orange"*/
 	public void setArea(int line , int column , String color){
 		switch(color){
 		case "orange" : 
@@ -204,7 +204,7 @@ public  void beginGame(){
 		return true;
 	}
 	
-	//vérifie si la case est celle d'un mur cassable ou GREEN
+	//vï¿½rifie si la case est celle d'un mur cassable ou GREEN
 	public boolean isDestructible(int line, int column){
 		/*La matrice contient des entiers : 
 		 * 1 : mur incassable
@@ -222,7 +222,7 @@ public  void beginGame(){
 		return true;
 	}
 	
-	//vérifie si la case est celle d'un mur cassable seulement
+	//vï¿½rifie si la case est celle d'un mur cassable seulement
 	public boolean isWallDestructible(int line, int column){
 		/*La matrice contient des entiers : 
 		 * 1 : mur incassable
@@ -246,10 +246,27 @@ public  void beginGame(){
 		StdDraw.setFont(font);
 		StdDraw.clear();
 		StdDraw.setPenColor(StdDraw.BLACK);
-		StdDraw.text(7, 10, "Le joueur " + id + " a gagné !");
+		StdDraw.text(7, 10, "Le joueur " + id + " a gagnÃ© !");
 	}
 	
 
+	/*
+	 * BONUSSSSSSSSSS
+	 * 
+	 * */
 	
+	public void show_bonus(Set<Bonus> b){
+		Iterator<Bonus> it = b.iterator(); // on parcours l'element du premier jusqu'au dernier grace au curseur iterator
+		while (it.hasNext()){//parcours la liste de bonus
+			Bonus bo = it.next();
+			setBonus(bo.getX(), bo.getY(), bo.getType_bonus());
+		}
+	}
 	
+	//fonction pour afficher a l'ecran le bonus comme un cercle
+	public void setBonus(int column , int line , String type ){
+		StdDraw.setPenColor(StdDraw.ORANGE);
+		StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3 );
+		
+}
 }
