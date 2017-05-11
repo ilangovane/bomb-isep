@@ -7,7 +7,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
-
+		
 		Board game_board = new Board();
         //Dessiner le plateau et les joueurs
         game_board.beginGame();
@@ -25,8 +25,8 @@ public class Main {
         	J2.move(game_board,bomb_liste);
 
         	/*Chaque joueur peut poser des bombes en appuyant soit sur espace ou sur W*/
-        	bomb_liste.putBomb(game_board, J1.getId(), (int)J1.getX(), (int)J1.getY());
-        	bomb_liste.putBomb(game_board, J2.getId(), (int)J2.getX(), (int)J2.getY());
+        	bomb_liste.putBomb(game_board, J1);
+        	bomb_liste.putBomb(game_board, J2);
         	/*Les bombes explosent 5 secondes apr�s �tre d�pos�e*/
         	bomb_liste.explose(game_board,J1,J2,bonus_liste);
         	
@@ -53,11 +53,11 @@ public class Main {
        
        int winner = 0;// le perdant est celui qui a 0 vie
        if(J1.getLife() == 0){
-    	   winner = 1;
-       }else{
     	   winner = 2;
+       }else{
+    	   winner = 1;
        }
-       //l'identit� du gagnant est r�vel�e
+       //l'identité du gagnant est révelée
        game_board.game_over(winner);
 
 		

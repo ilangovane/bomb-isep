@@ -146,22 +146,32 @@ public class Bonus {
 	
 	public String random_type(){ // Fonction permettant de choisir le type bonus au hasard 
 		Random rand = new Random();
-		int nombreAleatoire = rand.nextInt(9); // 9 bus en tout 
+		int nombreAleatoire = rand.nextInt(9); // 9 bonus en tout 
 		switch (nombreAleatoire){
 		case 0:
-			//retourne flamme bleu
+			//retourne flamme bleu : portée -1
 			return "flamme_bleu";
 		case 1:
-			//retourne flamme bleu
+			//retourne flamme jaune : portée +1
 			return "flamme_jaune";
 		case 2:
-			//retourne flamme bleu
+			//retourne flamme rouge : portée +10
 			return "flamme_rouge";
 		case 3:
-			//retourne flamme bleu
+			//retourne bombe rouge : éclate plusieurs murs destructibles 
 			return "bombe_rouge";
-		default:
-				return "flamme_bleu";
+		case 4: 
+			return "vie";
+		case 5: 
+			return "speed_up";
+		case 6: 
+			return "speed_down";
+		case 7: 
+			return "bombe_plus";
+		case 8: 
+			return "bombe_moins";	
+		default : 
+			return "vie";
 		}
 	}
 	
@@ -185,6 +195,10 @@ public class Bonus {
 				
 				//j'affecte au J1 les fonctionnalitÃ©s du bonus en fonction du type de bonus
 				int range = this.getJ1_bomb_range();
+				int vie = J1.getLife();
+				double dX = J1.getdX();
+				double dY = J1.getdY();
+
 				System.out.println("RANGE BEFORE" + range);
 				switch (bo.getType_bonus()){
 				
@@ -204,13 +218,94 @@ public class Bonus {
 				case "bombe_rouge":
 					this.setJ1_red_bomb(true);
 					break;
+				case "vie": 
+					J1.setLife(vie+1);
+					break ;
+				case "speed_up": 
+					J1.setdX(dX*2); 
+					J1.setdY(dY*2);
+					break ;
+				case "speed_down":
+					J1.setdX(dX/2); 
+					J1.setdY(dY/2);
+					break;
+				case "bombe_plus":
+					J1.setNb_bomb(J1.getNb_bomb()+2);
+					if (J1.getNb_bomb()>7)
+						J1.setNb_bomb(7);
+					break ;
+				case "bombe_moins": 
+					J1.setNb_bomb(J1.getNb_bomb()-2);
+					if (J1.getNb_bomb()<2)
+						J1.setNb_bomb(2);
+					break ;	
+				
 
 				}
 				System.out.println("RANGE AFTER" +this.getJ1_bomb_range() );
 				//je retire la bombe de la liste 
 				it.remove();
-			}else if ((int)J2.getX() == bo.getX() && (int)J2.getY() == bo.getY()){
+			}
+			
+			
+			else if ((int)J2.getX() == bo.getX() && (int)J2.getY() == bo.getY()){
+				System.out.println("BONUS COLLECTE " + bo.getType_bonus());
+				// je n'affiche plus le bonus : j'appelle la fonction setArea et je colorie la case en vert
+				b.setArea(bo.getY(), bo.getX() , "green");
 				
+
+				
+				//j'affecte au J2 les fonctionnalitées du bonus en fonction du type de bonus
+				int range = this.getJ2_bomb_range();
+				int vie = J2.getLife();
+				double dX = J2.getdX();
+				double dY = J2.getdY();
+				System.out.println("RANGE BEFORE" + range);
+				switch (bo.getType_bonus()){
+				
+				case "flamme_bleu":
+					if (range>1){
+						this.setJ2_bomb_range(range-1);
+					}
+					break;
+				case "flamme_jaune":
+					if (range>1){
+						this.setJ2_bomb_range(range+1);
+					}
+					break;
+				case "flamme_rouge":
+					this.setJ2_bomb_range(10);
+					break;
+				case "bombe_rouge":
+					this.setJ2_red_bomb(true);
+					break;
+				case "vie": 
+					J2.setLife(vie+1);
+					break ;
+				case "speed_up": 
+					J2.setdX(dX*2); 
+					J2.setdY(dY*2);
+					break ;
+				case "speed_down":
+					J2.setdX(dX/2); 
+					J2.setdY(dY/2);
+					break;
+				case "bombe_plus":
+					J2.setNb_bomb(J2.getNb_bomb()+2);
+					if (J2.getNb_bomb()>7)
+						J2.setNb_bomb(7);
+					break ;
+				case "bombe_moins": 
+					J2.setNb_bomb(J2.getNb_bomb()-2);
+					if (J2.getNb_bomb()<2)
+						J2.setNb_bomb(2);
+					break ;	
+				
+
+			}
+				System.out.println("RANGE AFTER" +this.getJ2_bomb_range() );
+				//je retire la bombe de la liste 
+				it.remove();
 			}
 		}
 	}

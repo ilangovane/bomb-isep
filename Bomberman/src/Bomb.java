@@ -128,19 +128,19 @@ public class Bomb {
 	
 	/*Lorsque la touche espace ou W est enfonc�e les bombes s'ajoutent � la liste aucun doublons n'est tol�r�
 	 * Un doublons => bombes au m�me emplacement aux coordonn�es (X,Y) d'ou la m�thode this.is_bomb_already_exists(x, y)*/
-	public void putBomb(Board b ,int id , int x , int y){
-		if(StdDraw.isKeyPressed(KeyEvent.VK_W) && id == 1){//touche W press�e
-			if(!this.is_bomb_already_exists(x, y) && this.getNbBombs(1) <4){
-				addBomb(id , x , y);
+	public void putBomb(Board b ,Player J){
+		if(StdDraw.isKeyPressed(KeyEvent.VK_W) && J.getId() == 1){//touche W press�e
+			if(!this.is_bomb_already_exists((int)J.getX(), (int)J.getY()) && this.getNbBombs(1) <J.getNb_bomb()){
+				addBomb(J.getId() , (int)J.getX() , (int)J.getY());
 				//b.setBomb(x,y);
 			}
 			
 		}
 		
-		if(StdDraw.isKeyPressed(KeyEvent.VK_SPACE) && id == 2){//touche ESPACE press�e
+		if(StdDraw.isKeyPressed(KeyEvent.VK_SPACE) && J.getId() == 2){//touche ESPACE press�e
    		 
-			if(!this.is_bomb_already_exists(x, y) && this.getNbBombs(2) <4){
-				addBomb(id , x , y);
+			if(!this.is_bomb_already_exists((int) J.getX(), (int) J.getY()) && this.getNbBombs(2) <J.getNb_bomb()){
+				addBomb(J.getId() , (int) J.getX() , (int)J.getY());
 				
 				//b.setBomb(x,y);
 				

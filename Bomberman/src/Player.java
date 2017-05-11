@@ -11,7 +11,7 @@ public class Player {
  	double Y ; // position Y (varie de 0 � 16)
 	double dX = 0.03 ; // le plus petit d�placement horizontal (d�finit la vitesse)
 	double dY = 0.03 ; // le plus petit d�placement vertical (d�finit la vitesse)
-
+	int nb_bomb = 3;// nombre de bombes que le joueur peut poser sur le terrain sumultanement
 	Player(int id){
 		/* Si id vaut 1 il s'agit du joueur 1 , si 2 le joueur 2 si 3 une IA*/
 		this.id = id;
@@ -29,8 +29,17 @@ public class Player {
 	}
 
 	/*Getters et Setters*/
+	
 	public int getId() {
 		return id;
+	}
+
+	public int getNb_bomb() {
+		return nb_bomb;
+	}
+
+	public void setNb_bomb(int nb_bomb) {
+		this.nb_bomb = nb_bomb;
 	}
 
 	public void setId(int id) {
@@ -39,6 +48,22 @@ public class Player {
 
 	public int getLife() {
 		return life;
+	}
+
+	public double getdX() {
+		return dX;
+	}
+
+	public void setdX(double dX) {
+		this.dX = dX;
+	}
+
+	public double getdY() {
+		return dY;
+	}
+
+	public void setdY(double dY) {
+		this.dY = dY;
 	}
 
 	public void setLife(int life) {
@@ -159,9 +184,7 @@ public class Player {
         	}*/
 		}
 		
-		if(this.id == 3){
-			//IA
-		}
+
 		
 		
 		// affiche le joueur sur la case 
