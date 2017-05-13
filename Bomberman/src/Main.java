@@ -46,7 +46,7 @@ public class Main {
         	
         	/*Mise � jour du boolean game_over*/
         	game_over = (J1.getLife() <= 0 ) || (J2.getLife() <= 0); //la partie est fini si la condition vaut TRUE
-        	//StdDraw.show(1000);
+        	StdDraw.show(30);
         	
         }
        System.out.println("FIN DE LA PARTIE !!!");
