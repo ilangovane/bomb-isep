@@ -252,7 +252,7 @@ public  void beginGame(){
 		StdDraw.setFont(font);
 		
 		StdDraw.setPenColor(StdDraw.BLACK);
-		StdDraw.text(7, 10, "Le joueur " + winner + " a gagné !");
+		StdDraw.text(7, 10, "Le joueur " + winner + " a gagnï¿½ !");
 	}
 	
 
@@ -271,8 +271,43 @@ public  void beginGame(){
 	
 	//fonction pour afficher a l'ecran le bonus comme un cercle
 	public void setBonus(int column , int line , String type ){
-		StdDraw.setPenColor(StdDraw.ORANGE);
-		StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3 );
+		switch (type){
+		case "flamme_bleu":
+			StdDraw.setPenColor(StdDraw.BLUE);
+			StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3 );
+			break;
+		case "flamme_jaune":
+			StdDraw.setPenColor(StdDraw.YELLOW);
+			StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3 );
+			break;
+		case "flamme_rouge":
+			StdDraw.setPenColor(StdDraw.RED);
+			StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3 );
+			break;
+		case "bombe_rouge":
+			StdDraw.setPenColor(StdDraw.RED);
+			StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3 );
+			break;
+		case "vie":
+			StdDraw.setPenColor(StdDraw.RED);
+			StdDraw.filledCircle(24+0.5, 14+0.5, 0.3 / Math.sqrt(2));
+			break;
+		case "speed_up":
+			StdDraw.setPenColor(StdDraw.GREEN);
+			StdDraw.filledCircle(24+0.5, 14+0.5, 0.3 / Math.sqrt(2));
+			break;
+		case "speed_down":
+			
+			break;
+		case "bombe_plus":
+			StdDraw.setPenColor(StdDraw.ORANGE);
+			StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3 );
+			break ;
+		case "bombe_moins": 
+			StdDraw.setPenColor(StdDraw.BLACK);
+			StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3 );
+			break ;	
+		}
 		
 	}
 	
