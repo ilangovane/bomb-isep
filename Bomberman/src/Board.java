@@ -19,14 +19,14 @@ public class Board {
 		/*taille de la fenï¿½tre 1050 x 850 
 		 * Une case doit faire 30 px => 30 x nb de ligne (17) et 30 x nb de colonne (21) 
 		 * */
-		StdDraw.setCanvasSize(21*30,17*30);
+		StdDraw.setCanvasSize(30*30,17*30);
 
 	
 		/*
 		 * Modifier les echelles X et Y pour avoir un systï¿½me de coordonnï¿½es (X,Y)
 		 *  Coordonnï¿½es (0,0) coin en bas ï¿½ gauche et (17,21) coin en haut ï¿½ droite
 		 *  */
-        StdDraw.setXscale(0 , 21);
+        StdDraw.setXscale(0 , 30);
         StdDraw.setYscale(0 , 17);
 
 		/*Murs incassables*/
@@ -131,7 +131,7 @@ public  void beginGame(){
 		StdDraw.filledCircle(X + 0.5 , Y + 0.5 , 0.3 );	
 	}else if(id==2){//Joueur 2 en bleu
 		StdDraw.setPenColor(StdDraw.BLUE);
-		StdDraw.filledCircle(X + 0.5 , Y + 0.5 , 0.3 );
+		StdDraw.filledCircle(X + 0.5  , Y + 0.5  , 0.3 );
 
 	}else{
 		//IA
@@ -240,13 +240,19 @@ public  void beginGame(){
 		return true;
 	}
 	
-	public void game_over(int id){
-		
+	public void game_over(Player J1){
+	       int winner = 0;// le perdant est celui qui a 0 vie
+	       if(J1.getLife() == 0){
+	    	   winner = 2;
+	       }else{
+	    	   winner = 1;
+	       }
+		StdDraw.clear();
 		Font font = new Font("Arial" , Font.BOLD , 30);
 		StdDraw.setFont(font);
-		StdDraw.clear();
+		
 		StdDraw.setPenColor(StdDraw.BLACK);
-		StdDraw.text(7, 10, "Le joueur " + id + " a gagnÃ© !");
+		StdDraw.text(7, 10, "Le joueur " + winner + " a gagné !");
 	}
 	
 
@@ -268,5 +274,40 @@ public  void beginGame(){
 		StdDraw.setPenColor(StdDraw.ORANGE);
 		StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3 );
 		
-}
+	}
+	
+	public void draw_life(Player J){
+		Font font = new Font("Arial" , Font.BOLD , 30);
+		StdDraw.setFont(font);
+		if(J.getId() == 1){
+				StdDraw.setPenColor(StdDraw.BLACK);
+				StdDraw.text(24, 16, "Joueur 1");
+			 	StdDraw.setPenColor(StdDraw.RED);
+		        // draw diamond
+		        double[] xs = { 23,  24, 25, 24 };
+		        double[] ys = { 14, 13, 14, 15 };
+		        StdDraw.filledPolygon(xs, ys);
+
+		        // circles
+		        StdDraw.filledCircle(24+0.5, 14+0.5, 1 / Math.sqrt(2));
+		        StdDraw.filledCircle(24-0.5, 14+0.5, 1 / Math.sqrt(2));
+		        StdDraw.setPenColor(StdDraw.WHITE);
+		        StdDraw.text(24, 14, String.valueOf(J.getLife()));
+		}else if(J.getId() == 2){
+			StdDraw.setPenColor(StdDraw.BLACK);
+			StdDraw.text(24, 8, "Joueur 2");
+		 	StdDraw.setPenColor(StdDraw.BLUE);
+	        // draw diamond
+	        double[] xs = { 23,  24, 25, 24 };
+	        double[] ys = { 6, 5, 6, 7 };
+	        StdDraw.filledPolygon(xs, ys);
+
+	        // circles
+	        StdDraw.filledCircle(24.5, 6.5, 1 / Math.sqrt(2));
+	        StdDraw.filledCircle(23.5, 6.5, 1 / Math.sqrt(2));
+	        StdDraw.setPenColor(StdDraw.WHITE);
+	        StdDraw.text(24, 14-8, String.valueOf(J.getLife()));
+		}
+
+	}
 }

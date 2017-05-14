@@ -5,6 +5,7 @@ import edu.princeton.cs.introcs.StdDraw;
 
 public class Main {
 
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 
 		
@@ -46,20 +47,16 @@ public class Main {
         	
         	/*Mise � jour du boolean game_over*/
         	game_over = (J1.getLife() <= 0 ) || (J2.getLife() <= 0); //la partie est fini si la condition vaut TRUE
+        	game_board.draw_life(J1);
+        	game_board.draw_life(J2);
         	StdDraw.show(30);
         	
+        	
         }
-       System.out.println("FIN DE LA PARTIE !!!");
-       
-       int winner = 0;// le perdant est celui qui a 0 vie
-       if(J1.getLife() == 0){
-    	   winner = 2;
-       }else{
-    	   winner = 1;
-       }
        //l'identité du gagnant est révelée
-       game_board.game_over(winner);
-
+       game_board.game_over(J1);
+       System.out.println("FIN DE LA PARTIE !!!");
+       StdDraw.show(30);
 		
 		
 		

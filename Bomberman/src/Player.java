@@ -9,8 +9,8 @@ public class Player {
 	int life = 3;//nombre de vie restant
 	double X ; // position X (varie de 0 � 20)
  	double Y ; // position Y (varie de 0 � 16)
-	double dX = 0.5 ; // le plus petit d�placement horizontal (d�finit la vitesse)
-	double dY = 0.5 ; // le plus petit d�placement vertical (d�finit la vitesse)
+	double dX = 0.2 ; // le plus petit d�placement horizontal (d�finit la vitesse)
+	double dY = 0.2 ; // le plus petit d�placement vertical (d�finit la vitesse)
 	int nb_bomb = 3;// nombre de bombes que le joueur peut poser sur le terrain sumultanement
 	Player(int id){
 		/* Si id vaut 1 il s'agit du joueur 1 , si 2 le joueur 2 si 3 une IA*/
