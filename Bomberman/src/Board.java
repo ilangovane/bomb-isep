@@ -274,38 +274,39 @@ public  void beginGame(){
 		switch (type){
 		case "flamme_bleu":
 			StdDraw.setPenColor(StdDraw.BLUE);
-			StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3 );
+			StdDraw.picture(column + 0.5 , line + 0.5 , "/Users/apple/Desktop/bomberman_picture/bluefire.png", 1,  1);
 			break;
 		case "flamme_jaune":
 			StdDraw.setPenColor(StdDraw.YELLOW);
-			StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3 );
+			StdDraw.picture(column + 0.5 , line + 0.5 , "/Users/apple/Desktop/bomberman_picture/yellowfire.png", 1,  1);
 			break;
 		case "flamme_rouge":
 			StdDraw.setPenColor(StdDraw.RED);
-			StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3 );
+			StdDraw.picture(column + 0.5 , line + 0.5 , "/Users/apple/Desktop/bomberman_picture/redfire.png", 1,  1);
 			break;
 		case "bombe_rouge":
 			StdDraw.setPenColor(StdDraw.RED);
-			StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3 );
+			StdDraw.picture(column + 0.5 , line + 0.5 , "/Users/apple/Desktop/bomberman_picture/redbomb.png", 1,  1);
 			break;
 		case "vie":
-			StdDraw.setPenColor(StdDraw.RED);
-			StdDraw.filledCircle(24+0.5, 14+0.5, 0.3 / Math.sqrt(2));
+			StdDraw.setPenColor(StdDraw.PINK);
+			StdDraw.picture(column + 0.5 , line + 0.5 , "/Users/apple/Desktop/bomberman_picture/heart.png", 1,  1);
 			break;
 		case "speed_up":
-			StdDraw.setPenColor(StdDraw.GREEN);
-			StdDraw.filledCircle(24+0.5, 14+0.5, 0.3 / Math.sqrt(2));
+			StdDraw.setPenColor(StdDraw.WHITE);
+			StdDraw.picture(column + 0.5 , line + 0.5 , "/Users/apple/Desktop/bomberman_picture/speedup.png", 1,  1);
 			break;
 		case "speed_down":
-			
+			StdDraw.setPenColor(StdDraw.DARK_GRAY);
+			StdDraw.picture(column + 0.5 , line + 0.5 , "/Users/apple/Desktop/bomberman_picture/speeddown.png", 1,  1);
 			break;
 		case "bombe_plus":
 			StdDraw.setPenColor(StdDraw.ORANGE);
-			StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3 );
+			StdDraw.picture(column + 0.5 , line + 0.5 , "/Users/apple/Desktop/bomberman_picture/morebomb.png", 1,  1);
 			break ;
 		case "bombe_moins": 
 			StdDraw.setPenColor(StdDraw.BLACK);
-			StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3 );
+			StdDraw.picture(column + 0.5 , line + 0.5 , "/Users/apple/Desktop/bomberman_picture/lessbomb.png", 1,  1);
 			break ;	
 		}
 		
