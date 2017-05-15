@@ -93,7 +93,7 @@ public class Board {
 	
 	//d�marrage du jeu en "convertissant" la matrice en plateau de jeu
 public  void beginGame(){
-
+	StdDraw.enableDoubleBuffering();
 		//g�nerer le plateau case par case
 		for(int line = 0 ; line < 17 ; line++ ){
 			for(int column = 0 ; column <21 ; column ++ ){
