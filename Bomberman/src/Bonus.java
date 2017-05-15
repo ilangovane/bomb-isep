@@ -196,8 +196,8 @@ public class Bonus {
 				//j'affecte au J1 les fonctionnalitÃ©s du bonus en fonction du type de bonus
 				int range = this.getJ1_bomb_range();
 				int vie = J1.getLife();
-				double dX = J1.getdX();
-				double dY = J1.getdY();
+				float dX = J1.getdX();
+				float dY = J1.getdY();
 
 				System.out.println("RANGE BEFORE" + range);
 				switch (bo.getType_bonus()){
@@ -222,12 +222,12 @@ public class Bonus {
 					J1.setLife(vie+1);
 					break ;
 				case "speed_up": 
-					J1.setdX(dX*2); 
-					J1.setdY(dY*2);
+					J1.setdX(dX+0.3f); 
+					J1.setdY(dY+0.3f);
 					break ;
 				case "speed_down":
-					J1.setdX(dX/2); 
-					J1.setdY(dY/2);
+					J1.setdX(dX-0.3f); 
+					J1.setdY(dY-0.3f);
 					break;
 				case "bombe_plus":
 					J1.setNb_bomb(J1.getNb_bomb()+2);
@@ -258,8 +258,8 @@ public class Bonus {
 				//j'affecte au J2 les fonctionnalitées du bonus en fonction du type de bonus
 				int range = this.getJ2_bomb_range();
 				int vie = J2.getLife();
-				double dX = J2.getdX();
-				double dY = J2.getdY();
+				float dX = J2.getdX();
+				float dY = J2.getdY();
 				System.out.println("RANGE BEFORE" + range);
 				switch (bo.getType_bonus()){
 				
@@ -283,12 +283,12 @@ public class Bonus {
 					J2.setLife(vie+1);
 					break ;
 				case "speed_up": 
-					J2.setdX(dX*2); 
-					J2.setdY(dY*2);
+					J2.setdX(dX+0.3f); 
+					J2.setdY(dY+0.3f);
 					break ;
 				case "speed_down":
-					J2.setdX(dX/2); 
-					J2.setdY(dY/2);
+					J2.setdX(dX-0.3f); 
+					J2.setdY(dY-0.3f);
 					break;
 				case "bombe_plus":
 					J2.setNb_bomb(J2.getNb_bomb()+2);
