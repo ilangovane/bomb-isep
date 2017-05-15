@@ -124,7 +124,7 @@ public  void beginGame(){
 	}
 
 	/*Placer un joueur selon une position (X,Y) pour le joueur J1 (id = 1) , J2(id = 2) ou IA (id = 3 )*/
-	public void setPlayer(int id,double X, double Y){
+	public void setPlayer(int id,float X, float Y){
 	
 	if(id == 1){//Joueur 1 en rouge
 		//StdDraw.setPenColor(StdDraw.RED);
