@@ -128,11 +128,11 @@ public  void beginGame(){
 	
 	if(id == 1){//Joueur 1 en rouge
 		//StdDraw.setPenColor(StdDraw.RED);
-		StdDraw.picture(X + 0.5 , Y + 0.5 , "/bomberman_picture/p2.png", 1, 1);	
+		StdDraw.picture(X + 0.5 , Y + 0.5 , "/bomberman_picture/p1.png", 1, 1);	
 		//StdDraw.save("p2.png");
 	}else if(id==2){//Joueur 2 en bleu
 		//StdDraw.setPenColor(StdDraw.BLUE);
-		StdDraw.picture(X + 0.5 , Y + 0.5 , "/bomberman_picture/p1.png", 1, 1);	
+		StdDraw.picture(X + 0.5 , Y + 0.5 , "/bomberman_picture/p2.png", 1, 1);	
 
 	}else{
 		//IA
@@ -172,8 +172,7 @@ public  void beginGame(){
 	
 	//dessine une bombe sur le plateau
 	public void setBomb(int column , int line ){
-			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/bomb.png", 1, 1);	
-			
+	        StdDraw.picture(column + 0.5 , line + 0.5 , "bomb.gif", 1, 1);			
 	}
 	
 	//Affiche toutes les bombes du plateau
@@ -248,11 +247,13 @@ public  void beginGame(){
 	    	   winner = 1;
 	       }
 		StdDraw.clear();
-		Font font = new Font("Arial" , Font.BOLD , 30);
+		Font font = new Font("Calibri" , Font.BOLD , 30);
 		StdDraw.setFont(font);
-		StdDraw.picture(7, 7, "/bomberman_picture/gameover.jpg");
+		StdDraw.clear(StdDraw.RED);
+
+		StdDraw.picture(10, 7, "/bomberman_picture/gameover.png");
 		StdDraw.setPenColor(StdDraw.BLACK);
-		StdDraw.text(7, 10, "Le joueur " + winner + " a gagné !");
+		StdDraw.text(7, 12, "Le joueur " + winner + " a gagné !");
 	}
 	
 
