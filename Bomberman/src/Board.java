@@ -172,7 +172,6 @@ public  void beginGame(){
 	
 	//dessine une bombe sur le plateau
 	public void setBomb(int column , int line ){
-			//StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
 			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/bomb.png", 1, 1);	
 			
 	}
@@ -251,7 +250,7 @@ public  void beginGame(){
 		StdDraw.clear();
 		Font font = new Font("Arial" , Font.BOLD , 30);
 		StdDraw.setFont(font);
-		
+		StdDraw.picture(7, 7, "/bomberman_picture/gameover.jpg");
 		StdDraw.setPenColor(StdDraw.BLACK);
 		StdDraw.text(7, 10, "Le joueur " + winner + " a gagné !");
 	}
