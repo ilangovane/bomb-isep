@@ -97,94 +97,100 @@ public class Player {
 	 * 
 	 * 
 	 * */
+
 	public void move(Board b,Bomb bo){
 		//commande clavier du joueur 1 
-		if(this.id == 1){
-            if(StdDraw.isKeyPressed(KeyEvent.VK_S)) {//touche S press�e
-		           	if(	b.isGrass((int)(this.getY()-dY) , (int)this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()-1)){
-		          
-		        		b.setArea((int)this.getY(), (int)this.getX(), "green");
-		        		this.setY(this.getY()- dY);
-		        		
-		        	
-		        	}
-          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Q)){//touche Q press�e
-          		 
-	             	if(b.isGrass((int) this.getY(), (int) (this.getX() - dX) ) && !bo.is_bomb_already_exists( (int)this.getX()-1, (int)this.getY())){
-	          
-	            		b.setArea((int)this.getY(), (int)this.getX(), "green");
-	            		this.setX(this.getX()-dX);	
-	            		
-	            	}
-          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_D)){//touche D press�e
-          		
-	         		if(b.isGrass((int) this.getY(), (int) (this.getX()+dX) ) && !bo.is_bomb_already_exists( (int)this.getX()+1, (int)this.getY())){
-	         		
-	            		b.setArea((int) this.getY(), (int) this.getX(), "green");
-	            		this.setX(this.getX()+dX);
-	            		
-	            	}
-         	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Z)){//touche Z press�e
-	             	if(b.isGrass((int) (this.getY()+dY), (int) this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()+1)){
-	             		
-	            		b.setArea((int) this.getY(), (int) this.getX(), "green");
-	            		this.setY(this.getY()+dY);
-	            		
-	            	}
-         	}/*else if(StdDraw.isKeyPressed(KeyEvent.VK_W)){//touche W press�e
-        		 System.out.println("J1 pose une bombe");
-        	}*/
-		}
+		float distance = 0;
 		
-		//commande clavier du joueur 2 
-		if(this.id == 2 ){
+		while (distance  < dX){
+			distance += 0.1;
+			if(this.id == 1){
+	            if(StdDraw.isKeyPressed(KeyEvent.VK_S)) {//touche S press�e
+			           	if(	b.isGrass((int)(this.getY()-distance) , (int)this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()-1)){
+			          
+			        		b.setArea((int)this.getY(), (int)this.getX(), "green");
+			        		this.setY(this.getY()- distance);
+			        		
+			        	
+			        	}
+	          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Q)){//touche Q press�e
+	          		 
+		             	if(b.isGrass((int) this.getY(), (int) (this.getX() - distance) ) && !bo.is_bomb_already_exists( (int)this.getX()-1, (int)this.getY())){
+		          
+		            		b.setArea((int)this.getY(), (int)this.getX(), "green");
+		            		this.setX(this.getX()-distance);	
+		            		
+		            	}
+	          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_D)){//touche D press�e
+	          		
+		         		if(b.isGrass((int) this.getY(), (int) (this.getX()+distance) ) && !bo.is_bomb_already_exists( (int)this.getX()+1, (int)this.getY())){
+		         		
+		            		b.setArea((int) this.getY(), (int) this.getX(), "green");
+		            		this.setX(this.getX()+distance);
+		            		
+		            	}
+	         	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Z)){//touche Z press�e
+		             	if(b.isGrass((int) (this.getY()+distance), (int) this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()+1)){
+		             		
+		            		b.setArea((int) this.getY(), (int) this.getX(), "green");
+		            		this.setY(this.getY()+distance);
+		            		
+		            	}
+	         	}
+			}
 			
-            if(StdDraw.isKeyPressed(KeyEvent.VK_DOWN )) {//touche BAS press�e
-            	
-            		if(	b.isGrass((int)(this.getY()-dY) , (int)this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()-1)){
-	     
-	            		b.setArea((int)this.getY(), (int)this.getX(), "green");
-	            		this.setY(this.getY()-dY);
-	            		
+			//commande clavier du joueur 2 
+			if(this.id == 2 ){
+				
+	            if(StdDraw.isKeyPressed(KeyEvent.VK_DOWN )) {//touche BAS press�e
 	            	
-	            	}
-            		System.out.println("POS J2 X : " + this.getX() + " Y: "+ this.getY());
-           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_LEFT )){//touche GAUCHE press�e
-           		System.out.println("POS J2 X : " + this.getX() + " Y: "+ this.getY());
-	            	if(b.isGrass((int) this.getY(), (int) (this.getX() -dX)) && !bo.is_bomb_already_exists( (int)this.getX()-1, (int)this.getY())){
-	           
-	            		b.setArea((int)this.getY(), (int)this.getX(), "green");
-	            		this.setX(this.getX()-dX);	
-	            		
-	            	}
-           		 
-           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_RIGHT)){//touche DROITE press�e
-          		 
-           		System.out.println("POS J2 X : " + this.getX() + " Y: "+ this.getY());
-	             	if(b.isGrass((int) this.getY(), (int)(this.getX()+dX)) && !bo.is_bomb_already_exists( (int)this.getX()+1, (int)this.getY())){
-	             	
-	            		b.setArea((int) this.getY(), (int) this.getX(), "green");
-	            		this.setX(this.getX()+dX);
-	            		
-	            	}
-          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_UP)){//touche HAUT press�e
-          		System.out.println("POS J2 X : " + this.getX() + " Y: "+ this.getY());
-	             	if(b.isGrass((int) (this.getY()+dY), (int) this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()+1)){
-	             	
-	            		b.setArea((int) this.getY(), (int) this.getX(), "green");
-	            		this.setY(this.getY()+dY);
-	            		
-	            	}
-          	}/*else if(StdDraw.isKeyPressed(KeyEvent.VK_SPACE)){//touche ESPACE press�e
-        		 System.out.println("J2 pose une bombe");
-        	}*/
+	            		if(	b.isGrass((int)(this.getY()-distance) , (int)this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()-1)){
+		     
+		            		b.setArea((int)this.getY(), (int)this.getX(), "green");
+		            		this.setY(this.getY()-distance);
+		            		
+		            	
+		            	}
+	            		System.out.println("POS J2 X : " + this.getX() + " Y: "+ this.getY());
+	           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_LEFT )){//touche GAUCHE press�e
+	           		System.out.println("POS J2 X : " + this.getX() + " Y: "+ this.getY());
+		            	if(b.isGrass((int) this.getY(), (int) (this.getX() -distance)) && !bo.is_bomb_already_exists( (int)this.getX()-1, (int)this.getY())){
+		           
+		            		b.setArea((int)this.getY(), (int)this.getX(), "green");
+		            		this.setX(this.getX()-distance);	
+		            		
+		            	}
+	           		 
+	           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_RIGHT)){//touche DROITE press�e
+	          		 
+	           		System.out.println("POS J2 X : " + this.getX() + " Y: "+ this.getY());
+		             	if(b.isGrass((int) this.getY(), (int)(this.getX()+distance)) && !bo.is_bomb_already_exists( (int)this.getX()+1, (int)this.getY())){
+		             	
+		            		b.setArea((int) this.getY(), (int) this.getX(), "green");
+		            		this.setX(this.getX()+distance);
+		            		
+		            	}
+	          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_UP)){//touche HAUT press�e
+	          		System.out.println("POS J2 X : " + this.getX() + " Y: "+ this.getY());
+		             	if(b.isGrass((int) (this.getY()+distance), (int) this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()+1)){
+		             	
+		            		b.setArea((int) this.getY(), (int) this.getX(), "green");
+		            		this.setY(this.getY()+distance);
+		            		
+		            	}
+	          	}
+			}
+			// affiche le joueur sur la case 
+			b.setPlayer(this.getId(), (int) this.getX(), (int) this.getY());
+			
 		}
+
+
 		
 
 		
 		
-		// affiche le joueur sur la case 
-		b.setPlayer(this.getId(), (int) this.getX(), (int) this.getY());
+
 		
 		
 	}

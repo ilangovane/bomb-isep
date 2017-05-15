@@ -63,6 +63,7 @@ public class Main {
 		
 		
 	}
+
 	
 	public static void info(Player J1 , Player J2){
 		System.out.println("Joueur 1  vie : " + J1.getLife() + " | X : "+ J1.getX() + " | Y : "+ J1.getY());
