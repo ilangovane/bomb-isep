@@ -127,7 +127,6 @@ public class Bonus {
 	}
 
 	public void create_bonus(int X, int Y){
-		
 		if (is_hidden()==true){ // si p = 20 %
 			System.out.println("BONUS CREEE X:" + X + " Y:"+Y );
 				this.Bonus.add(new Bonus(X,Y)); // on ajoute une bombe dans la liste
@@ -136,18 +135,16 @@ public class Bonus {
 	}
 
 	public boolean is_hidden() //Fonction pour générer une probabilité de 20% pour que les bonus s'affiche pour 1 blocs/5 cassable
-	{	
+	{
 		Random rand = new Random();
 		int nombreAleatoire = rand.nextInt(5); //Cette méthode va revoyer des nombres entre 0 et 4 donc 5 valeurs 
 		if (nombreAleatoire == 2){ // Si 1 valeurs sur 5 est trouvé
 			return true; // alors on a une prob de 20%
 		}
-
 		return false;
 	}
 	
 	public String random_type(){ // Fonction permettant de choisir le type bonus au hasard 
-
 		Random rand = new Random();
 		int nombreAleatoire = rand.nextInt(9); // 9 bonus en tout 
 		switch (nombreAleatoire){
@@ -199,8 +196,8 @@ public class Bonus {
 				//j'affecte au J1 les fonctionnalitÃ©s du bonus en fonction du type de bonus
 				int range = this.getJ1_bomb_range();
 				int vie = J1.getLife();
-				float dX = J1.getdX();
-				float dY = J1.getdY();
+				double dX = J1.getdX();
+				double dY = J1.getdY();
 
 				System.out.println("RANGE BEFORE" + range);
 				switch (bo.getType_bonus()){
@@ -225,12 +222,12 @@ public class Bonus {
 					J1.setLife(vie+1);
 					break ;
 				case "speed_up": 
-					J1.setdX(dX+0.3f); 
-					J1.setdY(dY+0.3f);
+					J1.setdX(dX*2); 
+					J1.setdY(dY*2);
 					break ;
 				case "speed_down":
-					J1.setdX(dX-0.3f); 
-					J1.setdY(dY-0.3f);
+					J1.setdX(dX/2); 
+					J1.setdY(dY/2);
 					break;
 				case "bombe_plus":
 					J1.setNb_bomb(J1.getNb_bomb()+2);
@@ -261,8 +258,8 @@ public class Bonus {
 				//j'affecte au J2 les fonctionnalitées du bonus en fonction du type de bonus
 				int range = this.getJ2_bomb_range();
 				int vie = J2.getLife();
-				float dX = J2.getdX();
-				float dY = J2.getdY();
+				double dX = J2.getdX();
+				double dY = J2.getdY();
 				System.out.println("RANGE BEFORE" + range);
 				switch (bo.getType_bonus()){
 				
@@ -286,12 +283,12 @@ public class Bonus {
 					J2.setLife(vie+1);
 					break ;
 				case "speed_up": 
-					J2.setdX(dX+0.3f); 
-					J2.setdY(dY+0.3f);
+					J2.setdX(dX*2); 
+					J2.setdY(dY*2);
 					break ;
 				case "speed_down":
-					J2.setdX(dX-0.3f); 
-					J2.setdY(dY-0.3f);
+					J2.setdX(dX/2); 
+					J2.setdY(dY/2);
 					break;
 				case "bombe_plus":
 					J2.setNb_bomb(J2.getNb_bomb()+2);

@@ -5,10 +5,10 @@ import edu.princeton.cs.introcs.StdDraw;
 
 public class Main {
 
-
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 
-		StdDraw.show(30);
+		
 		Board game_board = new Board();
         //Dessiner le plateau et les joueurs
         game_board.beginGame();
@@ -20,7 +20,6 @@ public class Main {
         Bonus bonus_liste =  new Bonus();
         // Le jeu doit reboucler � l'infini tant que les joueurs ont plus de 0 vie 
         boolean game_over = false;
-        
        while(!game_over){
     	   /*G�re les d�placements des joueurs 1 et 2*/
         	J1.move(game_board,bomb_liste);
@@ -63,7 +62,6 @@ public class Main {
 		
 		
 	}
-
 	
 	public static void info(Player J1 , Player J2){
 		System.out.println("Joueur 1  vie : " + J1.getLife() + " | X : "+ J1.getX() + " | Y : "+ J1.getY());
