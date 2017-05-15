@@ -110,7 +110,7 @@ public class Player {
 		        	}
           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Q)){//touche Q press�e
           		 
-	             	if(b.isGrass((int) this.getY(), (int) (this.getX() + dX) ) && !bo.is_bomb_already_exists( (int)this.getX()-1, (int)this.getY())){
+	             	if(b.isGrass((int) this.getY(), (int) (this.getX() - dX) ) && !bo.is_bomb_already_exists( (int)this.getX()-1, (int)this.getY())){
 	          
 	            		b.setArea((int)this.getY(), (int)this.getX(), "green");
 	            		this.setX(this.getX()-dX);	
