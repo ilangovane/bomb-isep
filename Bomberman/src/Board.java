@@ -128,11 +128,11 @@ public  void beginGame(){
 	
 	if(id == 1){//Joueur 1 en rouge
 		//StdDraw.setPenColor(StdDraw.RED);
-		StdDraw.picture(X + 0.5 , Y + 0.5 , "/Users/apple/Desktop/bomberman_picture/p2.png", 1, 1);	
-		StdDraw.save("p2.png");
+		StdDraw.picture(X + 0.5 , Y + 0.5 , "/bomberman_picture/p2.png", 1, 1);	
+		//StdDraw.save("p2.png");
 	}else if(id==2){//Joueur 2 en bleu
 		//StdDraw.setPenColor(StdDraw.BLUE);
-		StdDraw.picture(X + 0.5 , Y + 0.5 , "/Users/apple/Desktop/bomberman_picture/p1.png", 1, 1);	
+		StdDraw.picture(X + 0.5 , Y + 0.5 , "/bomberman_picture/p1.png", 1, 1);	
 
 	}else{
 		//IA
@@ -173,7 +173,7 @@ public  void beginGame(){
 	//dessine une bombe sur le plateau
 	public void setBomb(int column , int line ){
 			//StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
-			StdDraw.picture(column + 0.5 , line + 0.5 , "/Users/apple/Desktop/bomberman_picture/bomb.png", 1, 1);	
+			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/bomb.png", 1, 1);	
 			
 	}
 	
@@ -253,7 +253,7 @@ public  void beginGame(){
 		StdDraw.setFont(font);
 		
 		StdDraw.setPenColor(StdDraw.BLACK);
-		StdDraw.text(7, 10, "Le joueur " + winner + " a gagn� !");
+		StdDraw.text(7, 10, "Le joueur " + winner + " a gagné !");
 	}
 	
 
@@ -275,39 +275,39 @@ public  void beginGame(){
 		switch (type){
 		case "flamme_bleu":
 			//StdDraw.setPenColor(StdDraw.BLUE);
-			StdDraw.picture(column + 0.5 , line + 0.5 , "/Users/apple/Desktop/bomberman_picture/bluefire.png", 1,  1);
+			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/bluefire.png", 1,  1);
 			break;
 		case "flamme_jaune":
 			//StdDraw.setPenColor(StdDraw.YELLOW);
-			StdDraw.picture(column + 0.5 , line + 0.5 , "/Users/apple/Desktop/bomberman_picture/yellowfire.png", 1,  1);
+			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/yellowfire.png", 1,  1);
 			break;
 		case "flamme_rouge":
 			//StdDraw.setPenColor(StdDraw.RED);
-			StdDraw.picture(column + 0.5 , line + 0.5 , "/Users/apple/Desktop/bomberman_picture/redfire.png", 1,  1);
+			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/redfire.png", 1,  1);
 			break;
 		case "bombe_rouge":
 			//StdDraw.setPenColor(StdDraw.RED);
-			StdDraw.picture(column + 0.5 , line + 0.5 , "/Users/apple/Desktop/bomberman_picture/redbomb.png", 1,  1);
+			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/redbomb.png", 1,  1);
 			break;
 		case "vie":
 			//StdDraw.setPenColor(StdDraw.PINK);
-			StdDraw.picture(column + 0.5 , line + 0.5 , "/Users/apple/Desktop/bomberman_picture/heart.png", 1,  1);
+			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/heart.png", 1,  1);
 			break;
 		case "speed_up":
 			//StdDraw.setPenColor(StdDraw.WHITE);
-			StdDraw.picture(column + 0.5 , line + 0.5 , "/Users/apple/Desktop/bomberman_picture/speedup.png", 1,  1);
+			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/speedup.png", 1,  1);
 			break;
 		case "speed_down":
 			//StdDraw.setPenColor(StdDraw.DARK_GRAY);
-			StdDraw.picture(column + 0.5 , line + 0.5 , "/Users/apple/Desktop/bomberman_picture/speeddown.png", 1,  1);
+			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/speeddown.png", 1,  1);
 			break;
 		case "bombe_plus":
 			//StdDraw.setPenColor(StdDraw.ORANGE);
-			StdDraw.picture(column + 0.5 , line + 0.5 , "/Users/apple/Desktop/bomberman_picture/morebomb.png", 1,  1);
+			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/morebomb.png", 1,  1);
 			break ;
 		case "bombe_moins": 
 			//StdDraw.setPenColor(StdDraw.BLACK);
-			StdDraw.picture(column + 0.5 , line + 0.5 , "/Users/apple/Desktop/bomberman_picture/lessbomb.png", 1,  1);
+			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/lessbomb.png", 1,  1);
 			break ;	
 		}
 		
