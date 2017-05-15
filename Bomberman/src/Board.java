@@ -128,10 +128,11 @@ public  void beginGame(){
 	
 	if(id == 1){//Joueur 1 en rouge
 		//StdDraw.setPenColor(StdDraw.RED);
-		StdDraw.picture(X + 0.5 , Y + 0.5 , "/Users/apple/Desktop/bomberman_picture/p1.png", 1, 1);	
+		StdDraw.picture(X + 0.5 , Y + 0.5 , "/Users/apple/Desktop/bomberman_picture/p2.png", 1, 1);	
+		StdDraw.save("p2.png");
 	}else if(id==2){//Joueur 2 en bleu
 		//StdDraw.setPenColor(StdDraw.BLUE);
-		StdDraw.picture(X + 0.5 , Y + 0.5 , "/Users/apple/Desktop/bomberman_picture/p2.png", 1, 1);	
+		StdDraw.picture(X + 0.5 , Y + 0.5 , "/Users/apple/Desktop/bomberman_picture/p1.png", 1, 1);	
 
 	}else{
 		//IA
