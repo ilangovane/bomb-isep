@@ -10,6 +10,7 @@ public class Main {
 		Board game_board = new Board();
 		while(true){
 			while(game_board.getChoixMenu() == 0){
+				
 				game_board.menu();
 				StdDraw.show(30);
 				System.out.println(game_board.getChoixMenu() +"");
@@ -20,8 +21,10 @@ public class Main {
 	        	start_game(game_board);
 	        	break;
 	       case 2:
-	        	StdDraw.clear(StdDraw.BLACK);
-	        	
+				StdDraw.show(30);
+				//StdDraw.clear();
+				System.exit(0);		// On ferme la fenetre 
+				
 	        	break;
 	       default:
 	    	   System.out.print("RIEN");
