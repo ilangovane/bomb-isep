@@ -263,12 +263,14 @@ public  void beginGame(){
 	    	   winner = 1;
 	       }
 		StdDraw.clear();
-		Font font = new Font("Calibri" , Font.BOLD , 30);
+		Font font = new Font("Tahoma" , Font.BOLD , 30);
 		StdDraw.setFont(font);
-		StdDraw.clear(StdDraw.RED);
+		StdDraw.clear(StdDraw.PRINCETON_ORANGE);
 		StdDraw.picture(10, 7, "/bomberman_picture/gameover.png");
 		StdDraw.setPenColor(StdDraw.BLACK);
-		StdDraw.text(7, 12, "Le joueur " + winner + " a gagné !");
+		StdDraw.text(7, 12, "Le joueur " + winner + " a gagné");
+		//StdDraw.show(30);
+		menu();
 	}
 	
 

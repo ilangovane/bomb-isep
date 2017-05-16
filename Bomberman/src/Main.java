@@ -10,7 +10,6 @@ public class Main {
 		Board game_board = new Board();
 		while(true){
 			while(game_board.getChoixMenu() == 0){
-				
 				game_board.menu();
 				StdDraw.show(30);
 				System.out.println(game_board.getChoixMenu() +"");
@@ -22,9 +21,7 @@ public class Main {
 	        	break;
 	       case 2:
 				StdDraw.show(30);
-				//StdDraw.clear();
 				System.exit(0);		// On ferme la fenetre 
-				
 	        	break;
 	       default:
 	    	   System.out.print("RIEN");
@@ -32,9 +29,11 @@ public class Main {
 	       }
 		}
 		
+		
 	}
 	
-	
+		
+
 	public static void start_game(Board game_board){
 
         //Dessiner le plateau et les joueurs
@@ -81,8 +80,8 @@ public class Main {
 	        }
 	       //l'identité du gagnant est révelée
 	       game_board.game_over(J1);
-	       System.out.println("FIN DE LA PARTIE !!!");
 	       StdDraw.show(30);
+
 	}
 	
 
