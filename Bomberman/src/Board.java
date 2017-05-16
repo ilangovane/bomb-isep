@@ -110,6 +110,7 @@ public class Board {
 //d�marrage du jeu en "convertissant" la matrice en plateau de jeu
 public  void beginGame(){
 	StdDraw.enableDoubleBuffering();		//	Suppression de l'affichage case par case
+	StdDraw.clear(StdDraw.PRINCETON_ORANGE);
 		//g�nerer le plateau case par case
 		for(int line = 0 ; line < 17 ; line++ ){
 			for(int column = 0 ; column <21 ; column ++ ){
@@ -163,7 +164,7 @@ public  void beginGame(){
 	public void setArea(int line , int column , String color){
 		switch(color){
 		case "orange" : 
-	    	StdDraw.setPenColor(StdDraw.ORANGE);
+	    	StdDraw.setPenColor(StdDraw.PRINCETON_ORANGE);
 			StdDraw.filledSquare(column + 0.5 , line + 0.5 , 0.5 );
 			
 			break;
@@ -257,20 +258,57 @@ public  void beginGame(){
 	
 	public void game_over(Player J1){
 	       int winner = 0;// le perdant est celui qui a 0 vie
+	       StdDraw.clear(StdDraw.PRINCETON_ORANGE); // On clear la fenêtre
 	       if(J1.getLife() == 0){
 	    	   winner = 2;
+	    	   StdDraw.picture(25, 8, "/bomberman_picture/p2.png");
 	       }else{
 	    	   winner = 1;
+	    	   StdDraw.picture(25, 8, "/bomberman_picture/p1.png", 8, 11);
 	       }
-		StdDraw.clear();
-		Font font = new Font("Tahoma" , Font.BOLD , 30);
+		Font font = new Font("Tahoma" , Font.ITALIC , 40);
 		StdDraw.setFont(font);
-		StdDraw.clear(StdDraw.PRINCETON_ORANGE);
-		StdDraw.picture(10, 7, "/bomberman_picture/gameover.png");
+		StdDraw.picture(15, 13, "/bomberman_picture/gameover.png");
 		StdDraw.setPenColor(StdDraw.BLACK);
-		StdDraw.text(7, 12, "Le joueur " + winner + " a gagné");
-		//StdDraw.show(30);
-		menu();
+		StdDraw.text(17, 7, "Le joueur " + winner + " à gagné");
+		StdDraw.show(30);
+		
+		/*BOUTON RETOUR AU MENU PRINCIPAL*/
+		
+		int nbligne = 4;					//nombre de ligne
+		int nbcolonne = 30;					//nombre de colonne
+		float centerL = (float)(nbligne/2);
+		float centerC = (float)(nbcolonne/2);
+		int largeurRect = 5;
+		float hauteurRect = 0.5f;			
+		
+		StdDraw.filledRectangle(centerC, centerL, largeurRect, hauteurRect);		//  Dessine un rectangle
+		Font font2 = new Font("Tahoma", Font.ROMAN_BASELINE, 28);//	Initialisation de la police
+		StdDraw.setFont(font2);
+		StdDraw.setPenColor(StdDraw.BOOK_LIGHT_BLUE);			//  Couleur pour l'écriture
+		StdDraw.text(centerC, centerL, "Retour au menu principal");
+		StdDraw.show(30);
+		
+		while (true){
+
+		if (StdDraw.mouseX() >= centerC-largeurRect && StdDraw.mouseX() <= centerC+largeurRect && StdDraw.mouseY() >= centerL - hauteurRect && StdDraw.mouseY() <= centerL + hauteurRect){
+			
+			// Petit effet quand on place la souris sur le bouton
+			
+			StdDraw.setPenColor(StdDraw.LIGHT_GRAY);						//  Couleur noir pour l'écriture
+			StdDraw.filledRectangle(centerC, centerL, largeurRect, hauteurRect);		//  Dessine un rectangle
+			Font fontI = new Font("Tahoma", Font.ITALIC, 20);//	Initialisation de la police
+			StdDraw.setFont(fontI);
+			StdDraw.setPenColor(StdDraw.RED);			//  Couleur pour l'écriture
+			StdDraw.text(centerC, centerL, "Retour au menu principal");
+			StdDraw.show(30);
+			
+			if(StdDraw.mousePressed()){
+				setChoixMenu(0);
+			}
+		
+		}
+		}
 	}
 	
 
@@ -400,6 +438,12 @@ public  void beginGame(){
 		
 		/*On affiche le logo bomberman*/
 		StdDraw.picture(15, 13, "/bomberman_picture/gameover.png");
+		
+		/*A gauche on met le joueur 1*/
+		StdDraw.picture(5, 8, "/bomberman_picture/p1.png", 8,11);
+		/*A droite le joueur 2*/
+		
+		StdDraw.picture(25, 8, "/bomberman_picture/p2.png");
 		
 		
 			if (StdDraw.mouseX() >= centerC-largeurRect && StdDraw.mouseX() <= centerC+largeurRect && StdDraw.mouseY() >= centerL - hauteurRect && StdDraw.mouseY() <= centerL + hauteurRect){

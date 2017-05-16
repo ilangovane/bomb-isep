@@ -27,6 +27,7 @@ public class Main {
 	    	   System.out.print("RIEN");
 			
 	       }
+	       game_board.setChoixMenu(3);
 		}
 		
 		
@@ -80,7 +81,6 @@ public class Main {
 	        }
 	       //l'identité du gagnant est révelée
 	       game_board.game_over(J1);
-	       StdDraw.show(30);
 
 	}
 	
