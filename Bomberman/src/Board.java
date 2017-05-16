@@ -13,6 +13,8 @@ public class Board {
 	 * 17 lignes et 21 colonnes
 	 * */
 	int[][] matrice = new int[17][21]; 
+	private boolean boucle;
+	private int ChoixMenu;
 	
 	/*Constructeur : initialise le plateau de jeu lors de l'instanciation d'objet */
 	public Board(){
@@ -89,11 +91,31 @@ public class Board {
 	public void setElementMatrice(int line , int column , int value){
 		this.matrice[line][column] = value;
 	}
-
 	
-	//d�marrage du jeu en "convertissant" la matrice en plateau de jeu
+	
+	public boolean isBoucle() {
+		return boucle;
+	}
+
+
+	public void setBoucle(boolean boucle) {
+		this.boucle = boucle;
+	}
+
+
+	public int getChoixMenu() {
+		return ChoixMenu;
+	}
+
+
+	public void setChoixMenu(int choixMenu) {
+		ChoixMenu = choixMenu;
+	}
+
+
+//d�marrage du jeu en "convertissant" la matrice en plateau de jeu
 public  void beginGame(){
-	StdDraw.enableDoubleBuffering();
+	StdDraw.enableDoubleBuffering();		//	Suppression de l'affichage case par case
 		//g�nerer le plateau case par case
 		for(int line = 0 ; line < 17 ; line++ ){
 			for(int column = 0 ; column <21 ; column ++ ){
@@ -250,7 +272,6 @@ public  void beginGame(){
 		Font font = new Font("Calibri" , Font.BOLD , 30);
 		StdDraw.setFont(font);
 		StdDraw.clear(StdDraw.RED);
-
 		StdDraw.picture(10, 7, "/bomberman_picture/gameover.png");
 		StdDraw.setPenColor(StdDraw.BLACK);
 		StdDraw.text(7, 12, "Le joueur " + winner + " a gagné !");
@@ -274,39 +295,30 @@ public  void beginGame(){
 	public void setBonus(int column , int line , String type ){
 		switch (type){
 		case "flamme_bleu":
-			//StdDraw.setPenColor(StdDraw.BLUE);
 			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/bluefire.png", 1,  1);
 			break;
 		case "flamme_jaune":
-			//StdDraw.setPenColor(StdDraw.YELLOW);
 			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/yellowfire.png", 1,  1);
 			break;
 		case "flamme_rouge":
-			//StdDraw.setPenColor(StdDraw.RED);
 			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/redfire.png", 1,  1);
 			break;
 		case "bombe_rouge":
-			//StdDraw.setPenColor(StdDraw.RED);
 			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/redbomb.png", 1,  1);
 			break;
 		case "vie":
-			//StdDraw.setPenColor(StdDraw.PINK);
 			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/heart.png", 1,  1);
 			break;
 		case "speed_up":
-			//StdDraw.setPenColor(StdDraw.WHITE);
 			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/speedup.png", 1,  1);
 			break;
 		case "speed_down":
-			//StdDraw.setPenColor(StdDraw.DARK_GRAY);
 			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/speeddown.png", 1,  1);
 			break;
 		case "bombe_plus":
-			//StdDraw.setPenColor(StdDraw.ORANGE);
 			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/morebomb.png", 1,  1);
 			break ;
 		case "bombe_moins": 
-			//StdDraw.setPenColor(StdDraw.BLACK);
 			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/lessbomb.png", 1,  1);
 			break ;	
 		}
@@ -347,4 +359,52 @@ public  void beginGame(){
 		}
 
 	}
+	
+	public void menu(){ // Afficher le menu principal
+		int nbligne = 17;					//nombre de ligne
+		int nbcolonne = 30;					//nombre de colonne
+		float centerL = (float)(nbligne/2);
+		float centerC = (float)(nbcolonne/2);
+		int decalage = 2;
+		int largeurRect = 2;
+		float hauteurRect = 0.5f;
+		
+		/*RECTANGLE JOUER*/
+		StdDraw.clear(StdDraw.PRINCETON_ORANGE);				//  Fond d'écran 
+		StdDraw.setPenColor(StdDraw.BLACK);						//  Couleur noir pour l'écriture
+		StdDraw.filledRectangle(centerC, centerL, largeurRect, hauteurRect);		//  Dessine un rectangle
+		Font font = new Font("Arial", Font.CENTER_BASELINE, 10);//	Initialisation de la police
+		StdDraw.setFont(font);
+		StdDraw.setPenColor(StdDraw.BOOK_LIGHT_BLUE);			//  Couleur pour l'écriture
+		StdDraw.text(centerC, centerL, "Jouer");
+		//StdDraw.text(centerC, 7.5, "ligne 7.5");
+		//StdDraw.text(centerC, 8.5, "ligne 8.5");
+		//StdDraw.text(centerC, 6.5, "ligne 6.5");
+		//StdDraw.text(centerC, 5.5, "ligne 5.5");
+		
+		/*RECTANGLE QUITTER*/
+		StdDraw.setPenColor(StdDraw.BLACK);	
+		StdDraw.filledRectangle(centerC, centerL - decalage, largeurRect, hauteurRect);	
+		StdDraw.setFont(font);
+		StdDraw.setPenColor(StdDraw.BOOK_LIGHT_BLUE);			//  Couleur noir pour l'écriture
+		StdDraw.text(centerC, centerL - decalage, "Quitter");
+		
+		
+		setBoucle(false); 			// Initialisation de boucle a false
+		
+			if (StdDraw.mouseX() >= centerC-largeurRect && StdDraw.mouseX() <= centerC+largeurRect && StdDraw.mouseY() >= centerL - hauteurRect && StdDraw.mouseY() <= centerL + hauteurRect){
+				if(StdDraw.mousePressed()){
+				setChoixMenu(1);
+				System.out.println(centerL - hauteurRect +""+ centerL + hauteurRect);
+				}
+			}
+			
+			else if (StdDraw.mouseX() >= centerC-largeurRect && StdDraw.mouseX() <= centerC+largeurRect && StdDraw.mouseY() >= 5.5 && StdDraw.mouseY() <= 6.5){
+				if(StdDraw.mousePressed()){
+				setChoixMenu(2);
+				}
+			}
+		
+	}
+	
 }
