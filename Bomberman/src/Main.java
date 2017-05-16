@@ -8,23 +8,27 @@ public class Main {
 
 	public static void main(String[] args) {
 		Board game_board = new Board();
-		while(game_board.getChoixMenu() != 1 || game_board.getChoixMenu() != 2){
-			game_board.menu();
-			StdDraw.show(30);
-			System.out.println(game_board.getChoixMenu() +"");
+		while(true){
+			while(game_board.getChoixMenu() == 0){
+				game_board.menu();
+				StdDraw.show(30);
+				System.out.println(game_board.getChoixMenu() +"");
+			}
+	    	
+	       switch(game_board.getChoixMenu()){
+	       case 1:
+	        	start_game(game_board);
+	        	break;
+	       case 2:
+	        	StdDraw.clear(StdDraw.BLACK);
+	        	
+	        	break;
+	       default:
+	    	   System.out.print("RIEN");
+			
+	       }
 		}
-    	
-       switch(game_board.getChoixMenu()){
-       case 1:
-        	start_game(game_board);
-        	break;
-       case 2:
-        	StdDraw.clear(StdDraw.BLACK);				//  Fond d'écran
-        	break;
-       default:
-    	   System.out.print("RIEN");
 		
-	}
 	}
 	
 	

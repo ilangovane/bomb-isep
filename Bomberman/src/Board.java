@@ -13,7 +13,7 @@ public class Board {
 	 * 17 lignes et 21 colonnes
 	 * */
 	int[][] matrice = new int[17][21]; 
-	private boolean boucle;
+
 	private int ChoixMenu;
 	
 	/*Constructeur : initialise le plateau de jeu lors de l'instanciation d'objet */
@@ -76,6 +76,7 @@ public class Board {
 		matrice[13][18] = 3;
 		matrice[13][19] = 3;
 		
+		this.ChoixMenu = 0;
 		
 	}
 	
@@ -93,14 +94,7 @@ public class Board {
 	}
 	
 	
-	public boolean isBoucle() {
-		return boucle;
-	}
 
-
-	public void setBoucle(boolean boucle) {
-		this.boucle = boucle;
-	}
 
 
 	public int getChoixMenu() {
@@ -390,7 +384,7 @@ public  void beginGame(){
 		StdDraw.text(centerC, centerL - decalage, "Quitter");
 		
 		
-		setBoucle(false); 			// Initialisation de boucle a false
+		
 		
 			if (StdDraw.mouseX() >= centerC-largeurRect && StdDraw.mouseX() <= centerC+largeurRect && StdDraw.mouseY() >= centerL - hauteurRect && StdDraw.mouseY() <= centerL + hauteurRect){
 				if(StdDraw.mousePressed()){
