@@ -200,7 +200,7 @@ public class Bomb {
 			Bomb bo = it.next();
 		
 			if( bo.getT_explosion() <  System.currentTimeMillis() ){ // le minuteur prend fin
-				i=1;
+				i=0; // pour que la bombe explose aussi sur le joueur 
 				// la bomb a une port�e de 3 et s'arrete au mur incassable dans toute les directions
 				boolean is_red_bomb = bo.isIs_red();
 				int bomb_range = bo.getRange(); //port�e de la bombe de l'objet "bo" qui change � chaque boucle
@@ -215,8 +215,15 @@ public class Bomb {
 						}
 					}
 					if(J1.is_at_point(bo.getX(), bo.getY()+i)){
-			// le joueur 1 se trouve dans la port�e de la bombe
+						//Le joueur 1 se trouve dans la port�e de la bombe
 						J1.kill();
+						//On annule les bonus acquis
+						J1.setdX(0.2);
+						J1.setdX(0.2);
+						this.setRange(3);
+						J1.setNb_bomb(3);
+						
+						
 						b.setPlayer(1,1,1);
 						// lorsqu'un joueur perd la vie, il est temporairement plac� dans un lieu s�re
 						J1.setX(-1);
@@ -226,6 +233,13 @@ public class Bomb {
 					if(J2.is_at_point(bo.getX(), bo.getY()+i) ){
 						// le Joueur 2 se trouve dans la port�e de la bombe 
 						J2.kill();
+						
+						//On annule les bonus acquis
+						J2.setdX(0.2);
+						J2.setdX(0.2);
+						this.setRange(3);
+						J2.setNb_bomb(3);
+
 						b.setPlayer(2,19,15);
 						// lorsqu'un joueur perd la vie, il est temporairement plac� dans un lieu s�re
 						J2.setX(-1);

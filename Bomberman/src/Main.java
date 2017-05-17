@@ -12,7 +12,7 @@ public class Main {
 			while(game_board.getChoixMenu() == 0){
 				game_board.menu();
 				StdDraw.show(30);
-				System.out.println(game_board.getChoixMenu() +"");
+				//System.out.println(game_board.getChoixMenu() +"");
 			}
 	    	
 	       switch(game_board.getChoixMenu()){
@@ -48,6 +48,8 @@ public class Main {
         // Le jeu doit reboucler � l'infini tant que les joueurs ont plus de 0 vie 
         boolean game_over = false;
 		while(!game_over){
+			//System.out.println("La vitesse est : "+J2.getdX() +"!!!!!!!!");
+
 	    	   /*G�re les d�placements des joueurs 1 et 2*/
 	        	J1.move(game_board,bomb_liste);
 	        	J2.move(game_board,bomb_liste);

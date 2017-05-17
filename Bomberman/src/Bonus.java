@@ -222,12 +222,16 @@ public class Bonus {
 					J1.setLife(vie+1);
 					break ;
 				case "speed_up": 
+					if (J1.getdX()<0.8 && J1.getdY()<0.8){
 					J1.setdX(dX*2); 
 					J1.setdY(dY*2);
+					}
 					break ;
 				case "speed_down":
+					if (J1.getdX()>0.05 && J1.getdY()>0.05){
 					J1.setdX(dX/2); 
 					J1.setdY(dY/2);
+					}
 					break;
 				case "bombe_plus":
 					J1.setNb_bomb(J1.getNb_bomb()+2);
@@ -283,12 +287,16 @@ public class Bonus {
 					J2.setLife(vie+1);
 					break ;
 				case "speed_up": 
+					if (J2.getdX()<0.8 && J2.getdY()<0.8){
 					J2.setdX(dX*2); 
 					J2.setdY(dY*2);
+					}
 					break ;
 				case "speed_down":
+					if (J2.getdX()>0.05 && J2.getdY()>0.05){
 					J2.setdX(dX/2); 
 					J2.setdY(dY/2);
+					}
 					break;
 				case "bombe_plus":
 					J2.setNb_bomb(J2.getNb_bomb()+2);
