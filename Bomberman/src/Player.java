@@ -12,7 +12,7 @@ public class Player {
 	float dX = 0.2f ; // le plus petit dï¿½placement horizontal (dï¿½finit la vitesse)
 	float dY = 0.2f ; // le plus petit dï¿½placement vertical (dï¿½finit la vitesse)
 	int nb_bomb = 3;// nombre de bombes que le joueur peut poser sur le terrain sumultanement
-	boolean shield;//indique si le joueur possède le bonus "Bouclier à usage unique"
+	boolean shield;//indique si le joueur possï¿½de le bonus "Bouclier ï¿½ usage unique"
 	boolean passe_muraille;
 	Player(int id){
 		/* Si id vaut 1 il s'agit du joueur 1 , si 2 le joueur 2 si 3 une IA*/
@@ -219,10 +219,9 @@ public class Player {
 	}
 	
 	public void kill(){
-		// le joueur perd une vie
-	
+		// le joueur perd une vie	
 		if(this.isShield()){
-			this.setShield(false);//bonus à usage unique
+			this.setShield(false);//bonus ï¿½ usage unique
 		}else{
 			this.setLife( this.getLife() - 1 );
 			// lorsqu'un joueur perd la vie, il est temporairement placï¿½ dans un lieu sï¿½re
@@ -350,7 +349,7 @@ public class Player {
 		            	}
 	         	}
 			
-		}else if(StdDraw.isKeyPressed(KeyEvent.VK_3) && this.getId() == 2){// touche 3 enfoncée
+		}else if(StdDraw.isKeyPressed(KeyEvent.VK_3) && this.getId() == 2){// touche 3 enfoncï¿½e
 			
 		}
 	}

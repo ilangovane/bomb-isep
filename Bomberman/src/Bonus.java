@@ -23,7 +23,7 @@ public class Bonus {
 		this.Y= Y;
 		
 		this.type_bonus = random_type(); // renvoie le type au hasard 
-		this.type_bonus ="speed_down" ;
+		//this.type_bonus ="speed_down" ;
 	}
 	
 	/*CONSTRUCTEUR POUR LA CREATION DE LA LISTE DE BONUS*/
@@ -141,7 +141,7 @@ public class Bonus {
 		Random rand = new Random();
 		
 		int nombreAleatoire = rand.nextInt(5); //Cette méthode va revoyer des nombres entre 0 et 4 donc 5 valeurs 
-		nombreAleatoire = 2;
+		//nombreAleatoire = 2;
 		if (nombreAleatoire == 2){ // Si 1 valeurs sur 5 est trouvé
 			return true; // alors on a une prob de 20%
 		}

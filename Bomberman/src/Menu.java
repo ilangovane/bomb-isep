@@ -10,8 +10,6 @@ public class Menu {
 	
 	public Menu(){
 		StdDraw.setCanvasSize(40*30,21*30);
-
-		
 		/*
 		 * Modifier les echelles X et Y pour avoir un syst�me de coordonn�es (X,Y)
 		 *  Coordonn�es (0,0) coin en bas � gauche et (17,21) coin en haut � droite
@@ -42,46 +40,45 @@ public class Menu {
 		StdDraw.setFont(font);
 		StdDraw.picture(15, 13, "/bomberman_picture/gameover.png");
 		StdDraw.setPenColor(StdDraw.BLACK);
-		StdDraw.text(17, 7, "Le joueur " + winner + " a� gagn�");
-	
+		StdDraw.text(17, 7, "Le joueur " + winner + " à gagné");
 		StdDraw.show(30);
-		/*BOUTON RETOUR AU MENU PRINCIPAL*/
 		
+		/*BOUTON RETOUR AU MENU PRINCIPAL*/
 		int nbligne = 20;					//nombre de ligne
 		int nbcolonne = 30;					//nombre de colonne
 		float centerL = (float)(nbligne/2);
 		float centerC = (float)(nbcolonne/2);
 		int largeurRect = 3;
 		float hauteurRect = 0.5f;			
-		
-		StdDraw.filledRectangle(centerC, centerL, largeurRect, hauteurRect);		//  Dessine un rectangle
-		Font font2 = new Font("Tahoma", Font.ROMAN_BASELINE, 28);//	Initialisation de la police
-		StdDraw.setFont(font2);
-		StdDraw.setPenColor(StdDraw.BOOK_LIGHT_BLUE);			//  Couleur pour l'écriture
-		StdDraw.text(centerC, centerL, "Retour au menu principal");
-		StdDraw.show(30);
-		
-		while (this.getChoixMenu() != "home"){
-
-		if (StdDraw.mouseX() >= centerC-largeurRect && StdDraw.mouseX() <= centerC+largeurRect && StdDraw.mouseY() >= centerL - hauteurRect && StdDraw.mouseY() <= centerL + hauteurRect){
-			// Petit effet quand on place la souris sur le bouton
-			
-			StdDraw.setPenColor(StdDraw.LIGHT_GRAY);						//  Couleur noir pour l'écriture
-			StdDraw.filledRectangle(centerC, centerL, largeurRect, hauteurRect);		//  Dessine un rectangle
-			Font fontI = new Font("Tahoma", Font.ITALIC, 20);//	Initialisation de la police
-			StdDraw.setFont(fontI);
-			StdDraw.setPenColor(StdDraw.RED);			//  Couleur pour l'écriture
-			StdDraw.text(centerC, centerL, "Menu");
-			StdDraw.show(30);
-			
-			if(StdDraw.mousePressed()){
+		this.setChoixMenu("gameover");
+				displayRect(centerC, centerL, largeurRect, hauteurRect,"Menu");
+				StdDraw.show(30);
+				if (StdDraw.mouseX() >= centerC-largeurRect && StdDraw.mouseX() <= centerC+largeurRect && StdDraw.mouseY() >= centerL - hauteurRect && StdDraw.mouseY() <= centerL + hauteurRect){
+				// Petit effet quand on place la souris sur le bouton
+				displayEffect(centerC, centerL, largeurRect, hauteurRect,"Menu");
+				StdDraw.show(30);
+				if(StdDraw.mousePressed()){
 				setChoixMenu("home");
-				//StdDraw.show(30);
-			}
-		
-		}
-		
-		}
+				}
+			}	
+	}
+	
+	public void displayRect(float colonne, float ligne, int largeur,float hauteur, String contenu){
+		StdDraw.setPenColor(StdDraw.BLACK);						//  Couleur noir pour l'écriture
+		StdDraw.filledRectangle(colonne, ligne, largeur, hauteur);		//  Dessine un rectangle
+		Font font = new Font("Tahoma", Font.ROMAN_BASELINE, 28);//	Initialisation de la police
+		StdDraw.setFont(font);
+		StdDraw.setPenColor(StdDraw.BOOK_LIGHT_BLUE);			//  Couleur pour l'écriture
+		StdDraw.text(colonne, ligne, contenu);
+	}
+	
+	public void displayEffect(float colonne, float ligne, int largeur,float hauteur, String contenu){
+		StdDraw.setPenColor(StdDraw.LIGHT_GRAY);						//  Couleur noir pour l'écriture
+		StdDraw.filledRectangle(colonne, ligne, largeur, hauteur);		//  Dessine un rectangle
+		Font font = new Font("Tahoma", Font.ITALIC, 20);//	Initialisation de la police
+		StdDraw.setFont(font);
+		StdDraw.setPenColor(StdDraw.RED);			//  Couleur pour l'écriture
+		StdDraw.text(colonne, ligne, contenu);
 	}
 	
 	public void menu(){ // Afficher le menu principal
@@ -92,115 +89,56 @@ public class Menu {
 		int decalage = 2;
 		int largeurRect = 4;
 		float hauteurRect = 0.5f;			
-		
+		StdDraw.clear(StdDraw.PRINCETON_ORANGE);				//  Fond d'écran 
 		
 		/*BOUTON JOUER*/
-		StdDraw.clear(StdDraw.PRINCETON_ORANGE);				//  Fond d'écran 
-		StdDraw.setPenColor(StdDraw.BLACK);						//  Couleur noir pour l'écriture
-		StdDraw.filledRectangle(centerC, centerL, largeurRect, hauteurRect);		//  Dessine un rectangle
-		Font font = new Font("Tahoma", Font.ROMAN_BASELINE, 28);//	Initialisation de la police
-		StdDraw.setFont(font);
-		StdDraw.setPenColor(StdDraw.BOOK_LIGHT_BLUE);			//  Couleur pour l'écriture
-		StdDraw.text(centerC, centerL, "Mode multijoueur");
+		displayRect(centerC, centerL, largeurRect, hauteurRect,"Multijoueurs");		
 		
 		/*BOUTON IA*/
-		StdDraw.setPenColor(StdDraw.BLACK);	
-		StdDraw.filledRectangle(centerC, centerL - decalage, largeurRect, hauteurRect);	
-		StdDraw.setFont(font);
-		StdDraw.setPenColor(StdDraw.BOOK_LIGHT_BLUE);			//  Couleur  pour l'écriture
-		StdDraw.text(centerC, centerL - decalage, "Mode 1 joueur");
+		displayRect(centerC, centerL - decalage, largeurRect, hauteurRect, "Mode 1 joueur");	
 		
 		/*BOUTON Instructions*/
-		StdDraw.setPenColor(StdDraw.BLACK);	
-		StdDraw.filledRectangle(centerC, centerL - 2*decalage, largeurRect, hauteurRect);	
-		StdDraw.setFont(font);
-		StdDraw.setPenColor(StdDraw.BOOK_LIGHT_BLUE);			//  Couleur  pour l'écriture
-		StdDraw.text(centerC, centerL - 2*decalage, "Instructions");
-		
+		displayRect(centerC, centerL - 2*decalage, largeurRect, hauteurRect,"Instructions");	
 		
 		/*BOUTON QUITTER*/
-		StdDraw.setPenColor(StdDraw.BLACK);	
-		StdDraw.filledRectangle(centerC, centerL - 3*decalage, largeurRect, hauteurRect);	
-		StdDraw.setFont(font);
-		StdDraw.setPenColor(StdDraw.BOOK_LIGHT_BLUE);			//  Couleur  pour l'écriture
-		StdDraw.text(centerC, centerL - 3*decalage, "Quitter");
-		
-		
+		displayRect(centerC, centerL - 3*decalage, largeurRect, hauteurRect, "Quitter");	
+
 		/*On affiche le logo bomberman*/
 		StdDraw.picture(15, 13, "/bomberman_picture/gameover.png");
 		
 		/*A gauche on met le joueur 1*/
 		StdDraw.picture(5, 8, "/bomberman_picture/p1.png", 8,11);
-		/*A droite le joueur 2*/
 		
+		/*A droite le joueur 2*/
 		StdDraw.picture(25, 8, "/bomberman_picture/p2.png");
 		
 		
 			if (StdDraw.mouseX() >= centerC-largeurRect && StdDraw.mouseX() <= centerC+largeurRect && StdDraw.mouseY() >= centerL - hauteurRect && StdDraw.mouseY() <= centerL + hauteurRect){
-				
 				// Petit effet quand on place la souris sur le bouton
-				
-				StdDraw.setPenColor(StdDraw.LIGHT_GRAY);						//  Couleur noir pour l'écriture
-				StdDraw.filledRectangle(centerC, centerL, largeurRect, hauteurRect);		//  Dessine un rectangle
-				Font fontI = new Font("Tahoma", Font.ITALIC, 20);//	Initialisation de la police
-				StdDraw.setFont(fontI);
-				StdDraw.setPenColor(StdDraw.RED);			//  Couleur pour l'écriture
-				StdDraw.text(centerC, centerL, "Jouer");
-				
-				
+				displayEffect(centerC, centerL, largeurRect, hauteurRect,"Jouer");		//  Dessine un rectangle
 				if(StdDraw.mousePressed()){
 				setChoixMenu("multiplayers");
-				System.out.println(centerL - hauteurRect +""+ centerL + hauteurRect);
+				//System.out.println(centerL - hauteurRect +""+ centerL + hauteurRect);
 				}
 			}
 			else if (StdDraw.mouseX() >= centerC-largeurRect && StdDraw.mouseX() <= centerC+largeurRect && StdDraw.mouseY() >= centerL - hauteurRect - decalage && StdDraw.mouseY() <= centerL + hauteurRect - decalage){
-				
-				
-				StdDraw.setPenColor(StdDraw.LIGHT_GRAY);	
-				StdDraw.filledRectangle(centerC, centerL - decalage, largeurRect, hauteurRect);	
-				Font fontI = new Font("Tahoma", Font.ITALIC, 20);//	Initialisation de la police
-				StdDraw.setFont(fontI);
-				StdDraw.setPenColor(StdDraw.RED);			//  Couleur noir pour l'écriture
-				StdDraw.text(centerC, centerL - decalage, "Jouer");
-				
-
+				displayEffect(centerC, centerL - decalage, largeurRect, hauteurRect, "Jouer");	
 				if(StdDraw.mousePressed()){
 				setChoixMenu("IA"); // ce sera a changé
 				}
 			}
-			
 			else if (StdDraw.mouseX() >= centerC-largeurRect && StdDraw.mouseX() <= centerC+largeurRect && StdDraw.mouseY() >= centerL - hauteurRect - 2*decalage && StdDraw.mouseY() <= centerL + hauteurRect - 2*decalage){
-				
-				
-				StdDraw.setPenColor(StdDraw.LIGHT_GRAY);	
-				StdDraw.filledRectangle(centerC, centerL - 2*decalage, largeurRect, hauteurRect);	
-				Font fontI = new Font("Tahoma", Font.ITALIC, 20);//	Initialisation de la police
-				StdDraw.setFont(fontI);
-				StdDraw.setPenColor(StdDraw.RED);			//  Couleur noir pour l'écriture
-				StdDraw.text(centerC, centerL - 2*decalage, "Instructions");
-				
-
+				displayEffect(centerC, centerL - 2*decalage, largeurRect, hauteurRect,"Instructions");	
 				if(StdDraw.mousePressed()){
 				setChoixMenu("instructions"); // ce sera a changé
 				}
 			}
 			else if (StdDraw.mouseX() >= centerC-largeurRect && StdDraw.mouseX() <= centerC+largeurRect && StdDraw.mouseY() >= centerL - hauteurRect - 3*decalage && StdDraw.mouseY() <= centerL + hauteurRect - 3*decalage){
-				
-				
-				StdDraw.setPenColor(StdDraw.LIGHT_GRAY);	
-				StdDraw.filledRectangle(centerC, centerL - 3*decalage, largeurRect, hauteurRect);	
-				Font fontI = new Font("Tahoma", Font.ITALIC, 20);//	Initialisation de la police
-				StdDraw.setFont(fontI);
-				StdDraw.setPenColor(StdDraw.RED);			//  Couleur noir pour l'écriture
-				StdDraw.text(centerC, centerL - 3*decalage, "Quitter");
-				
-
+				displayEffect(centerC, centerL - 3*decalage, largeurRect, hauteurRect,"Quitter");	
 				if(StdDraw.mousePressed()){
 				setChoixMenu("exit");
-				
 				}
 			}
-		
 	}
 	public void start_game(boolean IA){
 
@@ -249,8 +187,11 @@ public class Menu {
 	        	
 	        }
 	       //l'identité du gagnant est révelée
+	      this.setChoixMenu("gameover");
+
 	      this.game_over(J1);
 	      game_board.finalize();
+	      //this.finalize();
 	}
 	public void finalize(){
 		
