@@ -325,8 +325,8 @@ public  void beginGame(){
 		}
 	}
 	
-	//fonction pour afficher a l'ecran le bonus comme un cercle
-	public void setBonus(int column , int line , String type ){
+		public void setBonus(int column , int line , String type ){
+
 		switch (type){
 		case "flamme_bleu":
 			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/bluefire.png", 1,  1);
@@ -355,6 +355,14 @@ public  void beginGame(){
 		case "bombe_moins": 
 			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/lessbomb.png", 1,  1);
 			break ;	
+		case "shield":
+			StdDraw.setPenColor(StdDraw.MAGENTA);
+			StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3);
+			break;
+		case "passe_muraille":
+			StdDraw.setPenColor(StdDraw.PINK);
+			StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3);
+			break;
 		}
 		
 	}
