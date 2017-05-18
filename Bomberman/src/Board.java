@@ -187,6 +187,13 @@ public  void beginGame(){
 
 	}
 	
+	public void repaint(int line , int column){
+       		if(matrice[line][column] == 2){
+       			this.setArea(line, column, "orange");
+       		}else if(matrice[line][column] == 3){
+       			this.setArea(line, column, "green");
+       		}
+	}
 	//dessine une bombe sur le plateau
 	public void setBomb(int column , int line ){
 	        StdDraw.picture(column + 0.5 , line + 0.5 , "bomb.gif", 1, 1);			
