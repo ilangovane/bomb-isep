@@ -12,10 +12,13 @@ public class Player {
 	double dX = 0.2 ; // le plus petit dï¿½placement horizontal (dï¿½finit la vitesse)
 	double dY = 0.2 ; // le plus petit dï¿½placement vertical (dï¿½finit la vitesse)
 	int nb_bomb = 3;// nombre de bombes que le joueur peut poser sur le terrain sumultanement
+	boolean shield;//indique si le joueur possède le bonus "Bouclier à usage unique"
+	boolean passe_muraille;
 	Player(int id){
 		/* Si id vaut 1 il s'agit du joueur 1 , si 2 le joueur 2 si 3 une IA*/
 		this.id = id;
-		
+		this.shield = false;
+		this.passe_muraille = false;
 		/*Le joueur 1 et 2 sont positionnï¿½es respectivement en (X,Y) = (1,1) et (X,Y) =  (19,15)*/
 		if(this.id == 1){
 			this.Y = 1;
@@ -75,6 +78,23 @@ public class Player {
 	
 
 
+	public boolean isShield() {
+		return shield;
+	}
+
+	public void setShield(boolean shield) {
+		this.shield = shield;
+	}
+
+	
+	public boolean isPasse_muraille() {
+		return passe_muraille;
+	}
+
+	public void setPasse_muraille(boolean passe_muraille) {
+		this.passe_muraille = passe_muraille;
+	}
+
 	public double getX() {
 		return X;
 	}
@@ -102,42 +122,41 @@ public class Player {
 	 * 
 	 * */
 	public void move(Board b,Bomb bo){
+		int[][] map = b.getMatrice();
 		//commande clavier du joueur 1 
 		if(this.id == 1){
             if(StdDraw.isKeyPressed(KeyEvent.VK_S)) {//touche S pressï¿½e
-		           	if(	b.isGrass((int)this.getY()-1 , (int)this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()-1)){
-		          
-		        		b.setArea((int)this.getY(), (int)this.getX(), "green");
+		           	if(	this.go_through_destructible_wall( b , (int) this.getX(), (int) this.getY() - 1) || b.isGrass((int)this.getY()-1 , (int)this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()-1)){
+
+		        		b.repaint((int) this.getY(), (int) this.getX());
 		        		this.setY(this.getY()- dY);
 		        		
 		        	
 		        	}
           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Q)){//touche Q pressï¿½e
           		 
-	             	if(b.isGrass((int) this.getY(), (int) this.getX() -1) && !bo.is_bomb_already_exists( (int)this.getX()-1, (int)this.getY())){
+	             	if(this.go_through_destructible_wall( b , (int) this.getX()-1, (int) this.getY()) || b.isGrass((int) this.getY(), (int) this.getX() -1) && !bo.is_bomb_already_exists( (int)this.getX()-1, (int)this.getY())){
 	          
-	            		b.setArea((int)this.getY(), (int)this.getX(), "green");
+	             		b.repaint((int) this.getY(), (int) this.getX());
 	            		this.setX(this.getX()-dX);	
 	            		
 	            	}
           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_D)){//touche D pressï¿½e
           		
-	         		if(b.isGrass((int) this.getY(), (int) this.getX()+1) && !bo.is_bomb_already_exists( (int)this.getX()+1, (int)this.getY())){
+	         		if(this.go_through_destructible_wall( b , (int) this.getX()+1, (int) this.getY()) || b.isGrass((int) this.getY(), (int) this.getX()+1) && !bo.is_bomb_already_exists( (int)this.getX()+1, (int)this.getY())){
 	         		
-	            		b.setArea((int) this.getY(), (int) this.getX(), "green");
+	         			b.repaint((int) this.getY() , (int) this.getX());
 	            		this.setX(this.getX()+dX);
 	            		
 	            	}
          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Z)){//touche Z pressï¿½e
-	             	if(b.isGrass((int) this.getY()+1, (int) this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()+1)){
+	             	if(this.go_through_destructible_wall( b , (int) this.getX(), (int) this.getY() + 1) || b.isGrass((int) this.getY()+1, (int) this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()+1)){
 	             		
-	            		b.setArea((int) this.getY(), (int) this.getX(), "green");
+	             		b.repaint((int) this.getY(), (int) this.getX());
 	            		this.setY(this.getY()+dY);
 	            		
 	            	}
-         	}/*else if(StdDraw.isKeyPressed(KeyEvent.VK_W)){//touche W pressï¿½e
-        		 System.out.println("J1 pose une bombe");
-        	}*/
+         	}
 		}
 		
 		//commande clavier du joueur 2 
@@ -145,9 +164,9 @@ public class Player {
 			
             if(StdDraw.isKeyPressed(KeyEvent.VK_DOWN )) {//touche BAS pressï¿½e
             	
-            		if(	b.isGrass((int)this.getY()-1 , (int)this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()-1)){
+            		if(	this.go_through_destructible_wall( b , (int) this.getX(), (int) this.getY() - 1) || b.isGrass((int)this.getY()-1 , (int)this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()-1)){
 	     
-	            		b.setArea((int)this.getY(), (int)this.getX(), "green");
+            			b.repaint((int) this.getY() , (int) this.getX());
 	            		this.setY(this.getY()-dY);
 	            		
 	            	
@@ -155,9 +174,9 @@ public class Player {
             		System.out.println("POS J2 X : " + this.getX() + " Y: "+ this.getY());
            	}else if(StdDraw.isKeyPressed(KeyEvent.VK_LEFT )){//touche GAUCHE pressï¿½e
            		System.out.println("POS J2 X : " + this.getX() + " Y: "+ this.getY());
-	            	if(b.isGrass((int) this.getY(), (int) this.getX() -1) && !bo.is_bomb_already_exists( (int)this.getX()-1, (int)this.getY())){
+	            	if(this.go_through_destructible_wall( b , (int) this.getX()-1, (int) this.getY() ) || b.isGrass((int) this.getY(), (int) this.getX() -1) && !bo.is_bomb_already_exists( (int)this.getX()-1, (int)this.getY())){
 	           
-	            		b.setArea((int)this.getY(), (int)this.getX(), "green");
+	            		b.repaint((int) this.getY(), (int) this.getX());
 	            		this.setX(this.getX()-dX);	
 	            		
 	            	}
@@ -165,17 +184,17 @@ public class Player {
            	}else if(StdDraw.isKeyPressed(KeyEvent.VK_RIGHT)){//touche DROITE pressï¿½e
           		 
            		System.out.println("POS J2 X : " + this.getX() + " Y: "+ this.getY());
-	             	if(b.isGrass((int) this.getY(), (int) this.getX()+1) && !bo.is_bomb_already_exists( (int)this.getX()+1, (int)this.getY())){
+	             	if(this.go_through_destructible_wall( b , (int) this.getX() + 1, (int) this.getY() ) || b.isGrass((int) this.getY(), (int) this.getX()+1) && !bo.is_bomb_already_exists( (int)this.getX()+1, (int)this.getY())){
 	             	
-	            		b.setArea((int) this.getY(), (int) this.getX(), "green");
+	             		b.repaint((int) this.getY(), (int) this.getX());
 	            		this.setX(this.getX()+dX);
 	            		
 	            	}
           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_UP)){//touche HAUT pressï¿½e
           		System.out.println("POS J2 X : " + this.getX() + " Y: "+ this.getY());
-	             	if(b.isGrass((int) this.getY()+1, (int) this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()+1)){
+	             	if(this.go_through_destructible_wall( b , (int) this.getX(), (int) this.getY() + 1) || b.isGrass((int) this.getY()+1, (int) this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()+1)){
 	             	
-	            		b.setArea((int) this.getY(), (int) this.getX(), "green");
+	             		b.repaint((int) this.getY(), (int) this.getX());
 	            		this.setY(this.getY()+dY);
 	            		
 	            	}
@@ -204,9 +223,20 @@ public class Player {
 	
 	public void kill(){
 		// le joueur perd une vie
-		this.setLife( this.getLife() - 1 );
+		
+		if(this.isShield()){
+			this.setShield(false);//bonus à usage unique
+		}else{
+			this.setLife( this.getLife() - 1 );
+			// lorsqu'un joueur perd la vie, il est temporairement placï¿½ dans un lieu sï¿½re
+			this.setX(-1);
+			this.setY(-1);
+		}
 	}
 	
+	public void passe_muraille(){
+		
+	}
 	
 	/*Le joeurs qui vient de perdre la vie ne risque pas de perdre une vie dï¿½s qu'il sera replacï¿½ sur une case de dï¿½part
 	 * Le joueur est positionnï¿½ sur le recoin (X,Y) = (-1,-1) pour des raisons de sï¿½curitï¿½s si des bombes sont a proximitï¿½s
@@ -249,6 +279,20 @@ public class Player {
 		}
 	}
 	
+	public boolean go_through_destructible_wall(Board b , int x , int y){
+		if(this.isPasse_muraille() && b.isDestructible(y,x)){
+			return true;
+		}
+		return false;
+	}
+	
+	public void kick(Bomb bombe){
+		if(StdDraw.isKeyPressed(KeyEvent.VK_X) && this.getId() == 1){
+			
+		}else if(StdDraw.isKeyPressed(KeyEvent.VK_3) && this.getId() == 2){// touche 3 enfoncée
+			
+		}
+	}
 
 
 }
