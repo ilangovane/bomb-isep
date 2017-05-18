@@ -191,7 +191,7 @@ public class Bomb {
 
 
 	/*Retire les bombes de la liste lors de l'explosion
-	 * D�truit les murs jusqu'au mur cassable */
+	 * Dï¿½truit les murs jusqu'au mur cassable */
 	public void explose(Board b,Player J1, Player J2, Bonus bonus){ 
 		Iterator<Bomb> it = Bombs.iterator();
 		int i;
@@ -200,50 +200,29 @@ public class Bomb {
 			Bomb bo = it.next();
 		
 			if( bo.getT_explosion() <  System.currentTimeMillis() ){ // le minuteur prend fin
-				i=0; // pour que la bombe explose aussi sur le joueur 
-				// la bomb a une port�e de 3 et s'arrete au mur incassable dans toute les directions
+				i=0;
+				// la bomb a une portï¿½e de 3 et s'arrete au mur incassable dans toute les directions
 				boolean is_red_bomb = bo.isIs_red();
-				int bomb_range = bo.getRange(); //port�e de la bombe de l'objet "bo" qui change � chaque boucle
+				int bomb_range = bo.getRange(); //portï¿½e de la bombe de l'objet "bo" qui change ï¿½ chaque boucle
 				while(b.isDestructible(bo.getY()+i, bo.getX()) && i<=bomb_range){// soit case verte un mur cassable
 					if(b.isWallDestructible(bo.getY()+i, bo.getX()) ){
 						b.setArea(bo.getY() +i, bo.getX(), "green");// coloration case verte 
-						b.setElementMatrice(bo.getY() +i, bo.getX(), 3); // matrice mis � jour 
-						//fonction qui crée le bonus dans la liste 
-						bonus.create_bonus(bo.getX(),bo.getY()+i); //on récupère les coordonnées du mur cassable pour les mettres en parametre 
+						b.setElementMatrice(bo.getY() +i, bo.getX(), 3); // matrice mis ï¿½ jour 
+						//fonction qui crÃ©e le bonus dans la liste 
+						bonus.create_bonus(bo.getX(),bo.getY()+i); //on rÃ©cupÃ¨re les coordonnÃ©es du mur cassable pour les mettres en parametre 
 						if(!is_red_bomb){//les bombes rouges continue d'exploser en cassant les murs cassables
 							i = 1000;// on sort de la boucle 
 						}
 					}
 					if(J1.is_at_point(bo.getX(), bo.getY()+i)){
-						//Le joueur 1 se trouve dans la port�e de la bombe
+			// le joueur 1 se trouve dans la portï¿½e de la bombe
+						
 						J1.kill();
-						//On annule les bonus acquis
-						J1.setdX(0.2);
-						J1.setdX(0.2);
-						this.setRange(3);
-						J1.setNb_bomb(3);
-						
-						
-						b.setPlayer(1,1,1);
-						// lorsqu'un joueur perd la vie, il est temporairement plac� dans un lieu s�re
-						J1.setX(-1);
-						J1.setY(-1);
 						b.setArea(bo.getY()+i, bo.getX(), "green");
 					}
 					if(J2.is_at_point(bo.getX(), bo.getY()+i) ){
-						// le Joueur 2 se trouve dans la port�e de la bombe 
+						// le Joueur 2 se trouve dans la portï¿½e de la bombe 
 						J2.kill();
-						
-						//On annule les bonus acquis
-						J2.setdX(0.2);
-						J2.setdX(0.2);
-						this.setRange(3);
-						J2.setNb_bomb(3);
-
-						b.setPlayer(2,19,15);
-						// lorsqu'un joueur perd la vie, il est temporairement plac� dans un lieu s�re
-						J2.setX(-1);
-						J2.setY(-1);
 						b.setArea(bo.getY()+i, bo.getX(), "green");
 					}
 					
@@ -254,13 +233,13 @@ public class Bomb {
 				}
 				
 				//commentaire identique
-				i=1;
+				i=0;
 				while(b.isDestructible(bo.getY()-i, bo.getX()) && i<=bomb_range){	
 					if(b.isWallDestructible(bo.getY()-i, bo.getX()) ){
 						b.setArea(bo.getY()-i, bo.getX(), "green");
 						b.setElementMatrice(bo.getY()-i, bo.getX(), 3);
-						//fonction qui crée le bonus dans la liste 
-						bonus.create_bonus(bo.getX(),bo.getY()-i); //on récupère les coordonnées du mur cassable pour les mettres en parametre 	
+						//fonction qui crÃ©e le bonus dans la liste 
+						bonus.create_bonus(bo.getX(),bo.getY()-i); //on rÃ©cupÃ¨re les coordonnÃ©es du mur cassable pour les mettres en parametre 	
 						if(!is_red_bomb){//les bombes rouges continue d'exploser en cassant les murs cassables
 							i = 1000;// on sort de la boucle 
 						}
@@ -268,17 +247,10 @@ public class Bomb {
 					if(J1.is_at_point(bo.getX(), bo.getY()-i) ){
 		
 						J1.kill();
-						b.setPlayer(1,1,1);
-						J1.setX(-1);
-						J1.setY(-1);
 						b.setArea(bo.getY()-i, bo.getX(), "green");
 					}
 					if(J2.is_at_point(bo.getX(), bo.getY()-i) ){
 						J2.kill();
-	
-						b.setPlayer(2,19,15);
-						J2.setX(-1);
-						J2.setY(-1);
 						b.setArea(bo.getY()-i, bo.getX(), "green");
 					}
 					this.explose_bomb_around(this.find_Bomb(bo.getX(),bo.getY()-i),b, J1, J2,bonus);
@@ -287,13 +259,13 @@ public class Bomb {
 					
 				}
 				//commentaire identique
-				i=1;
+				i=0;
 				while(b.isDestructible(bo.getY(), bo.getX()+i) && i<=bomb_range){
 					if(b.isWallDestructible(bo.getY(), bo.getX()+i) ){
 						b.setArea(bo.getY(), bo.getX()+i, "green");
 						b.setElementMatrice(bo.getY(), bo.getX()+i, 3);
-						//fonction qui crée le bonus dans la liste 
-						bonus.create_bonus(bo.getX()+i,bo.getY()); //on récupère les coordonnées du mur cassable pour les mettres en parametre 
+						//fonction qui crÃ©e le bonus dans la liste 
+						bonus.create_bonus(bo.getX()+i,bo.getY()); //on rÃ©cupÃ¨re les coordonnÃ©es du mur cassable pour les mettres en parametre 
 						if(!is_red_bomb){//les bombes rouges continue d'exploser en cassant les murs cassables
 							i = 1000;// on sort de la boucle 
 						}
@@ -303,18 +275,10 @@ public class Bomb {
 					
 					if(J1.is_at_point(bo.getX()+i, bo.getY()) ){
 						J1.kill();
-		
-						b.setPlayer(1,1,1);
-						J1.setX(-1);
-						J1.setY(-1);
 						b.setArea(bo.getY(), bo.getX()+i, "green");
 					}
 					if(J2.is_at_point(bo.getX()+i, bo.getY()) ){
 						J2.kill();
-
-						b.setPlayer(2,19,15);
-						J2.setX(-1);
-						J2.setY(-1);
 						b.setArea(bo.getY(), bo.getX()+i, "green");
 					}
 					this.explose_bomb_around(this.find_Bomb(bo.getX()+i,bo.getY()),b, J1, J2,bonus);
@@ -323,13 +287,13 @@ public class Bomb {
 					
 				}
 				//commentaire identique
-				i=1;
+				i=0;
 				while(b.isDestructible(bo.getY(), bo.getX()-i) && i<=bomb_range){
 					if(b.isWallDestructible(bo.getY(), bo.getX()-i) ){
 						b.setArea(bo.getY(), bo.getX()-i, "green");
 						b.setElementMatrice(bo.getY(), bo.getX()-i, 3);
-						//fonction qui crée le bonus dans la liste 
-						bonus.create_bonus(bo.getX()-i,bo.getY()); //on récupère les coordonnées du mur cassable pour les mettres en parametre 
+						//fonction qui crÃ©e le bonus dans la liste 
+						bonus.create_bonus(bo.getX()-i,bo.getY()); //on rÃ©cupÃ¨re les coordonnÃ©es du mur cassable pour les mettres en parametre 
 						if(!is_red_bomb){//les bombes rouges continue d'exploser en cassant les murs cassables
 							i = 1000;// on sort de la boucle 
 						}
@@ -337,18 +301,10 @@ public class Bomb {
 					}
 					if(J1.is_at_point(bo.getX()-i, bo.getY()) ){
 						J1.kill();
-
-						b.setPlayer(1,1,1);
-						J1.setX(-1);
-						J1.setY(-1);
 						b.setArea(bo.getY(), bo.getX()-i, "green");
 					}
 					if(J2.is_at_point(bo.getX()-i, bo.getY()) ){
 						J2.kill();
-
-						b.setPlayer(2,19,15);
-						J2.setX(-1);
-						J2.setY(-1);
 						b.setArea(bo.getY(), bo.getX()-i, "green");
 					}
 					this.explose_bomb_around(this.find_Bomb(bo.getX()-i,bo.getY()),b, J1, J2,bonus);
@@ -356,12 +312,10 @@ public class Bomb {
 				
 				}
 
-				it.remove(); // bombe supprim�e de la liste Bombs
-	        	//this.avoid_kill_player_two_times(b,J1);
-	        	//this.avoid_kill_player_two_times(b,J2);
+				it.remove(); // bombe supprimï¿½e de la liste Bombs
 				J1.avoid_killing_player_two_times(b , this.getBombs());
 				J2.avoid_killing_player_two_times(b , this.getBombs());
-				b.setArea(bo.getY(), bo.getX(), "green");// il faut faire disparaitre la bombe de l'�cran en recoloriant la case en verte
+				b.setArea(bo.getY(), bo.getX(), "green");// il faut faire disparaitre la bombe de l'ï¿½cran en recoloriant la case en verte
 			}
 
 			
