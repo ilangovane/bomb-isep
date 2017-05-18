@@ -216,12 +216,20 @@ public class Bomb {
 					}
 					if(J1.is_at_point(bo.getX(), bo.getY()+i)){
 			// le joueur 1 se trouve dans la portï¿½e de la bombe
-						
+						if(J1.isShield()){
+							bonus.setJ1_bomb_range(3);
+							bonus.setJ1_red_bomb(false);
+						}
+
 						J1.kill();
 						b.setArea(bo.getY()+i, bo.getX(), "green");
 					}
 					if(J2.is_at_point(bo.getX(), bo.getY()+i) ){
 						// le Joueur 2 se trouve dans la portï¿½e de la bombe 
+						if(J2.isShield()){
+							bonus.setJ2_bomb_range(3);
+							bonus.setJ1_red_bomb(false);
+						}
 						J2.kill();
 						b.setArea(bo.getY()+i, bo.getX(), "green");
 					}
@@ -245,12 +253,20 @@ public class Bomb {
 						}
 					}
 					if(J1.is_at_point(bo.getX(), bo.getY()-i) ){
-		
+						if(J1.isShield()){
+							bonus.setJ1_bomb_range(3);
+							bonus.setJ1_red_bomb(false);
+						}
 						J1.kill();
 						b.setArea(bo.getY()-i, bo.getX(), "green");
 					}
 					if(J2.is_at_point(bo.getX(), bo.getY()-i) ){
+						if(J2.isShield()){
+							bonus.setJ2_bomb_range(3);
+							bonus.setJ2_red_bomb(false);
+						}
 						J2.kill();
+
 						b.setArea(bo.getY()-i, bo.getX(), "green");
 					}
 					this.explose_bomb_around(this.find_Bomb(bo.getX(),bo.getY()-i),b, J1, J2,bonus);
@@ -274,11 +290,21 @@ public class Bomb {
 					
 					
 					if(J1.is_at_point(bo.getX()+i, bo.getY()) ){
+						if(J1.isShield()){
+							bonus.setJ1_bomb_range(3);
+							bonus.setJ1_red_bomb(false);
+						}
 						J1.kill();
+						
 						b.setArea(bo.getY(), bo.getX()+i, "green");
 					}
 					if(J2.is_at_point(bo.getX()+i, bo.getY()) ){
+						if(J2.isShield()){
+							bonus.setJ2_bomb_range(3);
+							bonus.setJ2_red_bomb(false);
+						}
 						J2.kill();
+
 						b.setArea(bo.getY(), bo.getX()+i, "green");
 					}
 					this.explose_bomb_around(this.find_Bomb(bo.getX()+i,bo.getY()),b, J1, J2,bonus);
@@ -301,10 +327,14 @@ public class Bomb {
 					}
 					if(J1.is_at_point(bo.getX()-i, bo.getY()) ){
 						J1.kill();
+						bonus.setJ1_bomb_range(3);
+						bonus.setJ1_red_bomb(false);
 						b.setArea(bo.getY(), bo.getX()-i, "green");
 					}
 					if(J2.is_at_point(bo.getX()-i, bo.getY()) ){
 						J2.kill();
+						bonus.setJ2_bomb_range(3);
+						bonus.setJ2_red_bomb(false);
 						b.setArea(bo.getY(), bo.getX()-i, "green");
 					}
 					this.explose_bomb_around(this.find_Bomb(bo.getX()-i,bo.getY()),b, J1, J2,bonus);

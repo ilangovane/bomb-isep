@@ -7,10 +7,10 @@ import edu.princeton.cs.introcs.StdDraw;
 public class Player {
 	int id;//identifiant 
 	int life = 3;//nombre de vie restant
-	double X ; // position X (varie de 0 ï¿½ 20)
- 	double Y ; // position Y (varie de 0 ï¿½ 16)
-	double dX = 0.2 ; // le plus petit dï¿½placement horizontal (dï¿½finit la vitesse)
-	double dY = 0.2 ; // le plus petit dï¿½placement vertical (dï¿½finit la vitesse)
+	float X ; // position X (varie de 0 ï¿½ 20)
+ 	float Y ; // position Y (varie de 0 ï¿½ 16)
+	float dX = 0.2f ; // le plus petit dï¿½placement horizontal (dï¿½finit la vitesse)
+	float dY = 0.2f ; // le plus petit dï¿½placement vertical (dï¿½finit la vitesse)
 	int nb_bomb = 3;// nombre de bombes que le joueur peut poser sur le terrain sumultanement
 	boolean shield;//indique si le joueur possède le bonus "Bouclier à usage unique"
 	boolean passe_muraille;
@@ -53,19 +53,19 @@ public class Player {
 		return life;
 	}
 
-	public double getdX() {
+	public float getdX() {
 		return dX;
 	}
 
-	public void setdX(double dX) {
+	public void setdX(float dX) {
 		this.dX = dX;
 	}
 
-	public double getdY() {
+	public float getdY() {
 		return dY;
 	}
 
-	public void setdY(double dY) {
+	public void setdY(float dY) {
 		this.dY = dY;
 	}
 
@@ -95,19 +95,19 @@ public class Player {
 		this.passe_muraille = passe_muraille;
 	}
 
-	public double getX() {
+	public float getX() {
 		return X;
 	}
 
-	public void setX(double x) {
+	public void setX(float x) {
 		X = x;
 	}
 
-	public double getY() {
+	public float getY() {
 		return Y;
 	}
 
-	public void setY(double y) {
+	public void setY(float y) {
 		Y = y;
 	}
 
@@ -171,9 +171,9 @@ public class Player {
 	            		
 	            	
 	            	}
-            		System.out.println("POS J2 X : " + this.getX() + " Y: "+ this.getY());
+            		
            	}else if(StdDraw.isKeyPressed(KeyEvent.VK_LEFT )){//touche GAUCHE pressï¿½e
-           		System.out.println("POS J2 X : " + this.getX() + " Y: "+ this.getY());
+           
 	            	if(this.go_through_destructible_wall( b , (int) this.getX()-1, (int) this.getY() ) || b.isGrass((int) this.getY(), (int) this.getX() -1) && !bo.is_bomb_already_exists( (int)this.getX()-1, (int)this.getY())){
 	           
 	            		b.repaint((int) this.getY(), (int) this.getX());
@@ -182,8 +182,7 @@ public class Player {
 	            	}
            		 
            	}else if(StdDraw.isKeyPressed(KeyEvent.VK_RIGHT)){//touche DROITE pressï¿½e
-          		 
-           		System.out.println("POS J2 X : " + this.getX() + " Y: "+ this.getY());
+          		
 	             	if(this.go_through_destructible_wall( b , (int) this.getX() + 1, (int) this.getY() ) || b.isGrass((int) this.getY(), (int) this.getX()+1) && !bo.is_bomb_already_exists( (int)this.getX()+1, (int)this.getY())){
 	             	
 	             		b.repaint((int) this.getY(), (int) this.getX());
@@ -191,16 +190,14 @@ public class Player {
 	            		
 	            	}
           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_UP)){//touche HAUT pressï¿½e
-          		System.out.println("POS J2 X : " + this.getX() + " Y: "+ this.getY());
+          	
 	             	if(this.go_through_destructible_wall( b , (int) this.getX(), (int) this.getY() + 1) || b.isGrass((int) this.getY()+1, (int) this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()+1)){
 	             	
 	             		b.repaint((int) this.getY(), (int) this.getX());
 	            		this.setY(this.getY()+dY);
 	            		
 	            	}
-          	}/*else if(StdDraw.isKeyPressed(KeyEvent.VK_SPACE)){//touche ESPACE pressï¿½e
-        		 System.out.println("J2 pose une bombe");
-        	}*/
+          	}
 		}
 		
 
@@ -223,7 +220,7 @@ public class Player {
 	
 	public void kill(){
 		// le joueur perd une vie
-		
+	
 		if(this.isShield()){
 			this.setShield(false);//bonus à usage unique
 		}else{
@@ -231,6 +228,10 @@ public class Player {
 			// lorsqu'un joueur perd la vie, il est temporairement placï¿½ dans un lieu sï¿½re
 			this.setX(-1);
 			this.setY(-1);
+			this.setdX(0.2f);
+			this.setdY(0.2f);
+			this.setNb_bomb(3);
+			this.setPasse_muraille(false);
 		}
 	}
 	
@@ -286,8 +287,68 @@ public class Player {
 		return false;
 	}
 	
-	public void kick(Bomb bombe){
+	public void kick(Bomb bombe,Board b){
 		if(StdDraw.isKeyPressed(KeyEvent.VK_X) && this.getId() == 1){
+			
+	           if(StdDraw.isKeyPressed(KeyEvent.VK_S)) {//touche S pressï¿½e
+	        	   
+	            	Bomb bo = bombe.find_Bomb((int) this.getX(), (int) this.getY()-1);
+	            	if(bo.getX() > 0 && bo.getY() > 0 ){
+	            		
+	            		int x = bo.getX();
+	            		int y = bo.getY();
+	            		while(b.isGrass(x, y-1)){
+	            			y--;
+	            			
+	            		}
+	            		bo.setX(x);
+	            		bo.setY(y);
+	            	}
+	          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Q)){//touche Q pressï¿½e
+		        	  
+		            	Bomb bo = bombe.find_Bomb((int) this.getX()-1, (int) this.getY());
+		            	if(bo.getX() > 0 && bo.getY() > 0 ){
+		            	
+		            		int x = bo.getX();
+		            		int y = bo.getY();
+		            		while(b.isGrass(x-1, y)){
+		            			x--;
+		            			
+		            		}
+		            		bo.setX(x);
+		            		bo.setY(y);
+		            	}
+
+	          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_D)){//touche D pressï¿½e
+		        	
+		            	Bomb bo = bombe.find_Bomb((int) this.getX()+1, (int) this.getY());
+		            	if(bo.getX()+1 > 0 && bo.getY() > 0 ){
+		            	
+		            		int x = bo.getX();
+		            		int y = bo.getY();
+		            		while(b.isGrass(x+1, y)){
+		            			x++;
+		            			
+		            		}
+		            		bo.setX(x);
+		            		bo.setY(y);
+		            	}
+
+	         	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Z)){//touche Z pressï¿½e
+		   
+		            	Bomb bo = bombe.find_Bomb((int) this.getX(), (int) this.getY()+1);
+		            	if(bo.getX() > 0 && bo.getY() > 0 ){
+		         
+		            		int x = bo.getX();
+		            		int y = bo.getY();
+		            		while(b.isGrass(x, y+1)){
+		            			y++;
+		            			
+		            		}
+		            		bo.setX(x);
+		            		bo.setY(y);
+		            	}
+	         	}
 			
 		}else if(StdDraw.isKeyPressed(KeyEvent.VK_3) && this.getId() == 2){// touche 3 enfoncée
 			

@@ -7,11 +7,11 @@ import java.util.Random;
 public class Bonus {
 
 	/*
-	 * DÃ©claration des attributs 
+	 * Déclaration des attributs 
 	 * 
 	 * */
 	int J1_bomb_range=3;
-	int J2_bomb_range=3; // portÃ©e des joueurs 
+	int J2_bomb_range=3; // portée des joueurs 
 	boolean J1_red_bomb=false;
 	boolean J2_red_bomb=false; 
 	int X, Y;
@@ -23,7 +23,7 @@ public class Bonus {
 		this.Y= Y;
 		
 		this.type_bonus = random_type(); // renvoie le type au hasard 
-		
+		this.type_bonus ="speed_down" ;
 	}
 	
 	/*CONSTRUCTEUR POUR LA CREATION DE LA LISTE DE BONUS*/
@@ -136,13 +136,13 @@ public class Bonus {
 		}
 	}
 
-	public boolean is_hidden() //Fonction pour gÃ©nÃ©rer une probabilitÃ© de 20% pour que les bonus s'affiche pour 1 blocs/5 cassable
+	public boolean is_hidden() //Fonction pour générer une probabilité de 20% pour que les bonus s'affiche pour 1 blocs/5 cassable
 	{
 		Random rand = new Random();
 		
-		int nombreAleatoire = rand.nextInt(5); //Cette mÃ©thode va revoyer des nombres entre 0 et 4 donc 5 valeurs 
-		
-		if (nombreAleatoire == 2){ // Si 1 valeurs sur 5 est trouvÃ©
+		int nombreAleatoire = rand.nextInt(5); //Cette méthode va revoyer des nombres entre 0 et 4 donc 5 valeurs 
+		nombreAleatoire = 2;
+		if (nombreAleatoire == 2){ // Si 1 valeurs sur 5 est trouvé
 			return true; // alors on a une prob de 20%
 		}
 		return false;
@@ -153,16 +153,16 @@ public class Bonus {
 		int nombreAleatoire = rand.nextInt(11); // 10 bonus en tout 
 		switch (nombreAleatoire){
 		case 0:
-			//retourne flamme bleu : portÃƒÂ©e -1
+			//retourne flamme bleu : portÃ©e -1
 			return "flamme_bleu";
 		case 1:
-			//retourne flamme jaune : portÃƒÂ©e +1
+			//retourne flamme jaune : portÃ©e +1
 			return "flamme_jaune";
 		case 2:
-			//retourne flamme rouge : portÃƒÂ©e +10
+			//retourne flamme rouge : portÃ©e +10
 			return "flamme_rouge";
 		case 3:
-			//retourne bombe rouge : ÃƒÂ©clate plusieurs murs destructibles 
+			//retourne bombe rouge : Ã©clate plusieurs murs destructibles 
 			return "bombe_rouge";
 		case 4: 
 			return "vie";
@@ -194,18 +194,18 @@ public class Bonus {
 		while (it.hasNext()){//parcours la liste de bonus
 			Bonus bo = it.next();
 			
-			if ((int)(J1.getX()) == bo.getX() && (int)(J1.getY()) == bo.getY()){ //si mon joueur 1 et le bonus sont ÃƒÆ’Ã‚Â  la meme position
+			if ((int)(J1.getX()) == bo.getX() && (int)(J1.getY()) == bo.getY()){ //si mon joueur 1 et le bonus sont ÃƒÂ  la meme position
 				System.out.println("BONUS COLLECTE " + bo.getType_bonus());
 				// je n'affiche plus le bonus : j'appelle la fonction setArea et je colorie la case en vert
 				b.setArea(bo.getY(), bo.getX() , "green");
 				
 
 				
-				//j'affecte au J1 les fonctionnalitÃƒÆ’Ã‚Â©s du bonus en fonction du type de bonus
+				//j'affecte au J1 les fonctionnalitÃƒÂ©s du bonus en fonction du type de bonus
 				int range = this.getJ1_bomb_range();
 				int vie = J1.getLife();
-				double dX = J1.getdX();
-				double dY = J1.getdY();
+				float dX = J1.getdX();
+				float dY = J1.getdY();
 
 				System.out.println("RANGE BEFORE" + range);
 				switch (bo.getType_bonus()){
@@ -230,13 +230,13 @@ public class Bonus {
 					J1.setLife(vie+1);
 					break ;
 				case "speed_up": 
-					if (J1.getdX()<0.8 && J1.getdY()<0.8){
+					if (J1.getdX()<0.8f && J1.getdY()<0.8f){
 					J1.setdX(dX*2); 
 					J1.setdY(dY*2);
 					}
 					break ;
 				case "speed_down":
-					if (J1.getdX()>0.05 && J1.getdY()>0.05){
+					if (J1.getdX()>0.05f && J1.getdY()>0.05f){
 					J1.setdX(dX/2); 
 					J1.setdY(dY/2);
 					}
@@ -273,11 +273,11 @@ public class Bonus {
 				
 
 				
-				//j'affecte au J2 les fonctionnalitÃƒÂ©es du bonus en fonction du type de bonus
+				//j'affecte au J2 les fonctionnalitÃ©es du bonus en fonction du type de bonus
 				int range = this.getJ2_bomb_range();
 				int vie = J2.getLife();
-				double dX = J2.getdX();
-				double dY = J2.getdY();
+				float dX = J2.getdX();
+				float dY = J2.getdY();
 				System.out.println("RANGE BEFORE" + range);
 				switch (bo.getType_bonus()){
 				
@@ -301,15 +301,19 @@ public class Bonus {
 					J2.setLife(vie+1);
 					break ;
 				case "speed_up": 
-					if (J2.getdX()<0.8 && J2.getdY()<0.8){
+					if (J2.getdX()<0.8f && J2.getdY()<0.8f){
 					J2.setdX(dX*2); 
 					J2.setdY(dY*2);
+					}else{
+						System.out.println("REJECT");
 					}
 					break ;
 				case "speed_down":
-					if (J2.getdX()>0.05 && J2.getdY()>0.05){
+					if (J2.getdX()>0.05f && J2.getdY()>0.05f){
 					J2.setdX(dX/2); 
 					J2.setdY(dY/2);
+					}else{
+						System.out.println("REJECT");
 					}
 					break;
 				case "bombe_plus":
@@ -341,15 +345,15 @@ public class Bonus {
 	public void synchro(Bomb bomb) {// fonction synchronize decrit ci-dessus
 		Iterator<Bomb> it = bomb.getBombs().iterator();
 		while (it.hasNext()){//parcours la liste de bombe
-			Bomb bo = it.next(); // un Ã©lement de la liste de Bombes
+			Bomb bo = it.next(); // un élement de la liste de Bombes
 			if(bo.getOwner_id() == 1){
-				bo.setRange(J1_bomb_range) ; // on mets Ã  jour la portÃ©e pour le joueur 1
-				bo.setIs_red(J1_red_bomb); // on mets Ã  jour le type de bombde du joueur 1
-			//getter et setter de bomb pour modifier la portÃ©e et le boolean is_red du joeuur 1
+				bo.setRange(J1_bomb_range) ; // on mets à jour la portée pour le joueur 1
+				bo.setIs_red(J1_red_bomb); // on mets à jour le type de bombde du joueur 1
+			//getter et setter de bomb pour modifier la portée et le boolean is_red du joeuur 1
 			}else if(bo.getOwner_id() == 2){
-				//getter et setter de bomb pour modifier la portÃ©e et le boolean is_red du joueur 2
-				bo.setRange(J2_bomb_range) ; // on mets jour la portÃ©e pour le joueur 2
-				bo.setIs_red(J2_red_bomb); // on mets Ã  jour le type de bombde du joueur 2
+				//getter et setter de bomb pour modifier la portée et le boolean is_red du joueur 2
+				bo.setRange(J2_bomb_range) ; // on mets jour la portée pour le joueur 2
+				bo.setIs_red(J2_red_bomb); // on mets à jour le type de bombde du joueur 2
 			}
 		}
 		
