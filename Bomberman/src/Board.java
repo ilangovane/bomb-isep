@@ -21,9 +21,7 @@ public class Board {
 		/*taille de la fen�tre 1050 x 850 
 		 * Une case doit faire 30 px => 30 x nb de ligne (17) et 30 x nb de colonne (21) 
 		 * */
-		StdDraw.setCanvasSize(40*30,21*30);
-
-	
+		StdDraw.setCanvasSize(40*30,21*30-1);
 		/*
 		 * Modifier les echelles X et Y pour avoir un syst�me de coordonn�es (X,Y)
 		 *  Coordonn�es (0,0) coin en bas � gauche et (17,21) coin en haut � droite
@@ -157,19 +155,21 @@ public  void beginGame(){
 	public void setArea(int line , int column , String color){
 		switch(color){
 		case "orange" : 
-	    	StdDraw.setPenColor(StdDraw.PRINCETON_ORANGE);
-			StdDraw.filledSquare(column + 0.5 , line + 0.5 , 0.5 );
-			
+	    	//StdDraw.setPenColor(StdDraw.PRINCETON_ORANGE);
+			//StdDraw.filledSquare(column + 0.5 , line + 0.5 , 0.5 );
+			StdDraw.picture(column + 0.5,line + 0.5,"/bomberman_picture/destructibleWall.jpg",1,1);
 			break;
 		
 		case "green":
-        	StdDraw.setPenColor(StdDraw.GREEN);
-        	StdDraw.filledSquare(column + 0.5 , line + 0.5 , 0.5 );
+        	//StdDraw.setPenColor(StdDraw.GREEN);
+        	//StdDraw.filledSquare(column + 0.5 , line + 0.5 , 0.5 );
+			StdDraw.picture(column + 0.5,line + 0.5,"/bomberman_picture/grass.jpg",1,1);
 			
 			break;
 		case "grey":
-			StdDraw.setPenColor(StdDraw.DARK_GRAY);
-			StdDraw.filledSquare(column + 0.5 , line + 0.5 , 0.5 );
+			//StdDraw.setPenColor(StdDraw.DARK_GRAY);
+			//StdDraw.filledSquare(column + 0.5 , line + 0.5 , 0.5 );
+			StdDraw.picture(column + 0.5,line + 0.5,"/bomberman_picture/wall.jpg",1,1);
 			
 			break;
 		default:

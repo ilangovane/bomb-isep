@@ -353,7 +353,6 @@ public class Bomb {
 				J1.avoid_killing_player_two_times(b , this.getBombs());
 				J2.avoid_killing_player_two_times(b , this.getBombs());
 				b.setArea(bo.getY(), bo.getX(), "green");// il faut faire disparaitre la bombe de l'ï¿½cran en recoloriant la case en verte
-				
 				StdDraw.show(30);
 
 			}

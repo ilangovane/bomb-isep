@@ -44,7 +44,7 @@ public class Menu {
 		StdDraw.show(30);
 		
 		/*BOUTON RETOUR AU MENU PRINCIPAL*/
-		int nbligne = 20;					//nombre de ligne
+		int nbligne = 4;					//nombre de ligne
 		int nbcolonne = 30;					//nombre de colonne
 		float centerL = (float)(nbligne/2);
 		float centerC = (float)(nbcolonne/2);
@@ -90,7 +90,8 @@ public class Menu {
 		int largeurRect = 4;
 		float hauteurRect = 0.5f;			
 		StdDraw.clear(StdDraw.PRINCETON_ORANGE);				//  Fond d'écran 
-		
+		//StdDraw.picture(15, 13, "stars.gif");
+
 		/*BOUTON JOUER*/
 		displayRect(centerC, centerL, largeurRect, hauteurRect,"Multijoueurs");		
 		
@@ -187,7 +188,7 @@ public class Menu {
 	        	
 	        }
 	       //l'identité du gagnant est révelée
-	      this.setChoixMenu("gameover");
+	      //this.setChoixMenu("gameover");
 
 	      this.game_over(J1);
 	      game_board.finalize();
