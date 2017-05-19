@@ -137,8 +137,11 @@ public class Menu {
 			else if (StdDraw.mouseX() >= centerC-largeurRect && StdDraw.mouseX() <= centerC+largeurRect && StdDraw.mouseY() >= centerL - hauteurRect - 3*decalage && StdDraw.mouseY() <= centerL + hauteurRect - 3*decalage){
 				displayEffect(centerC, centerL - 3*decalage, largeurRect, hauteurRect,"Quitter");	
 				if(StdDraw.mousePressed()){
+			
 				setChoixMenu("exit");
+				
 				}
+		
 			}
 	}
 	public void start_game(boolean IA){
@@ -187,10 +190,14 @@ public class Menu {
 	        	StdDraw.show(30);
 	        	
 	        }
+			//String temp = this.getChoixMenu();
+			//System.out.println(temp);
 	       //l'identité du gagnant est révelée
-	      //this.setChoixMenu("gameover");
+	      this.setChoixMenu("gameover");
 
 	      this.game_over(J1);
+	      
+	      //this.setChoixMenu(temp);
 	      game_board.finalize();
 	      //this.finalize();
 	}

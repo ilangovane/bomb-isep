@@ -29,13 +29,15 @@ public class Main {
 	        	break;
 	       case "exit":
 	    	   System.out.println("QUITTER");
-	    	   System.exit(0);		// On ferme la fenetre 
+	    	
 	        	break;
 	       default:
 	    	   System.out.print("RIEN");			
 	       }
+	       System.out.println(menu.getChoixMenu());
 	       StdDraw.show(30);  
 		}
+		   System.exit(0);		// On ferme la fenetre 
 	}
 	
 	public static void info(Player J1 , Player J2){
