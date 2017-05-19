@@ -64,11 +64,11 @@ public class Menu {
 	}
 	
 	public void displayRect(float colonne, float ligne, int largeur,float hauteur, String contenu){
-		StdDraw.setPenColor(StdDraw.BLACK);						//  Couleur noir pour l'écriture
+		StdDraw.setPenColor(StdDraw.BLACK);								//  Couleur noir pour l'écriture
 		StdDraw.filledRectangle(colonne, ligne, largeur, hauteur);		//  Dessine un rectangle
-		Font font = new Font("Tahoma", Font.ROMAN_BASELINE, 28);//	Initialisation de la police
+		Font font = new Font("Tahoma", Font.ROMAN_BASELINE, 28);		//	Initialisation de la police
 		StdDraw.setFont(font);
-		StdDraw.setPenColor(StdDraw.BOOK_LIGHT_BLUE);			//  Couleur pour l'écriture
+		StdDraw.setPenColor(StdDraw.BOOK_LIGHT_BLUE);					//  Couleur pour l'écriture
 		StdDraw.text(colonne, ligne, contenu);
 	}
 	

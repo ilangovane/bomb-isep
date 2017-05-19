@@ -205,6 +205,7 @@ public class Bomb {
 				boolean is_red_bomb = bo.isIs_red();
 				int bomb_range = bo.getRange(); //portï¿½e de la bombe de l'objet "bo" qui change ï¿½ chaque boucle
 				while(b.isDestructible(bo.getY()+i, bo.getX()) && i<=bomb_range){// soit case verte un mur cassable
+					StdDraw.picture(bo.getX()+0.5, bo.getY()+i+0.5, "explosion.gif",1,1);
 					if(b.isWallDestructible(bo.getY()+i, bo.getX()) ){
 						b.setArea(bo.getY() +i, bo.getX(), "green");// coloration case verte 
 						b.setElementMatrice(bo.getY() +i, bo.getX(), 3); // matrice mis ï¿½ jour 
@@ -215,7 +216,7 @@ public class Bomb {
 						}
 					}
 					if(J1.is_at_point(bo.getX(), bo.getY()+i)){
-			// le joueur 1 se trouve dans la portï¿½e de la bombe
+						// le joueur 1 se trouve dans la portï¿½e de la bombe
 						if(J1.isShield()){
 							bonus.setJ1_bomb_range(3);
 							bonus.setJ1_red_bomb(false);
@@ -243,8 +244,10 @@ public class Bomb {
 				//commentaire identique
 				i=0;
 				while(b.isDestructible(bo.getY()-i, bo.getX()) && i<=bomb_range){	
+					StdDraw.picture(bo.getX() +0.5, bo.getY() -i+ 0.5, "explosion.gif",1,1);
 					if(b.isWallDestructible(bo.getY()-i, bo.getX()) ){
 						b.setArea(bo.getY()-i, bo.getX(), "green");
+
 						b.setElementMatrice(bo.getY()-i, bo.getX(), 3);
 						//fonction qui crÃ©e le bonus dans la liste 
 						bonus.create_bonus(bo.getX(),bo.getY()-i); //on rÃ©cupÃ¨re les coordonnÃ©es du mur cassable pour les mettres en parametre 	
@@ -277,8 +280,10 @@ public class Bomb {
 				//commentaire identique
 				i=0;
 				while(b.isDestructible(bo.getY(), bo.getX()+i) && i<=bomb_range){
+					StdDraw.picture(bo.getX()+i +0.5, bo.getY()+0.5,"explosion.gif",1,1);
 					if(b.isWallDestructible(bo.getY(), bo.getX()+i) ){
 						b.setArea(bo.getY(), bo.getX()+i, "green");
+
 						b.setElementMatrice(bo.getY(), bo.getX()+i, 3);
 						//fonction qui crÃ©e le bonus dans la liste 
 						bonus.create_bonus(bo.getX()+i,bo.getY()); //on rÃ©cupÃ¨re les coordonnÃ©es du mur cassable pour les mettres en parametre 
@@ -315,8 +320,10 @@ public class Bomb {
 				//commentaire identique
 				i=0;
 				while(b.isDestructible(bo.getY(), bo.getX()-i) && i<=bomb_range){
+					StdDraw.picture(bo.getX()-i+0.5, bo.getY()+0.5,"explosion.gif",1,1);
 					if(b.isWallDestructible(bo.getY(), bo.getX()-i) ){
 						b.setArea(bo.getY(), bo.getX()-i, "green");
+
 						b.setElementMatrice(bo.getY(), bo.getX()-i, 3);
 						//fonction qui crÃ©e le bonus dans la liste 
 						bonus.create_bonus(bo.getX()-i,bo.getY()); //on rÃ©cupÃ¨re les coordonnÃ©es du mur cassable pour les mettres en parametre 
@@ -346,6 +353,9 @@ public class Bomb {
 				J1.avoid_killing_player_two_times(b , this.getBombs());
 				J2.avoid_killing_player_two_times(b , this.getBombs());
 				b.setArea(bo.getY(), bo.getX(), "green");// il faut faire disparaitre la bombe de l'ï¿½cran en recoloriant la case en verte
+				
+				StdDraw.show(30);
+
 			}
 
 			
