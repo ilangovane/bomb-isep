@@ -9,8 +9,10 @@ public class Main {
 	public static void main(String[] args) {
 		Menu menu = new Menu();
 		Player j1 = new Player(1);
+		Audio audio = new Audio();
 		
 		while(menu.getChoixMenu() != "exit"){
+			//audio();
 	       switch(menu.getChoixMenu()){
 	       case "home":
 	    	   	menu.menu();
@@ -28,13 +30,12 @@ public class Main {
 	        	System.out.println("INSTRUCTIONS");
 	        	break;
 	       case "exit":
-	    	   System.out.println("QUITTER");
-	    	
+	    	   //System.out.println("QUITTER");
 	        	break;
 	       default:
 	    	   System.out.print("RIEN");			
 	       }
-	       System.out.println(menu.getChoixMenu());
+	       //System.out.println(menu.getChoixMenu());
 	       StdDraw.show(30);  
 		}
 		   System.exit(0);		// On ferme la fenetre 

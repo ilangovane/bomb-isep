@@ -205,7 +205,12 @@ public class Bomb {
 				boolean is_red_bomb = bo.isIs_red();
 				int bomb_range = bo.getRange(); //portï¿½e de la bombe de l'objet "bo" qui change ï¿½ chaque boucle
 				while(b.isDestructible(bo.getY()+i, bo.getX()) && i<=bomb_range){// soit case verte un mur cassable
-					StdDraw.picture(bo.getX()+0.5, bo.getY()+i+0.5, "explosion.gif",1,1);
+					StdDraw.picture(bo.getX()+0.5, bo.getY()+i+0.5, "/bomberman_picture/explosion.png",1,1);
+					//StdDraw.show(20);
+					//b.setArea(bo.getY() +i, bo.getX(), "green");// coloration case verte
+					//StdDraw.show(20);
+
+
 					if(b.isWallDestructible(bo.getY()+i, bo.getX()) ){
 						b.setArea(bo.getY() +i, bo.getX(), "green");// coloration case verte 
 						b.setElementMatrice(bo.getY() +i, bo.getX(), 3); // matrice mis ï¿½ jour 
@@ -236,18 +241,20 @@ public class Bomb {
 					}
 					
 					this.explose_bomb_around(this.find_Bomb(bo.getX(),bo.getY()+ i),b, J1, J2,bonus);
-					i ++;
-				
+					i ++;				
 
 				}
 				
 				//commentaire identique
 				i=0;
 				while(b.isDestructible(bo.getY()-i, bo.getX()) && i<=bomb_range){	
-					StdDraw.picture(bo.getX() +0.5, bo.getY() -i+ 0.5, "explosion.gif",1,1);
+					StdDraw.picture(bo.getX() +0.5, bo.getY() -i+ 0.5, "/bomberman_picture/explosion.png",1,1);
+					//StdDraw.show(20);
+					//b.setArea(bo.getY() -i, bo.getX(), "green");// coloration case verte
+					//StdDraw.show(20);
+
 					if(b.isWallDestructible(bo.getY()-i, bo.getX()) ){
 						b.setArea(bo.getY()-i, bo.getX(), "green");
-
 						b.setElementMatrice(bo.getY()-i, bo.getX(), 3);
 						//fonction qui crÃ©e le bonus dans la liste 
 						bonus.create_bonus(bo.getX(),bo.getY()-i); //on rÃ©cupÃ¨re les coordonnÃ©es du mur cassable pour les mettres en parametre 	
@@ -274,13 +281,16 @@ public class Bomb {
 					}
 					this.explose_bomb_around(this.find_Bomb(bo.getX(),bo.getY()-i),b, J1, J2,bonus);
 					i++;
-				
 					
 				}
 				//commentaire identique
 				i=0;
 				while(b.isDestructible(bo.getY(), bo.getX()+i) && i<=bomb_range){
-					StdDraw.picture(bo.getX()+i +0.5, bo.getY()+0.5,"explosion.gif",1,1);
+					StdDraw.picture(bo.getX()+i +0.5, bo.getY()+0.5,"/bomberman_picture/explosion.png",1,1);
+					//StdDraw.show(20);
+					//b.setArea(bo.getY(), bo.getX()+i, "green");// coloration case verte
+					//StdDraw.show(20);
+
 					if(b.isWallDestructible(bo.getY(), bo.getX()+i) ){
 						b.setArea(bo.getY(), bo.getX()+i, "green");
 
@@ -314,16 +324,19 @@ public class Bomb {
 					}
 					this.explose_bomb_around(this.find_Bomb(bo.getX()+i,bo.getY()),b, J1, J2,bonus);
 					i++;
-					
+					//b.setArea(bo.getY(), bo.getX()+i, "green");// coloration case verte
+
 					
 				}
 				//commentaire identique
 				i=0;
 				while(b.isDestructible(bo.getY(), bo.getX()-i) && i<=bomb_range){
-					StdDraw.picture(bo.getX()-i+0.5, bo.getY()+0.5,"explosion.gif",1,1);
+					StdDraw.picture(bo.getX()-i+0.5, bo.getY()+0.5,"/bomberman_picture/explosion.png",1,1);
+					//StdDraw.show(20);
+					//b.setArea(bo.getY(), bo.getX()-i, "green");// coloration case verte
+					
 					if(b.isWallDestructible(bo.getY(), bo.getX()-i) ){
 						b.setArea(bo.getY(), bo.getX()-i, "green");
-
 						b.setElementMatrice(bo.getY(), bo.getX()-i, 3);
 						//fonction qui crÃ©e le bonus dans la liste 
 						bonus.create_bonus(bo.getX()-i,bo.getY()); //on rÃ©cupÃ¨re les coordonnÃ©es du mur cassable pour les mettres en parametre 
@@ -346,9 +359,12 @@ public class Bomb {
 					}
 					this.explose_bomb_around(this.find_Bomb(bo.getX()-i,bo.getY()),b, J1, J2,bonus);
 					i++;
+					//b.setArea(bo.getY(), bo.getX()-i, "green");// coloration case verte
+					
+
 				
 				}
-
+				//StdDraw.show(30);
 				it.remove(); // bombe supprimï¿½e de la liste Bombs
 				J1.avoid_killing_player_two_times(b , this.getBombs());
 				J2.avoid_killing_player_two_times(b , this.getBombs());
@@ -357,10 +373,9 @@ public class Bomb {
 
 			}
 
-			
-			
 
 		}
+		//StdDraw.show(30);
 
 		
 	}

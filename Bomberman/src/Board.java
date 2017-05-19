@@ -303,8 +303,9 @@ public  void beginGame(){
 			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/lessbomb.png", 1,  1);
 			break ;	
 		case "shield":
-			StdDraw.setPenColor(StdDraw.MAGENTA);
-			StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3);
+			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/shield.png", 1,  1);
+			//StdDraw.setPenColor(StdDraw.MAGENTA);
+			//StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3);
 			break;
 		case "passe_muraille":
 			StdDraw.setPenColor(StdDraw.PINK);
