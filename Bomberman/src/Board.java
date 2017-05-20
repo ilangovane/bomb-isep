@@ -320,6 +320,10 @@ public  void beginGame(){
 			StdDraw.setPenColor(StdDraw.BLUE);
 			StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3);
 			break;
+		case "kick" :
+			StdDraw.setPenColor(StdDraw.YELLOW);
+			StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3);
+			break;
 		}
 		
 	}

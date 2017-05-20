@@ -14,11 +14,13 @@ public class Player {
 	int nb_bomb = 3;// nombre de bombes que le joueur peut poser sur le terrain sumultanement
 	boolean shield;//indique si le joueur possï¿½de le bonus "Bouclier ï¿½ usage unique"
 	boolean passe_muraille;
+	boolean kick;
 	Player(int id){
 		/* Si id vaut 1 il s'agit du joueur 1 , si 2 le joueur 2 si 3 une IA*/
 		this.id = id;
 		this.shield = false;
 		this.passe_muraille = false;
+		this.kick = false;
 		/*Le joueur 1 et 2 sont positionnï¿½es respectivement en (X,Y) = (1,1) et (X,Y) =  (19,15)*/
 		if(this.id == 1){
 			this.Y = 1;
@@ -77,6 +79,14 @@ public class Player {
 
 	
 
+
+	public boolean isKick() {
+		return kick;
+	}
+
+	public void setKick(boolean kick) {
+		this.kick = kick;
+	}
 
 	public boolean isShield() {
 		return shield;
@@ -231,6 +241,8 @@ public class Player {
 			this.setdY(0.2f);
 			this.setNb_bomb(3);
 			this.setPasse_muraille(false);
+			this.setKick(false);
+			
 		}
 	}
 	
@@ -287,13 +299,17 @@ public class Player {
 	}
 	
 	public void kick(Bomb bombe,Board b,Animation anim){
+		if(!kick){
+			return;//si le joueur n'a pas de kick , le reste n'est pas executé
+		}
 		if(StdDraw.isKeyPressed(KeyEvent.VK_X) && this.getId() == 1){
 			
 	           if(StdDraw.isKeyPressed(KeyEvent.VK_S)) {//touche S pressï¿½e
 	        	   
 	            	Bomb bo = bombe.find_Bomb((int) this.getX(), (int) this.getY()-1);
+	            	
 	            	if(bo.getX() > 0 && bo.getY() > 0 ){
-	            		
+	            		b.setArea((int) this.getY()-1, (int) this.getX(), "green");
 	            		int x = bo.getX();
 	            		int y = bo.getY();
 	            		while(b.isGrass(y-1,x)){
@@ -304,12 +320,13 @@ public class Player {
 	            		}
 	            		bo.setX(x);
 	            		bo.setY(y);
+	            		
 	            	}
 	          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Q)){//touche Q pressï¿½e
 		        	  
 		            	Bomb bo = bombe.find_Bomb((int) this.getX()-1, (int) this.getY());
 		            	if(bo.getX() > 0 && bo.getY() > 0 ){
-		            	
+		            		b.setArea((int) this.getY(), (int) this.getX()-1, "green");
 		            		int x = bo.getX();
 		            		int y = bo.getY();
 		            		while(b.isGrass( y,x-1)){
@@ -326,7 +343,7 @@ public class Player {
 		        	
 		            	Bomb bo = bombe.find_Bomb((int) this.getX()+1, (int) this.getY());
 		            	if(bo.getX()+1 > 0 && bo.getY() > 0 ){
-		            	
+		            		b.setArea((int) this.getY(), (int) this.getX()+1, "green");
 		            		int x = bo.getX();
 		            		int y = bo.getY();
 		            		while(b.isGrass(y,x+1)){
@@ -343,7 +360,7 @@ public class Player {
 		   
 		            	Bomb bo = bombe.find_Bomb((int) this.getX(), (int) this.getY()+1);
 		            	if(bo.getX() > 0 && bo.getY() > 0 ){
-		         
+		            		b.setArea((int) this.getY()+1, (int) this.getX(), "green");
 		            		int x = bo.getX();
 		            		int y = bo.getY();
 		            		while(b.isGrass(y+1,x)){
@@ -363,12 +380,14 @@ public class Player {
 	        	   
 	            	Bomb bo = bombe.find_Bomb((int) this.getX(), (int) this.getY()-1);
 	            	if(bo.getX() > 0 && bo.getY() > 0 ){
-	            		System.out.println("BOY BOW"); 
+	            		b.setArea((int) this.getY()-1, (int) this.getX(), "green");
 	            		int x = bo.getX();
 	            		int y = bo.getY();
 	            		while(b.isGrass(y-1,x)){
 	            			y--;
-	            			System.out.println("BOY BOWDJKDJQKD"); 
+	            			Animation tir = new Animation("football" , x+0.5f , y+0.5f , 500);
+	            			anim.add_liste(tir);
+	            			anim.display_effects(b);
 	            			
 	            		}
 	            		bo.setX(x);
@@ -378,12 +397,14 @@ public class Player {
 	          		
 		            	Bomb bo = bombe.find_Bomb((int) this.getX()-1, (int) this.getY());
 		            	if(bo.getX() > 0 && bo.getY() > 0 ){
-		            	
+		            		b.setArea((int) this.getY(), (int) this.getX()-1, "green");
 		            		int x = bo.getX();
 		            		int y = bo.getY();
 		            		while(b.isGrass(y,x-1)){
 		            			x--;
-		            			
+		            			Animation tir = new Animation("football" , x+0.5f , y+0.5f , 500);
+		            			anim.add_liste(tir);
+		            			anim.display_effects(b);
 		            		}
 		            		bo.setX(x);
 		            		bo.setY(y);
@@ -393,12 +414,14 @@ public class Player {
 		        	
 		            	Bomb bo = bombe.find_Bomb((int) this.getX()+1, (int) this.getY());
 		            	if(bo.getX()+1 > 0 && bo.getY() > 0 ){
-		            	
+		            		b.setArea((int) this.getY(), (int) this.getX()+1, "green");
 		            		int x = bo.getX();
 		            		int y = bo.getY();
 		            		while(b.isGrass(y,x+1)){
 		            			x++;
-		            			
+		            			Animation tir = new Animation("football" , x+0.5f , y+0.5f , 500);
+		            			anim.add_liste(tir);
+		            			anim.display_effects(b);
 		            		}
 		            		bo.setX(x);
 		            		bo.setY(y);
@@ -408,12 +431,14 @@ public class Player {
 		   
 		            	Bomb bo = bombe.find_Bomb((int) this.getX(), (int) this.getY()+1);
 		            	if(bo.getX() > 0 && bo.getY() > 0 ){
-		         
+		            		b.setArea((int) this.getY()+1, (int) this.getX(), "green");
 		            		int x = bo.getX();
 		            		int y = bo.getY();
 		            		while(b.isGrass(y+1,x)){
 		            			y++;
-		            			
+		            			Animation tir = new Animation("football" , x+0.5f , y+0.5f , 500);
+		            			anim.add_liste(tir);
+		            			anim.display_effects(b);
 		            		}
 		            		bo.setX(x);
 		            		bo.setY(y);

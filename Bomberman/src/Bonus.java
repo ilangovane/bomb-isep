@@ -25,7 +25,7 @@ public class Bonus {
 		this.Y= Y;
 		
 		this.type_bonus = random_type(); // renvoie le type au hasard 
-		//this.type_bonus ="mine" ;
+		//this.type_bonus ="kick" ;
 	}
 	
 	/*CONSTRUCTEUR POUR LA CREATION DE LA LISTE DE BONUS*/
@@ -168,7 +168,7 @@ public class Bonus {
 	
 		public String random_type(){ // Fonction permettant de choisir le type bonus au hasard 
 		Random rand = new Random();
-		int nombreAleatoire = rand.nextInt(12); // 10 bonus en tout 
+		int nombreAleatoire = rand.nextInt(13); // 13 bonus en tout 
 		switch (nombreAleatoire){
 		case 0:
 			//retourne flamme bleu : portÃ©e -1
@@ -198,6 +198,8 @@ public class Bonus {
 			return "passe_muraille";
 		case 11 :
 			return "mine";
+		case 12 :
+			return "kick";
 		default : 
 			return "vie";
 		}
@@ -280,6 +282,9 @@ public class Bonus {
 				case "mine" :
 					this.setJ1_mine_bomb(true);
 					break;
+				case "kick" :
+					J1.setKick(true);
+					break;
 				
 
 				}
@@ -357,6 +362,9 @@ public class Bonus {
 					break;
 				case "mine" :
 					this.setJ2_mine_bomb(true);
+					break;
+				case "kick" :
+					J2.setKick(true);
 					break;
 				
 
