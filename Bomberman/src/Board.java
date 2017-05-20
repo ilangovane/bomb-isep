@@ -331,6 +331,11 @@ public  void beginGame(){
 		
 	}
 	public void info_players(Player J1, Player J2 , Bomb bombe,Bonus bonus){
+		for(int i = 0 ;i<=17 ; i++){// effacer les infos de la 1ere et derniere lignes
+			StdDraw.setPenColor(StdDraw.PRINCETON_ORANGE);
+			StdDraw.filledSquare(i, -0.5, 0.5);
+			StdDraw.filledSquare(i, 18.5, 0.5);
+		}
 		if(J1.getId() == 1 ){
 			float y = -1.5f;
 			float x = 0.5f;
@@ -359,6 +364,7 @@ public  void beginGame(){
 			StdDraw.picture(x+12, y, "/bomberman_picture/kick.png",0.8,0.8);
 			
 			StdDraw.picture(x+13, y, "/bomberman_picture/mine.png",0.8,0.8);
+			StdDraw.picture(x+14, y, "/bomberman_picture/redbomb.png",0.8,0.8);
 			if(J1.isPasse_muraille()){
 				StdDraw.setPenColor(StdDraw.GREEN);
 				StdDraw.filledSquare(x+10,y+1,0.5);
@@ -387,6 +393,13 @@ public  void beginGame(){
 			}else{
 				StdDraw.setPenColor(StdDraw.RED);
 				StdDraw.filledSquare(x+13,y+1,0.5);
+			}
+			if(bonus.isJ1_red_bomb()){
+				StdDraw.setPenColor(StdDraw.GREEN);
+				StdDraw.filledSquare(x+14,y+1,0.5);	
+			}else{
+				StdDraw.setPenColor(StdDraw.RED);
+				StdDraw.filledSquare(x+14,y+1,0.5);
 			}
 			
 			
@@ -421,6 +434,7 @@ public  void beginGame(){
 			StdDraw.picture(x+12, y, "/bomberman_picture/kick.png",0.8,0.8);
 			
 			StdDraw.picture(x+13, y, "/bomberman_picture/mine.png",0.8,0.8);
+			StdDraw.picture(x+14, y, "/bomberman_picture/redbomb.png",0.8,0.8);
 			if(J2.isPasse_muraille()){
 				StdDraw.setPenColor(StdDraw.GREEN);
 				StdDraw.filledSquare(x+10,y+1,0.5);
@@ -450,7 +464,13 @@ public  void beginGame(){
 				StdDraw.setPenColor(StdDraw.RED);
 				StdDraw.filledSquare(x+13,y+1,0.5);
 			}
-			
+			if(bonus.isJ2_red_bomb()){
+				StdDraw.setPenColor(StdDraw.GREEN);
+				StdDraw.filledSquare(x+14,y+1,0.5);	
+			}else{
+				StdDraw.setPenColor(StdDraw.RED);
+				StdDraw.filledSquare(x+14,y+1,0.5);
+			}
 			
 
 		}
