@@ -108,7 +108,7 @@ public class Bomb {
 		int c = 0;//nb de bombe du joueur 
 		while (it.hasNext()){//parcours la liste de bombe
 			Bomb bo = it.next();
-			if(bo.getOwner_id() == id){
+			if(bo.getOwner_id() == id && bo.getZ() != -1){
 				c++;
 			}
 		}
