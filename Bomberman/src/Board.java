@@ -197,7 +197,12 @@ public  void beginGame(){
 		Iterator<Bomb> it = b.iterator();
 		while (it.hasNext()){//parcours la liste de bombe
 			Bomb bo = it.next();
-			setBomb(bo.getX(), bo.getY());
+			if(bo.getZ() == 0){
+				setBomb(bo.getX(), bo.getY());	
+			}else if(bo.getZ() == -1 && bo.getT_explosion() < System.currentTimeMillis()){
+				this.setArea(bo.getY(), bo.getX(), "green");
+			}
+			
 		}
 	}
 	
@@ -309,6 +314,10 @@ public  void beginGame(){
 			break;
 		case "passe_muraille":
 			StdDraw.setPenColor(StdDraw.PINK);
+			StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3);
+			break;
+		case "mine":
+			StdDraw.setPenColor(StdDraw.BLUE);
 			StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3);
 			break;
 		}

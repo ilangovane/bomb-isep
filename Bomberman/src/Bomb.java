@@ -11,6 +11,7 @@ public class Bomb {
 	public long t_explosion ; // le timestamps de l'explosion
 	public int X; // coordonn�e X de la bombe
 	public int Y; //coordonn�e Y de la bombe
+	public int Z;
 	Set<Bomb> Bombs = new HashSet<Bomb>();
 	public int range = 3; //port�e de la bombe
 	boolean is_red = false;//les bombes rouges peuvent d�truire les murs et les joueurs plac�s derri�re
@@ -23,7 +24,14 @@ public class Bomb {
 		this.Y = line;
 
 	}
-	
+	public Bomb(int id,int line, int column,int z){
+		this.owner_id = id;
+		this.t_explosion = System.currentTimeMillis() + 3000 ; // la bombe disparait apres 3 s
+		this.X = column;
+		this.Y = line;
+		this.Z=z;
+
+	}
 	//lors de la cr�ation de la liste de bombs
 	public Bomb(){
 		
@@ -79,6 +87,14 @@ public class Bomb {
 
 
 
+	public int getZ() {
+		return Z;
+	}
+
+	public void setZ(int z) {
+		Z = z;
+	}
+
 	public Set<Bomb> getBombs() {
 		return Bombs;
 	}
@@ -126,23 +142,43 @@ public class Bomb {
 		this.setBombs(Bombs);
 	}
 	
+	public void addBomb(int id , int x , int y,int z){
+		Bombs.add(new Bomb(id,y,x,z));
+		this.setBombs(Bombs);
+	}
 	/*Lorsque la touche espace ou W est enfonc�e les bombes s'ajoutent � la liste aucun doublons n'est tol�r�
 	 * Un doublons => bombes au m�me emplacement aux coordonn�es (X,Y) d'ou la m�thode this.is_bomb_already_exists(x, y)*/
-	public void putBomb(Board b ,Player J){
-		if(StdDraw.isKeyPressed(KeyEvent.VK_W) && J.getId() == 1){//touche W press�e
+	public void putBomb(Board b ,Player J,Bonus bonus,Animation anim){
+		if(StdDraw.isKeyPressed(KeyEvent.VK_W) && J.getId() == 1 && !b.isWallDestructible((int) J.getY(), (int) J.getX())){//touche W press�e
 			if(!this.is_bomb_already_exists((int)J.getX(), (int)J.getY()) && this.getNbBombs(1) <J.getNb_bomb()){
-				addBomb(J.getId() , (int)J.getX() , (int)J.getY());
+				if(bonus.isJ1_mine_bomb()){
+					addBomb(J.getId() , (int)J.getX() , (int)J.getY() , -1);
+					bonus.setJ1_mine_bomb(false);
+					Animation add = new Animation("mine_under_ground" , (int)J.getX()+0.5f , (int)J.getY()+0.5f , 3000);
+					anim.add_liste(add);
+				
+				}else{
+					addBomb(J.getId() , (int)J.getX() , (int)J.getY());
+					
+				}
+				
 				//b.setBomb(x,y);
 			}
 			
 		}
 		
-		if(StdDraw.isKeyPressed(KeyEvent.VK_SPACE) && J.getId() == 2){//touche ESPACE press�e
+		if(StdDraw.isKeyPressed(KeyEvent.VK_SPACE) && J.getId() == 2&& !b.isWallDestructible((int) J.getY(), (int) J.getX()) ){//touche ESPACE press�e
    		 
 			if(!this.is_bomb_already_exists((int) J.getX(), (int) J.getY()) && this.getNbBombs(2) <J.getNb_bomb()){
-				addBomb(J.getId() , (int) J.getX() , (int)J.getY());
-				
-				//b.setBomb(x,y);
+				if(bonus.isJ2_mine_bomb()){
+					addBomb(J.getId() , (int)J.getX() , (int)J.getY() , -1);
+					bonus.setJ2_mine_bomb(false);
+					Animation add = new Animation("mine_under_ground" , (int)J.getX()+0.5f , (int)J.getY()+0.5f , 3000);
+					anim.add_liste(add);
+			
+				}else{
+					addBomb(J.getId() , (int)J.getX() , (int)J.getY());	
+				}
 				
 			}
 		}
@@ -157,7 +193,7 @@ public class Bomb {
 		while (it.hasNext()){//parcours la liste de bombes
 			Bomb bo = it.next();
 			if((int) bo.getX() == x && (int) bo.getY() == y){
-				exist = true;
+				return true;
 			}
 		
 		}
@@ -165,6 +201,19 @@ public class Bomb {
 		return exist;
 	}
 	
+	public boolean is_there_mine_bomb(int x,int y){
+		Iterator<Bomb> it = Bombs.iterator();
+		boolean exist = false;
+		while (it.hasNext()){//parcours la liste de bombes
+			Bomb bo = it.next();
+			if((int) bo.getX() == x && (int) bo.getY() == y && bo.getZ() == -1){
+				return  true;
+			}
+		
+		}
+		
+		return exist;
+	}
 	/*Renvoie la bombe ayant les coordonn�es suivantes : (X,Y) = (x,y)*/
 	public Bomb find_Bomb(int x , int y){
 		Iterator<Bomb> it = Bombs.iterator();
@@ -181,35 +230,65 @@ public class Bomb {
 		
 	}
 
+	
 	//modifie le timer de l'explosion d'une bombe � "maintenant" 
-	public void explose_bomb_around(Bomb bo , Board b , Player J1 , Player J2,Bonus bonus){
+	public void explose_bomb_around(Bomb bo , Board b , Player J1 , Player J2,Bonus bonus,Animation anim){
 		bo.setT_explosion(System.currentTimeMillis());
 		bo.Bombs.add(bo);
-		bo.explose(b, J1, J2,bonus);
+		bo.explose(b, J1, J2,bonus,anim);
 	}
 	
 
 
 	/*Retire les bombes de la liste lors de l'explosion
 	 * Dï¿½truit les murs jusqu'au mur cassable */
-	public void explose(Board b,Player J1, Player J2, Bonus bonus){ 
+	public void explose(Board b,Player J1, Player J2, Bonus bonus,Animation anim){ 
 		Iterator<Bomb> it = Bombs.iterator();
 		int i;
 		while (it.hasNext()){//parcours la liste de bombe
 
 			Bomb bo = it.next();
+		if(bo.getZ() == -1 && bo.getT_explosion() <System.currentTimeMillis()){//bombe mine
+			b.setArea(bo.getY(), bo.getX(), "green");
+				if(J1.is_at_point(bo.getX(), bo.getY())){
+					bo.setRange(0);
+					explose_bomb_around( bo , b , J1 ,J2,bonus,anim);
+					// le joueur 1 se trouve dans la portï¿½e de la bombe
+					if(J1.isShield()){
+						bonus.setJ1_bomb_range(3);
+						bonus.setJ1_red_bomb(false);
+					}
+
+					J1.kill();
+					b.setArea(bo.getY(), bo.getX(), "green");
+					it.remove();
+				}
+			
+				if(J2.is_at_point(bo.getX(), bo.getY()) ){
+					bo.setRange(0);
+					explose_bomb_around( bo , b , J1 ,J2,bonus,anim);
+					// le Joueur 2 se trouve dans la portï¿½e de la bombe 
+					if(J2.isShield()){
+						bonus.setJ2_bomb_range(3);
+						bonus.setJ1_red_bomb(false);
+					}
+					J2.kill();
+					b.setArea(bo.getY(), bo.getX(), "green");
+					it.remove();
+				}
+				J1.avoid_killing_player_two_times(b , this.getBombs());
+				J2.avoid_killing_player_two_times(b , this.getBombs());
+		}
 		
-			if( bo.getT_explosion() <  System.currentTimeMillis() ){ // le minuteur prend fin
+			if( bo.getT_explosion() <  System.currentTimeMillis() && bo.getZ() == 0){ // le minuteur prend fin
 				i=0;
 				// la bomb a une portï¿½e de 3 et s'arrete au mur incassable dans toute les directions
 				boolean is_red_bomb = bo.isIs_red();
 				int bomb_range = bo.getRange(); //portï¿½e de la bombe de l'objet "bo" qui change ï¿½ chaque boucle
 				while(b.isDestructible(bo.getY()+i, bo.getX()) && i<=bomb_range){// soit case verte un mur cassable
-					StdDraw.picture(bo.getX()+0.5, bo.getY()+i+0.5, "/bomberman_picture/explosion.png",1,1);
-					//StdDraw.show(20);
-					//b.setArea(bo.getY() +i, bo.getX(), "green");// coloration case verte
-					//StdDraw.show(20);
-
+					//StdDraw.picture(bo.getX()+0.5, bo.getY()+i+0.5, "/bomberman_picture/explosion.png",1,1);
+					Animation anim_add = new Animation("explosion" , bo.getX()+0.5f, bo.getY()+i+0.5f , 1000);
+					anim.add_liste(anim_add);
 
 					if(b.isWallDestructible(bo.getY()+i, bo.getX()) ){
 						b.setArea(bo.getY() +i, bo.getX(), "green");// coloration case verte 
@@ -240,7 +319,7 @@ public class Bomb {
 						b.setArea(bo.getY()+i, bo.getX(), "green");
 					}
 					
-					this.explose_bomb_around(this.find_Bomb(bo.getX(),bo.getY()+ i),b, J1, J2,bonus);
+					this.explose_bomb_around(this.find_Bomb(bo.getX(),bo.getY()+ i),b, J1, J2,bonus,anim);
 					i ++;				
 
 				}
@@ -248,10 +327,9 @@ public class Bomb {
 				//commentaire identique
 				i=0;
 				while(b.isDestructible(bo.getY()-i, bo.getX()) && i<=bomb_range){	
-					StdDraw.picture(bo.getX() +0.5, bo.getY() -i+ 0.5, "/bomberman_picture/explosion.png",1,1);
-					//StdDraw.show(20);
-					//b.setArea(bo.getY() -i, bo.getX(), "green");// coloration case verte
-					//StdDraw.show(20);
+					//StdDraw.picture(bo.getX() +0.5, bo.getY() -i+ 0.5, "/bomberman_picture/explosion.png",1,1);
+					Animation anim_add = new Animation("explosion" , bo.getX() +0.5f, bo.getY() -i+ 0.5f , 1000);
+					anim.add_liste(anim_add);
 
 					if(b.isWallDestructible(bo.getY()-i, bo.getX()) ){
 						b.setArea(bo.getY()-i, bo.getX(), "green");
@@ -279,17 +357,16 @@ public class Bomb {
 
 						b.setArea(bo.getY()-i, bo.getX(), "green");
 					}
-					this.explose_bomb_around(this.find_Bomb(bo.getX(),bo.getY()-i),b, J1, J2,bonus);
+					this.explose_bomb_around(this.find_Bomb(bo.getX(),bo.getY()-i),b, J1, J2,bonus,anim);
 					i++;
 					
 				}
 				//commentaire identique
 				i=0;
 				while(b.isDestructible(bo.getY(), bo.getX()+i) && i<=bomb_range){
-					StdDraw.picture(bo.getX()+i +0.5, bo.getY()+0.5,"/bomberman_picture/explosion.png",1,1);
-					//StdDraw.show(20);
-					//b.setArea(bo.getY(), bo.getX()+i, "green");// coloration case verte
-					//StdDraw.show(20);
+					//StdDraw.picture(bo.getX()+i +0.5, bo.getY()+0.5,"/bomberman_picture/explosion.png",1,1);
+					Animation anim_add = new Animation("explosion" , bo.getX()+i +0.5f, bo.getY()+0.5f , 1000);
+					anim.add_liste(anim_add);
 
 					if(b.isWallDestructible(bo.getY(), bo.getX()+i) ){
 						b.setArea(bo.getY(), bo.getX()+i, "green");
@@ -322,19 +399,18 @@ public class Bomb {
 
 						b.setArea(bo.getY(), bo.getX()+i, "green");
 					}
-					this.explose_bomb_around(this.find_Bomb(bo.getX()+i,bo.getY()),b, J1, J2,bonus);
+					this.explose_bomb_around(this.find_Bomb(bo.getX()+i,bo.getY()),b, J1, J2,bonus,anim);
 					i++;
-					//b.setArea(bo.getY(), bo.getX()+i, "green");// coloration case verte
+					
 
 					
 				}
 				//commentaire identique
 				i=0;
 				while(b.isDestructible(bo.getY(), bo.getX()-i) && i<=bomb_range){
-					StdDraw.picture(bo.getX()-i+0.5, bo.getY()+0.5,"/bomberman_picture/explosion.png",1,1);
-					//StdDraw.show(20);
-					//b.setArea(bo.getY(), bo.getX()-i, "green");// coloration case verte
-					
+
+					Animation anim_add = new Animation("explosion" , bo.getX()-i+0.5f, bo.getY()+0.5f , 1000);
+					anim.add_liste(anim_add);
 					if(b.isWallDestructible(bo.getY(), bo.getX()-i) ){
 						b.setArea(bo.getY(), bo.getX()-i, "green");
 						b.setElementMatrice(bo.getY(), bo.getX()-i, 3);
@@ -357,14 +433,14 @@ public class Bomb {
 						bonus.setJ2_red_bomb(false);
 						b.setArea(bo.getY(), bo.getX()-i, "green");
 					}
-					this.explose_bomb_around(this.find_Bomb(bo.getX()-i,bo.getY()),b, J1, J2,bonus);
+					this.explose_bomb_around(this.find_Bomb(bo.getX()-i,bo.getY()),b, J1, J2,bonus,anim);
 					i++;
-					//b.setArea(bo.getY(), bo.getX()-i, "green");// coloration case verte
+				
 					
 
 				
 				}
-				//StdDraw.show(30);
+
 				it.remove(); // bombe supprimï¿½e de la liste Bombs
 				J1.avoid_killing_player_two_times(b , this.getBombs());
 				J2.avoid_killing_player_two_times(b , this.getBombs());

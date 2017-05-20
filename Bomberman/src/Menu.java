@@ -26,21 +26,19 @@ public class Menu {
 	public void setChoixMenu(String choixMenu) {
 		ChoixMenu = choixMenu;
 	}
-	public void game_over(Player J1){
-	       int winner = 0;// le perdant est celui qui a 0 vie
+	public void game_over(int winner){
 	       StdDraw.clear(StdDraw.PRINCETON_ORANGE); // On clear la fenêtre
-	       if(J1.getLife() == 0){
-	    	   winner = 2;
-	    	   StdDraw.picture(25, 8, "/bomberman_picture/p2.png");
-	       }else{
-	    	   winner = 1;
-	    	   StdDraw.picture(25, 8, "/bomberman_picture/p1.png", 8, 11);
-	       }
+
 		Font font = new Font("Tahoma" , Font.ITALIC , 40);
 		StdDraw.setFont(font);
 		StdDraw.picture(15, 13, "/bomberman_picture/gameover.png");
 		StdDraw.setPenColor(StdDraw.BLACK);
-		StdDraw.text(17, 7, "Le joueur " + winner + " à gagné");
+		if(winner >0 ){
+			StdDraw.text(17, 7, "Le joueur " + winner + " à gagné");
+		}else{
+			StdDraw.text(17, 7, "Match null");
+		}
+		
 		StdDraw.show(30);
 		
 		/*BOUTON RETOUR AU MENU PRINCIPAL*/
@@ -144,7 +142,7 @@ public class Menu {
 		
 			}
 	}
-	public void start_game(boolean IA){
+	public int  start_game(boolean IA){
 
         //Dessiner le plateau et les joueurs
 		Board game_board = new Board();
@@ -154,6 +152,7 @@ public class Menu {
         // l'objet contient une liste de Bombes vierge
         Bomb bomb_liste = new Bomb();
         Bonus bonus_liste =  new Bonus();
+        Animation animation_liste = new Animation();
         // Le jeu doit reboucler � l'infini tant que les joueurs ont plus de 0 vie 
         boolean game_over = false;
 		while(!game_over){
@@ -162,12 +161,13 @@ public class Menu {
 	    	   /*G�re les d�placements des joueurs 1 et 2*/
 	        	J1.move(game_board,bomb_liste);
 	        	J2.move(game_board,bomb_liste);
-
+	        	J1.kick(bomb_liste, game_board,animation_liste);
+	        	J2.kick(bomb_liste, game_board,animation_liste);
 	        	/*Chaque joueur peut poser des bombes en appuyant soit sur espace ou sur W*/
-	        	bomb_liste.putBomb(game_board, J1);
-	        	bomb_liste.putBomb(game_board, J2);
+	        	bomb_liste.putBomb(game_board, J1,bonus_liste,animation_liste);
+	        	bomb_liste.putBomb(game_board, J2,bonus_liste,animation_liste);
 	        	/*Les bombes explosent 5 secondes apr�s �tre d�pos�e*/
-	        	bomb_liste.explose(game_board,J1,J2,bonus_liste);
+	        	bomb_liste.explose(game_board,J1,J2,bonus_liste,animation_liste);
 	        	
 	        	/*Les bombes et les bonus sont affich�es sur le plateau de jeu */
 	        	game_board.show_all_bombs(bomb_liste.getBombs());
@@ -179,10 +179,12 @@ public class Menu {
 	        	/*On synchronise les listes bombes et bonus*/
 	        	bonus_liste.synchro(bomb_liste);
 	        	
-	        	J1.kick(bomb_liste, game_board);
+	        	
 	        	/*Les donn�es des joueurs sont affich�s dans la console (nombre de vies et coordonn�es X et Y)*/
 	        	//info(J1,J2);
-	        	
+	        	/*Animation */
+	        	animation_liste.display_effects(game_board);
+	        	StdDraw.show(30);
 	        	/*Mise � jour du boolean game_over*/
 	        	game_over = (J1.getLife() <= 0 ) || (J2.getLife() <= 0); //la partie est fini si la condition vaut TRUE
 	        	game_board.draw_life(J1);
@@ -195,11 +197,21 @@ public class Menu {
 	       //l'identité du gagnant est révelée
 	      this.setChoixMenu("gameover");
 
-	      this.game_over(J1);
 	      
-	      //this.setChoixMenu(temp);
+	      
+	     
 	      game_board.finalize();
-	      //this.finalize();
+	      int winner = 0 ;
+	      if(J1.getLife() == 0 	&& J2.getLife() != 0 ){
+	    	   winner = 2;
+	    	  
+	       }else if(J2.getLife() == 0 && J1.getLife() != 0){
+	    	   winner = 1;
+	    	   
+	       }
+	      this.game_over(winner);
+	      return winner;
+	      
 	}
 	public void finalize(){
 		

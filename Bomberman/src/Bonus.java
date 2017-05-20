@@ -15,6 +15,8 @@ public class Bonus {
 	boolean J1_red_bomb=false;
 	boolean J2_red_bomb=false; 
 	int X, Y;
+	boolean J1_mine_bomb = false;
+	boolean J2_mine_bomb = false;
 	Set<Bonus> Bonus = new HashSet<Bonus>(); // Nouvelle liste de bonus vide 
 	String type_bonus;
 	/*CONSTRUCTEUR*/
@@ -23,7 +25,7 @@ public class Bonus {
 		this.Y= Y;
 		
 		this.type_bonus = random_type(); // renvoie le type au hasard 
-		//this.type_bonus ="speed_down" ;
+		//this.type_bonus ="mine" ;
 	}
 	
 	/*CONSTRUCTEUR POUR LA CREATION DE LA LISTE DE BONUS*/
@@ -108,6 +110,22 @@ public class Bonus {
 
 
 
+	public boolean isJ1_mine_bomb() {
+		return J1_mine_bomb;
+	}
+
+	public void setJ1_mine_bomb(boolean j1_mine_bomb) {
+		J1_mine_bomb = j1_mine_bomb;
+	}
+
+	public boolean isJ2_mine_bomb() {
+		return J2_mine_bomb;
+	}
+
+	public void setJ2_mine_bomb(boolean j2_mine_bomb) {
+		J2_mine_bomb = j2_mine_bomb;
+	}
+
 	public Set<Bonus> getBonus() {
 		return Bonus;
 	}
@@ -150,7 +168,7 @@ public class Bonus {
 	
 		public String random_type(){ // Fonction permettant de choisir le type bonus au hasard 
 		Random rand = new Random();
-		int nombreAleatoire = rand.nextInt(11); // 10 bonus en tout 
+		int nombreAleatoire = rand.nextInt(12); // 10 bonus en tout 
 		switch (nombreAleatoire){
 		case 0:
 			//retourne flamme bleu : portÃ©e -1
@@ -178,6 +196,8 @@ public class Bonus {
 			return "shield";
 		case 10 :
 			return "passe_muraille";
+		case 11 :
+			return "mine";
 		default : 
 			return "vie";
 		}
@@ -257,10 +277,13 @@ public class Bonus {
 				case "passe_muraille":
 					J1.setPasse_muraille(true);
 					break;
+				case "mine" :
+					this.setJ1_mine_bomb(true);
+					break;
 				
 
 				}
-				System.out.println("RANGE AFTER" +this.getJ1_bomb_range() );
+				
 				//je retire la bombe de la liste 
 				it.remove();
 			}
@@ -332,11 +355,13 @@ public class Bonus {
 				case "passe_muraille":
 					J2.setPasse_muraille(true);
 					break;
+				case "mine" :
+					this.setJ2_mine_bomb(true);
+					break;
 				
 
 			}
-				System.out.println("RANGE AFTER" +this.getJ2_bomb_range() );
-				//je retire la bombe de la liste 
+				
 				it.remove();
 			}
 		}

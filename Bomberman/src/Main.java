@@ -10,7 +10,7 @@ public class Main {
 		Menu menu = new Menu();
 		Player j1 = new Player(1);
 		Audio audio = new Audio();
-		
+		int i=0;
 		while(menu.getChoixMenu() != "exit"){
 			//audio();
 	       switch(menu.getChoixMenu()){
@@ -18,13 +18,13 @@ public class Main {
 	    	   	menu.menu();
 	    	   	break;
 	       case "gameover":
-	    	   	menu.game_over(j1);
+	    	   	menu.game_over(i);//attention au cas ou il y a match null 
 	    	   	break;
 	       case "multiplayers":
-	        	menu.start_game(false);//pas de IA
+	        	i = menu.start_game(false);//pas de IA
 	        	break;
 	       case "IA":
-	        	menu.start_game(true);//IA presente
+	        	i = menu.start_game(true);//IA presente
 	        	break;
 	       case "instructions":
 	        	System.out.println("INSTRUCTIONS");
@@ -41,9 +41,6 @@ public class Main {
 		   System.exit(0);		// On ferme la fenetre 
 	}
 	
-	public static void info(Player J1 , Player J2){
-		System.out.println("Joueur 1  vie : " + J1.getLife() + " | X : "+ J1.getX() + " | Y : "+ J1.getY());
-		System.out.println("Joueur 2  vie : " + J2.getLife() + " | X : "+ J2.getX() + " | Y : "+ J2.getY());
-	}
+
 		
 }

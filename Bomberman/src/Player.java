@@ -126,7 +126,7 @@ public class Player {
 		//commande clavier du joueur 1 
 		if(this.id == 1){
             if(StdDraw.isKeyPressed(KeyEvent.VK_S)) {//touche S press�e
-		           	if(	this.go_through_destructible_wall( b , (int) this.getX(), (int) this.getY() - 1) || b.isGrass((int)this.getY()-1 , (int)this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()-1)){
+		           	if(bo.is_there_mine_bomb((int) this.getX(),(int) this.getY()-1)	|| this.go_through_destructible_wall( b , (int) this.getX(), (int) this.getY() - 1) || b.isGrass((int)this.getY()-1 , (int)this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()-1)){
 
 		        		b.repaint((int) this.getY(), (int) this.getX());
 		        		this.setY(this.getY()- dY);
@@ -135,7 +135,7 @@ public class Player {
 		        	}
           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Q)){//touche Q press�e
           		 
-	             	if(this.go_through_destructible_wall( b , (int) this.getX()-1, (int) this.getY()) || b.isGrass((int) this.getY(), (int) this.getX() -1) && !bo.is_bomb_already_exists( (int)this.getX()-1, (int)this.getY())){
+	             	if(bo.is_there_mine_bomb((int) this.getX()-1,(int) this.getY())	|| this.go_through_destructible_wall( b , (int) this.getX()-1, (int) this.getY()) || b.isGrass((int) this.getY(), (int) this.getX() -1) && !bo.is_bomb_already_exists( (int)this.getX()-1, (int)this.getY())){
 	          
 	             		b.repaint((int) this.getY(), (int) this.getX());
 	            		this.setX(this.getX()-dX);	
@@ -143,14 +143,14 @@ public class Player {
 	            	}
           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_D)){//touche D press�e
           		
-	         		if(this.go_through_destructible_wall( b , (int) this.getX()+1, (int) this.getY()) || b.isGrass((int) this.getY(), (int) this.getX()+1) && !bo.is_bomb_already_exists( (int)this.getX()+1, (int)this.getY())){
+	         		if(bo.is_there_mine_bomb((int) this.getX()+1,(int) this.getY())	|| this.go_through_destructible_wall( b , (int) this.getX()+1, (int) this.getY()) || b.isGrass((int) this.getY(), (int) this.getX()+1) && !bo.is_bomb_already_exists( (int)this.getX()+1, (int)this.getY())){
 	         		
 	         			b.repaint((int) this.getY() , (int) this.getX());
 	            		this.setX(this.getX()+dX);
 	            		
 	            	}
          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Z)){//touche Z press�e
-	             	if(this.go_through_destructible_wall( b , (int) this.getX(), (int) this.getY() + 1) || b.isGrass((int) this.getY()+1, (int) this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()+1)){
+	             	if(bo.is_there_mine_bomb((int) this.getX(),(int) this.getY()+1)	|| this.go_through_destructible_wall( b , (int) this.getX(), (int) this.getY() + 1) || b.isGrass((int) this.getY()+1, (int) this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()+1)){
 	             		
 	             		b.repaint((int) this.getY(), (int) this.getX());
 	            		this.setY(this.getY()+dY);
@@ -164,7 +164,7 @@ public class Player {
 			
             if(StdDraw.isKeyPressed(KeyEvent.VK_DOWN )) {//touche BAS press�e
             	
-            		if(	this.go_through_destructible_wall( b , (int) this.getX(), (int) this.getY() - 1) || b.isGrass((int)this.getY()-1 , (int)this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()-1)){
+            		if(	bo.is_there_mine_bomb((int) this.getX(),(int) this.getY()-1)	|| this.go_through_destructible_wall( b , (int) this.getX(), (int) this.getY() - 1) || b.isGrass((int)this.getY()-1 , (int)this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()-1)){
 	     
             			b.repaint((int) this.getY() , (int) this.getX());
 	            		this.setY(this.getY()-dY);
@@ -174,7 +174,7 @@ public class Player {
             		
            	}else if(StdDraw.isKeyPressed(KeyEvent.VK_LEFT )){//touche GAUCHE press�e
            
-	            	if(this.go_through_destructible_wall( b , (int) this.getX()-1, (int) this.getY() ) || b.isGrass((int) this.getY(), (int) this.getX() -1) && !bo.is_bomb_already_exists( (int)this.getX()-1, (int)this.getY())){
+	            	if(bo.is_there_mine_bomb((int) this.getX()-1,(int) this.getY())	||  this.go_through_destructible_wall( b , (int) this.getX()-1, (int) this.getY() ) || b.isGrass((int) this.getY(), (int) this.getX() -1) && !bo.is_bomb_already_exists( (int)this.getX()-1, (int)this.getY())){
 	           
 	            		b.repaint((int) this.getY(), (int) this.getX());
 	            		this.setX(this.getX()-dX);	
@@ -183,7 +183,7 @@ public class Player {
            		 
            	}else if(StdDraw.isKeyPressed(KeyEvent.VK_RIGHT)){//touche DROITE press�e
           		
-	             	if(this.go_through_destructible_wall( b , (int) this.getX() + 1, (int) this.getY() ) || b.isGrass((int) this.getY(), (int) this.getX()+1) && !bo.is_bomb_already_exists( (int)this.getX()+1, (int)this.getY())){
+	             	if(bo.is_there_mine_bomb((int) this.getX()+1,(int) this.getY())	||  this.go_through_destructible_wall( b , (int) this.getX() + 1, (int) this.getY() ) || b.isGrass((int) this.getY(), (int) this.getX()+1) && !bo.is_bomb_already_exists( (int)this.getX()+1, (int)this.getY())){
 	             	
 	             		b.repaint((int) this.getY(), (int) this.getX());
 	            		this.setX(this.getX()+dX);
@@ -191,7 +191,7 @@ public class Player {
 	            	}
           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_UP)){//touche HAUT press�e
           	
-	             	if(this.go_through_destructible_wall( b , (int) this.getX(), (int) this.getY() + 1) || b.isGrass((int) this.getY()+1, (int) this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()+1)){
+	             	if(bo.is_there_mine_bomb((int) this.getX(),(int) this.getY()+1)	||  this.go_through_destructible_wall( b , (int) this.getX(), (int) this.getY() + 1) || b.isGrass((int) this.getY()+1, (int) this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()+1)){
 	             	
 	             		b.repaint((int) this.getY(), (int) this.getX());
 	            		this.setY(this.getY()+dY);
@@ -286,7 +286,7 @@ public class Player {
 		return false;
 	}
 	
-	public void kick(Bomb bombe,Board b){
+	public void kick(Bomb bombe,Board b,Animation anim){
 		if(StdDraw.isKeyPressed(KeyEvent.VK_X) && this.getId() == 1){
 			
 	           if(StdDraw.isKeyPressed(KeyEvent.VK_S)) {//touche S press�e
@@ -298,7 +298,9 @@ public class Player {
 	            		int y = bo.getY();
 	            		while(b.isGrass(x, y-1)){
 	            			y--;
-	            			
+	            			Animation tir = new Animation("football" , x+0.5f , y+0.5f , 500);
+	            			anim.add_liste(tir);
+	            			anim.display_effects(b);
 	            		}
 	            		bo.setX(x);
 	            		bo.setY(y);
@@ -312,7 +314,9 @@ public class Player {
 		            		int y = bo.getY();
 		            		while(b.isGrass(x-1, y)){
 		            			x--;
-		            			
+		            			Animation tir = new Animation("football" , x+0.5f , y+0.5f , 500);
+		            			anim.add_liste(tir);
+		            			anim.display_effects(b);
 		            		}
 		            		bo.setX(x);
 		            		bo.setY(y);
@@ -327,7 +331,9 @@ public class Player {
 		            		int y = bo.getY();
 		            		while(b.isGrass(x+1, y)){
 		            			x++;
-		            			
+		            			Animation tir = new Animation("football" , x+0.5f , y+0.5f , 500);
+		            			anim.add_liste(tir);
+		            			anim.display_effects(b);
 		            		}
 		            		bo.setX(x);
 		            		bo.setY(y);
@@ -342,15 +348,77 @@ public class Player {
 		            		int y = bo.getY();
 		            		while(b.isGrass(x, y+1)){
 		            			y++;
-		            			
+		            			Animation tir = new Animation("football" , x+0.5f , y+0.5f , 500);
+		            			anim.add_liste(tir);
+		            			anim.display_effects(b);
 		            		}
 		            		bo.setX(x);
 		            		bo.setY(y);
 		            	}
 	         	}
 			
-		}else if(StdDraw.isKeyPressed(KeyEvent.VK_3) && this.getId() == 2){// touche 3 enfonc�e
+		}else if(StdDraw.isKeyPressed(KeyEvent.VK_M) && this.getId() == 2){// touche 3 enfonc�e
 			
+	           if(StdDraw.isKeyPressed(KeyEvent.VK_DOWN)) {
+	        	   
+	            	Bomb bo = bombe.find_Bomb((int) this.getX(), (int) this.getY()-1);
+	            	if(bo.getX() > 0 && bo.getY() > 0 ){
+	            		System.out.println("BOY BOW"); 
+	            		int x = bo.getX();
+	            		int y = bo.getY();
+	            		while(b.isGrass(x, y-1)){
+	            			y--;
+	            			System.out.println("BOY BOWDJKDJQKD"); 
+	            			
+	            		}
+	            		bo.setX(x);
+	            		bo.setY(y);
+	            	}
+	          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_LEFT)){
+	          		
+		            	Bomb bo = bombe.find_Bomb((int) this.getX()-1, (int) this.getY());
+		            	if(bo.getX() > 0 && bo.getY() > 0 ){
+		            	
+		            		int x = bo.getX();
+		            		int y = bo.getY();
+		            		while(b.isGrass(x-1, y)){
+		            			x--;
+		            			
+		            		}
+		            		bo.setX(x);
+		            		bo.setY(y);
+		            	}
+
+	          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_RIGHT)){
+		        	
+		            	Bomb bo = bombe.find_Bomb((int) this.getX()+1, (int) this.getY());
+		            	if(bo.getX()+1 > 0 && bo.getY() > 0 ){
+		            	
+		            		int x = bo.getX();
+		            		int y = bo.getY();
+		            		while(b.isGrass(x+1, y)){
+		            			x++;
+		            			
+		            		}
+		            		bo.setX(x);
+		            		bo.setY(y);
+		            	}
+
+	         	}else if(StdDraw.isKeyPressed(KeyEvent.VK_UP)){
+		   
+		            	Bomb bo = bombe.find_Bomb((int) this.getX(), (int) this.getY()+1);
+		            	if(bo.getX() > 0 && bo.getY() > 0 ){
+		         
+		            		int x = bo.getX();
+		            		int y = bo.getY();
+		            		while(b.isGrass(x, y+1)){
+		            			y++;
+		            			
+		            		}
+		            		bo.setX(x);
+		            		bo.setY(y);
+		            	}
+	         	}
 		}
 	}
 
