@@ -13,7 +13,7 @@ public class Animation {
 	float y;
 	long end;
 	
-	/*Comme la liste de bombe et de bonus => une liste dédiée aux Animation*/
+	/*Comme la liste de bombe et de bonus => une liste dï¿½diï¿½e aux Animation*/
 	Set<Animation> liste = new HashSet<Animation>();
 	
 	public Animation(String type , float x , float y , int d){
@@ -73,8 +73,9 @@ public class Animation {
 				StdDraw.filledCircle(anim.getX(), anim.getY(), 0.3);
 				
 			}else if(anim.getType() == "football" ){
-				StdDraw.setPenColor(StdDraw.WHITE);
-				StdDraw.filledCircle(anim.getX(), anim.getY(), 0.3);
+				//StdDraw.setPenColor(StdDraw.WHITE);
+				//StdDraw.filledCircle(anim.getX(), anim.getY(), 0.3);
+				StdDraw.picture(anim.getX(), anim.getY(), "/bomberman_picture/ball.png",1,1);
 				
 			}
 			

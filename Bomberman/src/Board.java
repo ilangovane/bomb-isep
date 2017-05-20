@@ -313,16 +313,19 @@ public  void beginGame(){
 			//StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3);
 			break;
 		case "passe_muraille":
-			StdDraw.setPenColor(StdDraw.PINK);
-			StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3);
+			//StdDraw.setPenColor(StdDraw.PINK);
+			//StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3);
+			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/ghost.png", 1,  1);
 			break;
 		case "mine":
-			StdDraw.setPenColor(StdDraw.BLUE);
-			StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3);
+			//StdDraw.setPenColor(StdDraw.BLUE);
+			//StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3);
+			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/mine.png", 1,  1);
 			break;
 		case "kick" :
-			StdDraw.setPenColor(StdDraw.YELLOW);
-			StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3);
+			//StdDraw.setPenColor(StdDraw.YELLOW);
+			//StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3);
+			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/kick.png", 1,  1);
 			break;
 		}
 		
