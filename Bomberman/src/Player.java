@@ -296,7 +296,7 @@ public class Player {
 	            		
 	            		int x = bo.getX();
 	            		int y = bo.getY();
-	            		while(b.isGrass(x, y-1)){
+	            		while(b.isGrass(y-1,x)){
 	            			y--;
 	            			Animation tir = new Animation("football" , x+0.5f , y+0.5f , 500);
 	            			anim.add_liste(tir);
@@ -312,7 +312,7 @@ public class Player {
 		            	
 		            		int x = bo.getX();
 		            		int y = bo.getY();
-		            		while(b.isGrass(x-1, y)){
+		            		while(b.isGrass( y,x-1)){
 		            			x--;
 		            			Animation tir = new Animation("football" , x+0.5f , y+0.5f , 500);
 		            			anim.add_liste(tir);
@@ -329,7 +329,7 @@ public class Player {
 		            	
 		            		int x = bo.getX();
 		            		int y = bo.getY();
-		            		while(b.isGrass(x+1, y)){
+		            		while(b.isGrass(y,x+1)){
 		            			x++;
 		            			Animation tir = new Animation("football" , x+0.5f , y+0.5f , 500);
 		            			anim.add_liste(tir);
@@ -346,7 +346,7 @@ public class Player {
 		         
 		            		int x = bo.getX();
 		            		int y = bo.getY();
-		            		while(b.isGrass(x, y+1)){
+		            		while(b.isGrass(y+1,x)){
 		            			y++;
 		            			Animation tir = new Animation("football" , x+0.5f , y+0.5f , 500);
 		            			anim.add_liste(tir);
@@ -366,7 +366,7 @@ public class Player {
 	            		System.out.println("BOY BOW"); 
 	            		int x = bo.getX();
 	            		int y = bo.getY();
-	            		while(b.isGrass(x, y-1)){
+	            		while(b.isGrass(y-1,x)){
 	            			y--;
 	            			System.out.println("BOY BOWDJKDJQKD"); 
 	            			
@@ -381,7 +381,7 @@ public class Player {
 		            	
 		            		int x = bo.getX();
 		            		int y = bo.getY();
-		            		while(b.isGrass(x-1, y)){
+		            		while(b.isGrass(y,x-1)){
 		            			x--;
 		            			
 		            		}
@@ -396,7 +396,7 @@ public class Player {
 		            	
 		            		int x = bo.getX();
 		            		int y = bo.getY();
-		            		while(b.isGrass(x+1, y)){
+		            		while(b.isGrass(y,x+1)){
 		            			x++;
 		            			
 		            		}
@@ -411,7 +411,7 @@ public class Player {
 		         
 		            		int x = bo.getX();
 		            		int y = bo.getY();
-		            		while(b.isGrass(x, y+1)){
+		            		while(b.isGrass(y+1,x)){
 		            			y++;
 		            			
 		            		}
