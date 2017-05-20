@@ -262,6 +262,8 @@ public class Bomb {
 					J1.kill();
 					b.setArea(bo.getY(), bo.getX(), "green");
 					it.remove();
+					J2.setX(1);
+					J2.setY(1);
 				}
 			
 				if(J2.is_at_point(bo.getX(), bo.getY()) ){
@@ -275,9 +277,10 @@ public class Bomb {
 					J2.kill();
 					b.setArea(bo.getY(), bo.getX(), "green");
 					it.remove();
+					J2.setX(19);
+					J2.setY(15);
 				}
-				J1.avoid_killing_player_two_times(b , this.getBombs());
-				J2.avoid_killing_player_two_times(b , this.getBombs());
+
 		}
 		
 			if( bo.getT_explosion() <  System.currentTimeMillis() && bo.getZ() == 0){ // le minuteur prend fin
