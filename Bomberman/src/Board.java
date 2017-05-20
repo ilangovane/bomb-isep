@@ -325,7 +325,7 @@ public  void beginGame(){
 	}
 	
 	public void draw_life(Player J){
-		Font font = new Font("Arial" , Font.BOLD , 30);
+		Font font = new Font("Bomberman" , Font.BOLD , 30);
 		StdDraw.setFont(font);
 		if(J.getId() == 1){
 				StdDraw.setPenColor(StdDraw.BLACK);

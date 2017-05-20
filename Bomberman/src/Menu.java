@@ -29,7 +29,7 @@ public class Menu {
 	public void game_over(int winner){
 	       StdDraw.clear(StdDraw.PRINCETON_ORANGE); // On clear la fenêtre
 
-		Font font = new Font("Tahoma" , Font.ITALIC , 40);
+		Font font = new Font("Bomberman" , Font.ITALIC , 40);
 		StdDraw.setFont(font);
 		StdDraw.picture(15, 13, "/bomberman_picture/gameover.png");
 		StdDraw.setPenColor(StdDraw.BLACK);
@@ -64,7 +64,7 @@ public class Menu {
 	public void displayRect(float colonne, float ligne, int largeur,float hauteur, String contenu){
 		StdDraw.setPenColor(StdDraw.BLACK);								//  Couleur noir pour l'écriture
 		StdDraw.filledRectangle(colonne, ligne, largeur, hauteur);		//  Dessine un rectangle
-		Font font = new Font("Tahoma", Font.ROMAN_BASELINE, 28);		//	Initialisation de la police
+		Font font = new Font("Bomberman", Font.ROMAN_BASELINE, 28);		//	Initialisation de la police
 		StdDraw.setFont(font);
 		StdDraw.setPenColor(StdDraw.BOOK_LIGHT_BLUE);					//  Couleur pour l'écriture
 		StdDraw.text(colonne, ligne, contenu);
@@ -73,7 +73,7 @@ public class Menu {
 	public void displayEffect(float colonne, float ligne, int largeur,float hauteur, String contenu){
 		StdDraw.setPenColor(StdDraw.LIGHT_GRAY);						//  Couleur noir pour l'écriture
 		StdDraw.filledRectangle(colonne, ligne, largeur, hauteur);		//  Dessine un rectangle
-		Font font = new Font("Tahoma", Font.ITALIC, 20);//	Initialisation de la police
+		Font font = new Font("Bomberman", Font.ITALIC, 20);//	Initialisation de la police
 		StdDraw.setFont(font);
 		StdDraw.setPenColor(StdDraw.RED);			//  Couleur pour l'écriture
 		StdDraw.text(colonne, ligne, contenu);
