@@ -263,6 +263,7 @@ public class Bomb {
 					b.setArea(bo.getY(), bo.getX(), "green");
 					it.remove();
 					if(J1.getX() == -1 && J1.getY() == -1){
+						anim.add_liste(new Animation("dead" ,bo.getX()+0.5f , bo.getY()+0.5f ,  1000 ));
 						J1.setX(1);
 						J1.setY(1);	
 					}
@@ -281,6 +282,7 @@ public class Bomb {
 					b.setArea(bo.getY(), bo.getX(), "green");
 					it.remove();
 					if(J2.getX() == -1 && J2.getY() == -1){// du  a la methode kill()
+						anim.add_liste(new Animation("dead" ,bo.getX() +0.5f , bo.getY()+0.5f ,  1000 ));
 						J2.setX(19);
 						J2.setY(15);
 					}

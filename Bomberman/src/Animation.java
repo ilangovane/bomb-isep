@@ -77,6 +77,8 @@ public class Animation {
 				//StdDraw.filledCircle(anim.getX(), anim.getY(), 0.3);
 				StdDraw.picture(anim.getX(), anim.getY(), "/bomberman_picture/ball.png",1,1);
 				
+			}else if(anim.getType() == "dead"){
+				StdDraw.picture(anim.getX(), anim.getY(), "/bomberman_picture/death.png",1,1);
 			}
 			
 			if(anim.getEnd()<System.currentTimeMillis()){
