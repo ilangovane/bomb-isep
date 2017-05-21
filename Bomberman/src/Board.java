@@ -351,11 +351,11 @@ public  void beginGame(){
 			StdDraw.picture(x+4, y, "/bomberman_picture/bomb.png", 0.8, 0.8);
 			StdDraw.text(x+4, y+1, Integer.toString(bombe.getNbBombs(1)) + "/" + Integer.toString(J1.getNb_bomb()) );
 			
-			StdDraw.picture(x+6, y, "/bomberman_picture/morebomb.png", 0.8, 0.8);
+			StdDraw.picture(x+6, y, "/bomberman_picture/range.png");
 			StdDraw.text(x+6, y+1,  Integer.toString(bonus.getJ1_bomb_range()));
-			int  speed = (int) (J1.getdX() % 0.2f + 1);
+			float  speed = J1.getdX() / 0.2f ;
 			StdDraw.picture(x+8, y, "/bomberman_picture/speed.png"   );
-			StdDraw.text(x+8, y+1, Integer.toString(speed)   );
+			StdDraw.text(x+8, y+1, Float.toString(speed)   );
 			
 			StdDraw.picture(x+10, y, "/bomberman_picture/ghost.png",0.8,0.8);
 	
@@ -421,11 +421,11 @@ public  void beginGame(){
 			StdDraw.picture(x+4, y, "/bomberman_picture/bomb.png", 0.8, 0.8);
 			StdDraw.text(x+4, y+1, Integer.toString(bombe.getNbBombs(2)) + "/" + Integer.toString(J2.getNb_bomb()) );
 			
-			StdDraw.picture(x+6, y, "/bomberman_picture/morebomb.png", 0.8, 0.8);
+			StdDraw.picture(x+6, y, "/bomberman_picture/range.png");
 			StdDraw.text(x+6, y+1,  Integer.toString(bonus.getJ2_bomb_range()));
-			int  speed = (int) (J2.getdX() % 0.2f + 1);
+			float  speed = J2.getdX() / 0.2f ;
 			StdDraw.picture(x+8, y, "/bomberman_picture/speed.png"   );
-			StdDraw.text(x+8, y+1, Integer.toString(speed)   );
+			StdDraw.text(x+8, y+1, Float.toString(speed)   );
 			
 			StdDraw.picture(x+10, y, "/bomberman_picture/ghost.png",0.8,0.8);
 	
