@@ -262,8 +262,11 @@ public class Bomb {
 					J1.kill();
 					b.setArea(bo.getY(), bo.getX(), "green");
 					it.remove();
-					J2.setX(1);
-					J2.setY(1);
+					if(J1.getX() == -1 && J1.getY() == -1){
+						J1.setX(1);
+						J1.setY(1);	
+					}
+
 				}
 			
 				if(J2.is_at_point(bo.getX(), bo.getY()) ){
@@ -277,8 +280,11 @@ public class Bomb {
 					J2.kill();
 					b.setArea(bo.getY(), bo.getX(), "green");
 					it.remove();
-					J2.setX(19);
-					J2.setY(15);
+					if(J2.getX() == -1 && J2.getY() == -1){// du  a la methode kill()
+						J2.setX(19);
+						J2.setY(15);
+					}
+
 				}
 
 		}
