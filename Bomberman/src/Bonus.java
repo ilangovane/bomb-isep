@@ -10,22 +10,22 @@ public class Bonus {
 	 * Déclaration des attributs 
 	 * 
 	 * */
-	int J1_bomb_range=3;
-	int J2_bomb_range=3; // portée des joueurs 
-	boolean J1_red_bomb=false;
-	boolean J2_red_bomb=false; 
-	int X, Y;
-	boolean J1_mine_bomb = false;
-	boolean J2_mine_bomb = false;
-	Set<Bonus> Bonus = new HashSet<Bonus>(); // Nouvelle liste de bonus vide 
-	String type_bonus;
+	private int J1_bomb_range=3;
+	private int J2_bomb_range=3; // portée des joueurs 
+	private boolean J1_red_bomb=false;
+	private boolean J2_red_bomb=false; 
+	private int X, Y;
+	private boolean J1_mine_bomb = false;
+	private boolean J2_mine_bomb = false;
+	private Set<Bonus> Bonus = new HashSet<Bonus>(); // Nouvelle liste de bonus vide 
+	private String type_bonus;
 	/*CONSTRUCTEUR*/
 	public Bonus(int X, int Y){
 		this.X= X;
 		this.Y= Y;
 		
 		this.type_bonus = random_type(); // renvoie le type au hasard 
-		this.type_bonus ="mine" ;
+		//this.type_bonus ="mine" ;
 	}
 	
 	/*CONSTRUCTEUR POUR LA CREATION DE LA LISTE DE BONUS*/
@@ -159,7 +159,7 @@ public class Bonus {
 		Random rand = new Random();
 		
 		int nombreAleatoire = rand.nextInt(5); //Cette méthode va revoyer des nombres entre 0 et 4 donc 5 valeurs 
-		nombreAleatoire = 2;
+		//nombreAleatoire = 2;
 		if (nombreAleatoire == 2){ // Si 1 valeurs sur 5 est trouvé
 			return true; // alors on a une prob de 20%
 		}

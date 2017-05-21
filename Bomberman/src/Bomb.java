@@ -7,14 +7,14 @@ import edu.princeton.cs.introcs.StdDraw;
 
 
 public class Bomb {
-	public int owner_id; // id de celui qui a d�pos� la bombe id:1<=>J1 | id:2<=>J2 | id:3 <=> IA
-	public long t_explosion ; // le timestamps de l'explosion
-	public int X; // coordonn�e X de la bombe
-	public int Y; //coordonn�e Y de la bombe
-	public int Z;
-	Set<Bomb> Bombs = new HashSet<Bomb>();
-	public int range = 3; //port�e de la bombe
-	boolean is_red = false;//les bombes rouges peuvent d�truire les murs et les joueurs plac�s derri�re
+	private int owner_id; // id de celui qui a d�pos� la bombe id:1<=>J1 | id:2<=>J2 | id:3 <=> IA
+	private long t_explosion ; // le timestamps de l'explosion
+	private int X; // coordonn�e X de la bombe
+	private int Y; //coordonn�e Y de la bombe
+	private int Z;
+	private Set<Bomb> Bombs = new HashSet<Bomb>();
+	private int range = 3; //port�e de la bombe
+	private boolean is_red = false;//les bombes rouges peuvent d�truire les murs et les joueurs plac�s derri�re
 	//choix de deux Constructeurs
 	//lors de la cr�ation d'une bombe
 	public Bomb(int id,int line, int column){

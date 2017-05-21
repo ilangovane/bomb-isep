@@ -8,13 +8,13 @@ public class Animation {
 	/*
 	 * Une animation a un type, une coordonnee (X,Y) , une duree d'expiration
 	 * */
-	String type;
-	float x;
-	float y;
-	long end;
+	private String type;
+	private float x;
+	private float y;
+	private long end;
 	
 	/*Comme la liste de bombe et de bonus => une liste d�di�e aux Animation*/
-	Set<Animation> liste = new HashSet<Animation>();
+	private Set<Animation> liste = new HashSet<Animation>();
 	
 	public Animation(String type , float x , float y , int d){
 		this.type = type;

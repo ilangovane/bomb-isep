@@ -11,11 +11,11 @@ String cap ;
 	}
 	
 	public void move(Board b,Bomb bo){
-	if(cap == "D"){
+	/*if(cap == "D"){
 	 	if(	this.go_through_destructible_wall( b , (int) this.getX(), (int) this.getY() - 1) || b.isGrass((int)this.getY()-1 , (int)this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()-1)){
 
     		b.repaint((int) this.getY(), (int) this.getX());
-    		this.setY(this.getY()- dY);
+    		this.setY(this.getY()- this.getdY());
     		
     	
     	}
@@ -40,7 +40,7 @@ String cap ;
     		this.setY(this.getY()+dY);
     		
     	}
-	}
+	}*/
           
   
   		 

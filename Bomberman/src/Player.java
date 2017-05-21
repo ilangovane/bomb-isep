@@ -5,16 +5,16 @@ import java.util.Set;
 import edu.princeton.cs.introcs.StdDraw;
 
 public class Player {
-	int id;//identifiant 
-	int life = 3;//nombre de vie restant
-	float X ; // position X (varie de 0 � 20)
- 	float Y ; // position Y (varie de 0 � 16)
-	float dX = 0.2f ; // le plus petit d�placement horizontal (d�finit la vitesse)
-	float dY = 0.2f ; // le plus petit d�placement vertical (d�finit la vitesse)
-	int nb_bomb = 3;// nombre de bombes que le joueur peut poser sur le terrain sumultanement
-	boolean shield;//indique si le joueur poss�de le bonus "Bouclier � usage unique"
-	boolean passe_muraille;
-	boolean kick;
+	private int id;//identifiant 
+	private int life = 3;//nombre de vie restant
+	private float X ; // position X (varie de 0 � 20)
+	private float Y ; // position Y (varie de 0 � 16)
+	private float dX = 0.2f ; // le plus petit d�placement horizontal (d�finit la vitesse)
+	private float dY = 0.2f ; // le plus petit d�placement vertical (d�finit la vitesse)
+	private int nb_bomb = 3;// nombre de bombes que le joueur peut poser sur le terrain sumultanement
+	private boolean shield;//indique si le joueur poss�de le bonus "Bouclier � usage unique"
+	private boolean passe_muraille;
+	private boolean kick;
 	Player(int id){
 		/* Si id vaut 1 il s'agit du joueur 1 , si 2 le joueur 2 si 3 une IA*/
 		this.id = id;

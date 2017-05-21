@@ -12,7 +12,7 @@ public class Board {
 	 * 
 	 * 17 lignes et 21 colonnes
 	 * */
-	int[][] matrice = new int[17][21]; 
+	private int[][] matrice = new int[17][21]; 
 
 
 	
