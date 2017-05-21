@@ -319,6 +319,10 @@ public class Bomb {
 
 						J1.kill();
 						b.setArea(bo.getY()+i, bo.getX(), "green");
+						
+						if(J1.getX() == -1 && J1.getY() == -1){// du  a la methode kill()
+							anim.add_liste(new Animation("dead" ,bo.getX()+i +0.5f , bo.getY()+0.5f ,  1000 ));
+						}
 					}
 					if(J2.is_at_point(bo.getX(), bo.getY()+i) ){
 						// le Joueur 2 se trouve dans la portï¿½e de la bombe 
@@ -328,6 +332,9 @@ public class Bomb {
 						}
 						J2.kill();
 						b.setArea(bo.getY()+i, bo.getX(), "green");
+						if(J2.getX() == -1 && J2.getY() == -1){// du  a la methode kill()
+							anim.add_liste(new Animation("dead" ,bo.getX() +0.5f , bo.getY()+0.5f+i ,  1000 ));
+						}
 					}
 					
 					this.explose_bomb_around(this.find_Bomb(bo.getX(),bo.getY()+ i),b, J1, J2,bonus,anim);
@@ -358,6 +365,9 @@ public class Bomb {
 						}
 						J1.kill();
 						b.setArea(bo.getY()-i, bo.getX(), "green");
+						if(J1.getX() == -1 && J1.getY() == -1){// du  a la methode kill()
+							anim.add_liste(new Animation("dead" ,bo.getX() +0.5f , bo.getY()+0.5f-i ,  1000 ));
+						}
 					}
 					if(J2.is_at_point(bo.getX(), bo.getY()-i) ){
 						if(J2.isShield()){
@@ -367,6 +377,9 @@ public class Bomb {
 						J2.kill();
 
 						b.setArea(bo.getY()-i, bo.getX(), "green");
+						if(J2.getX() == -1 && J2.getY() == -1){// du  a la methode kill()
+							anim.add_liste(new Animation("dead" ,bo.getX() +0.5f , bo.getY()+0.5f-i ,  1000 ));
+						}
 					}
 					this.explose_bomb_around(this.find_Bomb(bo.getX(),bo.getY()-i),b, J1, J2,bonus,anim);
 					i++;
@@ -400,6 +413,9 @@ public class Bomb {
 						J1.kill();
 						
 						b.setArea(bo.getY(), bo.getX()+i, "green");
+						if(J1.getX() == -1 && J1.getY() == -1){// du  a la methode kill()
+							anim.add_liste(new Animation("dead" ,bo.getX() +0.5f+i , bo.getY()+0.5f ,  1000 ));
+						}
 					}
 					if(J2.is_at_point(bo.getX()+i, bo.getY()) ){
 						if(J2.isShield()){
@@ -409,6 +425,9 @@ public class Bomb {
 						J2.kill();
 
 						b.setArea(bo.getY(), bo.getX()+i, "green");
+						if(J1.getX() == -1 && J1.getY() == -1){// du  a la methode kill()
+							anim.add_liste(new Animation("dead" ,bo.getX() +0.5f + i , bo.getY()+0.5f ,  1000 ));
+						}
 					}
 					this.explose_bomb_around(this.find_Bomb(bo.getX()+i,bo.getY()),b, J1, J2,bonus,anim);
 					i++;
@@ -437,12 +456,18 @@ public class Bomb {
 						bonus.setJ1_bomb_range(3);
 						bonus.setJ1_red_bomb(false);
 						b.setArea(bo.getY(), bo.getX()-i, "green");
+						if(J1.getX() == -1 && J1.getY() == -1){// du  a la methode kill()
+							anim.add_liste(new Animation("dead" ,bo.getX() +0.5f -i , bo.getY()+0.5f ,  1000 ));
+						}
 					}
 					if(J2.is_at_point(bo.getX()-i, bo.getY()) ){
 						J2.kill();
 						bonus.setJ2_bomb_range(3);
 						bonus.setJ2_red_bomb(false);
 						b.setArea(bo.getY(), bo.getX()-i, "green");
+						if(J1.getX() == -1 && J1.getY() == -1){// du  a la methode kill()
+							anim.add_liste(new Animation("dead" ,bo.getX() +0.5f -i, bo.getY()+0.5f ,  1000 ));
+						}
 					}
 					this.explose_bomb_around(this.find_Bomb(bo.getX()-i,bo.getY()),b, J1, J2,bonus,anim);
 					i++;
