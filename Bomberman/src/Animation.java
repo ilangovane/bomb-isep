@@ -73,8 +73,7 @@ public class Animation {
 				StdDraw.filledCircle(anim.getX(), anim.getY(), 0.3);
 				
 			}else if(anim.getType() == "football" ){
-				//StdDraw.setPenColor(StdDraw.WHITE);
-				//StdDraw.filledCircle(anim.getX(), anim.getY(), 0.3);
+
 				StdDraw.picture(anim.getX(), anim.getY(), "/bomberman_picture/ball.png",1,1);
 				
 			}else if(anim.getType() == "dead"){

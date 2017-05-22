@@ -254,7 +254,7 @@ public class Bomb {
 					bo.setRange(0);
 					explose_bomb_around( bo , b , J1 ,J2,bonus,anim);
 					// le joueur 1 se trouve dans la portï¿½e de la bombe
-					if(J1.isShield()){
+					if(!J1.isShield()){
 						bonus.setJ1_bomb_range(3);
 						bonus.setJ1_red_bomb(false);
 					}
@@ -274,7 +274,7 @@ public class Bomb {
 					bo.setRange(0);
 					explose_bomb_around( bo , b , J1 ,J2,bonus,anim);
 					// le Joueur 2 se trouve dans la portï¿½e de la bombe 
-					if(J2.isShield()){
+					if(!J2.isShield()){
 						bonus.setJ2_bomb_range(3);
 						bonus.setJ1_red_bomb(false);
 					}
@@ -312,7 +312,7 @@ public class Bomb {
 					}
 					if(J1.is_at_point(bo.getX(), bo.getY()+i)){
 						// le joueur 1 se trouve dans la portï¿½e de la bombe
-						if(J1.isShield()){
+						if(!J1.isShield()){
 							bonus.setJ1_bomb_range(3);
 							bonus.setJ1_red_bomb(false);
 						}
@@ -326,7 +326,7 @@ public class Bomb {
 					}
 					if(J2.is_at_point(bo.getX(), bo.getY()+i) ){
 						// le Joueur 2 se trouve dans la portï¿½e de la bombe 
-						if(J2.isShield()){
+						if(!J2.isShield()){
 							bonus.setJ2_bomb_range(3);
 							bonus.setJ1_red_bomb(false);
 						}
@@ -359,7 +359,7 @@ public class Bomb {
 						}
 					}
 					if(J1.is_at_point(bo.getX(), bo.getY()-i) ){
-						if(J1.isShield()){
+						if(!J1.isShield()){
 							bonus.setJ1_bomb_range(3);
 							bonus.setJ1_red_bomb(false);
 						}
@@ -370,7 +370,7 @@ public class Bomb {
 						}
 					}
 					if(J2.is_at_point(bo.getX(), bo.getY()-i) ){
-						if(J2.isShield()){
+						if(!J2.isShield()){
 							bonus.setJ2_bomb_range(3);
 							bonus.setJ2_red_bomb(false);
 						}
@@ -406,7 +406,7 @@ public class Bomb {
 					
 					
 					if(J1.is_at_point(bo.getX()+i, bo.getY()) ){
-						if(J1.isShield()){
+						if(!J1.isShield()){
 							bonus.setJ1_bomb_range(3);
 							bonus.setJ1_red_bomb(false);
 						}
@@ -418,7 +418,7 @@ public class Bomb {
 						}
 					}
 					if(J2.is_at_point(bo.getX()+i, bo.getY()) ){
-						if(J2.isShield()){
+						if(!J2.isShield()){
 							bonus.setJ2_bomb_range(3);
 							bonus.setJ2_red_bomb(false);
 						}
@@ -441,6 +441,7 @@ public class Bomb {
 
 					Animation anim_add = new Animation("explosion" , bo.getX()-i+0.5f, bo.getY()+0.5f , 1000);
 					anim.add_liste(anim_add);
+					
 					if(b.isWallDestructible(bo.getY(), bo.getX()-i) ){
 						b.setArea(bo.getY(), bo.getX()-i, "green");
 						b.setElementMatrice(bo.getY(), bo.getX()-i, 3);
@@ -452,29 +453,32 @@ public class Bomb {
 						
 					}
 					if(J1.is_at_point(bo.getX()-i, bo.getY()) ){
+						if(!J1.isShield()){
+							bonus.setJ1_bomb_range(3);
+							bonus.setJ1_red_bomb(false);
+						}
 						J1.kill();
-						bonus.setJ1_bomb_range(3);
-						bonus.setJ1_red_bomb(false);
+						
 						b.setArea(bo.getY(), bo.getX()-i, "green");
 						if(J1.getX() == -1 && J1.getY() == -1){// du  a la methode kill()
-							anim.add_liste(new Animation("dead" ,bo.getX() +0.5f -i , bo.getY()+0.5f ,  1000 ));
+							anim.add_liste(new Animation("dead" ,bo.getX() +0.5f-i , bo.getY()+0.5f ,  1000 ));
 						}
 					}
 					if(J2.is_at_point(bo.getX()-i, bo.getY()) ){
+						if(!J2.isShield()){
+							bonus.setJ2_bomb_range(3);
+							bonus.setJ2_red_bomb(false);
+						}
 						J2.kill();
-						bonus.setJ2_bomb_range(3);
-						bonus.setJ2_red_bomb(false);
+
 						b.setArea(bo.getY(), bo.getX()-i, "green");
 						if(J1.getX() == -1 && J1.getY() == -1){// du  a la methode kill()
-							anim.add_liste(new Animation("dead" ,bo.getX() +0.5f -i, bo.getY()+0.5f ,  1000 ));
+							anim.add_liste(new Animation("dead" ,bo.getX() +0.5f - i , bo.getY()+0.5f ,  1000 ));
 						}
 					}
 					this.explose_bomb_around(this.find_Bomb(bo.getX()-i,bo.getY()),b, J1, J2,bonus,anim);
 					i++;
-				
-					
 
-				
 				}
 
 				it.remove(); // bombe supprimï¿½e de la liste Bombs

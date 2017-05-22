@@ -21,13 +21,13 @@ public class Board {
 		/*taille de la fen�tre 1050 x 850 
 		 * Une case doit faire 30 px => 30 x nb de ligne (17) et 30 x nb de colonne (21) 
 		 * */
-		StdDraw.setCanvasSize(21*40,21*40-1);
+		StdDraw.setCanvasSize(25*30,22*30);
 		/*
 		 * Modifier les echelles X et Y pour avoir un syst�me de coordonn�es (X,Y)
 		 *  Coordonn�es (0,0) coin en bas � gauche et (17,21) coin en haut � droite
 		 *  */
         StdDraw.setXscale(0 , 21);
-        StdDraw.setYscale(-2 , 19);// de -2->0 et 17->19 infos des joueurs
+        StdDraw.setYscale(-1 , 18);// de -2->0 et 17->19 infos des joueurs
         
 		/*Murs incassables*/
 		for(int line = 0 ; line <17 ; line ++){
@@ -155,20 +155,12 @@ public  void beginGame(){
 	public void setArea(int line , int column , String color){
 		switch(color){
 		case "orange" : 
-	    	//StdDraw.setPenColor(StdDraw.PRINCETON_ORANGE);
-			//StdDraw.filledSquare(column + 0.5 , line + 0.5 , 0.5 );
-			StdDraw.picture(column + 0.5,line + 0.5,"/bomberman_picture/destructibleWall.jpg",1,1);
+			StdDraw.picture(column + 0.5,line + 0.5,"/bomberman_picture/destructibleWall.jpeg",1,1);
 			break;
-		
-		case "green":
-        	//StdDraw.setPenColor(StdDraw.GREEN);
-        	//StdDraw.filledSquare(column + 0.5 , line + 0.5 , 0.5 );
+		case "green" : 
 			StdDraw.picture(column + 0.5,line + 0.5,"/bomberman_picture/grass.jpg",1,1);
-			
 			break;
 		case "grey":
-			//StdDraw.setPenColor(StdDraw.DARK_GRAY);
-			//StdDraw.filledSquare(column + 0.5 , line + 0.5 , 0.5 );
 			StdDraw.picture(column + 0.5,line + 0.5,"/bomberman_picture/wall.jpg",1,1);
 			
 			break;
@@ -309,22 +301,14 @@ public  void beginGame(){
 			break ;	
 		case "shield":
 			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/shield.png", 1,  1);
-			//StdDraw.setPenColor(StdDraw.MAGENTA);
-			//StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3);
 			break;
 		case "passe_muraille":
-			//StdDraw.setPenColor(StdDraw.PINK);
-			//StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3);
 			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/ghost.png", 1,  1);
 			break;
 		case "mine":
-			//StdDraw.setPenColor(StdDraw.BLUE);
-			//StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3);
 			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/mine.png", 1,  1);
 			break;
 		case "kick" :
-			//StdDraw.setPenColor(StdDraw.YELLOW);
-			//StdDraw.filledCircle(column + 0.5 , line + 0.5 , 0.3);
 			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/kick.png", 1,  1);
 			break;
 		}
@@ -334,144 +318,114 @@ public  void beginGame(){
 		for(int i = 0 ;i<=17 ; i++){// effacer les infos de la 1ere et derniere lignes
 			StdDraw.setPenColor(StdDraw.PRINCETON_ORANGE);
 			StdDraw.filledSquare(i, -0.5, 0.5);
-			StdDraw.filledSquare(i, 18.5, 0.5);
+			StdDraw.filledSquare(i, 17.5, 0.5);
 		}
 		if(J1.getId() == 1 ){
-			float y = -1.5f;
+			float y = -0.5f;
 			float x = 0.5f;
-			Font font = new Font("Bomberman" , Font.BOLD , 30);
+			Font font = new Font("Tahoma" , Font.BOLD , 18);
 			StdDraw.setFont(font);
 			StdDraw.setPenColor(StdDraw.WHITE);
-			StdDraw.picture(x , y, "/bomberman_picture/p1.png", 0.8, 0.8);
-			StdDraw.text(x, y+1, "J1" );
 			
-			StdDraw.picture(x+2 , y, "/bomberman_picture/heart.png", 0.8, 0.8 );
-			StdDraw.text(x+2, y+1, Integer.toString(J1.getLife()) );
+			StdDraw.text(x,y, "J1" );
+			StdDraw.picture(x+0.75,y,"/bomberman_picture/p1.png", 0.8, 0.8);
 			
-			StdDraw.picture(x+4, y, "/bomberman_picture/bomb.png", 0.8, 0.8);
-			StdDraw.text(x+4, y+1, Integer.toString(bombe.getNbBombs(1)) + "/" + Integer.toString(J1.getNb_bomb()) );
+			StdDraw.picture(x+2,y,"/bomberman_picture/heart.png", 0.8, 0.8 );
+			StdDraw.text(x+2,y,Integer.toString(J1.getLife()) );
 			
-			StdDraw.picture(x+6, y, "/bomberman_picture/range.png");
-			StdDraw.text(x+6, y+1,  Integer.toString(bonus.getJ1_bomb_range()));
+			StdDraw.picture(x+3.5,y,"/bomberman_picture/bomb.png", 0.8, 0.8);
+			StdDraw.text(x+4.5, y,":"+Integer.toString(bombe.getNbBombs(1))+"/"+Integer.toString(J1.getNb_bomb()));
+			StdDraw.picture(x+5.5,y,"/bomberman_picture/range.png");
+			StdDraw.text(x+6,y," :"+ Integer.toString(bonus.getJ1_bomb_range()));
+			
 			float  speed = J1.getdX() / 0.2f ;
-			StdDraw.picture(x+8, y, "/bomberman_picture/speed.png"   );
-			StdDraw.text(x+8, y+1, Float.toString(speed)   );
 			
-			StdDraw.picture(x+10, y, "/bomberman_picture/ghost.png",0.8,0.8);
+			StdDraw.picture(x+7.25,y,"/bomberman_picture/speed.png");
+			StdDraw.text(x+8,y," :"+ Float.toString(speed));
 	
-			StdDraw.picture(x+11, y, "/bomberman_picture/shield.png",0.8,0.8);
-			
-			StdDraw.picture(x+12, y, "/bomberman_picture/kick.png",0.8,0.8);
-			
-			StdDraw.picture(x+13, y, "/bomberman_picture/mine.png",0.8,0.8);
-			StdDraw.picture(x+14, y, "/bomberman_picture/redbomb.png",0.8,0.8);
 			if(J1.isPasse_muraille()){
-				StdDraw.setPenColor(StdDraw.GREEN);
-				StdDraw.filledSquare(x+10,y+1,0.5);
+				StdDraw.picture(x+9, y, "/bomberman_picture/ghost.png",0.8,0.8);
 			}else{
-				StdDraw.setPenColor(StdDraw.RED);
-				StdDraw.filledSquare(x+10,y+1,0.5);
+				StdDraw.setPenColor(StdDraw.PRINCETON_ORANGE);
+				StdDraw.filledSquare(x+10,y,0.5);
 			}
-			
 			if(J1.isShield()){
-				StdDraw.setPenColor(StdDraw.GREEN);
-				StdDraw.filledSquare(x+11,y+1,0.5);	
+				StdDraw.picture(x+10, y, "/bomberman_picture/shield.png",0.8,0.8);	
 			}else{
-				StdDraw.setPenColor(StdDraw.RED);
-				StdDraw.filledSquare(x+11,y+1,0.5);
+				StdDraw.setPenColor(StdDraw.PRINCETON_ORANGE);
+				StdDraw.filledSquare(x+10,y,0.5);
 			}
 			if(J1.isKick()){
-				StdDraw.setPenColor(StdDraw.GREEN);
-				StdDraw.filledSquare(x+12,y+1,0.5);
+				StdDraw.picture(x+11, y, "/bomberman_picture/kick.png",0.8,0.8);
 			}else{
-				StdDraw.setPenColor(StdDraw.RED);
-				StdDraw.filledSquare(x+12,y+1,0.5);
+				StdDraw.setPenColor(StdDraw.PRINCETON_ORANGE);
+				StdDraw.filledSquare(x+11,y,0.5);
 			}
 			if(bonus.isJ1_mine_bomb()){
-				StdDraw.setPenColor(StdDraw.GREEN);
-				StdDraw.filledSquare(x+13,y+1,0.5);	
+				StdDraw.picture(x+12, y, "/bomberman_picture/mine.png",0.8,0.8);	
 			}else{
-				StdDraw.setPenColor(StdDraw.RED);
-				StdDraw.filledSquare(x+13,y+1,0.5);
+				StdDraw.setPenColor(StdDraw.PRINCETON_ORANGE);
+				StdDraw.filledSquare(x+12,y,0.5);
 			}
 			if(bonus.isJ1_red_bomb()){
-				StdDraw.setPenColor(StdDraw.GREEN);
-				StdDraw.filledSquare(x+14,y+1,0.5);	
+				StdDraw.picture(x+13, y, "/bomberman_picture/redbomb.png",0.8,0.8);
 			}else{
-				StdDraw.setPenColor(StdDraw.RED);
-				StdDraw.filledSquare(x+14,y+1,0.5);
+				StdDraw.setPenColor(StdDraw.PRINCETON_ORANGE);
+				StdDraw.filledSquare(x+13,y,0.5);
 			}
-			
-			
-
 		}
 		
 		if(J2.getId() == 2 ){
 			float y = 17.5f;
 			float x = 0.5f;
-			Font font = new Font("Bomberman" , Font.BOLD , 30);
+			Font font = new Font("Tahoma" , Font.BOLD , 18);
 			StdDraw.setFont(font);
 			StdDraw.setPenColor(StdDraw.WHITE);
-			StdDraw.picture(x , y, "/bomberman_picture/p2.png", 0.8, 0.8);
-			StdDraw.text(x, y+1, "J2" );
-			
-			StdDraw.picture(x+2 , y, "/bomberman_picture/heart.png", 0.8, 0.8 );
-			StdDraw.text(x+2, y+1, Integer.toString(J2.getLife()) );
-			
-			StdDraw.picture(x+4, y, "/bomberman_picture/bomb.png", 0.8, 0.8);
-			StdDraw.text(x+4, y+1, Integer.toString(bombe.getNbBombs(2)) + "/" + Integer.toString(J2.getNb_bomb()) );
-			
-			StdDraw.picture(x+6, y, "/bomberman_picture/range.png");
-			StdDraw.text(x+6, y+1,  Integer.toString(bonus.getJ2_bomb_range()));
-			float  speed = J2.getdX() / 0.2f ;
-			StdDraw.picture(x+8, y, "/bomberman_picture/speed.png"   );
-			StdDraw.text(x+8, y+1, Float.toString(speed)   );
-			
-			StdDraw.picture(x+10, y, "/bomberman_picture/ghost.png",0.8,0.8);
-	
-			StdDraw.picture(x+11, y, "/bomberman_picture/shield.png",0.8,0.8);
-			
-			StdDraw.picture(x+12, y, "/bomberman_picture/kick.png",0.8,0.8);
-			
-			StdDraw.picture(x+13, y, "/bomberman_picture/mine.png",0.8,0.8);
-			StdDraw.picture(x+14, y, "/bomberman_picture/redbomb.png",0.8,0.8);
+			StdDraw.text(x,y,"J2");
+			StdDraw.picture(x+0.75,y,"/bomberman_picture/p2.png", 0.8, 0.8);
+			StdDraw.picture(x+2,y,"/bomberman_picture/heart.png", 0.8, 0.8 );
+			StdDraw.text(x+2,y,Integer.toString(J2.getLife()) );
+			StdDraw.picture(x+3.5, y, "/bomberman_picture/bomb.png", 0.8, 0.8);
+			//StdDraw.text(x+4,y,":"+ Integer.toString(bombe.getNbBombs(2)));
+			StdDraw.text(x+4.5, y,":"+Integer.toString(bombe.getNbBombs(2))+"/"+Integer.toString(J2.getNb_bomb()));
+			StdDraw.picture(x+5.5, y, "/bomberman_picture/range.png");
+			StdDraw.text(x+6, y," :"+Integer.toString(bonus.getJ2_bomb_range()));
+			float  speed = J2.getdX()/0.2f;
+			StdDraw.picture(x+7.25,y,"/bomberman_picture/speed.png");
+			StdDraw.text(x+8,y,":" + Float.toString(speed));
+
 			if(J2.isPasse_muraille()){
-				StdDraw.setPenColor(StdDraw.GREEN);
-				StdDraw.filledSquare(x+10,y+1,0.5);
-			}else{
-				StdDraw.setPenColor(StdDraw.RED);
-				StdDraw.filledSquare(x+10,y+1,0.5);
+				StdDraw.picture(x+10, y, "/bomberman_picture/ghost.png",0.8,0.8);
+			}
+			else{
+				StdDraw.setPenColor(StdDraw.PRINCETON_ORANGE);
+				StdDraw.filledSquare(x+10,y,0.5);
 			}
 			
 			if(J2.isShield()){
-				StdDraw.setPenColor(StdDraw.GREEN);
-				StdDraw.filledSquare(x+11,y+1,0.5);	
+				StdDraw.picture(x+11, y, "/bomberman_picture/shield.png",0.8,0.8);
 			}else{
-				StdDraw.setPenColor(StdDraw.RED);
-				StdDraw.filledSquare(x+11,y+1,0.5);
+				StdDraw.setPenColor(StdDraw.PRINCETON_ORANGE);
+				StdDraw.filledSquare(x+11,y,0.5);
 			}
 			if(J2.isKick()){
-				StdDraw.setPenColor(StdDraw.GREEN);
-				StdDraw.filledSquare(x+12,y+1,0.5);
+				StdDraw.picture(x+12, y, "/bomberman_picture/kick.png",0.8,0.8);
 			}else{
-				StdDraw.setPenColor(StdDraw.RED);
-				StdDraw.filledSquare(x+12,y+1,0.5);
+				StdDraw.setPenColor(StdDraw.PRINCETON_ORANGE);
+				StdDraw.filledSquare(x+12,y,0.5);
 			}
 			if(bonus.isJ2_mine_bomb()){
-				StdDraw.setPenColor(StdDraw.GREEN);
-				StdDraw.filledSquare(x+13,y+1,0.5);	
+				StdDraw.picture(x+13, y, "/bomberman_picture/mine.png",0.8,0.8);
 			}else{
-				StdDraw.setPenColor(StdDraw.RED);
-				StdDraw.filledSquare(x+13,y+1,0.5);
+				StdDraw.setPenColor(StdDraw.PRINCETON_ORANGE);
+				StdDraw.filledSquare(x+13,y,0.5);
 			}
 			if(bonus.isJ2_red_bomb()){
-				StdDraw.setPenColor(StdDraw.GREEN);
-				StdDraw.filledSquare(x+14,y+1,0.5);	
+				StdDraw.picture(x+14, y, "/bomberman_picture/redbomb.png",0.8,0.8);
 			}else{
-				StdDraw.setPenColor(StdDraw.RED);
-				StdDraw.filledSquare(x+14,y+1,0.5);
+				StdDraw.setPenColor(StdDraw.PRINCETON_ORANGE);
+				StdDraw.filledSquare(x+14,y,0.5);
 			}
-			
 
 		}
 		
