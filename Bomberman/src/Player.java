@@ -131,6 +131,7 @@ public class Player {
 	 * 
 	 * 
 	 * */
+	
 	public void move(Board b,Bomb bo){
 		int[][] map = b.getMatrice();
 		//commande clavier du joueur 1 
@@ -217,6 +218,14 @@ public class Player {
 		b.setPlayer(this.getId(), (int) this.getX(), (int) this.getY());
 		
 		
+	}
+	
+	/*Detecter les colisions de deux joueurs*/
+	public boolean colision_player(Player other , int x , int y){
+		if(other.is_at_point(x,y)){
+			return true;
+		}
+		return false;
 	}
 	
 	/*La méthode renvoie vrai si le joueur est sur la case (X,Y) : pratique pour les explosions de bombes*/

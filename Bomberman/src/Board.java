@@ -74,7 +74,15 @@ public class Board {
 		matrice[13][18] = 3;
 		matrice[13][19] = 3;
 		
-		
+		/*for(int line = 0 ; line <17 ; line ++){
+			for(int column = 0 ; column < 21 ; column++){
+				if(matrice[line][column] != 1 ){
+					matrice[line][column] = 3;
+					
+				}
+			}
+
+		}*/
 		
 	}
 	
@@ -311,6 +319,9 @@ public  void beginGame(){
 		case "kick" :
 			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/kick.png", 1,  1);
 			break;
+		case "bomb_line":
+			StdDraw.setPenColor(StdDraw.RED);
+			StdDraw.filledSquare(column + 0.5, line + 0.5, 0.3);
 		}
 		
 	}

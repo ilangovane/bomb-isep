@@ -17,6 +17,9 @@ public class Bonus {
 	private int X, Y;
 	private boolean J1_mine_bomb = false;
 	private boolean J2_mine_bomb = false;
+	
+	private boolean J1_line_bomb = false;
+	private boolean J2_line_bomb = false;
 	private Set<Bonus> Bonus = new HashSet<Bonus>(); // Nouvelle liste de bonus vide 
 	private String type_bonus;
 	/*CONSTRUCTEUR*/
@@ -25,7 +28,7 @@ public class Bonus {
 		this.Y= Y;
 		
 		this.type_bonus = random_type(); // renvoie le type au hasard 
-		//this.type_bonus ="kick" ;
+		//this.type_bonus ="bomb_line" ;
 	}
 	
 	/*CONSTRUCTEUR POUR LA CREATION DE LA LISTE DE BONUS*/
@@ -85,6 +88,24 @@ public class Bonus {
 	}
 
 
+
+	public boolean isJ1_line_bomb() {
+		return J1_line_bomb;
+	}
+
+	public void setJ1_line_bomb(boolean j1_line_bomb) {
+		J1_line_bomb = j1_line_bomb;
+	}
+
+
+
+	public boolean isJ2_line_bomb() {
+		return J2_line_bomb;
+	}
+
+	public void setJ2_line_bomb(boolean j2_line_bomb) {
+		J2_line_bomb = j2_line_bomb;
+	}
 
 	public int getX() {
 		return X;
@@ -168,7 +189,7 @@ public class Bonus {
 	
 		public String random_type(){ // Fonction permettant de choisir le type bonus au hasard 
 		Random rand = new Random();
-		int nombreAleatoire = rand.nextInt(13); // 13 bonus en tout 
+		int nombreAleatoire = rand.nextInt(14); // 13 bonus en tout 
 		switch (nombreAleatoire){
 		case 0:
 			//retourne flamme bleu : portÃ©e -1
@@ -200,6 +221,8 @@ public class Bonus {
 			return "mine";
 		case 12 :
 			return "kick";
+		case 13 : 
+			return "bomb_line";
 		default : 
 			return "vie";
 		}
@@ -285,6 +308,10 @@ public class Bonus {
 				case "kick" :
 					J1.setKick(true);
 					break;
+				case "bomb_line":
+					System.out.println("BOMB LINE ");
+					this.setJ1_line_bomb(true);
+					break;
 				
 
 				}
@@ -365,6 +392,10 @@ public class Bonus {
 					break;
 				case "kick" :
 					J2.setKick(true);
+					break;
+				case "bomb_line":
+					System.out.println("BOMB LINE ");
+					this.setJ2_line_bomb(true);
 					break;
 				
 

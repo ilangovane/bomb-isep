@@ -149,6 +149,64 @@ public class Bomb {
 	/*Lorsque la touche espace ou W est enfonc�e les bombes s'ajoutent � la liste aucun doublons n'est tol�r�
 	 * Un doublons => bombes au m�me emplacement aux coordonn�es (X,Y) d'ou la m�thode this.is_bomb_already_exists(x, y)*/
 	public void putBomb(Board b ,Player J,Bonus bonus,Animation anim){
+		if(bonus.isJ1_line_bomb() && StdDraw.isKeyPressed(KeyEvent.VK_W) && J.getId() == 1){//bonus lingne bombe actif
+						System.out.println("LINE BOMB ADD");
+						if(StdDraw.isKeyPressed(KeyEvent.VK_S)) {//touche S press�e
+							 int i = 1;
+							 while(b.isGrass((int) J.getY() - i ,(int) J.getX() ) && !this.is_bomb_already_exists( (int)J.getX(), (int)J.getY()-i)){
+								 this.addBomb(1, (int) J.getX() , (int)J.getY() - i);
+								 i++;
+							 }
+			       	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Q)){//touche Q press�e
+						 int i = 1;
+						 while(b.isGrass((int) J.getY() ,(int) J.getX()-i ) && !this.is_bomb_already_exists( (int)J.getX()-i, (int)J.getY())){
+							 this.addBomb(1, (int) J.getX() - i, (int) J.getY());
+							 i++;
+						 }
+			       	}else if(StdDraw.isKeyPressed(KeyEvent.VK_D)){//touche D press�e
+						 int i = 1;
+						 while(b.isGrass((int) J.getY() ,(int) J.getX()+i ) && !this.is_bomb_already_exists( (int)J.getX()+i, (int)J.getY())){
+							 this.addBomb(1, (int) J.getX() + i, (int) J.getY());
+							 i++;
+						 }
+			      	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Z)){//touche Z press�e
+						 int i = 1;
+						 while(b.isGrass((int) J.getY()+i  ,(int) J.getX() ) && !this.is_bomb_already_exists( (int)J.getX(), (int)J.getY()+i)){
+							 this.addBomb(1, (int) J.getX() , (int) J.getY()+i);
+							 i++;
+						 }
+						 
+			      	}
+      	}else if(bonus.isJ2_line_bomb() && StdDraw.isKeyPressed(KeyEvent.VK_SPACE) && J.getId() == 2){
+			System.out.println("LINE BOMB ADD");
+			if(StdDraw.isKeyPressed(KeyEvent.VK_DOWN)) {//touche S press�e
+				 int i = 1;
+				 while(b.isGrass((int) J.getY() - i ,(int) J.getX() ) && !this.is_bomb_already_exists( (int)J.getX(), (int)J.getY()-i)){
+					 this.addBomb(1, (int) J.getX() , (int)J.getY() - i);
+					 i++;
+				 }
+       	}else if(StdDraw.isKeyPressed(KeyEvent.VK_LEFT)){//touche Q press�e
+			 int i = 1;
+			 while(b.isGrass((int) J.getY() ,(int) J.getX()-i ) && !this.is_bomb_already_exists( (int)J.getX()-i, (int)J.getY())){
+				 this.addBomb(1, (int) J.getX() - i, (int) J.getY());
+				 i++;
+			 }
+       	}else if(StdDraw.isKeyPressed(KeyEvent.VK_RIGHT)){//touche D press�e
+			 int i = 1;
+			 while(b.isGrass((int) J.getY() ,(int) J.getX()+i ) && !this.is_bomb_already_exists( (int)J.getX()+i, (int)J.getY())){
+				 this.addBomb(1, (int) J.getX() + i, (int) J.getY());
+				 i++;
+			 }
+      	}else if(StdDraw.isKeyPressed(KeyEvent.VK_UP)){//touche Z press�e
+			 int i = 1;
+			 while(b.isGrass((int) J.getY()+i  ,(int) J.getX() ) && !this.is_bomb_already_exists( (int)J.getX(), (int)J.getY()+i)){
+				 this.addBomb(1, (int) J.getX() , (int) J.getY()+i);
+				 i++;
+			 }
+      	}
+			
+			return;//on sort de la fonction
+		}
 		if(StdDraw.isKeyPressed(KeyEvent.VK_W) && J.getId() == 1 && !b.isWallDestructible((int) J.getY(), (int) J.getX())){//touche W press�e
 			if(!this.is_bomb_already_exists((int)J.getX(), (int)J.getY()) && this.getNbBombs(1) <J.getNb_bomb()){
 				if(bonus.isJ1_mine_bomb()){
