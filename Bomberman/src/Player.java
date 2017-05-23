@@ -312,7 +312,7 @@ public class Player {
 	            		b.setArea((int) this.getY()-1, (int) this.getX(), "green");
 	            		int x = bo.getX();
 	            		int y = bo.getY();
-	            		while(b.isGrass(y-1,x)){
+	            		while(b.isGrass(y-1,x) && !bombe.is_bomb_already_exists(x,y-1)){
 	            			y--;
 	            			Animation tir = new Animation("football" , x+0.5f , y+0.5f , 500);
 	            			anim.add_liste(tir);
@@ -329,7 +329,7 @@ public class Player {
 		            		b.setArea((int) this.getY(), (int) this.getX()-1, "green");
 		            		int x = bo.getX();
 		            		int y = bo.getY();
-		            		while(b.isGrass( y,x-1)){
+		            		while(b.isGrass( y,x-1) && !bombe.is_bomb_already_exists(x-1,y)){
 		            			x--;
 		            			Animation tir = new Animation("football" , x+0.5f , y+0.5f , 500);
 		            			anim.add_liste(tir);
@@ -346,7 +346,7 @@ public class Player {
 		            		b.setArea((int) this.getY(), (int) this.getX()+1, "green");
 		            		int x = bo.getX();
 		            		int y = bo.getY();
-		            		while(b.isGrass(y,x+1)){
+		            		while(b.isGrass(y,x+1) && !bombe.is_bomb_already_exists(x+1,y)){
 		            			x++;
 		            			Animation tir = new Animation("football" , x+0.5f , y+0.5f , 500);
 		            			anim.add_liste(tir);
@@ -363,7 +363,7 @@ public class Player {
 		            		b.setArea((int) this.getY()+1, (int) this.getX(), "green");
 		            		int x = bo.getX();
 		            		int y = bo.getY();
-		            		while(b.isGrass(y+1,x)){
+		            		while(b.isGrass(y+1,x) && !bombe.is_bomb_already_exists( x, y+1)){
 		            			y++;
 		            			Animation tir = new Animation("football" , x+0.5f , y+0.5f , 500);
 		            			anim.add_liste(tir);
@@ -383,7 +383,7 @@ public class Player {
 	            		b.setArea((int) this.getY()-1, (int) this.getX(), "green");
 	            		int x = bo.getX();
 	            		int y = bo.getY();
-	            		while(b.isGrass(y-1,x)){
+	            		while(b.isGrass(y-1,x) && !bombe.is_bomb_already_exists(x,y-1)){
 	            			y--;
 	            			Animation tir = new Animation("football" , x+0.5f , y+0.5f , 500);
 	            			anim.add_liste(tir);
@@ -400,7 +400,7 @@ public class Player {
 		            		b.setArea((int) this.getY(), (int) this.getX()-1, "green");
 		            		int x = bo.getX();
 		            		int y = bo.getY();
-		            		while(b.isGrass(y,x-1)){
+		            		while(b.isGrass(y,x-1) && !bombe.is_bomb_already_exists(x-1,y)){
 		            			x--;
 		            			Animation tir = new Animation("football" , x+0.5f , y+0.5f , 500);
 		            			anim.add_liste(tir);
@@ -417,7 +417,7 @@ public class Player {
 		            		b.setArea((int) this.getY(), (int) this.getX()+1, "green");
 		            		int x = bo.getX();
 		            		int y = bo.getY();
-		            		while(b.isGrass(y,x+1)){
+		            		while(b.isGrass(y,x+1) && !bombe.is_bomb_already_exists(x+1,y)){
 		            			x++;
 		            			Animation tir = new Animation("football" , x+0.5f , y+0.5f , 500);
 		            			anim.add_liste(tir);
@@ -434,7 +434,7 @@ public class Player {
 		            		b.setArea((int) this.getY()+1, (int) this.getX(), "green");
 		            		int x = bo.getX();
 		            		int y = bo.getY();
-		            		while(b.isGrass(y+1,x)){
+		            		while(b.isGrass(y+1,x) && !bombe.is_bomb_already_exists(x,y+1)){
 		            			y++;
 		            			Animation tir = new Animation("football" , x+0.5f , y+0.5f , 500);
 		            			anim.add_liste(tir);
