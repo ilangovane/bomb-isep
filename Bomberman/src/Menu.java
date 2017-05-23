@@ -27,23 +27,29 @@ public class Menu {
 		ChoixMenu = choixMenu;
 	}
 	public void game_over(int winner){
-	       StdDraw.clear(StdDraw.PRINCETON_ORANGE); // On clear la fenêtre
-
-		Font font = new Font("Bomberman" , Font.ITALIC , 40);
+		//StdDraw.setCanvasSize(25*30,22*30);
+		/*
+		 * Modifier les echelles X et Y pour avoir un syst�me de coordonn�es (X,Y)
+		 *  Coordonn�es (0,0) coin en bas � gauche et (17,21) coin en haut � droite
+		 *  */
+        //StdDraw.setXscale(0 , 21);
+       // StdDraw.setYscale(-1 , 18);// de -2->0 et 17->19 infos des joueurs
+	    StdDraw.clear(); // On clear la fenêtre
+		Font font = new Font("Bomberman" , Font.ITALIC , 30);
 		StdDraw.setFont(font);
-		StdDraw.picture(15, 13, "/bomberman_picture/gameover.png");
-		StdDraw.setPenColor(StdDraw.BLACK);
-		if(winner >0 ){
-			StdDraw.text(17, 7, "Le joueur " + winner + " à gagné");
+		StdDraw.picture(10.5, 10, "/bomberman_picture/endgame.png",22,22);
+		StdDraw.setPenColor(StdDraw.BOOK_BLUE);
+		if(winner!=0){
+			StdDraw.text(10.5, 3, "Le joueur " + winner + " à gagné");
 		}else{
-			StdDraw.text(17, 7, "Match null");
+			StdDraw.text(10.5, 3, "Match null");
 		}
 		
 		StdDraw.show(30);
 		
 		/*BOUTON RETOUR AU MENU PRINCIPAL*/
-		int nbligne = 4;					//nombre de ligne
-		int nbcolonne = 30;					//nombre de colonne
+		int nbligne = 2;					//nombre de ligne
+		int nbcolonne = 21;					//nombre de colonne
 		float centerL = (float)(nbligne/2);
 		float centerC = (float)(nbcolonne/2);
 		int largeurRect = 3;
@@ -103,7 +109,7 @@ public class Menu {
 		displayRect(centerC, centerL - 3*decalage, largeurRect, hauteurRect, "Quitter");	
 
 		/*On affiche le logo bomberman*/
-		StdDraw.picture(15, 13, "/bomberman_picture/gameover.png");
+		StdDraw.picture(15, 13, "/bomberman_picture/banner.png");
 		
 		/*A gauche on met le joueur 1*/
 		StdDraw.picture(5, 8, "/bomberman_picture/p1.png", 8,11);

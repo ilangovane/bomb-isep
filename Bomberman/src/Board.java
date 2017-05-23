@@ -143,13 +143,9 @@ public  void beginGame(){
 	public void setPlayer(int id,double X, double Y){
 	
 	if(id == 1){//Joueur 1 en rouge
-		//StdDraw.setPenColor(StdDraw.RED);
-		StdDraw.picture(X + 0.5 , Y + 0.5 , "/bomberman_picture/p1.png", 1, 1);	
-		//StdDraw.save("p2.png");
+		StdDraw.picture(X + 0.5 , Y + 0.5 , "p1.gif",1,1);	
 	}else if(id==2){//Joueur 2 en bleu
-		//StdDraw.setPenColor(StdDraw.BLUE);
-		StdDraw.picture(X + 0.5 , Y + 0.5 , "/bomberman_picture/p2.png", 1, 1);	
-
+		StdDraw.picture(X + 0.5 , Y + 0.5 , "p2.gif",1,1);	
 	}else{
 		//IA
 	}
@@ -174,7 +170,7 @@ public  void beginGame(){
 			break;
 		default:
 			
-			StdDraw.setPenColor(StdDraw.WHITE);
+			StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
 			StdDraw.filledSquare(column + 0.5 , line + 0.5 , 0.5 );
 		}
 
@@ -337,6 +333,8 @@ public  void beginGame(){
 			
 			float y = -0.5f;
 			float x = 0.5f;
+			StdDraw.picture(x+18,y,"/bomberman_picture/Konami.png",5,2.6);
+			
 			Font font = new Font("Tahoma" , Font.ITALIC , 18);
 			StdDraw.setFont(font);
 			StdDraw.setPenColor(StdDraw.WHITE);
@@ -387,11 +385,18 @@ public  void beginGame(){
 				StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
 				StdDraw.filledSquare(x+13,y,0.5);
 			}
+			//StdDraw.picture(x+15,y,"/bomberman_picture/blackbanner.jpg", 10,1);
+
 		}
 		
 		if(J2.getId() == 2 ){
+			
 			float y = 17.5f;
 			float x = 20.5f;
+			
+			StdDraw.picture(x-19,y,"/bomberman_picture/Banner1.jpg",3,1);
+ 
+			
 			Font font = new Font("Tahoma" , Font.ITALIC , 18);
 			StdDraw.setFont(font);
 			StdDraw.setPenColor(StdDraw.WHITE);
