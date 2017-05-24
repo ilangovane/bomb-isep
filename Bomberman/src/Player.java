@@ -133,7 +133,7 @@ public class Player {
 	 * */
 	
 	public void move(Board b,Bomb bo){
-		int[][] map = b.getMatrice();
+	
 		//commande clavier du joueur 1 
 		if(this.id == 1){
             if(StdDraw.isKeyPressed(KeyEvent.VK_S)) {//touche S press�e

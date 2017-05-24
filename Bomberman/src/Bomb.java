@@ -315,6 +315,8 @@ public class Bomb {
 					if(!J1.isShield()){
 						bonus.setJ1_bomb_range(3);
 						bonus.setJ1_red_bomb(false);
+						bonus.setJ1_line_bomb(false);
+						bonus.setJ1_mine_bomb(false);
 					}
 
 					J1.kill();
@@ -334,7 +336,9 @@ public class Bomb {
 					// le Joueur 2 se trouve dans la portï¿½e de la bombe 
 					if(!J2.isShield()){
 						bonus.setJ2_bomb_range(3);
-						bonus.setJ1_red_bomb(false);
+						bonus.setJ2_red_bomb(false);
+						bonus.setJ2_line_bomb(false);
+						bonus.setJ2_mine_bomb(false);
 					}
 					J2.kill();
 					b.setArea(bo.getY(), bo.getX(), "green");
@@ -373,6 +377,8 @@ public class Bomb {
 						if(!J1.isShield()){
 							bonus.setJ1_bomb_range(3);
 							bonus.setJ1_red_bomb(false);
+							bonus.setJ1_line_bomb(false);
+							bonus.setJ1_mine_bomb(false);
 						}
 
 						J1.kill();
@@ -386,7 +392,9 @@ public class Bomb {
 						// le Joueur 2 se trouve dans la portï¿½e de la bombe 
 						if(!J2.isShield()){
 							bonus.setJ2_bomb_range(3);
-							bonus.setJ1_red_bomb(false);
+							bonus.setJ2_red_bomb(false);
+							bonus.setJ2_line_bomb(false);
+							bonus.setJ2_mine_bomb(false);
 						}
 						J2.kill();
 						b.setArea(bo.getY()+i, bo.getX(), "green");
@@ -420,6 +428,8 @@ public class Bomb {
 						if(!J1.isShield()){
 							bonus.setJ1_bomb_range(3);
 							bonus.setJ1_red_bomb(false);
+							bonus.setJ1_line_bomb(false);
+							bonus.setJ1_mine_bomb(false);
 						}
 						J1.kill();
 						b.setArea(bo.getY()-i, bo.getX(), "green");
@@ -431,6 +441,8 @@ public class Bomb {
 						if(!J2.isShield()){
 							bonus.setJ2_bomb_range(3);
 							bonus.setJ2_red_bomb(false);
+							bonus.setJ2_line_bomb(false);
+							bonus.setJ2_mine_bomb(false);
 						}
 						J2.kill();
 
@@ -467,6 +479,8 @@ public class Bomb {
 						if(!J1.isShield()){
 							bonus.setJ1_bomb_range(3);
 							bonus.setJ1_red_bomb(false);
+							bonus.setJ1_line_bomb(false);
+							bonus.setJ1_mine_bomb(false);
 						}
 						J1.kill();
 						
@@ -479,6 +493,8 @@ public class Bomb {
 						if(!J2.isShield()){
 							bonus.setJ2_bomb_range(3);
 							bonus.setJ2_red_bomb(false);
+							bonus.setJ2_line_bomb(false);
+							bonus.setJ2_mine_bomb(false);
 						}
 						J2.kill();
 
@@ -514,6 +530,8 @@ public class Bomb {
 						if(!J1.isShield()){
 							bonus.setJ1_bomb_range(3);
 							bonus.setJ1_red_bomb(false);
+							bonus.setJ1_line_bomb(false);
+							bonus.setJ1_mine_bomb(false);
 						}
 						J1.kill();
 						
@@ -526,6 +544,8 @@ public class Bomb {
 						if(!J2.isShield()){
 							bonus.setJ2_bomb_range(3);
 							bonus.setJ2_red_bomb(false);
+							bonus.setJ2_line_bomb(false);
+							bonus.setJ2_mine_bomb(false);
 						}
 						J2.kill();
 
