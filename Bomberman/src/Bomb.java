@@ -385,7 +385,7 @@ public class Bomb {
 						b.setArea(bo.getY()+i, bo.getX(), "green");
 						
 						if(J1.getX() == -1 && J1.getY() == -1){// du  a la methode kill()
-							anim.add_liste(new Animation("dead" ,bo.getX()+i +0.5f , bo.getY()+0.5f ,  1000 ));
+							anim.add_liste(new Animation("dead" ,bo.getX() +0.5f , bo.getY()+ i +0.5f ,  1000 ));
 						}
 					}
 					if(J2.is_at_point(bo.getX(), bo.getY()+i) ){
@@ -499,7 +499,7 @@ public class Bomb {
 						J2.kill();
 
 						b.setArea(bo.getY(), bo.getX()+i, "green");
-						if(J1.getX() == -1 && J1.getY() == -1){// du  a la methode kill()
+						if(J2.getX() == -1 && J2.getY() == -1){// du  a la methode kill()
 							anim.add_liste(new Animation("dead" ,bo.getX() +0.5f + i , bo.getY()+0.5f ,  1000 ));
 						}
 					}
@@ -550,7 +550,7 @@ public class Bomb {
 						J2.kill();
 
 						b.setArea(bo.getY(), bo.getX()-i, "green");
-						if(J1.getX() == -1 && J1.getY() == -1){// du  a la methode kill()
+						if(J2.getX() == -1 && J2.getY() == -1){// du  a la methode kill()
 							anim.add_liste(new Animation("dead" ,bo.getX() +0.5f - i , bo.getY()+0.5f ,  1000 ));
 						}
 					}
