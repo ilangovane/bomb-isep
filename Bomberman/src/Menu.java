@@ -177,6 +177,7 @@ public class Menu {
 	        	
 	        	/*Les bombes et les bonus sont affich�es sur le plateau de jeu */
 	        	game_board.show_all_bombs(bomb_liste.getBombs());
+	        	animation_liste.bomb_timer(bomb_liste);
 	        	game_board.show_bonus(bonus_liste.getBonus());
 	        	
 	        	/*On collecte les bonus*/

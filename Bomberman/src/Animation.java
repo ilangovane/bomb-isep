@@ -1,3 +1,4 @@
+import java.awt.Font;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -21,7 +22,7 @@ public class Animation {
 		this.x = x;
 		this.y = y;
 		this.end = System.currentTimeMillis() + d;
-		System.out.println("X : " + x + " Y : " + y + " D " + d + " type : " + type);
+
 	}
 	public Animation(){
 		
@@ -78,6 +79,7 @@ public class Animation {
 				StdDraw.picture(anim.getX(), anim.getY(), "/bomberman_picture/ball.png",1,1);
 				
 			}else if(anim.getType() == "dead"){
+				
 				StdDraw.picture(anim.getX(), anim.getY(), "/bomberman_picture/death.png",1,1);
 			}
 			
@@ -97,4 +99,31 @@ public class Animation {
 		b.setArea((int)anim.getY(), (int) anim.getX(), "green");
 	}
 	
+	public void bomb_timer(Bomb list){
+		Iterator<Bomb> it = list.getBombs().iterator();
+		StdDraw.setPenColor(StdDraw.PRINCETON_ORANGE);
+		Font font = new Font("Bomberman" , Font.BOLD , 20);
+		StdDraw.setFont(font);
+		while (it.hasNext()){//parcours la liste de bombes
+			Bomb bo = it.next();
+			double timer = bo.getT_explosion() - System.currentTimeMillis();
+			if(timer <= 4000 &&  timer >3000){
+				//StdDraw.arc(bo.getX() +0.5, bo.getY()+0.5, 0.5, 0, 360*timer/4000) ;
+				StdDraw.text(bo.getX() +0.5, bo.getY()+0.5, "4");
+			}else if(timer <= 3000 &&  timer >2000){
+				//StdDraw.arc(bo.getX() +0.5, bo.getY()+0.5, 0.5, 0,360*timer/4000) ;
+				StdDraw.text(bo.getX()+0.5, bo.getY()+0.5, "3");
+			
+			}else if(timer <= 2000 &&  timer >1000){
+				//StdDraw.arc(bo.getX() +0.5, bo.getY()+0.5, 0.5, 0,360*timer/4000 ) ;
+				StdDraw.text(bo.getX()+0.5, bo.getY()+0.5, "2");
+			}else if(timer <= 1000 &&  timer >0){
+			//	StdDraw.arc(bo.getX() +0.5, bo.getY()+0.5, 0.5, 0,360*timer/4000) ;
+				StdDraw.text(bo.getX()+0.5, bo.getY()+0.5, "1");
+			}
+				
+			
+		
+		}
+	}
 }

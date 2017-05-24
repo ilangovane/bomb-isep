@@ -169,7 +169,6 @@ public class Bonus {
 
 	public void create_bonus(int X, int Y){
 		if (is_hidden()==true){ // si p = 20 %
-			System.out.println("BONUS CREEE X:" + X + " Y:"+Y );
 				this.Bonus.add(new Bonus(X,Y)); // on ajoute une bombe dans la liste
 
 		}
@@ -240,7 +239,6 @@ public class Bonus {
 			Bonus bo = it.next();
 			
 			if ((int)(J1.getX()) == bo.getX() && (int)(J1.getY()) == bo.getY()){ //si mon joueur 1 et le bonus sont ÃƒÂ  la meme position
-				System.out.println("BONUS COLLECTE " + bo.getType_bonus());
 				// je n'affiche plus le bonus : j'appelle la fonction setArea et je colorie la case en vert
 				b.setArea(bo.getY(), bo.getX() , "green");
 				
@@ -252,7 +250,6 @@ public class Bonus {
 				float dX = J1.getdX();
 				float dY = J1.getdY();
 
-				System.out.println("RANGE BEFORE" + range);
 				switch (bo.getType_bonus()){
 				
 				case "flamme_bleu":
@@ -309,7 +306,6 @@ public class Bonus {
 					J1.setKick(true);
 					break;
 				case "bomb_line":
-					System.out.println("BOMB LINE ");
 					this.setJ1_line_bomb(true);
 					break;
 				
@@ -322,7 +318,7 @@ public class Bonus {
 			
 			
 			else if ((int)J2.getX() == bo.getX() && (int)J2.getY() == bo.getY()){
-				System.out.println("BONUS COLLECTE " + bo.getType_bonus());
+
 				// je n'affiche plus le bonus : j'appelle la fonction setArea et je colorie la case en vert
 				b.setArea(bo.getY(), bo.getX() , "green");
 				
@@ -333,7 +329,7 @@ public class Bonus {
 				int vie = J2.getLife();
 				float dX = J2.getdX();
 				float dY = J2.getdY();
-				System.out.println("RANGE BEFORE" + range);
+
 				switch (bo.getType_bonus()){
 				
 				case "flamme_bleu":
@@ -359,16 +355,12 @@ public class Bonus {
 					if (J2.getdX()<0.8f && J2.getdY()<0.8f){
 					J2.setdX(dX*2); 
 					J2.setdY(dY*2);
-					}else{
-						System.out.println("REJECT");
 					}
 					break ;
 				case "speed_down":
 					if (J2.getdX()>0.05f && J2.getdY()>0.05f){
 					J2.setdX(dX/2); 
 					J2.setdY(dY/2);
-					}else{
-						System.out.println("REJECT");
 					}
 					break;
 				case "bombe_plus":
@@ -394,7 +386,7 @@ public class Bonus {
 					J2.setKick(true);
 					break;
 				case "bomb_line":
-					System.out.println("BOMB LINE ");
+			
 					this.setJ2_line_bomb(true);
 					break;
 				
