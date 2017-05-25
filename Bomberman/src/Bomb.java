@@ -150,7 +150,9 @@ public class Bomb {
 	 * Un doublons => bombes au m�me emplacement aux coordonn�es (X,Y) d'ou la m�thode this.is_bomb_already_exists(x, y)*/
 	public void putBomb(Board b ,Player J,Bonus bonus,Animation anim,Player other){
 		if(bonus.isJ1_line_bomb() && StdDraw.isKeyPressed(KeyEvent.VK_W) && J.getId() == 1){//bonus lingne bombe actif
-						
+						if(StdDraw.isKeyPressed(KeyEvent.VK_S) || StdDraw.isKeyPressed(KeyEvent.VK_Q) || StdDraw.isKeyPressed(KeyEvent.VK_D) || StdDraw.isKeyPressed(KeyEvent.VK_Z)){
+							bonus.setJ1_line_bomb(false);
+						}
 						if(StdDraw.isKeyPressed(KeyEvent.VK_S)) {//touche S press�e
 							 int i = 1;
 							 while( !other.colision_player(other, (int) J.getX(), (int) J.getY() - i) && b.isGrass((int) J.getY() - i ,(int) J.getX() ) && !this.is_bomb_already_exists( (int)J.getX(), (int)J.getY()-i)){
@@ -178,7 +180,9 @@ public class Bomb {
 						 
 			      	}
       	}else if(bonus.isJ2_line_bomb() && StdDraw.isKeyPressed(KeyEvent.VK_SPACE) && J.getId() == 2){
-		
+			if(StdDraw.isKeyPressed(KeyEvent.VK_DOWN) || StdDraw.isKeyPressed(KeyEvent.VK_UP) || StdDraw.isKeyPressed(KeyEvent.VK_LEFT) || StdDraw.isKeyPressed(KeyEvent.VK_RIGHT)){
+				bonus.setJ2_line_bomb(false);
+			}
 			if(StdDraw.isKeyPressed(KeyEvent.VK_DOWN)) {//touche S press�e
 				 int i = 1;
 				 while(!other.colision_player(other, (int) J.getX(), (int) J.getY() - i) && b.isGrass((int) J.getY() - i ,(int) J.getX() ) && !this.is_bomb_already_exists( (int)J.getX(), (int)J.getY()-i)){

@@ -385,6 +385,13 @@ public  void beginGame(){
 				StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
 				StdDraw.filledSquare(x+13,y,0.5);
 			}
+			if(bonus.isJ1_line_bomb()){
+				StdDraw.setPenColor(StdDraw.GREEN);
+				StdDraw.filledSquare(x+14, y , 0.3);
+			}else{
+				StdDraw.setPenColor(StdDraw.RED);
+				StdDraw.filledSquare(x+14, y, 0.3);
+			}
 			//StdDraw.picture(x+15,y,"/bomberman_picture/blackbanner.jpg", 10,1);
 
 		}
@@ -443,6 +450,13 @@ public  void beginGame(){
 			}else{
 				StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
 				StdDraw.filledSquare(x-14,y,0.5);
+			}
+			if(bonus.isJ2_line_bomb()){
+				StdDraw.setPenColor(StdDraw.GREEN);
+				StdDraw.filledSquare(x-14, y , 0.3);
+			}else{
+				StdDraw.setPenColor(StdDraw.RED);
+				StdDraw.filledSquare(x-14, y, 0.3);
 			}
 
 		}
