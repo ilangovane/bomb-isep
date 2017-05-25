@@ -228,13 +228,9 @@ public class Player {
 	            	}
           	}
 		}
-		
 
-		
-		
 		// affiche le joueur sur la case 
 		b.setPlayer(this.getId(), (int) this.getX(), (int) this.getY());
-		
 		
 	}
 	
@@ -277,7 +273,7 @@ public class Player {
 		
 	}
 	
-	/*Le joeurs qui vient de perdre la vie ne risque pas de perdre une vie dï¿½s qu'il sera replacï¿½ sur une case de dï¿½part
+	/*Le joueur qui vient de perdre la vie ne risque pas de perdre une vie dï¿½s qu'il sera replacï¿½ sur une case de dï¿½part
 	 * Le joueur est positionnï¿½ sur le recoin (X,Y) = (-1,-1) pour des raisons de sï¿½curitï¿½s si des bombes sont a proximitï¿½s
 	 * Cela permettra d'ï¿½viter de predre 2 ou 3 vie au lieu d'une*/
 
@@ -327,7 +323,7 @@ public class Player {
 	
 	public void kick(Bomb bombe,Board b,Animation anim,Player other){
 		if(!kick){
-			return;//si le joueur n'a pas de kick , le reste n'est pas executé
+			return;//si le joueur n'a pas de kick , le reste n'est pas executï¿½
 		}
 		if(StdDraw.isKeyPressed(KeyEvent.VK_X) && this.getId() == 1){
 			

@@ -36,6 +36,7 @@ public class Main {
 	    	   System.out.print("RIEN");			
 	       }
 	       //System.out.println(menu.getChoixMenu());
+	       
 	       StdDraw.show(30);  
 		}
 		   System.exit(0);		// On ferme la fenetre 
