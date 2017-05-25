@@ -132,11 +132,14 @@ public class Player {
 	 * 
 	 * */
 	
-	public void move(Board b,Bomb bo){
+	public void move(Board b,Bomb bo,Player other){
 	
 		//commande clavier du joueur 1 
 		if(this.id == 1){
             if(StdDraw.isKeyPressed(KeyEvent.VK_S)) {//touche S pressï¿½e
+	            	if(this.colision_player(other, (int) this.getX(), (int) this.getY() -1 )){
+	            		return;
+	            	}
 		           	if(bo.is_there_mine_bomb((int) this.getX(),(int) this.getY()-1)	|| this.go_through_destructible_wall( b , (int) this.getX(), (int) this.getY() - 1) || b.isGrass((int)this.getY()-1 , (int)this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()-1)){
 
 		        		b.repaint((int) this.getY(), (int) this.getX());
@@ -145,7 +148,9 @@ public class Player {
 		        	
 		        	}
           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Q)){//touche Q pressï¿½e
-          		 
+	            	if(this.colision_player(other, (int) this.getX()-1, (int) this.getY() )){
+	            		return;
+	            	}
 	             	if(bo.is_there_mine_bomb((int) this.getX()-1,(int) this.getY())	|| this.go_through_destructible_wall( b , (int) this.getX()-1, (int) this.getY()) || b.isGrass((int) this.getY(), (int) this.getX() -1) && !bo.is_bomb_already_exists( (int)this.getX()-1, (int)this.getY())){
 	          
 	             		b.repaint((int) this.getY(), (int) this.getX());
@@ -153,7 +158,9 @@ public class Player {
 	            		
 	            	}
           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_D)){//touche D pressï¿½e
-          		
+	            	if(this.colision_player(other, (int) this.getX()+1, (int) this.getY() )){
+	            		return;
+	            	}
 	         		if(bo.is_there_mine_bomb((int) this.getX()+1,(int) this.getY())	|| this.go_through_destructible_wall( b , (int) this.getX()+1, (int) this.getY()) || b.isGrass((int) this.getY(), (int) this.getX()+1) && !bo.is_bomb_already_exists( (int)this.getX()+1, (int)this.getY())){
 	         		
 	         			b.repaint((int) this.getY() , (int) this.getX());
@@ -161,6 +168,9 @@ public class Player {
 	            		
 	            	}
          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Z)){//touche Z pressï¿½e
+	            	if(this.colision_player(other, (int) this.getX(), (int) this.getY() +1 )){
+	            		return;
+	            	}
 	             	if(bo.is_there_mine_bomb((int) this.getX(),(int) this.getY()+1)	|| this.go_through_destructible_wall( b , (int) this.getX(), (int) this.getY() + 1) || b.isGrass((int) this.getY()+1, (int) this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()+1)){
 	             		
 	             		b.repaint((int) this.getY(), (int) this.getX());
@@ -174,7 +184,9 @@ public class Player {
 		if(this.id == 2 ){
 			
             if(StdDraw.isKeyPressed(KeyEvent.VK_DOWN )) {//touche BAS pressï¿½e
-            	
+	            	if(this.colision_player(other, (int) this.getX(), (int) this.getY() -1 )){
+	            		return;
+	            	}
             		if(	bo.is_there_mine_bomb((int) this.getX(),(int) this.getY()-1)	|| this.go_through_destructible_wall( b , (int) this.getX(), (int) this.getY() - 1) || b.isGrass((int)this.getY()-1 , (int)this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()-1)){
 	     
             			b.repaint((int) this.getY() , (int) this.getX());
@@ -184,7 +196,9 @@ public class Player {
 	            	}
             		
            	}else if(StdDraw.isKeyPressed(KeyEvent.VK_LEFT )){//touche GAUCHE pressï¿½e
-           
+	            	if(this.colision_player(other, (int) this.getX()-1, (int) this.getY()  )){
+	            		return;
+	            	}
 	            	if(bo.is_there_mine_bomb((int) this.getX()-1,(int) this.getY())	||  this.go_through_destructible_wall( b , (int) this.getX()-1, (int) this.getY() ) || b.isGrass((int) this.getY(), (int) this.getX() -1) && !bo.is_bomb_already_exists( (int)this.getX()-1, (int)this.getY())){
 	           
 	            		b.repaint((int) this.getY(), (int) this.getX());
@@ -193,7 +207,9 @@ public class Player {
 	            	}
            		 
            	}else if(StdDraw.isKeyPressed(KeyEvent.VK_RIGHT)){//touche DROITE pressï¿½e
-          		
+	            	if(this.colision_player(other, (int) this.getX()+1, (int) this.getY()  )){
+	            		return;
+	            	}
 	             	if(bo.is_there_mine_bomb((int) this.getX()+1,(int) this.getY())	||  this.go_through_destructible_wall( b , (int) this.getX() + 1, (int) this.getY() ) || b.isGrass((int) this.getY(), (int) this.getX()+1) && !bo.is_bomb_already_exists( (int)this.getX()+1, (int)this.getY())){
 	             	
 	             		b.repaint((int) this.getY(), (int) this.getX());
@@ -201,7 +217,9 @@ public class Player {
 	            		
 	            	}
           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_UP)){//touche HAUT pressï¿½e
-          	
+	            	if(this.colision_player(other, (int) this.getX(), (int) this.getY() +1)){
+	            		return;
+	            	}
 	             	if(bo.is_there_mine_bomb((int) this.getX(),(int) this.getY()+1)	||  this.go_through_destructible_wall( b , (int) this.getX(), (int) this.getY() + 1) || b.isGrass((int) this.getY()+1, (int) this.getX()) && !bo.is_bomb_already_exists( (int)this.getX(), (int)this.getY()+1)){
 	             	
 	             		b.repaint((int) this.getY(), (int) this.getX());
@@ -307,7 +325,7 @@ public class Player {
 		return false;
 	}
 	
-	public void kick(Bomb bombe,Board b,Animation anim){
+	public void kick(Bomb bombe,Board b,Animation anim,Player other){
 		if(!kick){
 			return;//si le joueur n'a pas de kick , le reste n'est pas executé
 		}
@@ -321,7 +339,7 @@ public class Player {
 	            		b.setArea((int) this.getY()-1, (int) this.getX(), "green");
 	            		int x = bo.getX();
 	            		int y = bo.getY();
-	            		while(b.isGrass(y-1,x) && !bombe.is_bomb_already_exists(x,y-1)){
+	            		while(b.isGrass(y-1,x) && !bombe.is_bomb_already_exists(x,y-1) && !other.colision_player(other, x, y-1)){
 	            			y--;
 	            			Animation tir = new Animation("football" , x+0.5f , y+0.5f , 500);
 	            			anim.add_liste(tir);
@@ -338,7 +356,7 @@ public class Player {
 		            		b.setArea((int) this.getY(), (int) this.getX()-1, "green");
 		            		int x = bo.getX();
 		            		int y = bo.getY();
-		            		while(b.isGrass( y,x-1) && !bombe.is_bomb_already_exists(x-1,y)){
+		            		while(b.isGrass( y,x-1) && !bombe.is_bomb_already_exists(x-1,y) && !other.colision_player(other, x-1, y)){
 		            			x--;
 		            			Animation tir = new Animation("football" , x+0.5f , y+0.5f , 500);
 		            			anim.add_liste(tir);
@@ -355,7 +373,7 @@ public class Player {
 		            		b.setArea((int) this.getY(), (int) this.getX()+1, "green");
 		            		int x = bo.getX();
 		            		int y = bo.getY();
-		            		while(b.isGrass(y,x+1) && !bombe.is_bomb_already_exists(x+1,y)){
+		            		while(b.isGrass(y,x+1) && !bombe.is_bomb_already_exists(x+1,y) && !other.colision_player(other, x+1, y)){
 		            			x++;
 		            			Animation tir = new Animation("football" , x+0.5f , y+0.5f , 500);
 		            			anim.add_liste(tir);
@@ -372,7 +390,7 @@ public class Player {
 		            		b.setArea((int) this.getY()+1, (int) this.getX(), "green");
 		            		int x = bo.getX();
 		            		int y = bo.getY();
-		            		while(b.isGrass(y+1,x) && !bombe.is_bomb_already_exists( x, y+1)){
+		            		while(b.isGrass(y+1,x) && !bombe.is_bomb_already_exists( x, y+1) && !other.colision_player(other, x, y+1)){
 		            			y++;
 		            			Animation tir = new Animation("football" , x+0.5f , y+0.5f , 500);
 		            			anim.add_liste(tir);
@@ -392,7 +410,7 @@ public class Player {
 	            		b.setArea((int) this.getY()-1, (int) this.getX(), "green");
 	            		int x = bo.getX();
 	            		int y = bo.getY();
-	            		while(b.isGrass(y-1,x) && !bombe.is_bomb_already_exists(x,y-1)){
+	            		while(b.isGrass(y-1,x) && !bombe.is_bomb_already_exists(x,y-1) && !other.colision_player(other, x, y-1)){
 	            			y--;
 	            			Animation tir = new Animation("football" , x+0.5f , y+0.5f , 500);
 	            			anim.add_liste(tir);
@@ -409,7 +427,7 @@ public class Player {
 		            		b.setArea((int) this.getY(), (int) this.getX()-1, "green");
 		            		int x = bo.getX();
 		            		int y = bo.getY();
-		            		while(b.isGrass(y,x-1) && !bombe.is_bomb_already_exists(x-1,y)){
+		            		while(b.isGrass(y,x-1) && !bombe.is_bomb_already_exists(x-1,y) && !other.colision_player(other, x-1, y)){
 		            			x--;
 		            			Animation tir = new Animation("football" , x+0.5f , y+0.5f , 500);
 		            			anim.add_liste(tir);
@@ -426,7 +444,7 @@ public class Player {
 		            		b.setArea((int) this.getY(), (int) this.getX()+1, "green");
 		            		int x = bo.getX();
 		            		int y = bo.getY();
-		            		while(b.isGrass(y,x+1) && !bombe.is_bomb_already_exists(x+1,y)){
+		            		while(b.isGrass(y,x+1) && !bombe.is_bomb_already_exists(x+1,y) && !other.colision_player(other, x+1, y)){
 		            			x++;
 		            			Animation tir = new Animation("football" , x+0.5f , y+0.5f , 500);
 		            			anim.add_liste(tir);
@@ -443,7 +461,7 @@ public class Player {
 		            		b.setArea((int) this.getY()+1, (int) this.getX(), "green");
 		            		int x = bo.getX();
 		            		int y = bo.getY();
-		            		while(b.isGrass(y+1,x) && !bombe.is_bomb_already_exists(x,y+1)){
+		            		while(b.isGrass(y+1,x) && !bombe.is_bomb_already_exists(x,y+1) && !other.colision_player(other, x, y+1)){
 		            			y++;
 		            			Animation tir = new Animation("football" , x+0.5f , y+0.5f , 500);
 		            			anim.add_liste(tir);

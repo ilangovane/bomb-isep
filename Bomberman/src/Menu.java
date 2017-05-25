@@ -162,16 +162,14 @@ public class Menu {
         // Le jeu doit reboucler � l'infini tant que les joueurs ont plus de 0 vie 
         boolean game_over = false;
 		while(!game_over){
-			//System.out.println("La vitesse est : "+J2.getdX() +"!!!!!!!!");
-
 	    	   /*G�re les d�placements des joueurs 1 et 2*/
-	        	J1.move(game_board,bomb_liste);
-	        	J2.move(game_board,bomb_liste);
-	        	J1.kick(bomb_liste, game_board,animation_liste);
-	        	J2.kick(bomb_liste, game_board,animation_liste);
+	        	J1.move(game_board,bomb_liste,J2);
+	        	J2.move(game_board,bomb_liste,J1);
+	        	J1.kick(bomb_liste, game_board,animation_liste,J2);
+	        	J2.kick(bomb_liste, game_board,animation_liste,J1);
 	        	/*Chaque joueur peut poser des bombes en appuyant soit sur espace ou sur W*/
-	        	bomb_liste.putBomb(game_board, J1,bonus_liste,animation_liste);
-	        	bomb_liste.putBomb(game_board, J2,bonus_liste,animation_liste);
+	        	bomb_liste.putBomb(game_board, J1,bonus_liste,animation_liste,J2);
+	        	bomb_liste.putBomb(game_board, J2,bonus_liste,animation_liste,J1);
 	        	/*Les bombes explosent 5 secondes apr�s �tre d�pos�e*/
 	        	bomb_liste.explose(game_board,J1,J2,bonus_liste,animation_liste);
 	        	
