@@ -298,6 +298,10 @@ public class Bomb {
 		bo.setT_explosion(System.currentTimeMillis());
 		bo.Bombs.add(bo);
 		bo.explose(b, J1, J2,bonus,anim);
+		if(bo.getZ() == -1){
+			bo.setT_explosion(0);//une mine qui explose a cause d'une bombe a 0 a son timer a 0
+			System.out.println("Bomb mine deleted at (X,Y) " + bo.getX()+ " , " + bo.getY());
+		}
 	}
 	
 
@@ -572,6 +576,15 @@ public class Bomb {
 			}
 
 
+		}
+		
+		for (Iterator<Bomb> iter = this.getBombs().iterator(); iter.hasNext();) {
+		    Bomb element = iter.next();
+		    	if(element.getZ() == -1 && element.getT_explosion() == 0){
+		    		iter.remove();
+		    	}
+		        
+		    
 		}
 		//StdDraw.show(30);
 		
