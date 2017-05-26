@@ -574,8 +574,6 @@ public class Bomb {
 
 		}
 		//StdDraw.show(30);
-
 		
 	}
-	
 }

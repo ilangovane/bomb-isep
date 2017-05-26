@@ -257,9 +257,7 @@ public  void beginGame(){
 		}
 		return true;
 	}
-	
-	
-	
+
 
 	/*
 	 * BONUSSSSSSSSSS

@@ -1,23 +1,24 @@
 
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import edu.princeton.cs.introcs.StdDraw;
 
 public class Main {
 
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 	    
 		Menu menu = new Menu();
 		Player j1 = new Player(1);
 		int i=0;
+		//audio
+	    Audio musique = new Audio("/Users/apple/Downloads/sound.wav");
+	    musique.start();
 		while(menu.getChoixMenu() != "exit"){
-			
-			//audio
-			//String audioFilePath = "/Users/apple/Downloads/sound.wav";
-		    //Audio musique = new Audio();
-		    //musique.play(audioFilePath);
-		    
 	       switch(menu.getChoixMenu()){
 	       case "home":
 	    	   	menu.menu();
@@ -39,12 +40,12 @@ public class Main {
 	        	break;
 	       default:
 	    	   System.out.print("RIEN");			
-	       }
-	       //System.out.println(menu.getChoixMenu());
-	       
-	       StdDraw.show(30);  
+	       }	       
+	       StdDraw.show(30); 
+	       musique.repeat();
 		}
 		   System.exit(0);		// On ferme la fenetre 
+	       musique.stop();
 	}
 	
 
