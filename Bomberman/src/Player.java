@@ -231,7 +231,10 @@ public class Player {
 
 		// affiche le joueur sur la case 
 		b.setPlayer(this.getId(), (int) this.getX(), (int) this.getY());
-		
+		//StdDraw.show(30);
+		//StdDraw.picture((int) this.getX() + 0.5, (int) this.getY() + 0.5, "/bomberman_picture/grass.jpg",1,1);
+		//StdDraw.show(30);
+
 	}
 	
 	/*Detecter les colisions de deux joueurs*/

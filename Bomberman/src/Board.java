@@ -144,6 +144,7 @@ public  void beginGame(){
 	
 	if(id == 1){//Joueur 1 en rouge
 		StdDraw.picture(X + 0.5 , Y + 0.5 , "p1.gif",1,1);
+		
 	}else if(id==2){//Joueur 2 en bleu
 		StdDraw.picture(X + 0.5 , Y + 0.5 , "p2.gif",1,1);	
 	}else{

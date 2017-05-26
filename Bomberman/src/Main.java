@@ -7,12 +7,17 @@ public class Main {
 
 
 	public static void main(String[] args) {
+	    
 		Menu menu = new Menu();
 		Player j1 = new Player(1);
-		Audio audio = new Audio();
 		int i=0;
 		while(menu.getChoixMenu() != "exit"){
-			//audio();
+			
+			//audio
+			//String audioFilePath = "/Users/apple/Downloads/sound.wav";
+		    //Audio musique = new Audio();
+		    //musique.play(audioFilePath);
+		    
 	       switch(menu.getChoixMenu()){
 	       case "home":
 	    	   	menu.menu();
