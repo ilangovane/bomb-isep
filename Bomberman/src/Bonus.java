@@ -28,7 +28,7 @@ public class Bonus {
 		this.Y= Y;
 		
 		this.type_bonus = random_type(); // renvoie le type au hasard 
-		this.type_bonus ="bombe_moins" ;
+		//this.type_bonus ="bombe_moins" ;
 	}
 	
 	/*CONSTRUCTEUR POUR LA CREATION DE LA LISTE DE BONUS*/
