@@ -17,7 +17,7 @@ public class Main {
 		Player j1 = new Player(1);
 		int i=0;
 		//audio
-	    Audio musique = new Audio("src/bomberman_sound.wav");
+	    Audio musique = new Audio("Bomberman/src/bomberman_sound.wav");
 	    musique.start();
 		while(menu.getChoixMenu() != "exit"){
 	       switch(menu.getChoixMenu()){
