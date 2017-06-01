@@ -49,7 +49,6 @@ public class Board {
 			for(int column = 0 ; column < 21 ; column++){
 				if(matrice[line][column] != 1 ){
 					matrice[line][column] = 2;
-					//matrice[line][column] = 3; 
 				}
 			}
 

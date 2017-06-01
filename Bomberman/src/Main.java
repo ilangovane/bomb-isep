@@ -1,4 +1,5 @@
 
+import java.awt.FontFormatException;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 
@@ -10,7 +11,7 @@ import edu.princeton.cs.introcs.StdDraw;
 public class Main {
 
 
-	public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+	public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException, FontFormatException {
 	    
 		Menu menu = new Menu();
 		Player j1 = new Player(1);
