@@ -102,6 +102,10 @@ public class Animation {
 	public void bomb_timer(Bomb list){
 		Iterator<Bomb> it = list.getBombs().iterator();
 		
+		
+		
+		
+
 		Font font = new Font("Bomberman" , Font.BOLD , 20);
 		StdDraw.setFont(font);
 		while (it.hasNext()){//parcours la liste de bombes

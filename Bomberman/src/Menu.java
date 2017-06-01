@@ -5,6 +5,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 import edu.princeton.cs.introcs.StdDraw;
 
 public class Menu {
@@ -41,13 +44,13 @@ public class Menu {
 		
 				
 		StdDraw.clear(); // On clear la fenetre
-		Font font = new Font(Font.createFont(Font.TRUETYPE_FONT,new FileInputStream(new File("bm.ttf"))).getFamily(), Font.ITALIC , 30);
+		Font font = new Font(Font.createFont(Font.TRUETYPE_FONT,new FileInputStream(new File("Bomberman/src/bm.ttf"))).getFamily(), Font.ITALIC , 30);
 		//Font font = new Font("Bomberman" , Font.ITALIC , 30);
 		StdDraw.setFont(font);
 		StdDraw.picture(10.5, 10, "/bomberman_picture/endgame.png",22,22);
 		StdDraw.setPenColor(StdDraw.BOOK_BLUE);
 		if(winner!=0){
-			StdDraw.text(10, 0, "Le joueur " + winner + " a� gagne");
+			StdDraw.text(10, 0, "Le joueur " + winner + " à gagné");
 		}else{
 			StdDraw.text(10, 0, "Match null");
 		}
@@ -156,7 +159,7 @@ public class Menu {
 		
 			}
 	}
-	public int  start_game(boolean IA) throws FileNotFoundException, FontFormatException, IOException{
+	public int  start_game(boolean IA) throws FileNotFoundException, FontFormatException, IOException, UnsupportedAudioFileException, LineUnavailableException{
 
         //Dessiner le plateau et les joueurs
 		Board game_board = new Board();

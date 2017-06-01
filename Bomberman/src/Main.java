@@ -11,13 +11,14 @@ import edu.princeton.cs.introcs.StdDraw;
 public class Main {
 
 
-	public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException, FontFormatException {
+	public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException, FontFormatException, InterruptedException {
 	    
 		Menu menu = new Menu();
-		Player j1 = new Player(1);
+		
 		int i=0;
 		//audio
 	    Audio musique = new Audio("Bomberman/src/bomberman_sound.wav");
+	    Audio click = new Audio("Bomberman/src/click.wav");
 	    musique.start();
 		while(menu.getChoixMenu() != "exit"){
 	       switch(menu.getChoixMenu()){
@@ -28,7 +29,9 @@ public class Main {
 	    	   	menu.game_over(i);//attention au cas ou il y a match null 
 	    	   	break;
 	       case "multiplayers":
+	   	    	click.start();
 	        	i = menu.start_game(false);//pas de IA
+	   	    	click.stop();
 	        	break;
 	       case "IA":
 	        	i = menu.start_game(true);//IA presente
@@ -37,12 +40,11 @@ public class Main {
 	        	System.out.println("INSTRUCTIONS");
 	        	break;
 	       case "exit":
-	    	   //System.out.println("QUITTER");
 	        	break;
 	       default:
 	    	   System.out.print("RIEN");			
-	       }	       
-	       StdDraw.show(30); 
+	       }	    
+	       StdDraw.show(30);
 	       musique.repeat();
 		}
 		   System.exit(0);		// On ferme la fenetre 

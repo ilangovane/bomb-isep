@@ -1,7 +1,12 @@
 import java.awt.Font;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 import edu.princeton.cs.introcs.StdDraw;
 import java.util.Random;
 public class Bonus {
@@ -230,16 +235,18 @@ public class Bonus {
 	/*
 	 * COLLECTE BONUS
 	 * */
-	public void collect_bonus(Player J1, Player J2, Board b){
+	public void collect_bonus(Player J1, Player J2, Board b) throws UnsupportedAudioFileException, IOException, LineUnavailableException{
 		Iterator<Bonus> it = this.Bonus.iterator(); // on parcours l'element du premier jusqu'au dernier grace au curseur iterator
 
 
 		
 		while (it.hasNext()){//parcours la liste de bonus
 			Bonus bo = it.next();
-			
+			Audio click = new Audio("Bomberman/src/bonus.wav");
 			if ((int)(J1.getX()) == bo.getX() && (int)(J1.getY()) == bo.getY()){ //si mon joueur 1 et le bonus sont ÃƒÂ  la meme position
 				// je n'affiche plus le bonus : j'appelle la fonction setArea et je colorie la case en vert
+				click.start();
+
 				b.setArea(bo.getY(), bo.getX() , "green");
 				
 
@@ -318,6 +325,7 @@ public class Bonus {
 			
 			
 			else if ((int)J2.getX() == bo.getX() && (int)J2.getY() == bo.getY()){
+				click.start();
 
 				// je n'affiche plus le bonus : j'appelle la fonction setArea et je colorie la case en vert
 				b.setArea(bo.getY(), bo.getX() , "green");

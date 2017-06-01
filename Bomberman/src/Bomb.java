@@ -1,7 +1,11 @@
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import edu.princeton.cs.introcs.StdDraw;
 
@@ -294,7 +298,7 @@ public class Bomb {
 
 	
 	//modifie le timer de l'explosion d'une bombe � "maintenant" 
-	public void explose_bomb_around(Bomb bo , Board b , Player J1 , Player J2,Bonus bonus,Animation anim){
+	public void explose_bomb_around(Bomb bo , Board b , Player J1 , Player J2,Bonus bonus,Animation anim) throws UnsupportedAudioFileException, IOException, LineUnavailableException{
 		bo.setT_explosion(System.currentTimeMillis());
 		bo.Bombs.add(bo);
 		bo.explose(b, J1, J2,bonus,anim);
@@ -308,7 +312,7 @@ public class Bomb {
 
 	/*Retire les bombes de la liste lors de l'explosion
 	 * Dï¿½truit les murs jusqu'au mur cassable */
-	public void explose(Board b,Player J1, Player J2, Bonus bonus,Animation anim){ 
+	public void explose(Board b,Player J1, Player J2, Bonus bonus,Animation anim) throws UnsupportedAudioFileException, IOException, LineUnavailableException{ 
 		Iterator<Bomb> it = Bombs.iterator();
 		int i;
 		while (it.hasNext()){//parcours la liste de bombe
@@ -363,6 +367,15 @@ public class Bomb {
 		
 			if( bo.getT_explosion() <  System.currentTimeMillis() && bo.getZ() == 0){ // le minuteur prend fin
 				i=0;
+				
+				
+				 Audio explose = new Audio("Bomberman/src/explosion.wav");
+				 
+				 explose.start();
+				
+				
+				
+				
 				// la bomb a une portï¿½e de 3 et s'arrete au mur incassable dans toute les directions
 				boolean is_red_bomb = bo.isIs_red();
 				int bomb_range = bo.getRange(); //portï¿½e de la bombe de l'objet "bo" qui change ï¿½ chaque boucle
@@ -572,6 +585,8 @@ public class Bomb {
 				J2.avoid_killing_player_two_times(b , this.getBombs());
 				b.setArea(bo.getY(), bo.getX(), "green");// il faut faire disparaitre la bombe de l'ï¿½cran en recoloriant la case en verte
 				StdDraw.show(30);
+
+				//explose.stop();
 
 			}
 

@@ -1,6 +1,10 @@
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import edu.princeton.cs.introcs.StdDraw;
 
@@ -324,7 +328,7 @@ public class Player {
 		return false;
 	}
 	
-	public void kick(Bomb bombe,Board b,Animation anim,Player other){
+	public void kick(Bomb bombe,Board b,Animation anim,Player other) throws UnsupportedAudioFileException, IOException, LineUnavailableException{
 		if(!kick){
 			return;//si le joueur n'a pas de kick , le reste n'est pas execut�
 		}
