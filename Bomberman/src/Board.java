@@ -74,15 +74,7 @@ public class Board {
 		matrice[13][18] = 3;
 		matrice[13][19] = 3;
 		
-		/*for(int line = 0 ; line <17 ; line ++){
-			for(int column = 0 ; column < 21 ; column++){
-				if(matrice[line][column] != 1 ){
-					matrice[line][column] = 3;
-					
-				}
-			}
-
-		}*/
+		
 		
 	}
 	
@@ -142,16 +134,26 @@ public  void beginGame(){
 	/*Placer un joueur selon une position (X,Y) pour le joueur J1 (id = 1) , J2(id = 2) ou IA (id = 3 )*/
 	public void setPlayer(int id,double X, double Y){
 	
+		if(this.isGrass((int) Y, (int) X)){
+			StdDraw.picture(X + 0.5 , Y + 0.5 , "/bomberman_picture/grass.jpg",1,1);
+		}else{
+			StdDraw.picture(X + 0.5 , Y + 0.5 , "/bomberman_picture/destructibleWall.png",1,1);
+		}
 	if(id == 1){//Joueur 1 en rouge
-		StdDraw.picture(X + 0.5 , Y + 0.5 , "p1.gif",1,1);
+	
+		StdDraw.picture(X + 0.5 , Y + 0.5 , "p1.gif",1.5,1.5);
+		
 		
 	}else if(id==2){//Joueur 2 en bleu
+		
 		StdDraw.picture(X + 0.5 , Y + 0.5 , "p2.gif",1,1);	
+		
+		
 	}else{
 		//IA
 	}
 
-	
+	StdDraw.show(1);
 	
 
 }
@@ -315,8 +317,7 @@ public  void beginGame(){
 			StdDraw.picture(column + 0.5 , line + 0.5 , "/bomberman_picture/kick.png", 1,  1);
 			break;
 		case "bomb_line":
-			//StdDraw.setPenColor(StdDraw.RED);
-			//StdDraw.filledSquare(column + 0.5, line + 0.5, 0.3);
+			
 			StdDraw.picture(column + 0.5, line + 0.5, "/bomberman_picture/linebomb.jpeg",1,1);
 		}
 		
@@ -386,14 +387,13 @@ public  void beginGame(){
 				StdDraw.filledSquare(x+13,y,0.5);
 			}
 			if(bonus.isJ1_line_bomb()){
-				//StdDraw.setPenColor(StdDraw.GREEN);
-				//StdDraw.filledSquare(x+14, y , 0.3);
+			
 				StdDraw.picture(x+14, y, "/bomberman_picture/linebomb.jpeg",0.8,0.8);
 			}else{
 				StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
 				StdDraw.filledSquare(x+14, y, 0.3);
 			}
-			//StdDraw.picture(x+15,y,"/bomberman_picture/blackbanner.jpg", 10,1);
+			
 
 		}
 		
@@ -453,8 +453,6 @@ public  void beginGame(){
 				StdDraw.filledSquare(x-13,y,0.5);
 			}
 			if(bonus.isJ2_line_bomb()){
-				//StdDraw.setPenColor(StdDraw.GREEN);
-				//StdDraw.filledSquare(x-14, y , 0.3);
 				StdDraw.picture(x-14, y, "/bomberman_picture/linebomb.jpeg",0.8,0.8);
 			}else{
 				StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
@@ -464,40 +462,6 @@ public  void beginGame(){
 		}
 		
 		
-	}
-	public void draw_life(Player J){
-		Font font = new Font("Bomberman",Font.BOLD , 30);
-		StdDraw.setFont(font);
-		if(J.getId() == 1){
-				StdDraw.setPenColor(StdDraw.BLACK);
-				StdDraw.text(24, 16, "Joueur 1");
-			 	StdDraw.setPenColor(StdDraw.RED);
-		        // draw diamond
-		        double[] xs = { 23,  24, 25, 24 };
-		        double[] ys = { 14, 13, 14, 15 };
-		        StdDraw.filledPolygon(xs, ys);
-
-		        // circles
-		        StdDraw.filledCircle(24+0.5, 14+0.5, 1 / Math.sqrt(2));
-		        StdDraw.filledCircle(24-0.5, 14+0.5, 1 / Math.sqrt(2));
-		        StdDraw.setPenColor(StdDraw.WHITE);
-		        StdDraw.text(24, 14, String.valueOf(J.getLife()));
-		}else if(J.getId() == 2){
-			StdDraw.setPenColor(StdDraw.BLACK);
-			StdDraw.text(24, 8, "Joueur 2");
-		 	StdDraw.setPenColor(StdDraw.BLUE);
-	        // draw diamond
-	        double[] xs = { 23,  24, 25, 24 };
-	        double[] ys = { 6, 5, 6, 7 };
-	        StdDraw.filledPolygon(xs, ys);
-
-	        // circles
-	        StdDraw.filledCircle(24.5, 6.5, 1 / Math.sqrt(2));
-	        StdDraw.filledCircle(23.5, 6.5, 1 / Math.sqrt(2));
-	        StdDraw.setPenColor(StdDraw.WHITE);
-	        StdDraw.text(24, 14-8, String.valueOf(J.getLife()));
-		}
-
 	}
 	
 	public void finalize(){
