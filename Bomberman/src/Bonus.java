@@ -33,7 +33,7 @@ public class Bonus {
 		this.Y= Y;
 		
 		this.type_bonus = random_type(); // renvoie le type au hasard 
-		this.type_bonus ="passe_muraille" ;
+		//this.type_bonus ="passe_muraille" ;
 	}
 	
 	/*CONSTRUCTEUR POUR LA CREATION DE LA LISTE DE BONUS*/
@@ -402,18 +402,13 @@ public class Bonus {
 					break;
 				case "kick" :
 					audioSuper.start();
-
 					J2.setKick(true);
 					break;
 				case "bomb_line":
 					audioSuper.start();
-
 					this.setJ2_line_bomb(true);
 					break;
-				
-
 			}
-				
 				it.remove();
 			}
 		}
