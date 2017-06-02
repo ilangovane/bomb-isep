@@ -22,7 +22,6 @@ public class Bonus {
 	private int X, Y;
 	private boolean J1_mine_bomb = false;
 	private boolean J2_mine_bomb = false;
-	
 	private boolean J1_line_bomb = false;
 	private boolean J2_line_bomb = false;
 	private Set<Bonus> Bonus = new HashSet<Bonus>(); // Nouvelle liste de bonus vide 
@@ -31,9 +30,7 @@ public class Bonus {
 	public Bonus(int X, int Y){
 		this.X= X;
 		this.Y= Y;
-		
 		this.type_bonus = random_type(); // renvoie le type au hasard 
-		this.type_bonus ="kick" ;
 	}
 	
 	/*CONSTRUCTEUR POUR LA CREATION DE LA LISTE DE BONUS*/
@@ -196,16 +193,16 @@ public class Bonus {
 		int nombreAleatoire = rand.nextInt(14); // 13 bonus en tout 
 		switch (nombreAleatoire){
 		case 0:
-			//retourne flamme bleu : portÃ©e -1
+			//retourne flamme bleu : portée -1
 			return "flamme_bleu";
 		case 1:
-			//retourne flamme jaune : portÃ©e +1
+			//retourne flamme jaune : portée +1
 			return "flamme_jaune";
 		case 2:
-			//retourne flamme rouge : portÃ©e +10
+			//retourne flamme rouge : portée +10
 			return "flamme_rouge";
 		case 3:
-			//retourne bombe rouge : Ã©clate plusieurs murs destructibles 
+			//retourne bombe rouge : Eclate plusieurs murs destructibles 
 			return "bombe_rouge";
 		case 4: 
 			return "vie";
@@ -245,7 +242,7 @@ public class Bonus {
 			Audio audiobonus = new Audio("Bomberman/src/bonus.wav");
 			Audio audioSuper = new Audio("Bomberman/src/superbonus.wav");
 			Audio audioPass = new Audio("Bomberman/src/passe_muraille.wav");
-			//Audio audioKick = new Audio("Bomberman/src/kick.wav");
+			
 			
 			if ((int)(J1.getX()) == bo.getX() && (int)(J1.getY()) == bo.getY()){ //si mon joueur 1 et le bonus sont ÃƒÂ  la meme position
 				// Je n'affiche plus le bonus : j'appelle la fonction setArea et je colorie la case en vert
@@ -318,7 +315,7 @@ public class Bonus {
 				case "kick" :
 					audioSuper.start();
 					J1.setKick(true);
-					//audioKick.start();
+					
 					break;
 				case "bomb_line":
 					audioSuper.start();
@@ -404,7 +401,7 @@ public class Bonus {
 				case "kick" :
 					audioSuper.start();
 					J2.setKick(true);
-					//audioKick.start();
+					
 
 					break;
 				case "bomb_line":

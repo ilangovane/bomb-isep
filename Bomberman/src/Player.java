@@ -258,11 +258,13 @@ public class Player {
 		}
 	}
 	
-	public void kill(){
+	public void kill() throws UnsupportedAudioFileException, IOException, LineUnavailableException{
+		Audio audioDead = new Audio("Bomberman/src/dead.wav");
 		// le joueur perd une vie	
 		if(this.isShield()){
 			this.setShield(false);//bonus � usage unique
 		}else{
+			audioDead.start();
 			this.setLife( this.getLife() - 1 );
 			// lorsqu'un joueur perd la vie, il est temporairement plac� dans un lieu s�re
 			this.setX(-1);

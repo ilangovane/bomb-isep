@@ -18,8 +18,8 @@ public class Main {
 		int i=0;
 		//audio
 	    //Audio musique = new Audio("Bomberman/src/bomberman_sound.wav");
-		Audio musique = new Audio("Bomberman/src/dkr.wav");
-	    Audio music = new Audio("Bomberman/src/bomberman_sound.wav");
+		Audio musique = new Audio("Bomberman/src/bomberman_backsound.wav");
+	    //Audio music = new Audio("Bomberman/src/bomberman_sound.wav");
 	    
 	    Audio click = new Audio("Bomberman/src/start.wav");
 		musique.start();

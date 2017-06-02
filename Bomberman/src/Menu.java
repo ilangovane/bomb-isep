@@ -107,8 +107,8 @@ public class Menu{
 		float decalage = 1.75f;
 		int largeurRect = 4;
 		float hauteurRect = 0.5f;			
-		StdDraw.clear(StdDraw.PRINCETON_ORANGE);				//  Fond d'écran 
-
+		//StdDraw.clear(StdDraw.PRINCETON_ORANGE);				//  Fond d'écran 
+		StdDraw.picture(15, 8, "background2.gif",30,18);
 		/*BOUTON JOUER*/
 		displayRect(centerC, centerL, largeurRect, hauteurRect,"Multijoueurs");		
 		
@@ -128,10 +128,10 @@ public class Menu{
 		StdDraw.picture(15, 13, "/bomberman_picture/banner.png");
 		
 		/*A gauche on met le joueur 1*/
-		StdDraw.picture(5, 8, "/bomberman_picture/p1.png", 8,11);
+		StdDraw.picture(5, 3, "p1.gif");
 		
 		/*A droite le joueur 2*/
-		StdDraw.picture(25, 8, "/bomberman_picture/p2.png");
+		StdDraw.picture(25, 3, "p2.gif");
 		StdDraw.mousePressed(); // il faut remettre le boolean a false 
 
 		
