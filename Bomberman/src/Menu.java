@@ -44,13 +44,13 @@ public class Menu {
 		
 				
 		StdDraw.clear(); // On clear la fenetre
-		Font font = new Font(Font.createFont(Font.TRUETYPE_FONT,new FileInputStream(new File("Bomberman/src/bm.ttf"))).getFamily(), Font.ITALIC , 30);
+		Font font = new Font(Font.createFont(Font.TRUETYPE_FONT,new FileInputStream(new File("bm.ttf"))).getFamily(), Font.ITALIC , 30);
 		//Font font = new Font("Bomberman" , Font.ITALIC , 30);
 		StdDraw.setFont(font);
 		StdDraw.picture(10.5, 10, "/bomberman_picture/endgame.png",22,22);
 		StdDraw.setPenColor(StdDraw.BOOK_BLUE);
 		if(winner!=0){
-			StdDraw.text(10, 0, "Le joueur " + winner + " à gagné");
+			StdDraw.text(10, 0, "Le joueur " + winner + " a gagne");
 		}else{
 			StdDraw.text(10, 0, "Match null");
 		}
@@ -114,10 +114,13 @@ public class Menu {
 		displayRect(centerC, centerL - decalage, largeurRect, hauteurRect, "Mode 1 joueur");	
 		
 		/*BOUTON Instructions*/
-		displayRect(centerC, centerL - 2*decalage, largeurRect, hauteurRect,"Instructions");	
+		displayRect(centerC, centerL - 2*decalage, largeurRect, hauteurRect,"Instructions");
+		
+		/*BOUTON Avatar*/
+		displayRect(centerC, centerL - 3*decalage, largeurRect, hauteurRect,"Avatar");
 		
 		/*BOUTON QUITTER*/
-		displayRect(centerC, centerL - 3*decalage, largeurRect, hauteurRect, "Quitter");	
+		displayRect(centerC, centerL - 4*decalage, largeurRect, hauteurRect, "Quitter");	
 
 		/*On affiche le logo bomberman*/
 		StdDraw.picture(15, 13, "/bomberman_picture/banner.png");
@@ -150,16 +153,20 @@ public class Menu {
 				}
 			}
 			else if (StdDraw.mouseX() >= centerC-largeurRect && StdDraw.mouseX() <= centerC+largeurRect && StdDraw.mouseY() >= centerL - hauteurRect - 3*decalage && StdDraw.mouseY() <= centerL + hauteurRect - 3*decalage){
-				displayEffect(centerC, centerL - 3*decalage, largeurRect, hauteurRect,"Quitter");	
-				if(StdDraw.mousePressed()){
-			
-				setChoixMenu("exit");
-				
+				displayEffect(centerC, centerL - 3*decalage, largeurRect, hauteurRect,"Avatar");	
+				if(StdDraw.mousePressed()){			
+				setChoixMenu("avatar");				
 				}
-		
+			}
+			else if (StdDraw.mouseX() >= centerC-largeurRect && StdDraw.mouseX() <= centerC+largeurRect && StdDraw.mouseY() >= centerL - hauteurRect - 4*decalage && StdDraw.mouseY() <= centerL + hauteurRect - 4*decalage){
+				displayEffect(centerC, centerL - 4*decalage, largeurRect, hauteurRect,"Quitter");	
+				if(StdDraw.mousePressed()){			
+				setChoixMenu("exit");				
+				}		
 			}
 	}
 	public int  start_game(boolean IA) throws FileNotFoundException, FontFormatException, IOException, UnsupportedAudioFileException, LineUnavailableException{
+
         //Dessiner le plateau et les joueurs
 		Board game_board = new Board();
         game_board.beginGame();
@@ -169,7 +176,6 @@ public class Menu {
         Bomb bomb_liste = new Bomb();
         Bonus bonus_liste =  new Bonus();
         Animation animation_liste = new Animation();
-
         // Le jeu doit reboucler a l'infini tant que les joueurs ont plus de 0 vie 
         boolean game_over = false;
 		while(!game_over){

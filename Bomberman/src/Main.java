@@ -22,7 +22,7 @@ public class Main {
 	    
 	    Audio click = new Audio("Bomberman/src/click.wav");
 		musique.start();
-
+		menu.setChoixMenu("avatar");
 		while(menu.getChoixMenu() != "exit"){
 		   musique.repeat();
 		   
@@ -37,13 +37,10 @@ public class Main {
 	    	    musique.stop();
 	   	    	click.start();
 	   	    	Thread.sleep(3500);
-	   	    	
 	   	    	music.start();
 	   	    	music.repeat();
-
 	   	    	i = menu.start_game(false);//pas de IA
 	   	    	click.stop();
-	   	    	
 	        	break;
 	       case "IA":
 	        	i = menu.start_game(true);//IA presente
@@ -53,6 +50,11 @@ public class Main {
 	        	break;
 	       case "exit":
 	        	break;
+	       case "avatar": 
+	    	   Avatar avatar = new Avatar();
+	    	    avatar.choix();
+	    	    menu.setChoixMenu("multiplayers");
+	    	   break;
 	       default:
 	    	   System.out.print("RIEN");			
 	       }	   
