@@ -33,7 +33,7 @@ public class Bonus {
 		this.Y= Y;
 		
 		this.type_bonus = random_type(); // renvoie le type au hasard 
-		//this.type_bonus ="bombe_moins" ;
+		this.type_bonus ="passe_muraille" ;
 	}
 	
 	/*CONSTRUCTEUR POUR LA CREATION DE LA LISTE DE BONUS*/
@@ -242,10 +242,14 @@ public class Bonus {
 		
 		while (it.hasNext()){//parcours la liste de bonus
 			Bonus bo = it.next();
-			Audio click = new Audio("Bomberman/src/bonus.wav");
+			Audio audiobonus = new Audio("Bomberman/src/bonus.wav");
+			Audio audioSuper = new Audio("Bomberman/src/superbonus.wav");
+			Audio audioPass = new Audio("Bomberman/src/passe_muraille.wav");
+
+			
 			if ((int)(J1.getX()) == bo.getX() && (int)(J1.getY()) == bo.getY()){ //si mon joueur 1 et le bonus sont ÃƒÂ  la meme position
 				// je n'affiche plus le bonus : j'appelle la fonction setArea et je colorie la case en vert
-				click.start();
+				audiobonus.start();
 
 				b.setArea(bo.getY(), bo.getX() , "green");
 				
@@ -304,15 +308,19 @@ public class Bonus {
 					J1.setShield(true);
 					break ;	
 				case "passe_muraille":
+					audioSuper.start();
+					audioPass.start();
 					J1.setPasse_muraille(true);
 					break;
 				case "mine" :
 					this.setJ1_mine_bomb(true);
 					break;
 				case "kick" :
+					audioSuper.start();
 					J1.setKick(true);
 					break;
 				case "bomb_line":
+					audioSuper.start();
 					this.setJ1_line_bomb(true);
 					break;
 				
@@ -325,7 +333,7 @@ public class Bonus {
 			
 			
 			else if ((int)J2.getX() == bo.getX() && (int)J2.getY() == bo.getY()){
-				click.start();
+				audiobonus.start();
 
 				// je n'affiche plus le bonus : j'appelle la fonction setArea et je colorie la case en vert
 				b.setArea(bo.getY(), bo.getX() , "green");
@@ -385,16 +393,21 @@ public class Bonus {
 					J2.setShield(true);
 					break ;	
 				case "passe_muraille":
+					audioSuper.start();
+					audioPass.start();
 					J2.setPasse_muraille(true);
 					break;
 				case "mine" :
 					this.setJ2_mine_bomb(true);
 					break;
 				case "kick" :
+					audioSuper.start();
+
 					J2.setKick(true);
 					break;
 				case "bomb_line":
-			
+					audioSuper.start();
+
 					this.setJ2_line_bomb(true);
 					break;
 				

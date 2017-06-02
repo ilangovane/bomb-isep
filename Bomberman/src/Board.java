@@ -340,7 +340,7 @@ public  void beginGame(){
 			StdDraw.setPenColor(StdDraw.WHITE);
 			
 			StdDraw.text(x,y, "J1" );
-			StdDraw.picture(x+0.75,y,"/bomberman_picture/p1.png",0.8,0.8);
+			//StdDraw.picture(x+0.75,y,"/bomberman_picture/p1.png",0.8,0.8);
 			
 			StdDraw.picture(x+2,y,"/bomberman_picture/heart.png",0.8,0.8);
 			StdDraw.text(x+2,y,Integer.toString(J1.getLife()) );
@@ -407,8 +407,8 @@ public  void beginGame(){
 			Font font = new Font("Tahoma" , Font.ITALIC , 18);
 			StdDraw.setFont(font);
 			StdDraw.setPenColor(StdDraw.WHITE);
-			StdDraw.text(x-0.75,y,"J2");
-			StdDraw.picture(x,y,"/bomberman_picture/p2.png",0.8,0.8);
+			StdDraw.text(x,y,"J2");
+			//StdDraw.picture(x,y,"/bomberman_picture/p2.png",0.8,0.8);
 			StdDraw.picture(x-2,y,"/bomberman_picture/heart.png",0.8,0.8);
 			StdDraw.text(x-2,y,Integer.toString(J2.getLife()) );
 			StdDraw.picture(x-4.5, y, "/bomberman_picture/bomb.png",0.8,0.8);

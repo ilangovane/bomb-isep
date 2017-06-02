@@ -136,7 +136,7 @@ public class Player {
 	 * 
 	 * */
 	
-	public void move(Board b,Bomb bo,Player other){
+	public void move(Board b,Bomb bo,Player other) throws UnsupportedAudioFileException, IOException, LineUnavailableException{
 	
 		//commande clavier du joueur 1 
 		if(this.id == 1){
@@ -321,10 +321,15 @@ public class Player {
 		}
 	}
 	
-	public boolean go_through_destructible_wall(Board b , int x , int y){
+	public boolean go_through_destructible_wall(Board b , int x , int y) throws UnsupportedAudioFileException, IOException, LineUnavailableException{
+
 		if(this.isPasse_muraille() && b.isDestructible(y,x)){
+			//audioPass.start();
+			//audioPass.repeat();
 			return true;
 		}
+		//audioPass.stop();
+
 		return false;
 	}
 	
