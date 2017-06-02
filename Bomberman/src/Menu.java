@@ -1,5 +1,7 @@
 import java.awt.Font;
 import java.awt.FontFormatException;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -10,7 +12,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 import edu.princeton.cs.introcs.StdDraw;
 
-public class Menu {
+public class Menu{
 	/*
 	 * valeurs prises par ChoixMenu : "home" , "multiplayers" , "IA" , "exit" , "instructions"
 	 * */
@@ -25,7 +27,10 @@ public class Menu {
         StdDraw.setXscale(0 , 30);
         StdDraw.setYscale(0 , 17);
 		this.ChoixMenu = "home";
+		//this.addMouseListener(this);
+
 	}
+	
 	public String getChoixMenu() {
 		return ChoixMenu;
 	}
@@ -42,10 +47,8 @@ public class Menu {
 		int largeurRect = 3;
 		float hauteurRect = 0.5f;
 		
-				
 		StdDraw.clear(); // On clear la fenetre
-		Font font = new Font(Font.createFont(Font.TRUETYPE_FONT,new FileInputStream(new File("bm.ttf"))).getFamily(), Font.ITALIC , 30);
-		//Font font = new Font("Bomberman" , Font.ITALIC , 30);
+		Font font = new Font(Font.createFont(Font.TRUETYPE_FONT,new FileInputStream(new File("Bomberman/src/bm.ttf"))).getFamily(), Font.ITALIC , 30);
 		StdDraw.setFont(font);
 		StdDraw.picture(10.5, 10, "/bomberman_picture/endgame.png",22,22);
 		StdDraw.setPenColor(StdDraw.BOOK_BLUE);
@@ -101,11 +104,10 @@ public class Menu {
 		int nbcolonne = 30;					//nombre de colonne
 		float centerL = (float)(nbligne/2);
 		float centerC = (float)(nbcolonne/2);
-		int decalage = 2;
+		float decalage = 1.75f;
 		int largeurRect = 4;
 		float hauteurRect = 0.5f;			
 		StdDraw.clear(StdDraw.PRINCETON_ORANGE);				//  Fond d'écran 
-		//StdDraw.picture(15, 13, "stars.gif");
 
 		/*BOUTON JOUER*/
 		displayRect(centerC, centerL, largeurRect, hauteurRect,"Multijoueurs");		
@@ -130,14 +132,14 @@ public class Menu {
 		
 		/*A droite le joueur 2*/
 		StdDraw.picture(25, 8, "/bomberman_picture/p2.png");
-		
+		StdDraw.mousePressed(); // il faut remettre le boolean a false 
+
 		
 			if (StdDraw.mouseX() >= centerC-largeurRect && StdDraw.mouseX() <= centerC+largeurRect && StdDraw.mouseY() >= centerL - hauteurRect && StdDraw.mouseY() <= centerL + hauteurRect){
 				// Petit effet quand on place la souris sur le bouton
 				displayEffect(centerC, centerL, largeurRect, hauteurRect,"Jouer");		//  Dessine un rectangle
 				if(StdDraw.mousePressed()){
 				setChoixMenu("multiplayers");
-				//System.out.println(centerL - hauteurRect +""+ centerL + hauteurRect);
 				}
 			}
 			else if (StdDraw.mouseX() >= centerC-largeurRect && StdDraw.mouseX() <= centerC+largeurRect && StdDraw.mouseY() >= centerL - hauteurRect - decalage && StdDraw.mouseY() <= centerL + hauteurRect - decalage){
@@ -149,7 +151,7 @@ public class Menu {
 			else if (StdDraw.mouseX() >= centerC-largeurRect && StdDraw.mouseX() <= centerC+largeurRect && StdDraw.mouseY() >= centerL - hauteurRect - 2*decalage && StdDraw.mouseY() <= centerL + hauteurRect - 2*decalage){
 				displayEffect(centerC, centerL - 2*decalage, largeurRect, hauteurRect,"Instructions");	
 				if(StdDraw.mousePressed()){
-				setChoixMenu("instructions"); // ce sera a change
+				setChoixMenu("instructions"); 
 				}
 			}
 			else if (StdDraw.mouseX() >= centerC-largeurRect && StdDraw.mouseX() <= centerC+largeurRect && StdDraw.mouseY() >= centerL - hauteurRect - 3*decalage && StdDraw.mouseY() <= centerL + hauteurRect - 3*decalage){

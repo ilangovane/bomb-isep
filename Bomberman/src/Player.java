@@ -410,9 +410,10 @@ public class Player {
 	         	}
 			
 		}else if(StdDraw.isKeyPressed(KeyEvent.VK_M) && this.getId() == 2){// touche 3 enfonc�e
-			
+			Audio audioKick = new Audio("Bomberman/src/kick.wav");
+
 	           if(StdDraw.isKeyPressed(KeyEvent.VK_DOWN)) {
-	        	   
+	        	   audioKick.start();
 	            	Bomb bo = bombe.find_Bomb((int) this.getX(), (int) this.getY()-1);
 	            	if(bo.getX() > 0 && bo.getY() > 0 ){
 	            		b.setArea((int) this.getY()-1, (int) this.getX(), "green");
@@ -429,7 +430,7 @@ public class Player {
 	            		bo.setY(y);
 	            	}
 	          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_LEFT)){
-	          		
+	          		 audioKick.start();
 		            	Bomb bo = bombe.find_Bomb((int) this.getX()-1, (int) this.getY());
 		            	if(bo.getX() > 0 && bo.getY() > 0 ){
 		            		b.setArea((int) this.getY(), (int) this.getX()-1, "green");
@@ -446,7 +447,7 @@ public class Player {
 		            	}
 
 	          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_RIGHT)){
-		        	
+	          		 audioKick.start();
 		            	Bomb bo = bombe.find_Bomb((int) this.getX()+1, (int) this.getY());
 		            	if(bo.getX()+1 > 0 && bo.getY() > 0 ){
 		            		b.setArea((int) this.getY(), (int) this.getX()+1, "green");
@@ -463,7 +464,7 @@ public class Player {
 		            	}
 
 	         	}else if(StdDraw.isKeyPressed(KeyEvent.VK_UP)){
-		   
+	         		 audioKick.start();
 		            	Bomb bo = bombe.find_Bomb((int) this.getX(), (int) this.getY()+1);
 		            	if(bo.getX() > 0 && bo.getY() > 0 ){
 		            		b.setArea((int) this.getY()+1, (int) this.getX(), "green");

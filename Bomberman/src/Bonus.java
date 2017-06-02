@@ -33,7 +33,7 @@ public class Bonus {
 		this.Y= Y;
 		
 		this.type_bonus = random_type(); // renvoie le type au hasard 
-		//this.type_bonus ="passe_muraille" ;
+		this.type_bonus ="kick" ;
 	}
 	
 	/*CONSTRUCTEUR POUR LA CREATION DE LA LISTE DE BONUS*/
@@ -184,7 +184,7 @@ public class Bonus {
 		Random rand = new Random();
 		
 		int nombreAleatoire = rand.nextInt(5); //Cette méthode va revoyer des nombres entre 0 et 4 donc 5 valeurs 
-		//nombreAleatoire = 2;
+		
 		if (nombreAleatoire == 2){ // Si 1 valeurs sur 5 est trouvé
 			return true; // alors on a une prob de 20%
 		}
@@ -245,10 +245,10 @@ public class Bonus {
 			Audio audiobonus = new Audio("Bomberman/src/bonus.wav");
 			Audio audioSuper = new Audio("Bomberman/src/superbonus.wav");
 			Audio audioPass = new Audio("Bomberman/src/passe_muraille.wav");
-
+			//Audio audioKick = new Audio("Bomberman/src/kick.wav");
 			
 			if ((int)(J1.getX()) == bo.getX() && (int)(J1.getY()) == bo.getY()){ //si mon joueur 1 et le bonus sont ÃƒÂ  la meme position
-				// je n'affiche plus le bonus : j'appelle la fonction setArea et je colorie la case en vert
+				// Je n'affiche plus le bonus : j'appelle la fonction setArea et je colorie la case en vert
 				audiobonus.start();
 
 				b.setArea(bo.getY(), bo.getX() , "green");
@@ -318,6 +318,7 @@ public class Bonus {
 				case "kick" :
 					audioSuper.start();
 					J1.setKick(true);
+					//audioKick.start();
 					break;
 				case "bomb_line":
 					audioSuper.start();
@@ -403,6 +404,8 @@ public class Bonus {
 				case "kick" :
 					audioSuper.start();
 					J2.setKick(true);
+					//audioKick.start();
+
 					break;
 				case "bomb_line":
 					audioSuper.start();
