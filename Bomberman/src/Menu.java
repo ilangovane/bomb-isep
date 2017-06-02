@@ -160,7 +160,6 @@ public class Menu {
 			}
 	}
 	public int  start_game(boolean IA) throws FileNotFoundException, FontFormatException, IOException, UnsupportedAudioFileException, LineUnavailableException{
-
         //Dessiner le plateau et les joueurs
 		Board game_board = new Board();
         game_board.beginGame();
@@ -170,6 +169,7 @@ public class Menu {
         Bomb bomb_liste = new Bomb();
         Bonus bonus_liste =  new Bonus();
         Animation animation_liste = new Animation();
+
         // Le jeu doit reboucler a l'infini tant que les joueurs ont plus de 0 vie 
         boolean game_over = false;
 		while(!game_over){

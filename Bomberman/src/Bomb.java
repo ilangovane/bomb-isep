@@ -586,7 +586,6 @@ public class Bomb {
 				b.setArea(bo.getY(), bo.getX(), "green");// il faut faire disparaitre la bombe de l'ï¿½cran en recoloriant la case en verte
 				StdDraw.show(30);
 
-				//explose.stop();
 
 			}
 

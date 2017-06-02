@@ -68,7 +68,7 @@ public class Animation {
 			Animation anim = it.next();
 			if(anim.getType() == "explosion"){
 				
-				StdDraw.picture(anim.getX(), anim.getY(), "/bomberman_picture/explosion.png",1,1);
+				StdDraw.picture(anim.getX(), anim.getY(), "/bomberman_picture/explosion2.png",1,1);
 			}else if(anim.getType() == "mine_under_ground"){
 				//StdDraw.setPenColor(StdDraw.GREEN);
 				//StdDraw.filledCircle(anim.getX(), anim.getY(), 0.3);
