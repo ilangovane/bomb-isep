@@ -342,18 +342,18 @@ public  void beginGame(){
 			StdDraw.text(x,y, "J1" );
 			//StdDraw.picture(x+0.75,y,"/bomberman_picture/p1.png",0.8,0.8);
 			
-			StdDraw.picture(x+2,y,"/bomberman_picture/heart.png",0.8,0.8);
+			StdDraw.picture(x+2,y,"/bomberman_picture/heart2.png",0.8,0.8);
 			StdDraw.text(x+2,y,Integer.toString(J1.getLife()) );
 			
 			StdDraw.picture(x+3.5,y,"/bomberman_picture/bomb.png",0.8,0.8);
 			StdDraw.text(x+4.5, y,":"+Integer.toString(bombe.getNbBombs(1))+"/"+Integer.toString(J1.getNb_bomb()));
 			StdDraw.picture(x+5.5,y,"/bomberman_picture/range.png");
-			StdDraw.text(x+6,y," :"+ Integer.toString(bonus.getJ1_bomb_range()));
+			StdDraw.text(x+6,y," +"+ Integer.toString(bonus.getJ1_bomb_range()));
 			
 			float  speed = J1.getdX() / 0.2f ;
 			
 			StdDraw.picture(x+7.25,y,"/bomberman_picture/speed.png");
-			StdDraw.text(x+8,y," :"+ Float.toString(speed));
+			StdDraw.text(x+8,y," x"+ Float.toString(speed));
 	
 			if(J1.isPasse_muraille()){
 				StdDraw.picture(x+9, y, "/bomberman_picture/ghost.png",0.8,0.8);
@@ -408,16 +408,15 @@ public  void beginGame(){
 			StdDraw.setFont(font);
 			StdDraw.setPenColor(StdDraw.WHITE);
 			StdDraw.text(x,y,"J2");
-			//StdDraw.picture(x,y,"/bomberman_picture/p2.png",0.8,0.8);
-			StdDraw.picture(x-2,y,"/bomberman_picture/heart.png",0.8,0.8);
+			StdDraw.picture(x-2,y,"/bomberman_picture/heart2.png",0.8,0.8);
 			StdDraw.text(x-2,y,Integer.toString(J2.getLife()) );
 			StdDraw.picture(x-4.5, y, "/bomberman_picture/bomb.png",0.8,0.8);
 			StdDraw.text(x-3.5, y,":"+Integer.toString(bombe.getNbBombs(2))+"/"+Integer.toString(J2.getNb_bomb()));
 			StdDraw.picture(x-6, y, "/bomberman_picture/range.png");
-			StdDraw.text(x-5.5, y," :"+Integer.toString(bonus.getJ2_bomb_range()));
+			StdDraw.text(x-5.5, y," +"+Integer.toString(bonus.getJ2_bomb_range()));
 			float  speed = J2.getdX()/0.2f;
 			StdDraw.picture(x-8,y,"/bomberman_picture/speed.png");
-			StdDraw.text(x-7.25,y,":" + Float.toString(speed));
+			StdDraw.text(x-7.25,y,"x" + Float.toString(speed));
 
 			if(J2.isPasse_muraille()){
 				StdDraw.picture(x-9, y, "/bomberman_picture/ghost.png",0.8,0.8);

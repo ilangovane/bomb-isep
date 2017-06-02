@@ -31,6 +31,7 @@ public class Bonus {
 		this.X= X;
 		this.Y= Y;
 		this.type_bonus = random_type(); // renvoie le type au hasard 
+		this.type_bonus = "kick";
 	}
 	
 	/*CONSTRUCTEUR POUR LA CREATION DE LA LISTE DE BONUS*/
