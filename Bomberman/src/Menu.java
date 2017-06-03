@@ -1,7 +1,5 @@
 import java.awt.Font;
 import java.awt.FontFormatException;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -27,8 +25,6 @@ public class Menu{
         StdDraw.setXscale(0 , 30);
         StdDraw.setYscale(0 , 17);
 		this.ChoixMenu = "home";
-		//this.addMouseListener(this);
-
 	}
 	
 	public String getChoixMenu() {
@@ -39,6 +35,11 @@ public class Menu{
 	public void setChoixMenu(String choixMenu) {
 		ChoixMenu = choixMenu;
 	}
+	public Font bombermanFont() throws FileNotFoundException, FontFormatException, IOException{
+		Font font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream("Bomberman/src/bm.ttf"));
+		font = font.deriveFont(20F);
+		return font;
+	}
 	public void game_over(int winner) throws FileNotFoundException, FontFormatException, IOException{
 		int nbligne = 2;					//nombre de ligne
 		int nbcolonne = 21;					//nombre de colonne
@@ -48,8 +49,9 @@ public class Menu{
 		float hauteurRect = 0.5f;
 		
 		StdDraw.clear(); // On clear la fenetre
-		Font bomberman = new Font(Font.createFont(Font.TRUETYPE_FONT,new FileInputStream(new File("Bomberman/src/bm.ttf"))).getFamily(), Font.ITALIC , 30);
-		StdDraw.setFont(bomberman);
+		//Font bomberman = new Font(Font.createFont(Font.TRUETYPE_FONT,new FileInputStream(new File("Bomberman/src/bm.ttf"))).getFamily(), Font.ITALIC , 30);
+		//StdDraw.setFont(bomberman);
+		StdDraw.setFont(bombermanFont());
 		StdDraw.picture(10.5, 10, "/bomberman_picture/endgame.png",22,22);
 		StdDraw.setPenColor(StdDraw.BOOK_BLUE);
 		if(winner!=0){
@@ -86,8 +88,9 @@ public class Menu{
 		StdDraw.filledRectangle(colonne, ligne, largeur, hauteur);		//  Dessine un rectangle
 		//Font font = new Font("Bomberman", Font.ROMAN_BASELINE, 28);		//	Initialisation de la police
 		//StdDraw.setFont(font);
-		Font bomberman = new Font(Font.createFont(Font.TRUETYPE_FONT,new FileInputStream(new File("Bomberman/src/bm.ttf"))).getFamily(), Font.ROMAN_BASELINE, 28);
-		StdDraw.setFont(bomberman);
+		//Font bomberman = new Font(Font.createFont(Font.TRUETYPE_FONT,new FileInputStream(new File("Bomberman/src/bm.ttf"))).getFamily(), Font.ROMAN_BASELINE, 28);
+		//StdDraw.setFont(bomberman);
+		StdDraw.setFont(bombermanFont());
 		StdDraw.setPenColor(StdDraw.BOOK_LIGHT_BLUE);					//  Couleur pour l'ecriture
 		StdDraw.text(colonne, ligne, contenu);
 	}
@@ -97,8 +100,9 @@ public class Menu{
 		StdDraw.filledRectangle(colonne, ligne, largeur, hauteur);		//  Dessine un rectangle
 		//Font font = new Font("Bomberman", Font.ITALIC, 20);//	Initialisation de la police
 		//StdDraw.setFont(font);
-		Font bomberman = new Font(Font.createFont(Font.TRUETYPE_FONT,new FileInputStream(new File("Bomberman/src/bm.ttf"))).getFamily(), Font.ITALIC, 20);
-		StdDraw.setFont(bomberman);
+		//Font bomberman = new Font(Font.createFont(Font.TRUETYPE_FONT,new FileInputStream(new File("Bomberman/src/bm.ttf"))).getFamily(), Font.ITALIC, 20);
+		//StdDraw.setFont(bomberman);
+		StdDraw.setFont(bombermanFont());
 		StdDraw.setPenColor(StdDraw.RED);			//  Couleur pour l'ecriture
 		StdDraw.text(colonne, ligne, contenu);
 	}
