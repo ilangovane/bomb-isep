@@ -52,12 +52,12 @@ public class Menu{
 		//Font bomberman = new Font(Font.createFont(Font.TRUETYPE_FONT,new FileInputStream(new File("Bomberman/src/bm.ttf"))).getFamily(), Font.ITALIC , 30);
 		//StdDraw.setFont(bomberman);
 		StdDraw.setFont(bombermanFont());
-		StdDraw.picture(10.5, 10, "/bomberman_picture/endgame.png",22,22);
-		StdDraw.setPenColor(StdDraw.BOOK_BLUE);
+		StdDraw.picture(10.5,8.5, "gameover.gif",21,21);
+		StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
 		if(winner!=0){
-			StdDraw.text(10, 0, "Le joueur " + winner + " a gagne");
+			StdDraw.text(10, 11, "Le vainqueur est : Joueur " + winner);
 		}else{
-			StdDraw.text(10, 0, "Match null");
+			StdDraw.text(10, 11, "Match null");
 		}
 		
 		
