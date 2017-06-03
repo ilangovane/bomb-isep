@@ -81,25 +81,29 @@ public class Menu{
 				StdDraw.show(30);
 	}
 	
-	public void displayRect(float colonne, float ligne, int largeur,float hauteur, String contenu){
+	public void displayRect(float colonne, float ligne, int largeur,float hauteur, String contenu) throws FileNotFoundException, FontFormatException, IOException{
 		StdDraw.setPenColor(StdDraw.BLACK);								//  Couleur noir pour l'ecriture
 		StdDraw.filledRectangle(colonne, ligne, largeur, hauteur);		//  Dessine un rectangle
-		Font font = new Font("Bomberman", Font.ROMAN_BASELINE, 28);		//	Initialisation de la police
+		//Font font = new Font("Bomberman", Font.ROMAN_BASELINE, 28);		//	Initialisation de la police
+		//StdDraw.setFont(font);
+		Font font = new Font(Font.createFont(Font.TRUETYPE_FONT,new FileInputStream(new File("Bomberman/src/bm.ttf"))).getFamily(), Font.ROMAN_BASELINE , 28);
 		StdDraw.setFont(font);
 		StdDraw.setPenColor(StdDraw.BOOK_LIGHT_BLUE);					//  Couleur pour l'ecriture
 		StdDraw.text(colonne, ligne, contenu);
 	}
 	
-	public void displayEffect(float colonne, float ligne, int largeur,float hauteur, String contenu){
+	public void displayEffect(float colonne, float ligne, int largeur,float hauteur, String contenu) throws FileNotFoundException, FontFormatException, IOException{
 		StdDraw.setPenColor(StdDraw.LIGHT_GRAY);						//  Couleur noir pour l'ecriture
 		StdDraw.filledRectangle(colonne, ligne, largeur, hauteur);		//  Dessine un rectangle
-		Font font = new Font("Bomberman", Font.ITALIC, 20);//	Initialisation de la police
+		//Font font = new Font("Bomberman", Font.ITALIC, 20);//	Initialisation de la police
+		//StdDraw.setFont(font);
+		Font font = new Font(Font.createFont(Font.TRUETYPE_FONT,new FileInputStream(new File("Bomberman/src/bm.ttf"))).getFamily(), Font.ITALIC , 20);
 		StdDraw.setFont(font);
 		StdDraw.setPenColor(StdDraw.RED);			//  Couleur pour l'ecriture
 		StdDraw.text(colonne, ligne, contenu);
 	}
 	
-	public void menu(){ // Afficher le menu principal
+	public void menu() throws FileNotFoundException, FontFormatException, IOException{ // Afficher le menu principal
 		int nbligne = 17;					//nombre de ligne
 		int nbcolonne = 30;					//nombre de colonne
 		float centerL = (float)(nbligne/2);
