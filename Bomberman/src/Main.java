@@ -37,11 +37,11 @@ public class Main {
 	       case "multiplayers":
 	   	    	click.start();
 	   	    	//Thread.sleep(3500);
-	   	    	i = menu.start_game(false);//pas de IA
+	   	    	i = menu.start_game_multi();//pas de IA
 	   	    	click.stop();
 	        	break;
 	       case "IA":
-	        	i = menu.start_game(true);//IA presente
+	        	i = menu.start_game_single();//IA presente
 	        	break;
 	       case "instructions":
 	        	System.out.println("INSTRUCTIONS");

@@ -81,29 +81,25 @@ public class Menu{
 				StdDraw.show(30);
 	}
 	
-	public void displayRect(float colonne, float ligne, int largeur,float hauteur, String contenu) throws FileNotFoundException, FontFormatException, IOException{
+	public void displayRect(float colonne, float ligne, int largeur,float hauteur, String contenu){
 		StdDraw.setPenColor(StdDraw.BLACK);								//  Couleur noir pour l'ecriture
 		StdDraw.filledRectangle(colonne, ligne, largeur, hauteur);		//  Dessine un rectangle
-		//Font font = new Font("Bomberman", Font.ROMAN_BASELINE, 28);		//	Initialisation de la police
-		//StdDraw.setFont(font);
-		Font font = new Font(Font.createFont(Font.TRUETYPE_FONT,new FileInputStream(new File("Bomberman/src/bm.ttf"))).getFamily(), Font.ROMAN_BASELINE , 28);
+		Font font = new Font("Bomberman", Font.ROMAN_BASELINE, 28);		//	Initialisation de la police
 		StdDraw.setFont(font);
 		StdDraw.setPenColor(StdDraw.BOOK_LIGHT_BLUE);					//  Couleur pour l'ecriture
 		StdDraw.text(colonne, ligne, contenu);
 	}
 	
-	public void displayEffect(float colonne, float ligne, int largeur,float hauteur, String contenu) throws FileNotFoundException, FontFormatException, IOException{
+	public void displayEffect(float colonne, float ligne, int largeur,float hauteur, String contenu){
 		StdDraw.setPenColor(StdDraw.LIGHT_GRAY);						//  Couleur noir pour l'ecriture
 		StdDraw.filledRectangle(colonne, ligne, largeur, hauteur);		//  Dessine un rectangle
-		//Font font = new Font("Bomberman", Font.ITALIC, 20);//	Initialisation de la police
-		//StdDraw.setFont(font);
-		Font font = new Font(Font.createFont(Font.TRUETYPE_FONT,new FileInputStream(new File("Bomberman/src/bm.ttf"))).getFamily(), Font.ITALIC , 20);
+		Font font = new Font("Bomberman", Font.ITALIC, 20);//	Initialisation de la police
 		StdDraw.setFont(font);
 		StdDraw.setPenColor(StdDraw.RED);			//  Couleur pour l'ecriture
 		StdDraw.text(colonne, ligne, contenu);
 	}
 	
-	public void menu() throws FileNotFoundException, FontFormatException, IOException{ // Afficher le menu principal
+	public void menu(){ // Afficher le menu principal
 		int nbligne = 17;					//nombre de ligne
 		int nbcolonne = 30;					//nombre de colonne
 		float centerL = (float)(nbligne/2);
@@ -111,7 +107,7 @@ public class Menu{
 		float decalage = 1.75f;
 		int largeurRect = 4;
 		float hauteurRect = 0.5f;			
-		//StdDraw.clear(StdDraw.PRINCETON_ORANGE);				//  Fond d'Ã©cran 
+		//StdDraw.clear(StdDraw.PRINCETON_ORANGE);				//  Fond d'écran 
 		StdDraw.picture(15, 8, "background2.gif",30,18);
 		/*BOUTON JOUER*/
 		displayRect(centerC, centerL, largeurRect, hauteurRect,"Multijoueurs");		
@@ -171,7 +167,7 @@ public class Menu{
 				}		
 			}
 	}
-	public int  start_game(boolean IA) throws FileNotFoundException, FontFormatException, IOException, UnsupportedAudioFileException, LineUnavailableException{
+	public int  start_game_multi() throws FileNotFoundException, FontFormatException, IOException, UnsupportedAudioFileException, LineUnavailableException{
 
         //Dessiner le plateau et les joueurs
 		Board game_board = new Board();
@@ -185,6 +181,78 @@ public class Menu{
         // Le jeu doit reboucler a l'infini tant que les joueurs ont plus de 0 vie 
         boolean game_over = false;
 		while(!game_over){
+
+	    	   /*Gere les deplacements des joueurs 1 et 2*/
+	        	J1.move(game_board,bomb_liste,J2);
+	        	J2.move(game_board,bomb_liste,J1);
+	        	J1.kick(bomb_liste, game_board,animation_liste,J2);
+	        	J2.kick(bomb_liste, game_board,animation_liste,J1);
+	        	/*Chaque joueur peut poser des bombes en appuyant soit sur espace ou sur W*/
+	        	bomb_liste.putBomb(game_board, J1,bonus_liste,animation_liste,J2);
+	        	bomb_liste.putBomb(game_board, J2,bonus_liste,animation_liste,J1);
+	        	/*Les bombes explosent 5 secondes apres etre deposee*/
+	        	bomb_liste.explose(game_board,J1,J2,bonus_liste,animation_liste);
+	        	
+	        	/*Les bombes et les bonus sont affichees sur le plateau de jeu */
+	        	game_board.show_all_bombs(bomb_liste.getBombs());
+	        	animation_liste.bomb_timer(bomb_liste);
+	        	game_board.show_bonus(bonus_liste.getBonus());
+	        	
+	        	/*On collecte les bonus*/
+	        	bonus_liste.collect_bonus(J1, J2, game_board);
+	        	
+	        	/*On synchronise les listes bombes et bonus*/
+	        	bonus_liste.synchro(bomb_liste);
+	        	
+	        	
+	        	/*Les donnees des joueurs sont affichees dans la console (nombre de vies et coordonnees X et Y)*/
+	        	//info(J1,J2);
+	        	/*Animation */
+	        	animation_liste.display_effects(game_board);
+	        	StdDraw.show(30);
+	        	/*Mise a jour du boolean game_over*/
+	        	game_over = (J1.getLife() <= 0 ) || (J2.getLife() <= 0); //la partie est fini si la condition vaut TRUE
+	        	game_board.info_players(J1, J2,bomb_liste,bonus_liste);
+	        	StdDraw.show(30);
+	        	
+	        }
+			//String temp = this.getChoixMenu();
+			//System.out.println(temp);
+	       //l'identite du gagnant est revelee
+	      this.setChoixMenu("gameover");
+
+	      
+	      
+	     
+	      game_board.finalize();
+	      int winner = 0 ;
+	      if(J1.getLife() == 0 	&& J2.getLife() != 0 ){
+	    	   winner = 2;
+	    	  
+	       }else if(J2.getLife() == 0 && J1.getLife() != 0){
+	    	   winner = 1;
+	    	   
+	       }
+	      this.game_over(winner);
+	      return winner;
+	      
+	}
+	
+	public int  start_game_single() throws FileNotFoundException, FontFormatException, IOException, UnsupportedAudioFileException, LineUnavailableException{
+
+        //Dessiner le plateau et les joueurs
+		Board game_board = new Board();
+        game_board.beginGame();
+        IA J1 = new IA(1); // le joueur 1 porte l'id 1 
+        Player J2 = new Player(2); // le joueur 2 porte l'id 2 
+        // l'objet contient une liste de Bombes vierge
+        Bomb bomb_liste = new Bomb();
+        Bonus bonus_liste =  new Bonus();
+        Animation animation_liste = new Animation();
+        // Le jeu doit reboucler a l'infini tant que les joueurs ont plus de 0 vie 
+        boolean game_over = false;
+		while(!game_over){
+
 	    	   /*Gere les deplacements des joueurs 1 et 2*/
 	        	J1.move(game_board,bomb_liste,J2);
 	        	J2.move(game_board,bomb_liste,J1);
