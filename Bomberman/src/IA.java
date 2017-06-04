@@ -8,10 +8,10 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import edu.princeton.cs.introcs.StdDraw;
 
 class IA extends Player {
-int x_dest ;
-int y_dest ; 
-int dest_length = 1;
-int react = 1;//temps de reaction du perso lors du move : plus react est grand et plus il hesitera à se deplacer
+private int x_dest ;
+private int y_dest ; 
+private int dest_length = 1;
+private int react = 1;//temps de reaction du perso lors du move : plus react est grand et plus il hesitera à se deplacer
 
 	IA(int id) {
 		super(id);
