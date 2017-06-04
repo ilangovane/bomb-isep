@@ -24,11 +24,10 @@ int react = 1;//temps de reaction du perso lors du move : plus react est grand e
 	
 	public void move(Board b,Bomb bo,Player other) throws UnsupportedAudioFileException, IOException, LineUnavailableException{
 		this.setRandomDest(b, bo);
-		if(time_react() != react-1){
+		if(time_react() != 0){
 			return ; //sinon le joueur bouge trop
 		}
-		System.out.println("IA DEST " + this.x_dest + " " + this.y_dest);
-		System.out.println("IA POS " + (int) this.getX() + " " + (int) this.getY());
+
 		float dX = this.getdX();
 		float dY = this.getdY();
         if(y_dest < (int) this.getY()) {
@@ -82,7 +81,7 @@ int react = 1;//temps de reaction du perso lors du move : plus react est grand e
 	/*Ficxer un objectif de destination au bot*/
 	public void setRandomDest(Board b , Bomb bo){
 		if((int) this.getX() == x_dest && (int) this.getY() == y_dest ){
-			System.out.println("calibration");
+
 			Random r = new Random();
 			dest_length = 1;
 			int direction = r.nextInt(4); //0 gauche , 1 droite , 2 haut , 3 bas
@@ -125,9 +124,17 @@ int react = 1;//temps de reaction du perso lors du move : plus react est grand e
 	public int time_react(){
 		Random r = new Random();
 		return r.nextInt(react);
-		
-			
+
 		
 	}
+	public void add_Bomb(Bomb bomb_liste){
+		Random r = new Random();
+		if( r.nextInt(react*100) == 0 ){
+			bomb_liste.getBombs().add(new Bomb(1 , (int) this.getY() , (int) this.getX() , bomb_liste.getTimer_bomb_J1() , bomb_liste.getTimer_bomb_J2() ));
+		}
+	}
+	
+	
+	
 }
 

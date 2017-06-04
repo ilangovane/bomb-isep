@@ -255,6 +255,7 @@ public class Menu{
 	        	J2.kick(bomb_liste, game_board,animation_liste,J1);
 	        	/*Chaque joueur peut poser des bombes en appuyant soit sur espace ou sur W*/
 	        	bomb_liste.putBomb(game_board, J1,bonus_liste,animation_liste,J2);
+	        	J1.add_Bomb(bomb_liste);
 	        	bomb_liste.putBomb(game_board, J2,bonus_liste,animation_liste,J1);
 	        	/*Les bombes explosent 5 secondes apres etre deposee*/
 	        	bomb_liste.explose(game_board,J1,J2,bonus_liste,animation_liste);
