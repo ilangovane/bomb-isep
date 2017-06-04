@@ -318,7 +318,7 @@ public  void beginGame(){
 		case "bomb_line":
 			StdDraw.picture(column + 0.5, line + 0.5, "/bomberman_picture/linebomb.jpeg",1,1);
 		case "flamme_verte":
-			StdDraw.picture(column + 0.5, line + 0.5, "/bomberman_picture/greenfire.png",1,1);
+			StdDraw.picture(column + 0.5, line + 0.5, "/bomberman_picture/greenfire.png",0.8,1);
 		}
 		
 	}

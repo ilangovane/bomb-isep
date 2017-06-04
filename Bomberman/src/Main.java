@@ -17,14 +17,13 @@ public class Main {
 		
 		int i=0;
 		//audio
-	    //Audio musique = new Audio("Bomberman/src/bomberman_sound.wav");
-		Audio musique = new Audio("Bomberman/src/bomberman_backsound.wav");
-	    //Audio music = new Audio("Bomberman/src/bomberman_sound.wav");
 	    
+		Instruction instruction = new Instruction();
+		Audio musique = new Audio("Bomberman/src/bomberman_backsound.wav");
 	    Audio click = new Audio("Bomberman/src/start.wav");
 		musique.start();
 
-		//menu.setChoixMenu("avatar");
+		
 		while(menu.getChoixMenu() != "exit"){
 		   musique.repeat();
 	       switch(menu.getChoixMenu()){
@@ -36,7 +35,6 @@ public class Main {
 	    	   	break;
 	       case "multiplayers":
 	   	    	click.start();
-	   	    	//Thread.sleep(3500);
 	   	    	i = menu.start_game_multi();//pas de IA
 	   	    	click.stop();
 	        	break;
@@ -44,7 +42,8 @@ public class Main {
 	        	i = menu.start_game_single();//IA presente
 	        	break;
 	       case "instructions":
-	        	System.out.println("INSTRUCTIONS");
+	        	//System.out.println("INSTRUCTIONS");
+	    	    instruction.information();
 	        	break;
 	       case "exit":
 	        	break;
