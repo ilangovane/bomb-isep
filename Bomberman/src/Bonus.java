@@ -305,7 +305,7 @@ public class Bonus {
 					}
 					break;
 				case "flamme_jaune":
-					if (range>1 && range<10){
+					if (range>1 && range<=10){
 						this.setJ1_bomb_range(range+1);
 					}
 					break;
@@ -361,7 +361,7 @@ public class Bonus {
 					break;
 				case "flamme_verte": 
 					audioSuper.start();
-					if (range>1 && range<10){
+					if (range>1 && range<=10){
 						this.setJ1_bomb_range(range+1);
 					}
 					if (bomb.getTimer_bomb_J1()>3000){
@@ -400,7 +400,7 @@ public class Bonus {
 					}
 					break;
 				case "flamme_jaune":
-					if (range>1 && range<10){
+					if (range>1 && range<=10){
 						this.setJ2_bomb_range(range+1);
 					}
 					break;
@@ -456,7 +456,7 @@ public class Bonus {
 					break;
 				case "flamme_verte": 
 					audioSuper.start();
-					if (range>1 && range<10){
+					if (range>1 && range<=10){
 						this.setJ2_bomb_range(range+1);
 						}
 					if (bomb.getTimer_bomb_J2()>3000){
