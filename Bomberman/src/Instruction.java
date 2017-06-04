@@ -10,20 +10,12 @@ public class Instruction {
 
 	private String ChoixMenu;
 	
-	public String getChoixMenu() {
-		return ChoixMenu;
-	}
-
-	public void setChoixMenu(String choixMenu) {
-		ChoixMenu = choixMenu;
-	}
-	
 	public Font bombermanFont() throws FileNotFoundException, FontFormatException, IOException{
 		Font font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream("Bomberman/src/bm.ttf"));
 		font = font.deriveFont(20F);
 		return font;
 	}
-	public void information() throws FileNotFoundException, FontFormatException, IOException{
+	public void information(Menu menu) throws FileNotFoundException, FontFormatException, IOException{
 		int nbligne = 2;					//nombre de ligne
 		int nbcolonne = 30;					//nombre de colonne
 		float centerL = (float)(nbligne/2);
@@ -40,7 +32,7 @@ public class Instruction {
 			// Petit effet quand on place la souris sur le bouton
 			displayEffect2(centerC, centerL, largeurRect, hauteurRect,"menu");		//  Dessine un rectangle
 			if(StdDraw.mousePressed()){
-			setChoixMenu("home");
+			menu.setChoixMenu("home");
 			
 			}
 		}

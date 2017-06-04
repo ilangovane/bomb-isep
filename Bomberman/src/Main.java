@@ -43,7 +43,7 @@ public class Main {
 	        	break;
 	       case "instructions":
 	        	//System.out.println("INSTRUCTIONS");
-	    	    instruction.information();
+	    	    instruction.information(menu);
 	        	break;
 	       case "exit":
 	        	break;
