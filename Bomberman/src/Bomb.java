@@ -17,13 +17,14 @@ public class Bomb {
 	private int Y; //coordonn�e Y de la bombe
 	private int Z;
 	private Set<Bomb> Bombs = new HashSet<Bomb>();
+	private int time = 5000;
 	private int range = 3; //port�e de la bombe
 	private boolean is_red = false;//les bombes rouges peuvent d�truire les murs et les joueurs plac�s derri�re
 	//choix de deux Constructeurs
 	//lors de la cr�ation d'une bombe
 	public Bomb(int id,int line, int column){
 		this.owner_id = id;
-		this.t_explosion = System.currentTimeMillis() + 5000 ; // la bombe explose 5 secondes apr�s �tre d�pos�e
+		this.t_explosion = System.currentTimeMillis() + time ; // la bombe explose 5 secondes apr�s �tre d�pos�e
 		this.X = column;
 		this.Y = line;
 

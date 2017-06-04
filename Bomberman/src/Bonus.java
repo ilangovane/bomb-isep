@@ -24,6 +24,11 @@ public class Bonus {
 	private boolean J2_mine_bomb = false;
 	private boolean J1_line_bomb = false;
 	private boolean J2_line_bomb = false;
+	private int J1_timer=5000;
+	private int J2_timer=5000;
+	private boolean J1_flamme_verte = false;
+	private boolean J2_flamme_verte = false;
+
 	private Set<Bonus> Bonus = new HashSet<Bonus>(); // Nouvelle liste de bonus vide 
 	private String type_bonus;
 	/*CONSTRUCTEUR*/
@@ -31,7 +36,7 @@ public class Bonus {
 		this.X= X;
 		this.Y= Y;
 		this.type_bonus = random_type(); // renvoie le type au hasard 
-		//this.type_bonus = "kick";
+		this.type_bonus = "flamme_verte";
 	}
 	
 	/*CONSTRUCTEUR POUR LA CREATION DE LA LISTE DE BONUS*/
@@ -47,8 +52,6 @@ public class Bonus {
 	public int getJ1_bomb_range() {
 		return J1_bomb_range;
 	}
-
-
 
 	public void setJ1_bomb_range(int j1_bomb_range) {
 		J1_bomb_range = j1_bomb_range;
@@ -169,6 +172,38 @@ public class Bonus {
 	public void setType_bonus(String type_bonus) {
 		this.type_bonus = type_bonus;
 	}
+	
+	public int getJ1_timer() {
+		return J1_timer;
+	}
+
+	public void setJ1_timer(int j1_timer) {
+		J1_timer = j1_timer;
+	}
+
+	public int getJ2_timer() {
+		return J2_timer;
+	}
+
+	public void setJ2_timer(int j2_timer) {
+		J2_timer = j2_timer;
+	}
+
+	public boolean isJ1_flamme_verte() {
+		return J1_flamme_verte;
+	}
+
+	public void setJ1_flamme_verte(boolean j1_flamme_verte) {
+		J1_flamme_verte = j1_flamme_verte;
+	}
+
+	public boolean isJ2_flamme_verte() {
+		return J2_flamme_verte;
+	}
+
+	public void setJ2_flamme_verte(boolean j2_flamme_verte) {
+		J2_flamme_verte = j2_flamme_verte;
+	}
 
 	public void create_bonus(int X, int Y){
 		if (is_hidden()==true){ // si p = 20 %
@@ -191,7 +226,7 @@ public class Bonus {
 	
 		public String random_type(){ // Fonction permettant de choisir le type bonus au hasard 
 		Random rand = new Random();
-		int nombreAleatoire = rand.nextInt(14); // 13 bonus en tout 
+		int nombreAleatoire = rand.nextInt(15); // 15 bonus en tout 
 		switch (nombreAleatoire){
 		case 0:
 			//retourne flamme bleu : portée -1
@@ -225,6 +260,8 @@ public class Bonus {
 			return "kick";
 		case 13 : 
 			return "bomb_line";
+		case 14 : 
+			return "flamme_verte";
 		default : 
 			return "vie";
 		}
@@ -235,14 +272,14 @@ public class Bonus {
 	 * */
 	public void collect_bonus(Player J1, Player J2, Board b) throws UnsupportedAudioFileException, IOException, LineUnavailableException{
 		Iterator<Bonus> it = this.Bonus.iterator(); // on parcours l'element du premier jusqu'au dernier grace au curseur iterator
-
+		Bomb Bomb = new Bomb();
+		Audio audiobonus = new Audio("Bomberman/src/bonus.wav");
+		Audio audioSuper = new Audio("Bomberman/src/superbonus.wav");
+		Audio audioPass = new Audio("Bomberman/src/passe_muraille.wav");
 
 		
 		while (it.hasNext()){//parcours la liste de bonus
 			Bonus bo = it.next();
-			Audio audiobonus = new Audio("Bomberman/src/bonus.wav");
-			Audio audioSuper = new Audio("Bomberman/src/superbonus.wav");
-			Audio audioPass = new Audio("Bomberman/src/passe_muraille.wav");
 			
 			
 			if ((int)(J1.getX()) == bo.getX() && (int)(J1.getY()) == bo.getY()){ //si mon joueur 1 et le bonus sont ÃƒÂ  la meme position
@@ -255,6 +292,7 @@ public class Bonus {
 				
 				//j'affecte au J1 les fonctionnalitÃƒÂ©s du bonus en fonction du type de bonus
 				int range = this.getJ1_bomb_range();
+				int timer1 = this.getJ1_timer();
 				int vie = J1.getLife();
 				float dX = J1.getdX();
 				float dY = J1.getdY();
@@ -267,7 +305,7 @@ public class Bonus {
 					}
 					break;
 				case "flamme_jaune":
-					if (range>1){
+					if (range>1 && range<=10){
 						this.setJ1_bomb_range(range+1);
 					}
 					break;
@@ -316,14 +354,21 @@ public class Bonus {
 				case "kick" :
 					audioSuper.start();
 					J1.setKick(true);
-					
 					break;
 				case "bomb_line":
 					audioSuper.start();
 					this.setJ1_line_bomb(true);
 					break;
-				
-
+				case "flamme_verte": 
+					audioSuper.start();
+					if (range>1 && range<=10){
+						this.setJ1_bomb_range(range+1);
+					}
+					if (timer1>3000){
+						setJ1_flamme_verte(true);
+						setJ1_timer(getJ1_timer() -1000);
+					}
+					break;
 				}
 				
 				//je retire la bombe de la liste 
@@ -342,6 +387,8 @@ public class Bonus {
 				//j'affecte au J2 les fonctionnalitÃ©es du bonus en fonction du type de bonus
 				int range = this.getJ2_bomb_range();
 				int vie = J2.getLife();
+				int timer2 = this.getJ2_timer();
+
 				float dX = J2.getdX();
 				float dY = J2.getdY();
 
@@ -402,18 +449,27 @@ public class Bonus {
 				case "kick" :
 					audioSuper.start();
 					J2.setKick(true);
-					
-
 					break;
 				case "bomb_line":
 					audioSuper.start();
 					this.setJ2_line_bomb(true);
+					break;
+				case "flamme_verte": 
+					audioSuper.start();
+					if (range>1 && range<=10){
+						this.setJ2_bomb_range(range+1);
+						}
+					if (timer2>3000){
+						setJ2_flamme_verte(true);
+						setJ2_timer(getJ2_timer() -1000);
+					}
 					break;
 			}
 				it.remove();
 			}
 		}
 	}
+
 	//FONCTION POUR SYNCHRONISER LA LISTE DE BOMBE ET LA LISTE DE BONUS
 	public void synchro(Bomb bomb) {// fonction synchronize decrit ci-dessus
 		Iterator<Bomb> it = bomb.getBombs().iterator();

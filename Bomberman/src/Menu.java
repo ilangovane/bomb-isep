@@ -49,8 +49,7 @@ public class Menu{
 		float hauteurRect = 0.5f;
 		
 		StdDraw.clear(); // On clear la fenetre
-		//Font bomberman = new Font(Font.createFont(Font.TRUETYPE_FONT,new FileInputStream(new File("Bomberman/src/bm.ttf"))).getFamily(), Font.ITALIC , 30);
-		//StdDraw.setFont(bomberman);
+		
 		StdDraw.setFont(bombermanFont());
 		StdDraw.picture(10.5,8.5, "gameover.gif",21,21);
 		StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
@@ -86,10 +85,6 @@ public class Menu{
 	public void displayRect(float colonne, float ligne, int largeur,float hauteur, String contenu) throws FileNotFoundException, FontFormatException, IOException{
 		StdDraw.setPenColor(StdDraw.BLACK);								//  Couleur noir pour l'ecriture
 		StdDraw.filledRectangle(colonne, ligne, largeur, hauteur);		//  Dessine un rectangle
-		//Font font = new Font("Bomberman", Font.ROMAN_BASELINE, 28);		//	Initialisation de la police
-		//StdDraw.setFont(font);
-		//Font bomberman = new Font(Font.createFont(Font.TRUETYPE_FONT,new FileInputStream(new File("Bomberman/src/bm.ttf"))).getFamily(), Font.ROMAN_BASELINE, 28);
-		//StdDraw.setFont(bomberman);
 		StdDraw.setFont(bombermanFont());
 		StdDraw.setPenColor(StdDraw.BOOK_LIGHT_BLUE);					//  Couleur pour l'ecriture
 		StdDraw.text(colonne, ligne, contenu);
@@ -98,10 +93,6 @@ public class Menu{
 	public void displayEffect(float colonne, float ligne, int largeur,float hauteur, String contenu) throws FileNotFoundException, FontFormatException, IOException{
 		StdDraw.setPenColor(StdDraw.LIGHT_GRAY);						//  Couleur noir pour l'ecriture
 		StdDraw.filledRectangle(colonne, ligne, largeur, hauteur);		//  Dessine un rectangle
-		//Font font = new Font("Bomberman", Font.ITALIC, 20);//	Initialisation de la police
-		//StdDraw.setFont(font);
-		//Font bomberman = new Font(Font.createFont(Font.TRUETYPE_FONT,new FileInputStream(new File("Bomberman/src/bm.ttf"))).getFamily(), Font.ITALIC, 20);
-		//StdDraw.setFont(bomberman);
 		StdDraw.setFont(bombermanFont());
 		StdDraw.setPenColor(StdDraw.RED);			//  Couleur pour l'ecriture
 		StdDraw.text(colonne, ligne, contenu);
@@ -115,7 +106,6 @@ public class Menu{
 		float decalage = 1.75f;
 		int largeurRect = 4;
 		float hauteurRect = 0.5f;			
-		//StdDraw.clear(StdDraw.PRINCETON_ORANGE);				//  Fond d'�cran 
 		StdDraw.picture(15, 8, "background2.gif",30,18);
 		/*BOUTON JOUER*/
 		displayRect(centerC, centerL, largeurRect, hauteurRect,"Multijoueurs");		
@@ -224,9 +214,6 @@ public class Menu{
 	        	StdDraw.show(30);
 	        	
 	        }
-			//String temp = this.getChoixMenu();
-			//System.out.println(temp);
-	       //l'identite du gagnant est revelee
 	      this.setChoixMenu("gameover");
 
 	      
@@ -295,9 +282,6 @@ public class Menu{
 	        	StdDraw.show(30);
 	        	
 	        }
-			//String temp = this.getChoixMenu();
-			//System.out.println(temp);
-	       //l'identite du gagnant est revelee
 	      this.setChoixMenu("gameover");
 
 	      
