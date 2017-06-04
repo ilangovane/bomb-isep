@@ -9,6 +9,7 @@ import edu.princeton.cs.introcs.StdDraw;
 public class Instruction {
 
 	private String ChoixMenu;
+	
 	public String getChoixMenu() {
 		return ChoixMenu;
 	}

@@ -400,7 +400,7 @@ public class Bonus {
 					}
 					break;
 				case "flamme_jaune":
-					if (range>1){
+					if (range>1 && range<=10){
 						this.setJ2_bomb_range(range+1);
 					}
 					break;
