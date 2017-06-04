@@ -17,17 +17,32 @@ public class Bomb {
 	private int Y; //coordonn�e Y de la bombe
 	private int Z;
 	private Set<Bomb> Bombs = new HashSet<Bomb>();
-	private int time = 5000;
+	private int timer_bomb_J1 = 5000;
+	private int timer_bomb_J2 = 5000;
 	private int range = 3; //port�e de la bombe
 	private boolean is_red = false;//les bombes rouges peuvent d�truire les murs et les joueurs plac�s derri�re
 	//choix de deux Constructeurs
 	//lors de la cr�ation d'une bombe
 	public Bomb(int id,int line, int column){
 		this.owner_id = id;
-		this.t_explosion = System.currentTimeMillis() + time ; // la bombe explose 5 secondes apr�s �tre d�pos�e
 		this.X = column;
 		this.Y = line;
-
+		if(id == 1){
+			this.t_explosion = System.currentTimeMillis() + timer_bomb_J1 ; // la bombe explose 5 secondes apr�s �tre d�pos�e
+		}else if(id == 2){
+			this.t_explosion = System.currentTimeMillis() + timer_bomb_J2 ; // la bombe explose 5 secondes apr�s �tre d�pos�e
+		}
+	}
+	
+	public Bomb(int id,int line, int column, long t1 , long t2){
+		this.owner_id = id;
+		this.X = column;
+		this.Y = line;
+		if(id == 1){
+			this.t_explosion = System.currentTimeMillis() + t1; // la bombe explose 5 secondes apr�s �tre d�pos�e
+		}else if(id == 2){
+			this.t_explosion = System.currentTimeMillis() + t2 ; // la bombe explose 5 secondes apr�s �tre d�pos�e
+		}
 	}
 	public Bomb(int id,int line, int column,int z){
 		this.owner_id = id;
@@ -50,6 +65,18 @@ public class Bomb {
 
 
 
+	public int getTimer_bomb_J1() {
+		return timer_bomb_J1;
+	}
+	public void setTimer_bomb_J1(int timer_bomb_J1) {
+		this.timer_bomb_J1 = timer_bomb_J1;
+	}
+	public int getTimer_bomb_J2() {
+		return timer_bomb_J2;
+	}
+	public void setTimer_bomb_J2(int timer_bomb_J2) {
+		this.timer_bomb_J2 = timer_bomb_J2;
+	}
 	public void setOwner_id(int owner_id) {
 		this.owner_id = owner_id;
 	}
@@ -143,7 +170,7 @@ public class Bomb {
 
 	/*Ajoute une bombe � la liste HashSet Bombs*/
 	public void addBomb(int id , int x , int y){
-		Bombs.add(new Bomb(id,y,x));
+		Bombs.add(new Bomb(id,y,x,this.getTimer_bomb_J1() , this.getTimer_bomb_J2()));
 		this.setBombs(Bombs);
 	}
 	

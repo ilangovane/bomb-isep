@@ -197,7 +197,7 @@ public class Menu{
 	        	game_board.show_bonus(bonus_liste.getBonus());
 	        	
 	        	/*On collecte les bonus*/
-	        	bonus_liste.collect_bonus(J1, J2, game_board);
+	        	bonus_liste.collect_bonus(J1, J2, game_board,bomb_liste);
 	        	
 	        	/*On synchronise les listes bombes et bonus*/
 	        	bonus_liste.synchro(bomb_liste);
@@ -265,7 +265,7 @@ public class Menu{
 	        	game_board.show_bonus(bonus_liste.getBonus());
 	        	
 	        	/*On collecte les bonus*/
-	        	bonus_liste.collect_bonus(J1, J2, game_board);
+	        	bonus_liste.collect_bonus(J1, J2, game_board,bomb_liste);
 	        	
 	        	/*On synchronise les listes bombes et bonus*/
 	        	bonus_liste.synchro(bomb_liste);

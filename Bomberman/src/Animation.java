@@ -111,7 +111,11 @@ public class Animation {
 		while (it.hasNext()){//parcours la liste de bombes
 			Bomb bo = it.next();
 			double timer = bo.getT_explosion() - System.currentTimeMillis();
-			if(timer <= 4000 &&  timer >3000){
+			if(timer <= 5000 &&  timer >4000){
+				StdDraw.setPenColor(StdDraw.PINK);
+				//StdDraw.arc(bo.getX() +0.5, bo.getY()+0.5, 0.5, 0, 360*timer/4000) ;
+				StdDraw.text(bo.getX() +0.4, bo.getY()+0.3, "5");
+			}else if(timer <= 4000 &&  timer >3000){
 				StdDraw.setPenColor(StdDraw.WHITE);
 				//StdDraw.arc(bo.getX() +0.5, bo.getY()+0.5, 0.5, 0, 360*timer/4000) ;
 				StdDraw.text(bo.getX() +0.4, bo.getY()+0.3, "4");

@@ -270,7 +270,7 @@ public class Bonus {
 	/*
 	 * COLLECTE BONUS
 	 * */
-	public void collect_bonus(Player J1, Player J2, Board b) throws UnsupportedAudioFileException, IOException, LineUnavailableException{
+	public void collect_bonus(Player J1, Player J2, Board b,Bomb bomb) throws UnsupportedAudioFileException, IOException, LineUnavailableException{
 		Iterator<Bonus> it = this.Bonus.iterator(); // on parcours l'element du premier jusqu'au dernier grace au curseur iterator
 		Bomb Bomb = new Bomb();
 		Audio audiobonus = new Audio("Bomberman/src/bonus.wav");
@@ -364,9 +364,9 @@ public class Bonus {
 					if (range>1 && range<=10){
 						this.setJ1_bomb_range(range+1);
 					}
-					if (timer1>3000){
+					if (bomb.getTimer_bomb_J1()>3000){
 						setJ1_flamme_verte(true);
-						setJ1_timer(getJ1_timer() -1000);
+						bomb.setTimer_bomb_J1(bomb.getTimer_bomb_J1() - 1000);
 					}
 					break;
 				}
@@ -459,9 +459,9 @@ public class Bonus {
 					if (range>1 && range<=10){
 						this.setJ2_bomb_range(range+1);
 						}
-					if (timer2>3000){
+					if (bomb.getTimer_bomb_J2()>3000){
 						setJ2_flamme_verte(true);
-						setJ2_timer(getJ2_timer() -1000);
+						bomb.setTimer_bomb_J2(bomb.getTimer_bomb_J2() - 1000);
 					}
 					break;
 			}
