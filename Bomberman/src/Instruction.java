@@ -34,7 +34,7 @@ public class Instruction {
 		StdDraw.clear(); // On clear la fenetre
 		StdDraw.setFont(bombermanFont());
 		StdDraw.picture(15, 8, "instructions.gif",30,18);
-    	StdDraw.picture(15.75, 10, "/bomberman_picture/instructions.png",18,18);
+    	StdDraw.picture(15.75, 8.5, "/bomberman_picture/instructions.png",19,14);
     	displayRect2(centerC, centerL, largeurRect, hauteurRect,"Retour au menu");	
     	if (StdDraw.mouseX() >= centerC-largeurRect && StdDraw.mouseX() <= centerC+largeurRect && StdDraw.mouseY() >= centerL - hauteurRect && StdDraw.mouseY() <= centerL + hauteurRect){
 			// Petit effet quand on place la souris sur le bouton
