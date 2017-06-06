@@ -140,12 +140,12 @@ public  void beginGame(){
 		}
 	if(id == 1){//Joueur 1 en rouge
 	
-		StdDraw.picture(X + 0.5 , Y + 0.5 , "p5.gif",1,1);
+		StdDraw.picture(X + 0.5 , Y + 0.5 , "Goku.gif",1,1);
 		
 		
 	}else if(id==2){//Joueur 2 en bleu
 		
-		StdDraw.picture(X + 0.5 , Y + 0.5 , "p3.gif",1,1);	
+		StdDraw.picture(X + 0.5 , Y + 0.5 , "bomberman2.gif",1,1);	
 		
 		
 	}else{
@@ -393,7 +393,14 @@ public  void beginGame(){
 				StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
 				StdDraw.filledSquare(x+14, y, 0.3);
 			}
-			
+			if(bonus.isJ1_flamme_verte()){
+				StdDraw.setPenColor(StdDraw.GREEN);
+				StdDraw.picture(x+15, y, "/bomberman_picture/greenfire.png",0.8,0.8);
+				
+			}else{
+				StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
+				StdDraw.filledSquare(x+15, y, 0.3);
+			}
 
 		}
 		
@@ -456,6 +463,15 @@ public  void beginGame(){
 			}else{
 				StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
 				StdDraw.filledSquare(x-14, y, 0.3);
+			}
+			
+			if(bonus.isJ2_flamme_verte()){
+				StdDraw.setPenColor(StdDraw.GREEN);
+				StdDraw.picture(x-15, y, "/bomberman_picture/greenfire.png",0.8,0.8);
+				//StdDraw.filledSquare(x-15, y, 0.3);
+			}else{
+				StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
+				StdDraw.filledSquare(x-15, y, 0.3);
 			}
 
 		}
