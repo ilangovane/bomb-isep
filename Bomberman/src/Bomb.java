@@ -347,7 +347,8 @@ public class Bomb {
 
 			Bomb bo = it.next();
 		if(bo.getZ() == -1 && bo.getT_explosion() <System.currentTimeMillis()){//bombe mine
-			b.setArea(bo.getY(), bo.getX(), "green");
+		//	b.setArea(bo.getY(), bo.getX(), "green");
+			b.repaint(bo.getY(), bo.getX());
 				if(J1.is_at_point(bo.getX(), bo.getY())){
 					bo.setRange(0);
 					explose_bomb_around( bo , b , J1 ,J2,bonus,anim);
@@ -357,10 +358,12 @@ public class Bomb {
 						bonus.setJ1_red_bomb(false);
 						bonus.setJ1_line_bomb(false);
 						bonus.setJ1_mine_bomb(false);
+						bonus.setJ1_flamme_verte(false);
 					}
 
 					J1.kill();
-					b.setArea(bo.getY(), bo.getX(), "green");
+					//b.setArea(bo.getY(), bo.getX(), "green");
+					b.repaint(bo.getY(), bo.getX());
 					it.remove();
 					if(J1.getX() == -1 && J1.getY() == -1){
 						anim.add_liste(new Animation("dead" ,bo.getX()+0.5f , bo.getY()+0.5f ,  1000 ));
@@ -379,9 +382,11 @@ public class Bomb {
 						bonus.setJ2_red_bomb(false);
 						bonus.setJ2_line_bomb(false);
 						bonus.setJ2_mine_bomb(false);
+						bonus.setJ2_flamme_verte(false);
 					}
 					J2.kill();
-					b.setArea(bo.getY(), bo.getX(), "green");
+					//b.setArea(bo.getY(), bo.getX(), "green");
+					b.repaint(bo.getY(), bo.getX());
 					it.remove();
 					if(J2.getX() == -1 && J2.getY() == -1){// du  a la methode kill()
 						anim.add_liste(new Animation("dead" ,bo.getX() +0.5f , bo.getY()+0.5f ,  1000 ));
@@ -413,7 +418,8 @@ public class Bomb {
 					anim.add_liste(anim_add);
 
 					if(b.isWallDestructible(bo.getY()+i, bo.getX()) ){
-						b.setArea(bo.getY() +i, bo.getX(), "green");// coloration case verte 
+						//b.setArea(bo.getY() +i, bo.getX(), "green");// coloration case verte 
+						b.repaint(bo.getY() +i, bo.getX());
 						b.setElementMatrice(bo.getY() +i, bo.getX(), 3); // matrice mis ï¿½ jour 
 						//fonction qui crÃ©e le bonus dans la liste 
 						bonus.create_bonus(bo.getX(),bo.getY()+i); //on rÃ©cupÃ¨re les coordonnÃ©es du mur cassable pour les mettres en parametre 
@@ -428,11 +434,12 @@ public class Bomb {
 							bonus.setJ1_red_bomb(false);
 							bonus.setJ1_line_bomb(false);
 							bonus.setJ1_mine_bomb(false);
+							bonus.setJ1_flamme_verte(false);
 						}
 
 						J1.kill();
-						b.setArea(bo.getY()+i, bo.getX(), "green");
-						
+						//b.setArea(bo.getY()+i, bo.getX(), "green");
+						b.repaint(bo.getY() +i, bo.getX());
 						if(J1.getX() == -1 && J1.getY() == -1){// du  a la methode kill()
 							anim.add_liste(new Animation("dead" ,bo.getX() +0.5f , bo.getY()+ i +0.5f ,  1000 ));
 						}
@@ -444,9 +451,11 @@ public class Bomb {
 							bonus.setJ2_red_bomb(false);
 							bonus.setJ2_line_bomb(false);
 							bonus.setJ2_mine_bomb(false);
+							bonus.setJ2_flamme_verte(false);
 						}
 						J2.kill();
-						b.setArea(bo.getY()+i, bo.getX(), "green");
+						//b.setArea(bo.getY()+i, bo.getX(), "green");
+						b.repaint(bo.getY() +i, bo.getX());
 						if(J2.getX() == -1 && J2.getY() == -1){// du  a la methode kill()
 							anim.add_liste(new Animation("dead" ,bo.getX() +0.5f , bo.getY()+0.5f+i ,  1000 ));
 						}
@@ -465,7 +474,8 @@ public class Bomb {
 					anim.add_liste(anim_add);
 
 					if(b.isWallDestructible(bo.getY()-i, bo.getX()) ){
-						b.setArea(bo.getY()-i, bo.getX(), "green");
+						//b.setArea(bo.getY()-i, bo.getX(), "green");
+						b.repaint(bo.getY() -i, bo.getX());
 						b.setElementMatrice(bo.getY()-i, bo.getX(), 3);
 						//fonction qui crÃ©e le bonus dans la liste 
 						bonus.create_bonus(bo.getX(),bo.getY()-i); //on rÃ©cupÃ¨re les coordonnÃ©es du mur cassable pour les mettres en parametre 	
@@ -479,9 +489,11 @@ public class Bomb {
 							bonus.setJ1_red_bomb(false);
 							bonus.setJ1_line_bomb(false);
 							bonus.setJ1_mine_bomb(false);
+							bonus.setJ1_flamme_verte(false);
 						}
 						J1.kill();
-						b.setArea(bo.getY()-i, bo.getX(), "green");
+						//b.setArea(bo.getY()-i, bo.getX(), "green");
+						b.repaint(bo.getY() -i, bo.getX());
 						if(J1.getX() == -1 && J1.getY() == -1){// du  a la methode kill()
 							anim.add_liste(new Animation("dead" ,bo.getX() +0.5f , bo.getY()+0.5f-i ,  1000 ));
 						}
@@ -492,6 +504,7 @@ public class Bomb {
 							bonus.setJ2_red_bomb(false);
 							bonus.setJ2_line_bomb(false);
 							bonus.setJ2_mine_bomb(false);
+							bonus.setJ2_flamme_verte(false);
 						}
 						J2.kill();
 
@@ -530,6 +543,7 @@ public class Bomb {
 							bonus.setJ1_red_bomb(false);
 							bonus.setJ1_line_bomb(false);
 							bonus.setJ1_mine_bomb(false);
+							bonus.setJ1_flamme_verte(false);
 						}
 						J1.kill();
 						
@@ -544,6 +558,7 @@ public class Bomb {
 							bonus.setJ2_red_bomb(false);
 							bonus.setJ2_line_bomb(false);
 							bonus.setJ2_mine_bomb(false);
+							bonus.setJ2_flamme_verte(false);
 						}
 						J2.kill();
 
@@ -581,6 +596,7 @@ public class Bomb {
 							bonus.setJ1_red_bomb(false);
 							bonus.setJ1_line_bomb(false);
 							bonus.setJ1_mine_bomb(false);
+							bonus.setJ1_flamme_verte(false);
 						}
 						J1.kill();
 						
@@ -595,10 +611,12 @@ public class Bomb {
 							bonus.setJ2_red_bomb(false);
 							bonus.setJ2_line_bomb(false);
 							bonus.setJ2_mine_bomb(false);
+							bonus.setJ2_flamme_verte(false);
 						}
 						J2.kill();
 
-						b.setArea(bo.getY(), bo.getX()-i, "green");
+						//b.setArea(bo.getY(), bo.getX()-i, "green");
+						b.repaint(bo.getY(), bo.getX()-i);
 						if(J2.getX() == -1 && J2.getY() == -1){// du  a la methode kill()
 							anim.add_liste(new Animation("dead" ,bo.getX() +0.5f - i , bo.getY()+0.5f ,  1000 ));
 						}
@@ -611,7 +629,8 @@ public class Bomb {
 				it.remove(); // bombe supprimï¿½e de la liste Bombs
 				J1.avoid_killing_player_two_times(b , this.getBombs());
 				J2.avoid_killing_player_two_times(b , this.getBombs());
-				b.setArea(bo.getY(), bo.getX(), "green");// il faut faire disparaitre la bombe de l'ï¿½cran en recoloriant la case en verte
+				//b.setArea(bo.getY(), bo.getX(), "green");// il faut faire disparaitre la bombe de l'ï¿½cran en recoloriant la case en verte
+				b.repaint(bo.getY(), bo.getX());
 				StdDraw.show(30);
 
 
