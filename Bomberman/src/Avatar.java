@@ -65,17 +65,20 @@ public class Avatar {
 						this.choose(1);
 						this.print(1);	
 					}
+					this.print(1);	
 					try {
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+					//ï
 					
 					while(!this.find(2, matrice)){
 						this.choose(2);
 						this.print(2);
 					}
+					this.print(1);	
 					try {
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {
@@ -139,13 +142,32 @@ public class Avatar {
 	public void print(int id){
 		int index = 1;
 		StdDraw.picture(1.5,1.5, "instructions.gif",3,3);
-		if(id ==1){
+		//////////////////////////////////////////////////
 			StdDraw.setPenColor(StdDraw.RED);					//  Couleur pour l'ecriture
-			StdDraw.text(1, 2.5, "JOUEUR 1 : ");	
-		}else{
+
+			if(this.find(1, matrice)){
+				StdDraw.picture(0.5,2.5,this.getChoix_j1(),0.5,0.5);	
+
+				StdDraw.text(0.5, 2.75, "Joueur 1 ");
+			}else{
+				StdDraw.setPenColor(StdDraw.GRAY);
+				StdDraw.filledSquare(0.5,2.5,0.5);	
+				StdDraw.setPenColor(StdDraw.RED);
+				StdDraw.text(0.5, 2.75, "Joueur 1 ");
+			}
+	
 			StdDraw.setPenColor(StdDraw.BLUE);					//  Couleur pour l'ecriture
-			StdDraw.text(1, 2.5, "JOUEUR 2 : ");	
-		}
+	
+			if(this.find(2, matrice)){
+				StdDraw.picture(2.5,2.5,this.getChoix_j2(),0.5,0.5);
+				StdDraw.text(2.5, 2.75, "Joueur 2 ");
+			}else{
+				StdDraw.setPenColor(StdDraw.GRAY);
+				StdDraw.filledSquare(2.5,2.5,0.5);
+				StdDraw.setPenColor(StdDraw.BLUE);
+				StdDraw.text(2.5, 2.75, "Joueur 2 ");
+			}
+	///////////////////////////////////////////////////
 		for(int i = 0; i<3; i++){
 			for(int j = 0; j<2; j++){
 					StdDraw.picture(i+0.5, j+0.5, "p"+index+".gif",1,1);
