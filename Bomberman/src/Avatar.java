@@ -72,7 +72,7 @@ public class Avatar {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					//ï
+					//ï¿½
 					
 					while(!this.find(2, matrice)){
 						this.choose(2);
@@ -171,7 +171,6 @@ public class Avatar {
 		for(int i = 0; i<3; i++){
 			for(int j = 0; j<2; j++){
 					StdDraw.picture(i+0.5, j+0.5, "p"+index+".gif",1,1);
-					StdDraw.show(1);
 					
 					if(matrice[i][j]==1){
 						
@@ -188,6 +187,8 @@ public class Avatar {
 
 			}
 		}
+		StdDraw.show(1);
+
 
 	}
 

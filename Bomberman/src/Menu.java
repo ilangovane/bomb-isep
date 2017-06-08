@@ -126,10 +126,10 @@ public class Menu{
 		StdDraw.picture(15, 13, "/bomberman_picture/banner.png");
 		
 		/*A gauche on met le joueur 1*/
-		StdDraw.picture(5, 3, "p1.gif");
+		StdDraw.picture(5, 3, "p1.gif",5,5);
 		
 		/*A droite le joueur 2*/
-		StdDraw.picture(25, 3, "p2.gif");
+		StdDraw.picture(25, 3, "p2.gif",5,5);
 		StdDraw.mousePressed(); // il faut remettre le boolean a false 
 
 		
