@@ -14,14 +14,14 @@ public class Avatar {
 
 	private String choix_j1 = "";
 	private String choix_j2 = "";
-	public int[][] matrice = new int[3][3]; // Contient tous le gifs
+	public int[][] matrice = new int[3][2]; // Contient tous le gifs
 	Menu menu = new Menu();
-	private int id=1;
+	private int id;
 
 	public Avatar(){
 			
 		for(int i = 0; i<3; i++){
-			for(int j = 0; j<3; j++){
+			for(int j = 0; j<2; j++){
 					matrice[i][j] = 0;
 			}
 		}
@@ -39,27 +39,35 @@ public class Avatar {
 		StdDraw.setXscale(0,3);	
 		boolean end = false;
 		StdDraw.setFont(bombermanFont());
-		this.print();
+		//this.print();
 
-		StdDraw.picture(1.5,1.5, "instructions.gif",3,3);
+		
 		//StdDraw.show(30);
 			while(!end){
-				this.print();
+				this.print(1);
 
 				if(!StdDraw.mousePressed()){
 					//c'est le tour du joueur 1	
+					
 					while(!choose(1)){
-						this.print();
-						StdDraw.setPenColor(StdDraw.RED);					//  Couleur pour l'ecriture
-						StdDraw.text(1, 2.5, "JOUEUR 1 : ");	
+						this.print(1);	
+					}
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 					
-					
 					while(!choose(2)){
-						this.print();
-						//c'est le tour du joueur 2
-						StdDraw.setPenColor(StdDraw.BLUE);					//  Couleur pour l'ecriture
-						StdDraw.text(1, 2.5, "JOUEUR 2 : ");
+						
+						this.print(2);
+					}
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 					//�tat du plateau 
 					//this.print();
@@ -75,10 +83,13 @@ public class Avatar {
 		if(StdDraw.mousePressed() && x>=0 && x<3 && y>=0 && y<2){
 			int x1 = (int) Math.floor(x);
 			int y1 = (int) Math.floor(y);
+			//matrice[0][0] = 2; 
 			if(matrice[x1][y1] == 0){// le joueur a choisi une case vierge
 				matrice[x1][y1] = id;
-				displayCarre(id,x1+0.5,y1+0.5,0.3,0.35);
+			
+				displayCarre(id,x1+0.5,y1+0.5,0.5,0.5);
 				StdDraw.show(30);
+			
 
 				return true;
 			}
@@ -112,21 +123,33 @@ public class Avatar {
 		this.choix_j2 = choix_j2;
 	}
 
-	public void print(){
+	public void print(int id){
 		int index = 1;
+		StdDraw.picture(1.5,1.5, "instructions.gif",3,3);
+		if(id ==1){
+			StdDraw.setPenColor(StdDraw.RED);					//  Couleur pour l'ecriture
+			StdDraw.text(1, 2.5, "JOUEUR 1 : ");	
+		}else{
+			StdDraw.setPenColor(StdDraw.BLUE);					//  Couleur pour l'ecriture
+			StdDraw.text(1, 2.5, "JOUEUR 2 : ");	
+		}
 		for(int i = 0; i<3; i++){
 			for(int j = 0; j<2; j++){
-					StdDraw.picture(i+0.5, j+0.5, "instructions.gif",1,1);
 					StdDraw.picture(i+0.5, j+0.5, "p"+index+".gif",1,1);
-
-					if(matrice[i][j]==1){
-						displayCarre(1,i+0.5,i+0.5,0.3,0.35);
-						this.setChoix_j1("p"+index+".gif");
-					}else if(matrice[i][j]==2)
-						displayCarre(2,i+0.5,i+0.5,0.3,0.35);
-						this.setChoix_j2("p"+index+".gif");
-					index++;
 					StdDraw.show(1);
+					
+					if(matrice[i][j]==1){
+						
+						displayCarre(1,i+0.5,j+0.5,0.5,0.5);
+						this.setChoix_j1("p"+index+".gif");
+					} 
+					if(matrice[i][j]==2){
+						//c'est le tour du joueur 2
+						displayCarre(2,i+0.5,j+0.5,0.5,0.5);
+						this.setChoix_j2("p"+index+".gif");
+					}
+
+					index++;
 
 			}
 		}
