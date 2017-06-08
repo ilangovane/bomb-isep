@@ -7,7 +7,7 @@ import edu.princeton.cs.introcs.StdDraw;
 
 public class Animation {
 	/*
-	 * Une animation a un type, une coordonnee (X,Y) , une duree d'expiration
+	 * Une animation a un type, une coordonnee (X,Y) et une duree d'expiration
 	 * */
 	private String type;
 	private float x;
