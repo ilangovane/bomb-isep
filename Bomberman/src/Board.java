@@ -168,6 +168,7 @@ public  void beginGame(){
 
 	/*La fonction permet de modifier la couleur d'une case en sp�cifiant la ligne, la colonne et la color "GREEN" , "grey" ou "orange"*/
 	public void setArea(int line , int column , String color){
+
 		switch(color){
 		case "orange" : 
 			StdDraw.picture(column + 0.5,line + 0.5,"/bomberman_picture/destructibleWall.png",1,1);
@@ -403,6 +404,15 @@ public  void beginGame(){
 				StdDraw.filledSquare(x+14, y, 0.3);
 			}
 			
+			if(bonus.isJ1_flamme_verte()){
+				StdDraw.setPenColor(StdDraw.GREEN);
+				StdDraw.picture(x+15, y, "/bomberman_picture/greenfire.png",0.8,0.8);
+				
+			}else{
+				StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
+				StdDraw.filledSquare(x+15, y, 0.3);
+			}
+			
 
 		}
 		
@@ -465,6 +475,14 @@ public  void beginGame(){
 			}else{
 				StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
 				StdDraw.filledSquare(x-14, y, 0.3);
+			}
+			if(bonus.isJ2_flamme_verte()){
+				StdDraw.setPenColor(StdDraw.GREEN);
+				StdDraw.picture(x-15, y, "/bomberman_picture/greenfire.png",0.8,0.8);
+				//StdDraw.filledSquare(x-15, y, 0.3);
+			}else{
+				StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
+				StdDraw.filledSquare(x-15, y, 0.3);
 			}
 
 		}

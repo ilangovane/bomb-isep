@@ -33,6 +33,18 @@ public class Avatar {
 		return font;
 	}
 	
+	public boolean find(int element , int[][] array){
+		boolean find = false;
+		for(int i =0 ;  i < array.length ; i++ ){
+			for(int j=0 ; j< array[0].length ; j++){
+				if(array[i][j] == element){
+					return true;
+				}
+			
+			}
+		}
+		return find;
+	}
 	public void choix() throws FileNotFoundException, FontFormatException, IOException{
 		StdDraw.setCanvasSize(20*30,20*30);
 		StdDraw.setYscale(0,3);
@@ -49,7 +61,8 @@ public class Avatar {
 				if(!StdDraw.mousePressed()){
 					//c'est le tour du joueur 1	
 					
-					while(!choose(1)){
+					while( !this.find(1, matrice)){
+						this.choose(1);
 						this.print(1);	
 					}
 					try {
@@ -59,8 +72,8 @@ public class Avatar {
 						e.printStackTrace();
 					}
 					
-					while(!choose(2)){
-						
+					while(!this.find(2, matrice)){
+						this.choose(2);
 						this.print(2);
 					}
 					try {
