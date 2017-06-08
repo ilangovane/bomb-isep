@@ -16,7 +16,7 @@ public class Instruction {
 		return font;
 	}
 	public void information(Menu menu) throws FileNotFoundException, FontFormatException, IOException{
-		int nbligne = 2;					//nombre de ligne
+		int nbligne = 30;					//nombre de ligne
 		int nbcolonne = 30;					//nombre de colonne
 		float centerL = (float)(nbligne/2);
 		float centerC = (float)(nbcolonne/2);

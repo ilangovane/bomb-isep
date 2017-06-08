@@ -41,7 +41,7 @@ public class Player {
 	Player(int id,String avatar){
 		/* Si id vaut 1 il s'agit du joueur 1 , si 2 le joueur 2 si 3 une IA*/
 		this.id = id;
-		this.shield = true;
+		this.shield = false;
 		this.passe_muraille = false;
 		this.kick = false;
 		this.avatar = avatar;
