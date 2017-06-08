@@ -358,6 +358,7 @@ public class Bomb {
 						bonus.setJ1_red_bomb(false);
 						bonus.setJ1_line_bomb(false);
 						bonus.setJ1_mine_bomb(false);
+						bonus.setJ1_flamme_verte(false);
 					}
 
 					J1.kill();
@@ -380,6 +381,7 @@ public class Bomb {
 						bonus.setJ2_red_bomb(false);
 						bonus.setJ2_line_bomb(false);
 						bonus.setJ2_mine_bomb(false);
+						bonus.setJ2_flamme_verte(false);
 					}
 					J2.kill();
 					b.setArea(bo.getY(), bo.getX(), "green");
@@ -429,6 +431,7 @@ public class Bomb {
 							bonus.setJ1_red_bomb(false);
 							bonus.setJ1_line_bomb(false);
 							bonus.setJ1_mine_bomb(false);
+							bonus.setJ1_flamme_verte(false);
 						}
 
 						J1.kill();
@@ -445,6 +448,7 @@ public class Bomb {
 							bonus.setJ2_red_bomb(false);
 							bonus.setJ2_line_bomb(false);
 							bonus.setJ2_mine_bomb(false);
+							bonus.setJ2_flamme_verte(false);
 						}
 						J2.kill();
 						b.setArea(bo.getY()+i, bo.getX(), "green");
@@ -480,6 +484,7 @@ public class Bomb {
 							bonus.setJ1_red_bomb(false);
 							bonus.setJ1_line_bomb(false);
 							bonus.setJ1_mine_bomb(false);
+							bonus.setJ1_flamme_verte(false);
 						}
 						J1.kill();
 						b.setArea(bo.getY()-i, bo.getX(), "green");
@@ -493,6 +498,7 @@ public class Bomb {
 							bonus.setJ2_red_bomb(false);
 							bonus.setJ2_line_bomb(false);
 							bonus.setJ2_mine_bomb(false);
+							bonus.setJ2_flamme_verte(false);
 						}
 						J2.kill();
 
@@ -531,6 +537,7 @@ public class Bomb {
 							bonus.setJ1_red_bomb(false);
 							bonus.setJ1_line_bomb(false);
 							bonus.setJ1_mine_bomb(false);
+							bonus.setJ1_flamme_verte(false);
 						}
 						J1.kill();
 						
@@ -545,6 +552,7 @@ public class Bomb {
 							bonus.setJ2_red_bomb(false);
 							bonus.setJ2_line_bomb(false);
 							bonus.setJ2_mine_bomb(false);
+							bonus.setJ2_flamme_verte(false);
 						}
 						J2.kill();
 
@@ -582,6 +590,7 @@ public class Bomb {
 							bonus.setJ1_red_bomb(false);
 							bonus.setJ1_line_bomb(false);
 							bonus.setJ1_mine_bomb(false);
+							bonus.setJ1_flamme_verte(false);
 						}
 						J1.kill();
 						
@@ -596,6 +605,7 @@ public class Bomb {
 							bonus.setJ2_red_bomb(false);
 							bonus.setJ2_line_bomb(false);
 							bonus.setJ2_mine_bomb(false);
+							bonus.setJ2_flamme_verte(false);
 						}
 						J2.kill();
 
