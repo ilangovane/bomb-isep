@@ -165,13 +165,13 @@ public class Menu{
 				}		
 			}
 	}
-	public int  start_game_multi() throws FileNotFoundException, FontFormatException, IOException, UnsupportedAudioFileException, LineUnavailableException{
+	public int  start_game_multi(Avatar avatar) throws FileNotFoundException, FontFormatException, IOException, UnsupportedAudioFileException, LineUnavailableException{
 
         //Dessiner le plateau et les joueurs
 		Board game_board = new Board();
         game_board.beginGame();
-        Player J1 = new Player(1); // le joueur 1 porte l'id 1 
-        Player J2 = new Player(2); // le joueur 2 porte l'id 2 
+        Player J1 = new Player(1,avatar.getChoix_j1()); // le joueur 1 porte l'id 1 
+        Player J2 = new Player(2,avatar.getChoix_j2()); // le joueur 2 porte l'id 2 
         // l'objet contient une liste de Bombes vierge
         Bomb bomb_liste = new Bomb();
         Bonus bonus_liste =  new Bonus();
@@ -233,13 +233,13 @@ public class Menu{
 	      
 	}
 	
-	public int  start_game_single() throws FileNotFoundException, FontFormatException, IOException, UnsupportedAudioFileException, LineUnavailableException{
+	public int  start_game_single(Avatar avatar) throws FileNotFoundException, FontFormatException, IOException, UnsupportedAudioFileException, LineUnavailableException{
 
         //Dessiner le plateau et les joueurs
 		Board game_board = new Board();
         game_board.beginGame();
-        IA J1 = new IA(1); // le joueur 1 porte l'id 1 
-        Player J2 = new Player(2); // le joueur 2 porte l'id 2 
+        IA J1 = new IA(1,avatar.getChoix_j1()); // le joueur 1 porte l'id 1 
+        Player J2 = new Player(2,avatar.getChoix_j2()); // le joueur 2 porte l'id 2 
         // l'objet contient une liste de Bombes vierge
         Bomb bomb_liste = new Bomb();
         Bonus bonus_liste =  new Bonus();

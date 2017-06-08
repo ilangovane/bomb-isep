@@ -122,31 +122,39 @@ public  void beginGame(){
 		//placer les joueurs au d�but du jeu pendant l'initialisation
 		//Joueur 1 en bleu
 
-		this.setPlayer(1, 1, 1);
+		//this.setPlayer(1, 1, 1);
 		
 		//Joueur 2 en rouge 
 
-		this.setPlayer(2, 15, 19);
+		//this.setPlayer(2, 15, 19);
 		
 	}
 
 	/*Placer un joueur selon une position (X,Y) pour le joueur J1 (id = 1) , J2(id = 2) ou IA (id = 3 )*/
-	public void setPlayer(int id,double X, double Y){
-	
+	public void setPlayer(Player P){
+	int id = P.getId();
+	int X = (int) P.getX();
+	int Y = (int) P.getY();
+	String avatar =  P.avatar;
 		if(this.isGrass((int) Y, (int) X)){
 			StdDraw.picture(X + 0.5 , Y + 0.5 , "/bomberman_picture/grass.jpg",1,1);
 		}else{
 			StdDraw.picture(X + 0.5 , Y + 0.5 , "/bomberman_picture/destructibleWall.png",1,1);
 		}
+		
 	if(id == 1){//Joueur 1 en rouge
 	
-		StdDraw.picture(X + 0.5 , Y + 0.5 , "p5.gif",1,1);
-		
+		StdDraw.picture(X + 0.5 , Y + 0.5 , avatar,1,1);
+		if(P.isShield()){
+			StdDraw.picture(X + 0.5 , Y + 0.5 , "aura.gif",1,1);
+		}
 		
 	}else if(id==2){//Joueur 2 en bleu
 		
-		StdDraw.picture(X + 0.5 , Y + 0.5 , "p3.gif",1,1);	
-		
+		StdDraw.picture(X + 0.5 , Y + 0.5 , avatar,1,1);	
+		if(P.isShield()){
+			StdDraw.picture(X + 0.5 , Y + 0.5 , "aura2.gif",1,1);
+		}
 		
 	}else{
 		//IA
@@ -156,6 +164,7 @@ public  void beginGame(){
 	
 
 }
+	
 
 	/*La fonction permet de modifier la couleur d'une case en sp�cifiant la ligne, la colonne et la color "GREEN" , "grey" ou "orange"*/
 	public void setArea(int line , int column , String color){

@@ -12,7 +12,8 @@ public class Main {
 
 
 	public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException, FontFormatException, InterruptedException {
-	    
+		Avatar avatar = new Avatar();
+
 		Menu menu = new Menu();
 		
 		int i=0;
@@ -29,17 +30,19 @@ public class Main {
 	       switch(menu.getChoixMenu()){
 	       case "home":
 	    	   	menu.menu();
+	    	   	avatar.setChoix_j1("p4.gif");
+	    	   	avatar.setChoix_j2("p5.gif");
 	    	   	break;
 	       case "gameover":
 	    	   	menu.game_over(i);//attention au cas ou il y a match null 
 	    	   	break;
 	       case "multiplayers":
 	   	    	click.start();
-	   	    	i = menu.start_game_multi();//pas de IA
+	   	    	i = menu.start_game_multi(avatar);//pas de IA
 	   	    	click.stop();
 	        	break;
 	       case "IA":
-	        	i = menu.start_game_single();//IA presente
+	        	i = menu.start_game_single(avatar);//IA presente
 	        	break;
 	       case "instructions":
 	        	//System.out.println("INSTRUCTIONS");
@@ -48,7 +51,7 @@ public class Main {
 	       case "exit":
 	        	break;
 	       case "avatar": 
-	    	   	Avatar avatar = new Avatar();
+
 	    	    avatar.choix();
 	    	    menu.setChoixMenu("multiplayers");
 	    	    break;

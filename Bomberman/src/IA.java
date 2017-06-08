@@ -11,10 +11,19 @@ class IA extends Player {
 int x_dest ;
 int y_dest ; 
 int dest_length = 1;
-int react = 1;//temps de reaction du perso lors du move : plus react est grand et plus il hesitera à se deplacer
+int react = 1;//temps de reaction du perso lors du move : plus react est grand et plus il hesitera ï¿½ se deplacer
 
 	IA(int id) {
 		super(id);
+		if(id == 1){
+			x_dest = 1;
+			y_dest = 1;
+		}
+		// TODO Auto-generated constructor stub
+	}
+	
+	IA(int id,String avatar) {
+		super(id,avatar);
 		if(id == 1){
 			x_dest = 1;
 			y_dest = 1;
@@ -73,7 +82,7 @@ int react = 1;//temps de reaction du perso lors du move : plus react est grand e
         	}
  	}
 
-		b.setPlayer(this.getId(), (int) this.getX(), (int) this.getY());
+		b.setPlayer(this);
 
  	}
 	
@@ -120,7 +129,7 @@ int react = 1;//temps de reaction du perso lors du move : plus react est grand e
 	}
 	
 	
-	/*Le bot a un temps de réaction lors de ses déplacement, si time react vaut une certaine valeur alors le bot peut se deplacer , poser des bombes ....*/
+	/*Le bot a un temps de rï¿½action lors de ses dï¿½placement, si time react vaut une certaine valeur alors le bot peut se deplacer , poser des bombes ....*/
 	public int time_react(){
 		Random r = new Random();
 		return r.nextInt(react);

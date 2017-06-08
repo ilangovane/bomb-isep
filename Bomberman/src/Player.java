@@ -19,12 +19,32 @@ public class Player {
 	private boolean shield;//indique si le joueur poss�de le bonus "Bouclier � usage unique"
 	private boolean passe_muraille;
 	private boolean kick;
+	String avatar ;
 	Player(int id){
 		/* Si id vaut 1 il s'agit du joueur 1 , si 2 le joueur 2 si 3 une IA*/
 		this.id = id;
 		this.shield = false;
 		this.passe_muraille = false;
 		this.kick = false;
+		/*Le joueur 1 et 2 sont positionn�es respectivement en (X,Y) = (1,1) et (X,Y) =  (19,15)*/
+		if(this.id == 1){
+			this.Y = 1;
+			this.X = 1;
+		}else{
+			this.X = 19;
+			this.Y = 15;
+		}
+		
+		
+	}
+	
+	Player(int id,String avatar){
+		/* Si id vaut 1 il s'agit du joueur 1 , si 2 le joueur 2 si 3 une IA*/
+		this.id = id;
+		this.shield = true;
+		this.passe_muraille = false;
+		this.kick = false;
+		this.avatar = avatar;
 		/*Le joueur 1 et 2 sont positionn�es respectivement en (X,Y) = (1,1) et (X,Y) =  (19,15)*/
 		if(this.id == 1){
 			this.Y = 1;
@@ -234,7 +254,7 @@ public class Player {
 		}
 
 		// affiche le joueur sur la case 
-		b.setPlayer(this.getId(), (int) this.getX(), (int) this.getY());
+		b.setPlayer(this);
 		//StdDraw.show(30);
 		//StdDraw.picture((int) this.getX() + 0.5, (int) this.getY() + 0.5, "/bomberman_picture/grass.jpg",1,1);
 		//StdDraw.show(30);

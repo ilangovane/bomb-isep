@@ -36,7 +36,7 @@ public class Bonus {
 		this.X= X;
 		this.Y= Y;
 		this.type_bonus = random_type(); // renvoie le type au hasard 
-		this.type_bonus = "flamme_verte";
+		//this.type_bonus = "passe_muraille";
 	}
 	
 	/*CONSTRUCTEUR POUR LA CREATION DE LA LISTE DE BONUS*/
@@ -276,6 +276,10 @@ public class Bonus {
 		Audio audiobonus = new Audio("Bomberman/src/bonus.wav");
 		Audio audioSuper = new Audio("Bomberman/src/superbonus.wav");
 		Audio audioPass = new Audio("Bomberman/src/passe_muraille.wav");
+		
+		Audio audioShield = new Audio("Bomberman/src/aura.wav");
+
+		
 
 		
 		while (it.hasNext()){//parcours la liste de bonus
@@ -342,6 +346,7 @@ public class Bonus {
 					break ;	
 				case "shield":
 					J1.setShield(true);
+					audioShield.start();
 					break ;	
 				case "passe_muraille":
 					audioSuper.start();
@@ -437,6 +442,7 @@ public class Bonus {
 					break ;	
 				case "shield":
 					J2.setShield(true);
+					audioShield.start();
 					break ;	
 				case "passe_muraille":
 					audioSuper.start();

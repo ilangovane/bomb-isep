@@ -343,6 +343,7 @@ public class Bomb {
 	public void explose(Board b,Player J1, Player J2, Bonus bonus,Animation anim) throws UnsupportedAudioFileException, IOException, LineUnavailableException{ 
 		Iterator<Bomb> it = Bombs.iterator();
 		int i;
+		
 		while (it.hasNext()){//parcours la liste de bombe
 
 			Bomb bo = it.next();
