@@ -18,13 +18,13 @@ public class Board {
 	
 	/*Constructeur : initialise le plateau de jeu lors de l'instanciation d'objet */
 	public Board(){
-		/*taille de la fen�tre 1050 x 850 
-		 * Une case doit faire 30 px => 30 x nb de ligne (17) et 30 x nb de colonne (21) 
+		/*taille de la fenetre 1050 x 850 
+		 * Une case doit faire 30 px => 30 x nb de ligne  et 30 x nb de colonne 
 		 * */
 		StdDraw.setCanvasSize(25*30,22*30);
 		/*
-		 * Modifier les echelles X et Y pour avoir un syst�me de coordonn�es (X,Y)
-		 *  Coordonn�es (0,0) coin en bas � gauche et (17,21) coin en haut � droite
+		 * Modifier les echelles X et Y pour avoir un systeme de coordonnees (X,Y)
+		 *  Coordonnees (0,-1) coin en bas � gauche et (21,18) coin en haut a droite
 		 *  */
         StdDraw.setXscale(0 , 21);
         StdDraw.setYscale(-1 , 18);// de -2->0 et 17->19 infos des joueurs
@@ -97,11 +97,11 @@ public class Board {
 
 
 
-//d�marrage du jeu en "convertissant" la matrice en plateau de jeu
+//demarrage du jeu en "convertissant" la matrice en plateau de jeu
 public  void beginGame(){
 	StdDraw.enableDoubleBuffering();		//	Suppression de l'affichage case par case
 	StdDraw.clear(StdDraw.LIGHT_GRAY);
-		//g�nerer le plateau case par case
+		//generer le plateau case par case
 		for(int line = 0 ; line < 17 ; line++ ){
 			for(int column = 0 ; column <21 ; column ++ ){
 
@@ -119,18 +119,10 @@ public  void beginGame(){
 		}
 	
 		
-		//placer les joueurs au d�but du jeu pendant l'initialisation
-		//Joueur 1 en bleu
-
-		//this.setPlayer(1, 1, 1);
-		
-		//Joueur 2 en rouge 
-
-		//this.setPlayer(2, 15, 19);
 		
 	}
 
-	/*Placer un joueur selon une position (X,Y) pour le joueur J1 (id = 1) , J2(id = 2) ou IA (id = 3 )*/
+	/*Placer un joueur selon une position (X,Y) pour le joueur J1 (id = 1) , J2(id = 2) */
 	public void setPlayer(Player P){
 	int id = P.getId();
 	int X = (int) P.getX();
@@ -156,8 +148,6 @@ public  void beginGame(){
 			StdDraw.picture(X + 0.5 , Y + 0.5 , "aura2.gif",1,1);
 		}
 		
-	}else{
-		//IA
 	}
 
 	StdDraw.show(1);
@@ -166,7 +156,7 @@ public  void beginGame(){
 }
 	
 
-	/*La fonction permet de modifier la couleur d'une case en sp�cifiant la ligne, la colonne et la color "GREEN" , "grey" ou "orange"*/
+	/*La fonction permet de modifier la couleur d'une case en specifiant la ligne, la colonne et la color "GREEN" , "grey" ou "orange"*/
 	public void setArea(int line , int column , String color){
 
 		switch(color){
@@ -233,7 +223,7 @@ public  void beginGame(){
 		return true;
 	}
 	
-	//v�rifie si la case est celle d'un mur cassable ou GREEN
+	//verifie si la case est celle d'un mur cassable ou GREEN
 	public boolean isDestructible(int line, int column){
 		/*La matrice contient des entiers : 
 		 * 1 : mur incassable
@@ -251,7 +241,7 @@ public  void beginGame(){
 		return true;
 	}
 	
-	//v�rifie si la case est celle d'un mur cassable seulement
+	//verifie si la case est celle d'un mur cassable seulement
 	public boolean isWallDestructible(int line, int column){
 		/*La matrice contient des entiers : 
 		 * 1 : mur incassable
@@ -271,10 +261,11 @@ public  void beginGame(){
 
 
 	/*
-	 * BONUSSSSSSSSSS
+	 * BONUS
 	 * 
 	 * */
 	
+	//Afficher tous les bonus sur le terrain
 	public void show_bonus(Set<Bonus> b){
 		Iterator<Bonus> it = b.iterator(); // on parcours l'element du premier jusqu'au dernier grace au curseur iterator
 		while (it.hasNext()){//parcours la liste de bonus
@@ -283,6 +274,7 @@ public  void beginGame(){
 		}
 	}
 	
+	//Afficher un bonus sur le terrain
 		public void setBonus(int column , int line , String type ){
 
 		switch (type){
@@ -334,6 +326,8 @@ public  void beginGame(){
 		}
 		
 	}
+		
+		/*Afficher banniere de jeu pour les joueurs : info de vie, portee des bombes, bonus actifs , etc...*/
 	public void info_players(Player J1, Player J2 , Bomb bombe,Bonus bonus){
 		
 		

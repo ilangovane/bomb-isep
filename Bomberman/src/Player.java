@@ -13,10 +13,10 @@ public class Player {
 	private int life = 3;//nombre de vie restant
 	private float X ; // position X (varie de 0 ï¿½ 20)
 	private float Y ; // position Y (varie de 0 ï¿½ 16)
-	private float dX = 0.2f ; // le plus petit dï¿½placement horizontal (dï¿½finit la vitesse)
-	private float dY = 0.2f ; // le plus petit dï¿½placement vertical (dï¿½finit la vitesse)
+	private float dX = 0.2f ; // le plus petit deplacement horizontal (definit la vitesse)
+	private float dY = 0.2f ; // le plus petit deplacement vertical (definit la vitesse)
 	private int nb_bomb = 3;// nombre de bombes que le joueur peut poser sur le terrain sumultanement
-	private boolean shield;//indique si le joueur possï¿½de le bonus "Bouclier ï¿½ usage unique"
+	private boolean shield;//indique si le joueur possede le bonus "Bouclier a usage unique"
 	private boolean passe_muraille;
 	private boolean kick;
 	String avatar ;
@@ -149,9 +149,9 @@ public class Player {
 	
 
 	/*
-	 * Les dï¿½placements des joueurs se font sur cette mï¿½thode
+	 * Les deplacements des joueurs se font sur cette methode
 	 * Joueur 1 : Q => Gauche / S => BAS / D => DROITE / Z => HAUT / W => BOMBE
-	 * Joueur 2 : fleches de dï¿½placements et espace pour poser une bombe 
+	 * Joueur 2 : fleches de deplacements et espace pour poser une bombe 
 	 * 
 	 * 
 	 * */
@@ -160,7 +160,7 @@ public class Player {
 	
 		//commande clavier du joueur 1 
 		if(this.id == 1){
-            if(StdDraw.isKeyPressed(KeyEvent.VK_S)) {//touche S pressï¿½e
+            if(StdDraw.isKeyPressed(KeyEvent.VK_S)) {//touche S pressee
 	            	if(this.colision_player(other, (int) this.getX(), (int) this.getY() -1 )){
 	            		return;
 	            	}
@@ -171,7 +171,7 @@ public class Player {
 		        		
 		        	
 		        	}
-          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Q)){//touche Q pressï¿½e
+          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Q)){//touche Q pressee
 	            	if(this.colision_player(other, (int) this.getX()-1, (int) this.getY() )){
 	            		return;
 	            	}
@@ -181,7 +181,7 @@ public class Player {
 	            		this.setX(this.getX()-dX);	
 	            		
 	            	}
-          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_D)){//touche D pressï¿½e
+          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_D)){//touche D pressee
 	            	if(this.colision_player(other, (int) this.getX()+1, (int) this.getY() )){
 	            		return;
 	            	}
@@ -191,7 +191,7 @@ public class Player {
 	            		this.setX(this.getX()+dX);
 	            		
 	            	}
-         	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Z)){//touche Z pressï¿½e
+         	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Z)){//touche Z pressee
 	            	if(this.colision_player(other, (int) this.getX(), (int) this.getY() +1 )){
 	            		return;
 	            	}
@@ -207,7 +207,7 @@ public class Player {
 		//commande clavier du joueur 2 
 		if(this.id == 2 ){
 			
-            if(StdDraw.isKeyPressed(KeyEvent.VK_DOWN )) {//touche BAS pressï¿½e
+            if(StdDraw.isKeyPressed(KeyEvent.VK_DOWN )) {//touche BAS pressee
 	            	if(this.colision_player(other, (int) this.getX(), (int) this.getY() -1 )){
 	            		return;
 	            	}
@@ -219,7 +219,7 @@ public class Player {
 	            	
 	            	}
             		
-           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_LEFT )){//touche GAUCHE pressï¿½e
+           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_LEFT )){//touche GAUCHE pressee
 	            	if(this.colision_player(other, (int) this.getX()-1, (int) this.getY()  )){
 	            		return;
 	            	}
@@ -230,7 +230,7 @@ public class Player {
 	            		
 	            	}
            		 
-           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_RIGHT)){//touche DROITE pressï¿½e
+           	}else if(StdDraw.isKeyPressed(KeyEvent.VK_RIGHT)){//touche DROITE pressee
 	            	if(this.colision_player(other, (int) this.getX()+1, (int) this.getY()  )){
 	            		return;
 	            	}
@@ -240,7 +240,7 @@ public class Player {
 	            		this.setX(this.getX()+dX);
 	            		
 	            	}
-          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_UP)){//touche HAUT pressï¿½e
+          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_UP)){//touche HAUT pressee
 	            	if(this.colision_player(other, (int) this.getX(), (int) this.getY() +1)){
 	            		return;
 	            	}
@@ -286,7 +286,7 @@ public class Player {
 		}else{
 			audioDead.start();
 			this.setLife( this.getLife() - 1 );
-			// lorsqu'un joueur perd la vie, il est temporairement placï¿½ dans un lieu sï¿½re
+			// lorsqu'un joueur perd la vie, il est temporairement place dans un lieu sure
 			this.setX(-1);
 			this.setY(-1);
 			this.setdX(0.2f);
@@ -302,33 +302,33 @@ public class Player {
 		
 	}
 	
-	/*Le joueur qui vient de perdre la vie ne risque pas de perdre une vie dï¿½s qu'il sera replacï¿½ sur une case de dï¿½part
-	 * Le joueur est positionnï¿½ sur le recoin (X,Y) = (-1,-1) pour des raisons de sï¿½curitï¿½s si des bombes sont a proximitï¿½s
-	 * Cela permettra d'ï¿½viter de predre 2 ou 3 vie au lieu d'une*/
+	/*Le joueur qui vient de perdre la vie ne risque pas de perdre une vie des qu'il sera replace sur une case de depart
+	 * Le joueur est positionne sur le recoin (X,Y) = (-1,-1) pour des raisons de securites si des bombes sont a proximites
+	 * Cela permettra d'eviter de predre 2 ou 3 vie au lieu d'une*/
 
 	public void avoid_killing_player_two_times(Board b , Set<Bomb> list ){
 		int i = 0;
 		Bomb bo = new Bomb();
 		bo.setBombs(list); // l'objet contient la liste de bombe 
-		boolean safe = true;// le joueurs peut revenir ï¿½ la position de resurrection
+		boolean safe = true;// le joueurs peut revenir à la position de resurrection
 		if(this.getId() == 1 ){
 			// pour le Joueur 1 
 			while(i<=3){
-				// le joueur aprï¿½s avoir perdu une vie et placï¿½ temporairement ï¿½ la position (-1,-1)
+				// le joueur apres avoir perdu une vie et place temporairement a la position (-1,-1)
 				if(this.getX() == -1  && this.getY() == -1 && ( bo.is_bomb_already_exists(1, 1+i) ||bo.is_bomb_already_exists(i+1,1))  ){
-					// si une bombe est placï¿½ ï¿½ proximitï¿½, il mourra inexorablement
+					// si une bombe est place a proximite, il mourra inexorablement
 					safe = false;
 				}
 				i++;
 			}
-			// le joueur ne risque rien , le joueur peut ï¿½ nouveau controler son personnage
+			// le joueur ne risque rien , le joueur peut a nouveau controler son personnage
 			if(safe == true && this.getX() == -1  && this.getY() == -1 && !bo.is_bomb_already_exists(1, 1+i) && !bo.is_bomb_already_exists(i+1,1)){
 				this.setX(1);  
 				this.setY(1);
 				b.setArea(0,0, "grey");
 			}
 		}else if(this.getId() ==2){
-			//mï¿½me commentaire que le joueur 1
+			//meme commentaire que le joueur 1
 			while(i<=3){
 				if(this.getX() == -1  && this.getY() == -1 && ( bo.is_bomb_already_exists(19, 15-i) ||bo.is_bomb_already_exists(19-i,15))  ){
 					safe = false;
@@ -357,11 +357,11 @@ public class Player {
 	
 	public void kick(Bomb bombe,Board b,Animation anim,Player other) throws UnsupportedAudioFileException, IOException, LineUnavailableException{
 		if(!kick){
-			return;//si le joueur n'a pas de kick , le reste n'est pas executï¿½
+			return;//si le joueur n'a pas de kick , le reste n'est pas execute
 		}
 		if(StdDraw.isKeyPressed(KeyEvent.VK_X) && this.getId() == 1){
 			
-	           if(StdDraw.isKeyPressed(KeyEvent.VK_S)) {//touche S pressï¿½e
+	           if(StdDraw.isKeyPressed(KeyEvent.VK_S)) {//touche S pressee
 	        	   
 	            	Bomb bo = bombe.find_Bomb((int) this.getX(), (int) this.getY()-1);
 	            	
@@ -379,7 +379,7 @@ public class Player {
 	            		bo.setY(y);
 	            		
 	            	}
-	          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Q)){//touche Q pressï¿½e
+	          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Q)){//touche Q pressee
 		        	  
 		            	Bomb bo = bombe.find_Bomb((int) this.getX()-1, (int) this.getY());
 		            	if(bo.getX() > 0 && bo.getY() > 0 ){
@@ -396,7 +396,7 @@ public class Player {
 		            		bo.setY(y);
 		            	}
 
-	          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_D)){//touche D pressï¿½e
+	          	}else if(StdDraw.isKeyPressed(KeyEvent.VK_D)){//touche D pressee
 		        	
 		            	Bomb bo = bombe.find_Bomb((int) this.getX()+1, (int) this.getY());
 		            	if(bo.getX()+1 > 0 && bo.getY() > 0 ){
@@ -413,7 +413,7 @@ public class Player {
 		            		bo.setY(y);
 		            	}
 
-	         	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Z)){//touche Z pressï¿½e
+	         	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Z)){//touche Z pressee
 		   
 		            	Bomb bo = bombe.find_Bomb((int) this.getX(), (int) this.getY()+1);
 		            	if(bo.getX() > 0 && bo.getY() > 0 ){
@@ -431,7 +431,7 @@ public class Player {
 		            	}
 	         	}
 			
-		}else if(StdDraw.isKeyPressed(KeyEvent.VK_M) && this.getId() == 2){// touche 3 enfoncï¿½e
+		}else if(StdDraw.isKeyPressed(KeyEvent.VK_M) && this.getId() == 2){// touche 3 enfoncee
 			Audio audioKick = new Audio("Bomberman/src/kick.wav");
 
 	           if(StdDraw.isKeyPressed(KeyEvent.VK_DOWN)) {

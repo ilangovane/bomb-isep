@@ -31,7 +31,7 @@ public class Main {
 	       case "home":
 	    	   	menu.menu();					// Affichage du menu principal
 	    	   	avatar.setChoix_j1("p4.gif");	// Deux personnages prÃ©sent sur le fond d'ecran du menu
-	    	   	avatar.setChoix_j2("p5.gif");
+	    	   	avatar.setChoix_j2("p5.gif");//choix d'avatar par défaut
 	    	   	break;
 	       case "gameover":
 	    	   	menu.game_over(i);//attention au cas ou il y a match null 

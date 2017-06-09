@@ -11,26 +11,26 @@ import edu.princeton.cs.introcs.StdDraw;
 
 
 public class Bomb {
-	private int owner_id; // id de celui qui a d�pos� la bombe id:1<=>J1 | id:2<=>J2 | id:3 <=> IA
+	private int owner_id; // id de celui qui a depose la bombe id:1<=>J1 | id:2<=>J2 
 	private long t_explosion ; // le timestamps de l'explosion
-	private int X; // coordonn�e X de la bombe
-	private int Y; //coordonn�e Y de la bombe
+	private int X; // coordonnee X de la bombe
+	private int Y; //coordonnee Y de la bombe
 	private int Z;
 	private Set<Bomb> Bombs = new HashSet<Bomb>();
 	private int timer_bomb_J1 = 5000;
 	private int timer_bomb_J2 = 5000;
-	private int range = 3; //port�e de la bombe
-	private boolean is_red = false;//les bombes rouges peuvent d�truire les murs et les joueurs plac�s derri�re
-	//choix de deux Constructeurs
-	//lors de la cr�ation d'une bombe
+	private int range = 3; //portee de la bombe
+	private boolean is_red = false;//les bombes rouges peuvent detruire les murs et les joueurs place derriere
+	//choix de 4 Constructeurs
+	//lors de la creation d'une bombe
 	public Bomb(int id,int line, int column){
 		this.owner_id = id;
 		this.X = column;
 		this.Y = line;
 		if(id == 1){
-			this.t_explosion = System.currentTimeMillis() + timer_bomb_J1 ; // la bombe explose 5 secondes apr�s �tre d�pos�e
+			this.t_explosion = System.currentTimeMillis() + timer_bomb_J1 ; // Initialisation timer selon Joueur 1 
 		}else if(id == 2){
-			this.t_explosion = System.currentTimeMillis() + timer_bomb_J2 ; // la bombe explose 5 secondes apr�s �tre d�pos�e
+			this.t_explosion = System.currentTimeMillis() + timer_bomb_J2 ; // Initialisation timer selon Joueur 2
 		}
 	}
 	
@@ -39,11 +39,13 @@ public class Bomb {
 		this.X = column;
 		this.Y = line;
 		if(id == 1){
-			this.t_explosion = System.currentTimeMillis() + t1; // la bombe explose 5 secondes apr�s �tre d�pos�e
+			this.t_explosion = System.currentTimeMillis() + t1; // Initialisation timer selon Joueur 1 
 		}else if(id == 2){
-			this.t_explosion = System.currentTimeMillis() + t2 ; // la bombe explose 5 secondes apr�s �tre d�pos�e
+			this.t_explosion = System.currentTimeMillis() + t2 ; // Initialisation timer selon Joueur 1 2
 		}
 	}
+	
+	//constructeur bombe mine
 	public Bomb(int id,int line, int column,int z){
 		this.owner_id = id;
 		this.t_explosion = System.currentTimeMillis() + 3000 ; // la bombe disparait apres 3 s
@@ -52,7 +54,7 @@ public class Bomb {
 		this.Z=z;
 
 	}
-	//lors de la cr�ation de la liste de bombs
+	//lors de la creation de la liste de bombs
 	public Bomb(){
 		
 	}
@@ -168,7 +170,7 @@ public class Bomb {
 		this.is_red = is_red;
 	}
 
-	/*Ajoute une bombe � la liste HashSet Bombs*/
+	/*Ajoute une bombe a la liste HashSet Bombs*/
 	public void addBomb(int id , int x , int y){
 		Bombs.add(new Bomb(id,y,x,this.getTimer_bomb_J1() , this.getTimer_bomb_J2()));
 		this.setBombs(Bombs);
@@ -178,32 +180,32 @@ public class Bomb {
 		Bombs.add(new Bomb(id,y,x,z));
 		this.setBombs(Bombs);
 	}
-	/*Lorsque la touche espace ou W est enfonc�e les bombes s'ajoutent � la liste aucun doublons n'est tol�r�
-	 * Un doublons => bombes au m�me emplacement aux coordonn�es (X,Y) d'ou la m�thode this.is_bomb_already_exists(x, y)*/
+	/*Lorsque la touche espace ou W est enfoncee les bombes s'ajoutent � la liste aucun doublons n'est tolere
+	 * Un doublons => bombes au meme emplacement aux coordonnees (X,Y) d'ou la methode this.is_bomb_already_exists(x, y)*/
 	public void putBomb(Board b ,Player J,Bonus bonus,Animation anim,Player other){
 		if(bonus.isJ1_line_bomb() && StdDraw.isKeyPressed(KeyEvent.VK_W) && J.getId() == 1){//bonus lingne bombe actif
 						if(StdDraw.isKeyPressed(KeyEvent.VK_S) || StdDraw.isKeyPressed(KeyEvent.VK_Q) || StdDraw.isKeyPressed(KeyEvent.VK_D) || StdDraw.isKeyPressed(KeyEvent.VK_Z)){
 							bonus.setJ1_line_bomb(false);
 						}
-						if(StdDraw.isKeyPressed(KeyEvent.VK_S)) {//touche S press�e
+						if(StdDraw.isKeyPressed(KeyEvent.VK_S)) {//touche S pressee
 							 int i = 1;
 							 while( !other.colision_player(other, (int) J.getX(), (int) J.getY() - i) && b.isGrass((int) J.getY() - i ,(int) J.getX() ) && !this.is_bomb_already_exists( (int)J.getX(), (int)J.getY()-i)){
 								 this.addBomb(1, (int) J.getX() , (int)J.getY() - i);
 								 i++;
 							 }
-			       	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Q)){//touche Q press�e
+			       	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Q)){//touche Q pressee
 						 int i = 1;
 						 while(!other.colision_player(other, (int) J.getX()-i, (int) J.getY()) && b.isGrass((int) J.getY() ,(int) J.getX()-i ) && !this.is_bomb_already_exists( (int)J.getX()-i, (int)J.getY())){
 							 this.addBomb(1, (int) J.getX() - i, (int) J.getY());
 							 i++;
 						 }
-			       	}else if(StdDraw.isKeyPressed(KeyEvent.VK_D)){//touche D press�e
+			       	}else if(StdDraw.isKeyPressed(KeyEvent.VK_D)){//touche D pressee
 						 int i = 1;
 						 while(!other.colision_player(other, (int) J.getX()+i, (int) J.getY()) && b.isGrass((int) J.getY() ,(int) J.getX()+i ) && !this.is_bomb_already_exists( (int)J.getX()+i, (int)J.getY())){
 							 this.addBomb(1, (int) J.getX() + i, (int) J.getY());
 							 i++;
 						 }
-			      	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Z)){//touche Z press�e
+			      	}else if(StdDraw.isKeyPressed(KeyEvent.VK_Z)){//touche Z pressee
 						 int i = 1;
 						 while(!other.colision_player(other, (int) J.getX(), (int) J.getY() + i) && b.isGrass((int) J.getY()+i  ,(int) J.getX() ) && !this.is_bomb_already_exists( (int)J.getX(), (int)J.getY()+i)){
 							 this.addBomb(1, (int) J.getX() , (int) J.getY()+i);
@@ -215,25 +217,25 @@ public class Bomb {
 			if(StdDraw.isKeyPressed(KeyEvent.VK_DOWN) || StdDraw.isKeyPressed(KeyEvent.VK_UP) || StdDraw.isKeyPressed(KeyEvent.VK_LEFT) || StdDraw.isKeyPressed(KeyEvent.VK_RIGHT)){
 				bonus.setJ2_line_bomb(false);
 			}
-			if(StdDraw.isKeyPressed(KeyEvent.VK_DOWN)) {//touche S press�e
+			if(StdDraw.isKeyPressed(KeyEvent.VK_DOWN)) {//touche BAS
 				 int i = 1;
 				 while(!other.colision_player(other, (int) J.getX(), (int) J.getY() - i) && b.isGrass((int) J.getY() - i ,(int) J.getX() ) && !this.is_bomb_already_exists( (int)J.getX(), (int)J.getY()-i)){
 					 this.addBomb(1, (int) J.getX() , (int)J.getY() - i);
 					 i++;
 				 }
-       	}else if(StdDraw.isKeyPressed(KeyEvent.VK_LEFT)){//touche Q press�e
+       	}else if(StdDraw.isKeyPressed(KeyEvent.VK_LEFT)){//touche GAUCHE
 			 int i = 1;
 			 while(!other.colision_player(other, (int) J.getX()-i, (int) J.getY() ) && b.isGrass((int) J.getY() ,(int) J.getX()-i ) && !this.is_bomb_already_exists( (int)J.getX()-i, (int)J.getY())){
 				 this.addBomb(1, (int) J.getX() - i, (int) J.getY());
 				 i++;
 			 }
-       	}else if(StdDraw.isKeyPressed(KeyEvent.VK_RIGHT)){//touche D press�e
+       	}else if(StdDraw.isKeyPressed(KeyEvent.VK_RIGHT)){//touche DROITE
 			 int i = 1;
 			 while(!other.colision_player(other, (int) J.getX()+i, (int) J.getY() ) && b.isGrass((int) J.getY() ,(int) J.getX()+i ) && !this.is_bomb_already_exists( (int)J.getX()+i, (int)J.getY())){
 				 this.addBomb(1, (int) J.getX() + i, (int) J.getY());
 				 i++;
 			 }
-      	}else if(StdDraw.isKeyPressed(KeyEvent.VK_UP)){//touche Z press�e
+      	}else if(StdDraw.isKeyPressed(KeyEvent.VK_UP)){//touche HAUT
 			 int i = 1;
 			 while(!other.colision_player(other, (int) J.getX(), (int) J.getY() + i) && b.isGrass((int) J.getY()+i  ,(int) J.getX() ) && !this.is_bomb_already_exists( (int)J.getX(), (int)J.getY()+i)){
 				 this.addBomb(1, (int) J.getX() , (int) J.getY()+i);
@@ -279,8 +281,8 @@ public class Bomb {
 		
 	}
 	
-	/*avant d'ajouter la liste � la bombe il faut v�rifier qu'elle n'existe pas pour �viter les doublons
-	 * Autre cas utile : lorsqu'un joueur perd une vie, il est possible qu'il meurt � nouveau � cause d'une bombe plac� � c�t�s (ce qui est dommage) */
+	/*avant d'ajouter la liste a la bombe il faut verifier qu'elle n'existe pas pour eviter les doublons
+	 * Autre cas utile : lorsqu'un joueur perd une vie, il est possible qu'il meurt a nouveau a cause d'une bombe place a cotes (ce qui est dommage) */
 	public boolean is_bomb_already_exists(int x,int y){
 		Iterator<Bomb> it = Bombs.iterator();
 		boolean exist = false;
@@ -295,6 +297,7 @@ public class Bomb {
 		return exist;
 	}
 	
+	//Verifie les bombes mines sur un emplacement
 	public boolean is_there_mine_bomb(int x,int y){
 		Iterator<Bomb> it = Bombs.iterator();
 		boolean exist = false;

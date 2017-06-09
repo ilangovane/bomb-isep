@@ -18,6 +18,8 @@ public class Avatar {
 	Menu menu = new Menu();
 	private int id;
 
+	
+	/*Constructeur de l'avatar*/
 	public Avatar(){
 			
 		for(int i = 0; i<3; i++){
@@ -27,12 +29,15 @@ public class Avatar {
 		}
 		
 	}
+	
+	/*POlice personnaliser*/
 	public Font bombermanFont() throws FileNotFoundException, FontFormatException, IOException{
 		Font font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream("Bomberman/src/bm.ttf"));
 		font = font.deriveFont(20F);
 		return font;
 	}
 	
+	/*Verifie si le joueur 1 a fait son choix (element = 1) ou si le joueur 2 a fait son choix (element = 2)*/
 	public boolean find(int element , int[][] array){
 		boolean find = false;
 		for(int i =0 ;  i < array.length ; i++ ){
@@ -45,6 +50,8 @@ public class Avatar {
 		}
 		return find;
 	}
+	
+	/*Serie d'instruction permettant de choisir un personnage avant de jouer*/
 	public void choix() throws FileNotFoundException, FontFormatException, IOException{
 		StdDraw.setCanvasSize(20*30,20*30);
 		StdDraw.setYscale(0,3);
@@ -92,6 +99,8 @@ public class Avatar {
 			}
 	}
 	
+	
+	/*Verifie la position de la souris et modifie la matrice => 1 : J1 et 2: J2*/ 
 	public boolean choose(int id) {
 		double x = StdDraw.mouseX();
 		double y = StdDraw.mouseY();
@@ -122,7 +131,7 @@ public class Avatar {
 		}
 		StdDraw.rectangle(colonne, ligne, largeur, hauteur);		//  Dessine un carre	
 	}
-	
+	/*Getters et Setters*/
 	public String getChoix_j1() {
 		return choix_j1;
 	}
@@ -139,6 +148,8 @@ public class Avatar {
 		this.choix_j2 = choix_j2;
 	}
 
+	
+	/*Afficher l'interface de choix d'avatar*/
 	public void print(int id){
 		int index = 1;
 		StdDraw.picture(1.5,1.5, "instructions.gif",3,3);
