@@ -35,39 +35,43 @@ public class Menu{
 	public void setChoixMenu(String choixMenu) {
 		ChoixMenu = choixMenu;
 	}
+	
+	//Fonction permettant de definir une police externe
 	public Font bombermanFont() throws FileNotFoundException, FontFormatException, IOException{
 		Font font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream("Bomberman/src/bm.ttf"));
 		font = font.deriveFont(20F);
 		return font;
 	}
+	
+	// Fonction permettant de lancer la fenetre lorsque le jeu est termine
 	public void game_over(int winner) throws FileNotFoundException, FontFormatException, IOException{
-		int nbligne = 2;					//nombre de ligne
-		int nbcolonne = 21;					//nombre de colonne
-		float centerL = (float)(nbligne/2);
-		float centerC = (float)(nbcolonne/2);
+		int nbligne = 2;						//nombre de ligne
+		int nbcolonne = 21;						//nombre de colonne
+		float centerL = (float)(nbligne/2);		// permet de definir le centre de la fenetre
+		float centerC = (float)(nbcolonne/2);	// permet de definir le centre de la fenetre
 		int largeurRect = 3;
 		float hauteurRect = 0.5f;
 		
 		StdDraw.clear(); // On clear la fenetre
 		
-		StdDraw.setFont(bombermanFont());
-		StdDraw.picture(10.5,8.5, "gameover.gif",21,21);
-		StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
-		if(winner!=0){
+		StdDraw.setFont(bombermanFont());					// On defini la police de l'ecriture
+		StdDraw.picture(10.5,8.5, "gameover.gif",21,21);	// On affiche le fond de la page game over
+		StdDraw.setPenColor(StdDraw.LIGHT_GRAY);			//  On defini la couleur pour l'ecriture
+		if(winner!=0){ // Si il y a un gagnant on affiche le joueur gagnant
 			StdDraw.text(10, 11, "Le vainqueur est : Joueur " + winner);
-		}else{
+		}else{ // Si il y a match nul on affiche le resultat
 			StdDraw.text(10, 11, "Match null");
 		}
 		
 		
 		/*BOUTON RETOUR AU MENU PRINCIPAL*/			
 		this.setChoixMenu("gameover");
-				
+		// Si l'utilisateur clique sur le triangle qui est pour nous un bouton on retourne au menu
 				if (StdDraw.mouseX() >= centerC-largeurRect && StdDraw.mouseX() <= centerC+largeurRect && StdDraw.mouseY() >= centerL - hauteurRect && StdDraw.mouseY() <= centerL + hauteurRect){
 					// Petit effet quand on place la souris sur le bouton
-					displayEffect(centerC, centerL, largeurRect, hauteurRect,"Menu");
-					if(StdDraw.mousePressed()){
-						StdDraw.setCanvasSize(40*30,21*30);
+					displayEffect(centerC, centerL, largeurRect, hauteurRect,"Menu");	//  Dessine un rectangle avec un effet
+					if(StdDraw.mousePressed()){	// Si la souris est presse on retourne au menu principal
+						StdDraw.setCanvasSize(40*30,21*30);	// Permet de definir la taille de la fenetre
 						/*
 						 * Modifier les echelles X et Y pour avoir un systeme de coordonnees (X,Y)
 						 *  Coordonnees (0,0) coin en bas a gauche et (17,21) coin en haut a droite
@@ -77,11 +81,12 @@ public class Menu{
 						setChoixMenu("home");
 					}
 				}else {
-					displayRect(centerC, centerL, largeurRect, hauteurRect,"Menu");
+					displayRect(centerC, centerL, largeurRect, hauteurRect,"Menu"); // On affiche le rectangle avec le texte Menu dedans 
 				}
 				StdDraw.show(30);
 	}
 	
+	// Fonction permettant de creer un rectangle
 	public void displayRect(float colonne, float ligne, int largeur,float hauteur, String contenu) throws FileNotFoundException, FontFormatException, IOException{
 		StdDraw.setPenColor(StdDraw.BLACK);								//  Couleur noir pour l'ecriture
 		StdDraw.filledRectangle(colonne, ligne, largeur, hauteur);		//  Dessine un rectangle
@@ -90,6 +95,7 @@ public class Menu{
 		StdDraw.text(colonne, ligne, contenu);
 	}
 	
+	// Fonction permettant de creer un rectangle avec un effet lorsque la souris sera sur le rectangle
 	public void displayEffect(float colonne, float ligne, int largeur,float hauteur, String contenu) throws FileNotFoundException, FontFormatException, IOException{
 		StdDraw.setPenColor(StdDraw.LIGHT_GRAY);						//  Couleur noir pour l'ecriture
 		StdDraw.filledRectangle(colonne, ligne, largeur, hauteur);		//  Dessine un rectangle
@@ -98,6 +104,7 @@ public class Menu{
 		StdDraw.text(colonne, ligne, contenu);
 	}
 	
+	// Fonction permettant de mettre en place les boutons en forme de rectangle pour le menu
 	public void menu() throws FileNotFoundException, FontFormatException, IOException{ // Afficher le menu principal
 		int nbligne = 17;					//nombre de ligne
 		int nbcolonne = 30;					//nombre de colonne
@@ -132,7 +139,7 @@ public class Menu{
 		StdDraw.picture(25, 3, "p2.gif",5,5);
 		StdDraw.mousePressed(); // il faut remettre le boolean a false 
 
-		
+			// Selon le choix de l'utilisateur en pressant la souris on lance des fonctions differentes chacunes liee a une des fonctionnalites du jeu
 			if (StdDraw.mouseX() >= centerC-largeurRect && StdDraw.mouseX() <= centerC+largeurRect && StdDraw.mouseY() >= centerL - hauteurRect && StdDraw.mouseY() <= centerL + hauteurRect){
 				// Petit effet quand on place la souris sur le bouton
 				displayEffect(centerC, centerL, largeurRect, hauteurRect,"Jouer");		//  Dessine un rectangle
@@ -143,7 +150,7 @@ public class Menu{
 			else if (StdDraw.mouseX() >= centerC-largeurRect && StdDraw.mouseX() <= centerC+largeurRect && StdDraw.mouseY() >= centerL - hauteurRect - decalage && StdDraw.mouseY() <= centerL + hauteurRect - decalage){
 				displayEffect(centerC, centerL - decalage, largeurRect, hauteurRect, "Jouer");	
 				if(StdDraw.mousePressed()){
-				setChoixMenu("IA"); // ce sera a change
+				setChoixMenu("IA");
 				}
 			}
 			else if (StdDraw.mouseX() >= centerC-largeurRect && StdDraw.mouseX() <= centerC+largeurRect && StdDraw.mouseY() >= centerL - hauteurRect - 2*decalage && StdDraw.mouseY() <= centerL + hauteurRect - 2*decalage){
@@ -165,6 +172,8 @@ public class Menu{
 				}		
 			}
 	}
+	
+	// Fonction permettant de lancer le jeu en mode multijoueur 
 	public int  start_game_multi(Avatar avatar) throws FileNotFoundException, FontFormatException, IOException, UnsupportedAudioFileException, LineUnavailableException{
 
         //Dessiner le plateau et les joueurs
@@ -204,7 +213,6 @@ public class Menu{
 	        	
 	        	
 	        	/*Les donnees des joueurs sont affichees dans la console (nombre de vies et coordonnees X et Y)*/
-	        	//info(J1,J2);
 	        	/*Animation */
 	        	animation_liste.display_effects(game_board);
 	        	StdDraw.show(30);
@@ -216,9 +224,7 @@ public class Menu{
 	        }
 	      this.setChoixMenu("gameover");
 
-	      
-	      
-	     
+	      // Permet de definir le gagnant selon le joueur qui n'a plus de vies
 	      game_board.finalize();
 	      int winner = 0 ;
 	      if(J1.getLife() == 0 	&& J2.getLife() != 0 ){
@@ -233,6 +239,7 @@ public class Menu{
 	      
 	}
 	
+	// Fonction permettant de lancer le jeu en mode IA 
 	public int  start_game_single(Avatar avatar) throws FileNotFoundException, FontFormatException, IOException, UnsupportedAudioFileException, LineUnavailableException{
 
         //Dessiner le plateau et les joueurs
@@ -273,7 +280,6 @@ public class Menu{
 	        	
 	        	
 	        	/*Les donnees des joueurs sont affichees dans la console (nombre de vies et coordonnees X et Y)*/
-	        	//info(J1,J2);
 	        	/*Animation */
 	        	animation_liste.display_effects(game_board);
 	        	StdDraw.show(30);
@@ -285,9 +291,7 @@ public class Menu{
 	        }
 	      this.setChoixMenu("gameover");
 
-	      
-	      
-	     
+	   // Permet de definir le gagnant selon le joueur qui n'a plus de vies
 	      game_board.finalize();
 	      int winner = 0 ;
 	      if(J1.getLife() == 0 	&& J2.getLife() != 0 ){
