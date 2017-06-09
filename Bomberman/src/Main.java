@@ -22,15 +22,15 @@ public class Main {
 		Instruction instruction = new Instruction();
 		Audio musique = new Audio("Bomberman/src/bomberman_backsound.wav");
 	    Audio click = new Audio("Bomberman/src/start.wav");
-		musique.start();
+		musique.start();	// On lance la musique du jeu
 
 		
 		while(menu.getChoixMenu() != "exit"){
 		   musique.repeat();
 	       switch(menu.getChoixMenu()){
 	       case "home":
-	    	   	menu.menu();
-	    	   	avatar.setChoix_j1("p4.gif");
+	    	   	menu.menu();					// Affichage du menu principal
+	    	   	avatar.setChoix_j1("p4.gif");	// Deux personnages présent sur le fond d'ecran du menu
 	    	   	avatar.setChoix_j2("p5.gif");
 	    	   	break;
 	       case "gameover":
@@ -45,23 +45,21 @@ public class Main {
 	        	i = menu.start_game_single(avatar);//IA presente
 	        	break;
 	       case "instructions":
-	        	//System.out.println("INSTRUCTIONS");
-	    	    instruction.information(menu);
+	    	    instruction.information(menu);	// On affiche les commandes du jeu en appelant la classe instruction
 	        	break;
 	       case "exit":
 	        	break;
 	       case "avatar": 
-
 	    	    avatar.choix();
 	    	    menu.setChoixMenu("multiplayers");
 	    	    break;
 	       default:
 	    	   System.out.print("RIEN");			
 	       }	   
-	       StdDraw.show(30);
+	       StdDraw.show(30);	// On utilise StdDraw.show pour l'affichage du jeu afin d'eviter les clignotements
 		}
 		   System.exit(0);		// On ferme la fenetre 
-	       musique.stop();
+	       musique.stop();		// On arrete la musique
 	       
 	}
 	
